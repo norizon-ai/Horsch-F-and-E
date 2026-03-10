@@ -1,0 +1,80 @@
+# =============================================================================
+# Norizon DeepSearch - Agent Configuration
+# =============================================================================
+# Copy this file to agents.yaml and customize for your deployment.
+# Each agent can be enabled/disabled independently.
+# Environment variables can be substituted using ${VAR_NAME} syntax.
+
+agents:
+  # ---------------------------------------------------------------------------
+  # Web Search Agent (SearXNG)
+  # ---------------------------------------------------------------------------
+  # Searches the web using SearXNG metasearch engine.
+  # Requires a running SearXNG instance.
+  web_search:
+    type: websearch
+    enabled: true
+    description: "Search the web for current information, news, and documentation"
+    max_iterations: 5
+    backend:
+      searxng_url: "http://localhost:8080"
+      default_engines:
+        - google
+        - bing
+        - duckduckgo
+      timeout: 30.0
+
+  # ---------------------------------------------------------------------------
+  # Document Search Agent (Elasticsearch)
+  # ---------------------------------------------------------------------------
+  # Searches internal documentation stored in Elasticsearch.
+  # Requires a running Elasticsearch instance with indexed documents.
+  docs:
+    type: elasticsearch
+    enabled: false  # Set to true when Elasticsearch is available
+    description: "Search internal documentation and knowledge base"
+    max_iterations: 3
+    backend:
+      url: "http://localhost:9200"
+      index: "documentation"
+      search_fields:
+        - "title^3"
+        - "content"
+        - "summary^2"
+      # Optional authentication
+      # username: "${ES_USERNAME}"
+      # password: "${ES_PASSWORD}"
+      # api_key: "${ES_API_KEY}"
+
+  # ---------------------------------------------------------------------------
+  # Ticket Search Agent (Elasticsearch - different index)
+  # ---------------------------------------------------------------------------
+  # Searches support tickets stored in a separate Elasticsearch index.
+  # Example of running multiple agents of the same type.
+  tickets:
+    type: elasticsearch
+    enabled: false
+    description: "Search support tickets and issue history"
+    max_iterations: 3
+    backend:
+      url: "http://localhost:9200"
+      index: "tickets"
+      search_fields:
+        - "subject^2"
+        - "body"
+        - "resolution"
+
+  # ---------------------------------------------------------------------------
+  # Custom Agent (Plugin)
+  # ---------------------------------------------------------------------------
+  # Load a custom agent from a Python class path.
+  # The class must inherit from BaseAgent.
+  # custom_rag:
+  #   type: custom
+  #   enabled: false
+  #   class: "mypackage.agents.CustomRAGAgent"
+  #   description: "Custom RAG with proprietary backend"
+  #   max_iterations: 4
+  #   backend:
+  #     api_url: "http://internal-api:8000"
+  #     api_key: "${CUSTOM_API_KEY}"

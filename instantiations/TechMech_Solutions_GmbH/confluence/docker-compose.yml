@@ -1,0 +1,84 @@
+version: '3.8'
+
+services:
+  # Fresh Elasticsearch for demo data
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+    container_name: demo-confluence-es
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - ES_JAVA_OPTS=-Xms2g -Xmx2g
+      - bootstrap.memory_lock=false
+      - cluster.routing.allocation.disk.threshold_enabled=false
+    ports:
+      - "${ELASTICSEARCH_PORT:-9200}:9200"
+    volumes:
+      - demo-es-data:/usr/share/elasticsearch/data
+    networks:
+      - demo-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9200/_cluster/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+  # DeepResearch API - Agentic Retrieval Service
+  deepresearch-api:
+    build:
+      context: ../../services/deepresearch
+      dockerfile: Dockerfile
+    container_name: demo-confluence-api
+    ports:
+      - "${DEEPRESEARCH_PORT:-8001}:8000"
+    environment:
+      # Model configuration
+      - SUPERVISOR_MODEL=${SUPERVISOR_MODEL:-openai:gpt-4o-mini}
+      - RESEARCHER_MODEL=${RESEARCHER_MODEL:-openai:gpt-4o-mini}
+
+      # Backend selection
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      # Optional: Uncomment to use alternative backends
+      # - GROQ_API_KEY=${GROQ_API_KEY}
+      # - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://ollama:11434}
+
+      # Search configuration
+      - SEARCH_API=${SEARCH_API:-elasticsearch}
+
+      # Elasticsearch configuration
+      - ELASTIC_URL=http://elasticsearch:9200
+      - ELASTIC_INDEX=${ELASTIC_INDEX:-demo_confluence_kb}
+      - ELASTICSEARCH_HOST=http://elasticsearch:9200
+      - ELASTICSEARCH_INDEX=${ELASTICSEARCH_INDEX:-demo_confluence_kb}
+
+      # Embedding model (must match what was used during indexing)
+      - EMBED_MODEL=${EMBED_MODEL:-sentence-transformers/all-MiniLM-L6-v2}
+
+      # Prompt configuration (for runtime prompt injection)
+      - PROMPTS_DIR=/app/prompts
+
+    volumes:
+      - ./prompts:/app/prompts:ro
+
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    networks:
+      - demo-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  demo-network:
+    driver: bridge
+
+volumes:
+  demo-es-data:
+    driver: local

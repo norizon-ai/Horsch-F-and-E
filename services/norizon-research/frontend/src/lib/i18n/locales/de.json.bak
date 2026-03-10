@@ -1,0 +1,506 @@
+{
+	"common": {
+		"copy": "Kopieren",
+		"regenerate": "Neu generieren",
+		"share": "Teilen",
+		"cancel": "Abbrechen",
+		"confirm": "Bestätigen",
+		"delete": "Löschen",
+		"save": "Speichern",
+		"saving": "Wird gespeichert...",
+		"close": "Schließen",
+		"send": "Senden",
+		"back": "Zurück",
+		"next": "Weiter",
+		"loading": "Wird geladen...",
+		"or": "oder"
+	},
+	"search": {
+		"placeholder": "Stellen Sie eine Frage...",
+		"thinking": "Anfrage wird analysiert...",
+		"writing": "Antwort wird erstellt...",
+		"complete": "Recherche abgeschlossen",
+		"analyzing": "Ergebnisse werden analysiert...",
+		"starting": "Recherche wird gestartet...",
+		"source": "Quelle",
+		"sources": "Quellen",
+		"documents": "Dokumente",
+		"documentsFound": "{count, plural, =0 {Keine Dokumente gefunden} =1 {1 Dokument gefunden} other {{count} Dokumente gefunden}}",
+		"searchingSources": "{count, plural, =1 {Durchsuche 1 Quelle...} other {Durchsuche {count} Quellen...}}",
+		"gatheringSources": "Durchsuche Quellen...",
+		"gatheredSources": "{count, plural, =0 {Dokumente gefunden} =1 {1 Dokument gefunden} other {{count} Dokumente gefunden}}",
+		"searchedSources": "{count} Dokumente aus {sources} Quellen durchsucht",
+		"searching": "Wird durchsucht...",
+		"processing": "Wird verarbeitet...",
+		"done": "Abgeschlossen",
+		"noResults": "Keine Ergebnisse",
+		"waiting": "Ausstehend...",
+		"readItems": "{count} {type} durchsucht"
+	},
+	"chat": {
+		"new_chat": "Neuer Chat",
+		"your_chats": "Ihre Chats",
+		"no_chats": "Noch keine Unterhaltungen",
+		"no_chats_hint": "Starten Sie eine neue Unterhaltung",
+		"continue_session": "Letzte Sitzung fortsetzen",
+		"delete_confirm": "Möchten Sie diese Sitzung wirklich löschen?",
+		"today": "Heute",
+		"yesterday": "Gestern",
+		"last_week": "Letzte 7 Tage",
+		"older": "Älter",
+		"search_placeholder": "Chats durchsuchen...",
+		"inputHint": {
+			"send": "Zum Senden",
+			"newLine": "Für neue Zeile"
+		},
+		"context": {
+			"loaded": "Kontext geladen",
+			"summary": "Zusammenfassung",
+			"actionItems": "Aktionspunkte",
+			"tryAsking": "Probieren Sie:"
+		}
+	},
+	"welcome": {
+		"title": "Wie kann ich Ihnen helfen?",
+		"subtitle": "Stellen Sie mir eine Frage und ich durchsuche Ihre verbundenen Quellen nach umfassenden Antworten.",
+		"disclaimer": "Nora durchsucht verbundene Quellen. Quellenangaben bei kritischen Entscheidungen prüfen."
+	},
+	"suggestions": {
+		"processes": {
+			"title": "Meeting-Dokumentation",
+			"question": "Dokumentation aus Meeting erstellen"
+		},
+		"documentation": {
+			"title": "Dokumentation",
+			"question": "Wo finde ich die Produktdokumentation?"
+		},
+		"policies": {
+			"title": "Richtlinien",
+			"question": "Was sind die Homeoffice-Richtlinien?"
+		},
+		"contacts": {
+			"title": "Kontakte",
+			"question": "Wer ist Ansprechpartner für IT-Support?"
+		}
+	},
+	"sources": {
+		"title": "Quellen",
+		"showAll": "Alle anzeigen",
+		"showLess": "Weniger anzeigen",
+		"openSource": "Quelle öffnen",
+		"types": {
+			"sharepoint": "Interne Dokumente",
+			"confluence": "Interne Dokumentation",
+			"wiki": "Internes Wiki",
+			"jira": "Tickets & Aufgaben",
+			"web": "Externe Quellen",
+			"elasticsearch": "Wissensdatenbank",
+			"document": "Dokumente"
+		}
+	},
+	"actions": {
+		"thumbs_up": "Hilfreich",
+		"thumbs_down": "Nicht hilfreich",
+		"export": "Exportieren",
+		"export_pdf": "Als PDF exportieren",
+		"export_word": "Als Word exportieren",
+		"copied": "Kopiert!"
+	},
+	"errors": {
+		"searchFailed": "Entschuldigung, bei der Suche ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
+	},
+	"workflow": {
+		"meeting": {
+			"title": "Meeting-Dokumentation",
+			"badge": "Workflow",
+			"creating": "Workflow wird erstellt...",
+			"confluencePreview": "Confluence-Vorschau",
+			"showPreview": "Vorschau anzeigen",
+			"hidePreview": "Vorschau ausblenden",
+			"confirmExit": "Möchten Sie den Workflow wirklich verlassen? Ihre Fortschritte werden gespeichert.",
+			"greeting": {
+				"upload": "Ich kann Ihr Meeting transkribieren und analysieren. Laden Sie die Audio- oder Videodatei unten hoch, und ich extrahiere die wichtigsten Entscheidungen, Aufgaben und erstelle ein strukturiertes Protokoll.",
+				"processing": "Ich analysiere gerade Ihre Aufnahme. Das umfasst die Transkription des Gesprächs und die Identifikation der Sprecher.",
+				"speakers": "Ich habe die Sprecher unten identifiziert. Bitte bestätigen oder korrigieren Sie die Namen, damit das Protokoll korrekt ist.",
+				"protocol": "Hier ist das Protokoll, das ich erstellt habe. Wählen Sie eine Vorlage und bearbeiten Sie den Inhalt nach Bedarf.",
+				"export": "Ihr Protokoll ist fertig. Überprüfen Sie die Zusammenfassung und exportieren Sie nach Confluence.",
+				"success": "Ihr Protokoll wurde erfolgreich gespeichert."
+			},
+			"error": {
+				"title": "Fehler",
+				"backToChat": "Zurück zum Chat"
+			},
+			"welcome": {
+				"title": "Meeting dokumentieren",
+				"description": "Laden Sie eine Aufnahme Ihres Meetings hoch. Nora transkribiert das Gespräch, identifiziert die Sprecher und erstellt automatisch ein strukturiertes Protokoll.",
+				"startButton": "Meeting hochladen"
+			},
+			"upload": {
+				"title": "Aufnahme hochladen",
+				"subtitle": "Laden Sie die Audio- oder Videoaufnahme Ihres Meetings hoch",
+				"combinedSubtitle": "Laden Sie Ihre Meeting-Aufnahme hoch. Die Verarbeitung beginnt erst nach Ihrer Bestätigung.",
+				"dragDrop": "Datei hierher ziehen",
+				"dropHere": "Hier ablegen",
+				"dropOrClick": "Datei hier ablegen oder klicken",
+				"orClick": "oder klicken zum Auswählen",
+				"hint": "Maximale Dateigröße: {maxSize}",
+				"timeHint": "Dauert ca. 5 Minuten",
+				"errorType": "Ungültiges Dateiformat. Bitte laden Sie eine Audio- oder Videodatei hoch (MP3, MP4, M4A, WAV, WebM).",
+				"errorSize": "Die Datei ist zu groß. Maximale Größe: {maxSize}",
+				"uploadRequired": "Bitte laden Sie zuerst eine Audiodatei hoch",
+				"bestPracticesTitle": "Tipps für beste Ergebnisse",
+				"bestPractices": {
+					"audio": {
+						"title": "Klare Audioqualität",
+						"description": "Ruhiger Raum, wenig Hintergrundgeräusche."
+					},
+					"speakers": {
+						"title": "Sprecher vorstellen",
+						"description": "Teilnehmer sollen sich vorstellen."
+					},
+					"duration": {
+						"title": "Optimale Länge",
+						"description": "Unter 2 Stunden optimal."
+					},
+					"recording": {
+						"title": "Aufnahme aktivieren",
+						"description": "'Aufzeichnen' in Teams/Zoom klicken."
+					}
+				},
+				"tutorialTitle": "Wo finde ich meine Aufnahme?",
+				"tutorial": {
+					"teams": {
+						"step1": "Öffnen Sie <strong>Microsoft Teams</strong> und gehen Sie zum <strong>Chat</strong> oder <strong>Kalender</strong>",
+						"step2": "Finden Sie das Meeting und klicken Sie auf die <strong>drei Punkte (...)</strong> neben der Aufnahme",
+						"step3": "Wählen Sie <code>In OneDrive öffnen</code> oder <code>In SharePoint öffnen</code>",
+						"step4": "Klicken Sie auf <strong>Herunterladen</strong> und laden Sie die MP4-Datei hier hoch"
+					},
+					"iphone": {
+						"step1": "Öffnen Sie die <strong>Sprachmemos</strong>-App auf Ihrem iPhone",
+						"step2": "Tippen Sie auf die gewünschte Aufnahme und dann auf die <strong>drei Punkte (...)</strong>",
+						"step3": "Wählen Sie <strong>Teilen</strong> und dann <strong>In Dateien sichern</strong>",
+						"step4": "Öffnen Sie diese Seite auf Ihrem Computer und laden Sie die Datei von <strong>iCloud Drive</strong> hoch"
+					}
+				}
+			},
+			"teams": {
+				"tabLabel": "Aus Teams importieren",
+				"connect": "Microsoft Teams verbinden",
+				"connectDescription": "Melden Sie sich an, um auf Ihre letzten Meeting-Aufnahmen zuzugreifen",
+				"connected": "Verbunden als {name}",
+				"disconnect": "Trennen",
+				"loadingMeetings": "Ihre letzten Meetings werden geladen...",
+				"noRecordings": "Keine Meetings mit Aufnahmen in den letzten 30 Tagen gefunden",
+				"import": "Importieren",
+				"importing": "Aufnahme wird heruntergeladen...",
+				"attendees": "{count} Teilnehmer",
+				"error": "Meetings konnten nicht geladen werden. Bitte versuchen Sie es erneut.",
+				"popupBlocked": "Das Popup wurde blockiert. Bitte erlauben Sie Popups für diese Seite."
+			},
+			"confirm": {
+				"title": "Analyse konfigurieren",
+				"subtitle": "Einstellungen vor der Protokollerstellung überprüfen",
+				"changeFile": "Andere Datei",
+				"replaceFile": "Ersetzen",
+				"noFile": "Keine Datei ausgewählt",
+				"selectFile": "Datei auswählen",
+				"infoText": "Die Verarbeitung kann je nach Länge der Aufnahme einige Minuten dauern. Sie können den Browser während der Verarbeitung geöffnet lassen.",
+				"startProcessing": "Analysieren & Protokoll erstellen",
+				"startButton": "Verarbeitung starten",
+				"timeEstimate": "Geschätzte Dauer: ~{minutes} Min.",
+				"metadata": {
+					"title": "Meeting-Details",
+					"optional": "Optional",
+					"meetingTitle": "Meeting-Titel",
+					"meetingTitlePlaceholder": "z.B. Q2 Budgetplanung",
+					"meetingDate": "Datum",
+					"projectClient": "Projekt / Kunde",
+					"projectClientPlaceholder": "z.B. Projekt Alpha",
+					"participants": "Erwartete Teilnehmer",
+					"participantsPlaceholder": "z.B. Max, Anna, Thomas"
+				},
+				"processingOptions": {
+					"title": "Verarbeitungsoptionen",
+					"diarization": "Sprechererkennung",
+					"sensitivity": "Vertraulichkeit",
+					"standard": "Standard",
+					"confidential": "Vertraulich"
+				},
+				"language": {
+					"label": "Sprache",
+					"auto": "Automatisch erkennen",
+					"de": "Deutsch",
+					"en": "Englisch"
+				},
+				"template": {
+					"label": "Meeting-Typ",
+					"standard": "Standard-Meeting",
+					"board": "Vorstandssitzung",
+					"technical": "Technischer Workshop",
+					"interview": "Interview / 1:1",
+					"sales": "Vertriebsgespräch",
+					"legal": "Recht / Compliance"
+				},
+				"outputs": {
+					"label": "KI-Extraktionen",
+					"actionItems": "Aufgaben",
+					"decisions": "Entscheidungsprotokoll",
+					"sentiment": "Stimmungsanalyse",
+					"keyTopics": "Kernthemen"
+				},
+				"workspace": {
+					"label": "Speichern in",
+					"placeholder": "Workspace auswählen...",
+					"default": "Meine Protokolle",
+					"team": "Team-Workspace",
+					"project": "Projektarchiv"
+				},
+				"visibility": {
+					"label": "Sichtbarkeit",
+					"private": "Privat",
+					"privateDesc": "Nur Sie haben Zugriff",
+					"team": "Team-sichtbar",
+					"teamDesc": "Mit Ihrem Team geteilt"
+				},
+				"uploadedAt": "Hochgeladen {time}",
+				"duration": "{duration}",
+				"requestedBy": "Angefordert von",
+				"securityBadge": "Verschlüsselte Verarbeitung",
+				"securityHint": "Keine Daten werden für Modelltraining verwendet",
+				"sidebar": {
+					"securityTitle": "Enterprise-Sicherheit",
+					"securityItems": {
+						"encrypted": "Ende-zu-Ende verschlüsselt",
+						"gdpr": "DSGVO-konform",
+						"noTraining": "Kein Modelltraining",
+						"euServers": "EU-Datenstandort"
+					},
+					"tipsTitle": "Analyse-Tipps",
+					"tips": {
+						"names": "Sprecher, die sich vorstellen, werden besser zugeordnet",
+						"quality": "Klare Audioqualität führt zu genaueren Transkripten",
+						"length": "Meetings unter 2 Stunden werden schneller verarbeitet"
+					}
+				}
+			},
+			"processing": {
+				"title": "Aufnahme wird analysiert",
+				"hubTitle": "Analyse-Center",
+				"initializing": "Wird initialisiert...",
+				"hint": "Bitte schließen Sie dieses Fenster nicht während der Verarbeitung.",
+				"timeEstimate": "Etwa {minutes} Minuten verbleibend",
+				"trustBadge": "DSGVO-konform",
+				"encryptedBadge": "Verschlüsselt",
+				"jobDetails": "Auftragsdetails",
+				"pipelineTitle": "Verarbeitungspipeline",
+				"liveActivity": "Live-Aktivität",
+				"topicsDetected": "Erkannte Themen",
+				"duration": "Dauer",
+				"template": "Analyse-Vorlage",
+				"stages": {
+					"uploading": "Upload wird gesichert",
+					"transcribing": "Gespräch wird verschriftet",
+					"diarizing": "Sprecher werden erkannt",
+					"identifying": "Sprechernamen werden erkannt",
+					"correcting": "Sprecherproben werden generiert"
+				},
+				"subStatus": {
+					"uploading": {
+						"encrypting": "Datenstrom wird verschlüsselt...",
+						"verifying": "Dateiintegrität wird geprüft...",
+						"secured": "Übertragung gesichert"
+					},
+					"transcribing": {
+						"detecting": "Höre genau zu...",
+						"processing": "Schreibe Wörter auf...",
+						"refining": "Mache Notizen..."
+					},
+					"diarizing": {
+						"profiling": "Höre auf Stimmen...",
+						"clustering": "Wer hat das gesagt?...",
+						"labeling": "Identifiziere Sprecher..."
+					},
+					"identifying": {
+						"analyzing": "Analysiere Transkriptkontext...",
+						"detecting": "Erkenne Namenseinführungen...",
+						"inferring": "Leite Sprechernamen ab..."
+					},
+					"correcting": {
+						"loading": "Lade beste Äußerungen...",
+						"applying": "Generiere Sprecherproben...",
+						"validating": "Bereite Audioabschnitte vor..."
+					}
+				},
+				"stageComplete": "Abgeschlossen",
+				"complete": "Analyse abgeschlossen",
+				"elapsed": "Vergangen",
+				"remaining": "Verbleibend",
+				"cancel": "Verarbeitung abbrechen",
+				"cancelDialog": {
+					"title": "Verarbeitung abbrechen?",
+					"message": "Die Analyse wird gestoppt und Ihr Fortschritt geht verloren.",
+					"continue": "Weiter verarbeiten",
+					"confirm": "Ja, abbrechen"
+				},
+				"backgroundMessage": "Sie können weiterarbeiten, während wir Ihre Aufnahme verarbeiten.",
+				"backgroundHint": "Sie können weiterarbeiten - wir benachrichtigen Sie, wenn fertig.",
+				"notificationEmail": "Wir benachrichtigen Sie unter {email}, wenn fertig.",
+				"continueBackground": "Im Hintergrund fortsetzen",
+				"backToChat": "Zurück zum Chat",
+				"preview": "Vorschau",
+				"insights": {
+					"audioVerified": "Audioqualität verifiziert",
+					"voicesDetected": "{count} Sprecherstimmen erkannt",
+					"wordsTranscribed": "{count} Wörter transkribiert",
+					"actionsFound": "Aufgaben identifiziert: {count}",
+					"decisionsFound": "Entscheidungen gefunden: {count}",
+					"topicsDetected": "Themen: {topics}"
+				}
+			},
+			"steps": {
+				"upload": "Hochladen",
+				"review": "Überprüfen",
+				"done": "Fertig",
+				"stepOf": "Schritt {current} von {total}"
+			},
+			"speakers": {
+				"title": "Sprecher bestätigen",
+				"subtitle": "Überprüfen und korrigieren Sie die erkannten Sprechernamen",
+				"confirmed": "Bestätigt",
+				"speakingTime": "Redezeit",
+				"sampleAudio": "Hörprobe",
+				"infoText": "Klicken Sie auf einen Namen, um ihn zu bearbeiten. Die korrekten Namen werden im Protokoll und Transkript verwendet.",
+				"confirmButton": "Bestätigen & Weiter",
+				"confirmAll": "Alle bestätigen",
+				"confirmAllDetected": "Alle erkannten Namen übernehmen",
+				"playbackSpeed": "Wiedergabegeschwindigkeit",
+				"identifiedSpeakers": "{count} Sprecher identifiziert",
+				"speakersConfirmed": "{confirmed} von {total} Sprechern bestätigt",
+				"unknownSpeaker": "Unbekannter Sprecher",
+				"markExternal": "Als Externer markieren",
+				"externalBadge": "Extern",
+				"quickMode": "Schnellmodus",
+				"detailedMode": "Einzeln prüfen"
+			},
+			"protocol": {
+				"title": "Protokoll überprüfen",
+				"reviewTitle": "Protokoll bearbeiten",
+				"subtitle": "Überprüfen und bearbeiten Sie das generierte Protokoll",
+				"edit": "Bearbeiten",
+				"generating": "Protokoll wird generiert...",
+				"meetingTitle": "Meeting-Titel",
+				"date": "Datum",
+				"attendees": "Teilnehmer",
+				"summary": "Zusammenfassung",
+				"actionItems": "Aufgaben",
+				"decisions": "Entscheidungen",
+				"nextSteps": "Nächste Schritte",
+				"addAction": "Aufgabe hinzufügen",
+				"transcript": "Vollständiges Transkript",
+				"saveToConfluence": "In Confluence speichern",
+				"saveAndContinue": "Speichern & Weiter",
+				"template": "Vorlage",
+				"selectTemplate": "Vorlage auswählen...",
+				"suggested": "KI-Empfehlung",
+				"recommended": "Empfohlen",
+				"previewMode": "Vorschau",
+				"editMode": "Bearbeiten",
+				"aiGenerated": "KI-generiert",
+				"aiGeneratedTooltip": "Dieser Inhalt wurde von der KI abgeleitet. Bitte überprüfen."
+			},
+			"export": {
+				"title": "Nach Confluence exportieren",
+				"subtitle": "Überprüfen Sie Ihr Protokoll vor dem Export",
+				"preview": "Protokoll-Vorschau",
+				"tasks": "Aufgaben",
+				"actionItemsTitle": "Aufgaben",
+				"destinationInfo": "Das Protokoll wird im Confluence-Workspace Ihres Teams veröffentlicht. Sie können es nach der Veröffentlichung in Confluence weiter bearbeiten.",
+				"editProtocol": "Bearbeiten",
+				"exportToConfluence": "Confluence",
+				"exportToPdf": "PDF",
+				"exporting": "Wird exportiert...",
+				"exportOptions": "Exportieren",
+				"destination": "Zielort",
+				"selectSpace": "Space auswählen...",
+				"saveToPersonalSpace": "In meinem persönlichen Bereich speichern",
+				"selectParentPage": "Übergeordnete Seite...",
+				"searchSpaces": "Spaces durchsuchen...",
+				"searchPages": "Seiten durchsuchen...",
+				"noSpacesFound": "Keine Spaces gefunden",
+				"noPagesFound": "Keine Seiten gefunden",
+				"selectDestinationHint": "Wählen Sie einen Space und eine übergeordnete Seite",
+				"noraActions": "Weiter mit Nora",
+				"nextStepsTitle": "Nächste Schritte",
+				"adjustRetention": "Aufbewahrung anpassen",
+				"steps": {
+					"protocol": "Protokoll speichern",
+					"email": "E-Mail senden",
+					"status": "Status-Update"
+				},
+				"actions": {
+					"email": {
+						"label": "Follow-up E-Mail verfassen",
+						"description": "E-Mail-Zusammenfassung für Teilnehmer vorbereiten"
+					},
+					"status": {
+						"label": "Status-Update senden",
+						"description": "Update in Slack oder Teams posten"
+					},
+					"chat": {
+						"label": "Über dieses Meeting chatten",
+						"description": "Nora mit vollem Kontext befragen"
+					}
+				},
+				"securityNote": "Dieses Protokoll wird gemäß den Datenaufbewahrungsrichtlinien Ihres Unternehmens gespeichert."
+			},
+			"success": {
+				"title": "Protokoll gespeichert",
+				"subtitle": "Das Meeting-Protokoll wurde erfolgreich in Confluence gespeichert.",
+				"viewInConfluence": "In Confluence öffnen",
+				"nextSteps": "Nächste Schritte",
+				"done": "Fertig",
+				"moreActions": "Weitere Aktionen",
+				"timeSaved": "Protokoll in {actual} Min. erstellt (Manuell ca. {manual} Min.)",
+				"actions": {
+					"email": {
+						"label": "E-Mail versenden",
+						"description": "Protokoll-Zusammenfassung an Teilnehmer senden"
+					},
+					"meeting": {
+						"label": "Folgetermin erstellen",
+						"description": "Einladung für das nächste Meeting erstellen"
+					},
+					"status": {
+						"label": "Status-Update posten",
+						"description": "Kurzes Update in Slack/Teams teilen"
+					},
+					"chat": {
+						"label": "Mit Nora besprechen",
+						"description": "Fragen zum Meeting mit Nora klären"
+					}
+				}
+			},
+			"followUp": {
+				"subtitle": "Bearbeiten Sie den vorbereiteten Text nach Bedarf",
+				"preview": "Vorschau",
+				"placeholder": "Text eingeben...",
+				"email": {
+					"title": "E-Mail vorbereiten",
+					"button": "E-Mail senden"
+				},
+				"meeting": {
+					"title": "Folgetermin vorbereiten",
+					"button": "Einladung erstellen"
+				},
+				"status": {
+					"title": "Status-Update vorbereiten",
+					"button": "Update posten"
+				},
+				"chat": {
+					"title": "Chat vorbereiten",
+					"button": "Chat starten"
+				}
+			}
+		}
+	}
+}

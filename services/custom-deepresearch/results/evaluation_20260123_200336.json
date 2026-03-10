@@ -1,0 +1,82 @@
+{
+  "timestamp": "2026-01-23T19:03:36.497027+00:00",
+  "search_completed": true,
+  "judge_completed": false,
+  "total": 5,
+  "passed": 0,
+  "pass_rate": 0.0,
+  "mean_score": 0.0,
+  "results": [
+    {
+      "question_id": "PS-001",
+      "question": "Was sind die technischen Spezifikationen der RC-3000 Serie?",
+      "category": "product_spec",
+      "answer": "",
+      "confidence": 0.0,
+      "sources": [],
+      "context": "",
+      "latency_ms": 6.065130233764648,
+      "iterations": 0,
+      "search_success": false,
+      "search_error": "All connection attempts failed",
+      "search_timestamp": "2026-01-23T19:03:36.619102+00:00"
+    },
+    {
+      "question_id": "PS-002",
+      "question": "Welche Greifersysteme sind für die RC-5000 Heavy Duty verfügbar?",
+      "category": "product_spec",
+      "answer": "",
+      "confidence": 0.0,
+      "sources": [],
+      "context": "",
+      "latency_ms": 3.7670135498046875,
+      "iterations": 0,
+      "search_success": false,
+      "search_error": "All connection attempts failed",
+      "search_timestamp": "2026-01-23T19:03:36.619193+00:00"
+    },
+    {
+      "question_id": "PS-003",
+      "question": "Wie wird die Positioniergenauigkeit beim LTS-X gemessen?",
+      "category": "product_spec",
+      "answer": "",
+      "confidence": 0.0,
+      "sources": [],
+      "context": "",
+      "latency_ms": 3.5729408264160156,
+      "iterations": 0,
+      "search_success": false,
+      "search_error": "All connection attempts failed",
+      "search_timestamp": "2026-01-23T19:03:36.619125+00:00"
+    },
+    {
+      "question_id": "PS-004",
+      "question": "Welche Kamera-Spezifikationen hat das Vision System VS-Pro 3.0?",
+      "category": "product_spec",
+      "answer": "",
+      "confidence": 0.0,
+      "sources": [],
+      "context": "",
+      "latency_ms": 3.345966339111328,
+      "iterations": 0,
+      "search_success": false,
+      "search_error": "All connection attempts failed",
+      "search_timestamp": "2026-01-23T19:03:36.618990+00:00"
+    },
+    {
+      "question_id": "PS-005",
+      "question": "Wie funktioniert die Temperaturkompensation bei DMS-Sensoren?",
+      "category": "product_spec",
+      "answer": "",
+      "confidence": 0.0,
+      "sources": [],
+      "context": "",
+      "latency_ms": 3.3330917358398438,
+      "iterations": 0,
+      "search_success": false,
+      "search_error": "All connection attempts failed",
+      "search_timestamp": "2026-01-23T19:03:36.619036+00:00"
+    }
+  ],
+  "search_timestamp": "2026-01-23T19:03:36.619232+00:00"
+}

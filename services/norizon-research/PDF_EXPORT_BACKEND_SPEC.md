@@ -1,0 +1,396 @@
+# PDF Export Backend Specification
+
+This document specifies the requirements for generating Confluence-style PDF exports of meeting protocols in the Norizon workflow system.
+
+## Overview
+
+The PDF export feature generates professional, print-ready documents from meeting protocol data. The styling closely matches Confluence's visual language to maintain consistency for users familiar with that platform.
+
+## API Endpoint
+
+**Endpoint:** `POST /api/workflow/{jobId}/export/pdf`
+
+**Request Headers:**
+```
+Content-Type: application/json
+Authorization: Bearer {token}
+```
+
+**Request Body:**
+```json
+{
+  "styling": {
+    "useConfluenceStyle": boolean,
+    "includeMetadata": boolean,
+    "highlightActions": boolean,
+    "includeNorizonWatermark": boolean
+  },
+  "protocol": {
+    "title": string,
+    "date": string,
+    "attendees": string[],
+    "executiveSummary": string,
+    "actionItems": [{
+      "id": string,
+      "text": string,
+      "assignee": string | null,
+      "dueDate": string | null,
+      "completed": boolean
+    }],
+    "decisions": string[],
+    "nextSteps": string[],
+    "customSections": [{
+      "label": string,
+      "type": "text" | "list",
+      "content": string | string[]
+    }],
+    "fullTranscript": string | null
+  }
+}
+```
+
+**Response:**
+- **Success (200):** Returns PDF file as `application/pdf` with appropriate headers for download
+- **Error (400):** Invalid request body
+- **Error (404):** Job not found
+- **Error (500):** PDF generation failed
+
+**Response Headers:**
+```
+Content-Type: application/pdf
+Content-Disposition: attachment; filename="meeting-protocol-{date}.pdf"
+```
+
+## PDF Layout Specifications
+
+### Page Setup
+
+- **Page Size:** A4 (210mm x 297mm)
+- **Orientation:** Portrait
+- **Margins:** 20mm on all sides (top, bottom, left, right)
+- **Font Family:** Helvetica or Arial (sans-serif)
+- **Color Space:** RGB
+
+### Header (on every page)
+
+Located at the top of each page, after the margin:
+
+- **Meeting Title:**
+  - Font: 18pt bold
+  - Color: #172b4d (Confluence dark blue)
+  - Position: Top of content area
+
+- **Date and Time:**
+  - Font: 10pt regular
+  - Color: #6b778c (gray)
+  - Position: Below title, 4pt spacing
+
+- **Separator Line:**
+  - Width: Full content width
+  - Color: #ebecf0 (light gray)
+  - Thickness: 0.5pt
+  - Position: 8pt below date
+
+### Content Styling
+
+#### Title (First Page Only)
+- **Font:** 18pt bold
+- **Color:** #172b4d
+- **Line Height:** 1.2
+- **Margin Bottom:** 12pt
+
+#### H2 Headings (Section Titles)
+- **Font:** 14pt semi-bold (weight: 600)
+- **Color:** #172b4d
+- **Line Height:** 1.3
+- **Margin Top:** 18pt
+- **Margin Bottom:** 8pt
+
+#### H3 Headings (Subsections)
+- **Font:** 12pt semi-bold (weight: 600)
+- **Color:** #172b4d
+- **Line Height:** 1.3
+- **Margin Top:** 12pt
+- **Margin Bottom:** 6pt
+
+#### Body Text
+- **Font:** 10pt regular
+- **Color:** #172b4d
+- **Line Height:** 1.6 (16pt)
+- **Paragraph Spacing:** 8pt between paragraphs
+
+#### Lists (Bulleted)
+- **Indent:** 10mm from left margin
+- **Bullet Style:** Solid circle, 6pt diameter
+- **Bullet Color:** #6b778c (gray)
+- **Spacing:** 4pt between list items
+- **Font:** Same as body text
+
+#### Lists (Numbered)
+- **Indent:** 10mm from left margin
+- **Number Format:** 1. 2. 3. etc.
+- **Number Color:** #6b778c (gray)
+- **Spacing:** 4pt between list items
+- **Font:** Same as body text
+
+### Action Items Styling
+
+Action items receive special highlighting when `highlightActions` is enabled:
+
+- **Background Color:** #fffbf0 (warm yellow)
+- **Border Left:** 3pt solid #ff991f (orange)
+- **Padding:** 8pt all sides
+- **Border Radius:** 3pt
+- **Margin:** 6pt top and bottom
+
+**Checkbox Symbol:**
+- Unicode: ☐ (U+2610) for unchecked
+- Unicode: ☑ (U+2611) for checked
+- Font Size: 10pt
+- Color: #6b778c (gray) for unchecked, #22c55e (green) for checked
+- Position: Before text, 4pt spacing
+
+**Action Item Layout:**
+```
+[☐] Action item text goes here
+    Assignee: John Doe
+    Due: 2024-03-15
+```
+
+- **Assignee Label:** Font 9pt, color #6b778c
+- **Due Date Label:** Font 9pt, color #6b778c
+- **Indent Sub-info:** 6mm from checkbox
+
+### Metadata Section (if `includeMetadata` is true)
+
+Appears on first page, below title:
+
+- **Background:** #f8fafc (light slate)
+- **Border:** 1pt solid #e2e8f0
+- **Border Radius:** 3pt
+- **Padding:** 12pt
+- **Margin Bottom:** 16pt
+
+**Contents:**
+- Date: {formatted date}
+- Attendees: {comma-separated list}
+
+**Font:** 9pt regular, color #475569
+
+### Watermark (if `includeNorizonWatermark` is true)
+
+Positioned on every page:
+
+- **Position:** Bottom right corner
+- **Distance from Edge:** 10mm from bottom, 10mm from right
+- **Opacity:** 0.6
+- **Z-Index:** Background layer (behind content)
+
+**Logo:**
+- Width: 15mm
+- Height: Auto (maintain aspect ratio)
+- Format: PNG or SVG
+- Color: Grayscale or brand colors at 60% opacity
+
+**Text:**
+- Content: "Generated by Norizon"
+- Font: 8pt regular
+- Color: #6b778c at 60% opacity
+- Position: Centered below logo, 2mm spacing
+
+### Footer (on every page)
+
+Located at the bottom of each page, before the margin:
+
+**Left Side:**
+- Generation timestamp: "Generated on {date} at {time}"
+- Font: 8pt regular
+- Color: #94a3b8 (gray)
+
+**Center:**
+- Empty (reserved for future use)
+
+**Right Side:**
+- Page numbers: "Page X of Y"
+- Font: 8pt regular
+- Color: #94a3b8 (gray)
+
+**Separator Line:**
+- Width: Full content width
+- Color: #ebecf0 (light gray)
+- Thickness: 0.5pt
+- Position: 6pt above footer text
+
+## Content Flow & Page Breaks
+
+### Page Break Rules
+
+- **Avoid breaking:** Action items, decision items, or list items across pages
+- **Keep together:** Section headings should stay with at least 2 lines of following content
+- **Orphan control:** Minimum 2 lines at bottom of page
+- **Widow control:** Minimum 2 lines at top of page
+
+### Section Order
+
+1. Title page / Metadata
+2. Executive Summary (if present)
+3. Action Items (if present)
+4. Decisions (if present)
+5. Next Steps (if present)
+6. Custom Sections (in order defined)
+7. Full Transcript (if present and user opted to include)
+
+## Styling Options
+
+### useConfluenceStyle
+
+When `true`:
+- Apply all Confluence color scheme (#172b4d, #6b778c, etc.)
+- Use Confluence-style section separators
+- Match Confluence spacing and typography
+
+When `false`:
+- Use simpler black/white styling
+- Standard PDF typography
+- Minimal decorative elements
+
+### includeMetadata
+
+When `true`:
+- Include metadata box with date, attendees, duration
+- Show meeting details on first page
+
+When `false`:
+- Skip metadata section
+- Only show title
+
+### highlightActions
+
+When `true`:
+- Apply yellow background to action items
+- Add orange border accent
+- Make action items visually distinct
+
+When `false`:
+- Render action items as regular list items
+- No special highlighting
+
+### includeNorizonWatermark
+
+When `true`:
+- Add Norizon branding to footer
+- Include generation timestamp with "Generated by Norizon"
+
+When `false`:
+- Generic footer with timestamp only
+- No branding
+
+## Implementation Notes
+
+### Recommended Libraries
+
+**Python:**
+- `reportlab` - Full control over PDF generation
+- `weasyprint` - HTML/CSS to PDF (easier styling)
+- `pypdf` - PDF manipulation and merging
+
+**Node.js:**
+- `puppeteer` - HTML to PDF via headless Chrome
+- `pdfkit` - Direct PDF generation
+- `jspdf` - Client-side PDF generation
+
+### Font Embedding
+
+Ensure fonts are embedded in the PDF for consistent rendering:
+- Helvetica (standard PDF font, no embedding needed)
+- Arial (embed if using as alternative)
+
+### Image Handling
+
+For Norizon logo watermark:
+- Embed as PNG or SVG
+- Store in `/assets/logo/` directory
+- Optimize for print quality (300 DPI)
+
+### Unicode Support
+
+Ensure proper encoding for special characters:
+- UTF-8 encoding throughout
+- Support for German umlauts (ä, ö, ü, ß)
+- Checkbox symbols (☐, ☑)
+
+### Error Handling
+
+Handle edge cases:
+- Empty sections (skip rendering)
+- Very long titles (wrap or truncate)
+- Missing attendees (show "N/A")
+- Invalid dates (show raw string)
+
+## Testing Checklist
+
+- [ ] PDF renders correctly on first page
+- [ ] Headers and footers appear on all pages
+- [ ] Page numbers are sequential and accurate
+- [ ] Action items are highlighted when enabled
+- [ ] Metadata section appears when enabled
+- [ ] Watermark is positioned correctly
+- [ ] Page breaks avoid orphans/widows
+- [ ] German characters render correctly
+- [ ] Large documents (10+ pages) generate successfully
+- [ ] File downloads with correct filename
+- [ ] Content matches original protocol data exactly
+
+## Example Request
+
+```bash
+curl -X POST https://api.norizon.com/api/workflow/abc123/export/pdf \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer {token}" \
+  -d '{
+    "styling": {
+      "useConfluenceStyle": true,
+      "includeMetadata": true,
+      "highlightActions": true,
+      "includeNorizonWatermark": true
+    },
+    "protocol": {
+      "title": "Q2 Budget Planning Meeting",
+      "date": "2024-01-15",
+      "attendees": ["Thomas Müller", "Anna Schmidt"],
+      "executiveSummary": "We discussed Q2 budget allocations...",
+      "actionItems": [
+        {
+          "id": "action-1",
+          "text": "Prepare budget proposal",
+          "assignee": "Thomas Müller",
+          "dueDate": "2024-01-22",
+          "completed": false
+        }
+      ],
+      "decisions": ["Approved marketing budget increase"],
+      "nextSteps": ["Schedule follow-up meeting"]
+    }
+  }' \
+  --output meeting-protocol.pdf
+```
+
+## Future Enhancements
+
+Potential additions for future versions:
+
+1. **Custom Templates:** Allow organizations to upload custom PDF templates
+2. **Cover Page:** Optional professional cover page with company logo
+3. **Table of Contents:** Auto-generated TOC for long documents
+4. **Interactive PDFs:** Clickable links and checkboxes
+5. **Digital Signatures:** Support for signing protocols
+6. **Accessibility:** PDF/UA compliance for screen readers
+7. **Multiple Languages:** Support for protocol in non-German languages
+8. **Custom Fonts:** Allow organizations to use brand fonts
+
+---
+
+**Document Version:** 1.0
+**Last Updated:** 2024-02-15
+**Author:** Frontend Development Team
+**Status:** Ready for Backend Implementation

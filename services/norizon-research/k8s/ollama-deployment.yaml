@@ -1,0 +1,91 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: norizon-ollama
+  namespace: norizon-research
+  labels:
+    app: norizon-ollama
+    tier: llm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: norizon-ollama
+  template:
+    metadata:
+      labels:
+        app: norizon-ollama
+        tier: llm
+    spec:
+      containers:
+      - name: ollama
+        image: ollama/ollama:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 11434
+          name: http
+        env:
+        - name: OLLAMA_KEEP_ALIVE
+          value: "30m"
+        volumeMounts:
+        - name: ollama-data
+          mountPath: /root/.ollama
+        resources:
+          requests:
+            memory: "4Gi"
+            cpu: "2000m"
+          limits:
+            memory: "8Gi"
+            cpu: "4000m"
+        livenessProbe:
+          exec:
+            command:
+            - ollama
+            - list
+          initialDelaySeconds: 60
+          periodSeconds: 30
+          timeoutSeconds: 10
+          failureThreshold: 3
+        readinessProbe:
+          exec:
+            command:
+            - ollama
+            - list
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+      volumes:
+      - name: ollama-data
+        persistentVolumeClaim:
+          claimName: ollama-data-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: norizon-ollama-service
+  namespace: norizon-research
+  labels:
+    app: norizon-ollama
+spec:
+  type: ClusterIP
+  ports:
+  - port: 11434
+    targetPort: 11434
+    protocol: TCP
+    name: http
+  selector:
+    app: norizon-ollama
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ollama-data-pvc
+  namespace: norizon-research
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 50Gi
+  storageClassName: standard

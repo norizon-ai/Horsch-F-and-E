@@ -1,0 +1,28 @@
+{
+  "texts": [
+    {
+      "id": "text_001",
+      "title": "Customer Support Conversation",
+      "content": "Customer: Hi, my name is Jennifer Davis and I'm calling about my order. My order number is ORD-2024-789 and my email is jennifer.davis@email.com. I live at 567 Pine Street, Seattle, WA 98101. Can you help me track my package?",
+      "category": "support"
+    },
+    {
+      "id": "text_002",
+      "title": "Medical Report",
+      "content": "Patient: Robert Wilson, DOB: 1985-07-22, Phone: (555) 234-5678, Email: robert.wilson@health.com. Address: 890 Health Plaza, Boston, MA 02101. Diagnosis: Routine checkup required. Contact Dr. Emily Thompson at ethompson@hospital.com for follow-up.",
+      "category": "medical"
+    },
+    {
+      "id": "text_003",
+      "title": "Job Application",
+      "content": "Applicant: Lisa Chen, Email: lisa.chen@career.com, Phone: +1-555-789-0123. Current Address: 234 Career Lane, San Francisco, CA 94102. Previous employer: TechCorp Inc. References: John Smith (john.smith@techcorp.com) and Mary Johnson (mary.johnson@techcorp.com).",
+      "category": "employment"
+    },
+    {
+      "id": "text_004",
+      "title": "Financial Document",
+      "content": "Account Holder: David Miller, Account Number: 9876-5432-1098-7654, Email: david.miller@bank.com, Phone: (555) 345-6789. Billing Address: 432 Finance Blvd, Dallas, TX 75201. Credit Card: 4111-1111-1111-1111, Exp: 12/25.",
+      "category": "financial"
+    }
+  ]
+} 

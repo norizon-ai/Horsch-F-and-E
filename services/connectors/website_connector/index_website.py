@@ -1,0 +1,428 @@
+#!/usr/bin/env python3
+"""
+Website markdown indexer for DeepResearch Elasticsearch backend.
+Parses markdown files from scraped websites and indexes them with embeddings for hybrid search.
+"""
+
+import os
+import hashlib
+import re
+import json
+from pathlib import Path
+from typing import List, Dict, Any, Optional
+from dataclasses import dataclass
+import datetime
+import logging
+from urllib.parse import unquote
+
+from elasticsearch import Elasticsearch
+from sentence_transformers import SentenceTransformer
+from tqdm import tqdm
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
+# Configuration
+ELASTIC_URL = os.getenv("ELASTIC_URL", "http://localhost:9200")
+INDEX_NAME = os.getenv("ELASTIC_INDEX", "website_kb")
+MARKDOWN_DIRS = [
+    os.getenv("MARKDOWN_DIR_1", "/Users/lisaschmidt/Documents/GitHub/rag-server/services/connectors/website_connector/fau_docsmd"),
+    os.getenv("MARKDOWN_DIR_2", "/Users/lisaschmidt/Documents/GitHub/rag-server/services/connectors/website_connector/lme_docsmd"),
+]
+EMBED_MODEL = os.getenv("EMBED_MODEL", "sentence-transformers/all-MiniLM-L6-v2")
+ELASTIC_ALIAS = os.getenv("ELASTIC_ALIAS", f"{INDEX_NAME}_alias")
+INDEX_STRATEGY = os.getenv("INDEX_STRATEGY", "RESET").upper()
+WEBSITE_BASE_URL = os.getenv("WEBSITE_BASE_URL", "https://www.fau.de")
+
+# Logging setup
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(name)s - %(message)s",
+)
+logger = logging.getLogger(__name__)
+
+
+@dataclass
+class WebsitePage:
+    """Represents a parsed website page."""
+    page_id: str
+    title: str
+    content: str
+    url: str
+    source_dir: str
+    metadata: Optional[Dict[str, Any]] = None
+
+
+class WebsiteMarkdownParser:
+    """Parser for website markdown files."""
+
+    def __init__(self):
+        pass
+
+    def parse_markdown_file(self, file_path: Path, source_dir: str) -> Optional[WebsitePage]:
+        """Parse a single markdown file."""
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+
+            # Extract URL from filename
+            # Filenames are in format: https___domain.com_path_to_page.html.md
+            url = self._extract_url_from_filename(file_path)
+
+            # Extract page ID from URL
+            page_id = hashlib.md5(url.encode()).hexdigest()[:16]
+
+            # Extract title from content (first H1 or first line)
+            title = self._extract_title(content)
+
+            # Clean content
+            clean_content = self._clean_markdown(content)
+
+            # Skip empty pages
+            if not clean_content or len(clean_content.strip()) < 50:
+                logger.debug(f"Skipping empty or very short page: {file_path}")
+                return None
+
+            return WebsitePage(
+                page_id=page_id,
+                title=title,
+                content=clean_content,
+                url=url,
+                source_dir=source_dir,
+                metadata={
+                    'file_path': str(file_path),
+                    'source_dir': source_dir,
+                }
+            )
+        except Exception as e:
+            logger.error(f"Error parsing {file_path}: {e}")
+            return None
+
+    def _extract_url_from_filename(self, file_path: Path) -> str:
+        """
+        Extract URL from encoded filename.
+        Filename format: https___domain.com_path_to_page.html.md
+        """
+        filename = file_path.stem  # Remove .md extension
+
+        # Remove .html extension if present
+        if filename.endswith('.html'):
+            filename = filename[:-5]
+
+        # Replace triple underscores with ://
+        if filename.startswith('https___'):
+            filename = filename.replace('https___', 'https://', 1)
+        elif filename.startswith('http___'):
+            filename = filename.replace('http___', 'http://', 1)
+
+        # Replace single underscores with slashes
+        # But be careful with query parameters (index.html@p=123 format)
+        url = filename.replace('_', '/')
+
+        # Handle @ symbol (query parameters)
+        url = url.replace('@', '?')
+
+        # Decode any URL-encoded characters
+        url = unquote(url)
+
+        return url
+
+    def _extract_title(self, content: str) -> str:
+        """Extract title from markdown content."""
+        lines = content.split('\n')
+
+        # Look for first H1 heading
+        for line in lines:
+            line = line.strip()
+            if line.startswith('# ') and len(line) > 2:
+                return line[2:].strip()
+
+        # Look for first non-empty line as fallback
+        for line in lines:
+            line = line.strip()
+            if line and not line.startswith('#') and len(line) > 3:
+                # Take first 100 characters as title
+                return line[:100]
+
+        return "Untitled Page"
+
+    def _clean_markdown(self, content: str) -> str:
+        """Clean markdown content."""
+        # Remove multiple consecutive blank lines
+        content = re.sub(r'\n{3,}', '\n\n', content)
+
+        # Remove excessive whitespace
+        content = re.sub(r' {2,}', ' ', content)
+
+        # Remove markdown artifacts that don't add value
+        # (Keep headers, lists, links, but clean up formatting)
+
+        return content.strip()
+
+
+def es_client() -> Elasticsearch:
+    """Create Elasticsearch client."""
+    return Elasticsearch(
+        ELASTIC_URL,
+        verify_certs=False,
+        request_timeout=120,
+        max_retries=5,
+        retry_on_timeout=True,
+    )
+
+
+def ensure_index(es: Elasticsearch, dims: int, index_name: str = INDEX_NAME):
+    """Create index with proper mapping if it doesn't exist."""
+    try:
+        if es.indices.exists(index=index_name):
+            return
+    except Exception:
+        # Index might not exist, continue to create it
+        pass
+
+    body = {
+        "settings": {
+            "number_of_shards": 2,
+            "number_of_replicas": 0,
+            "analysis": {
+                "analyzer": {
+                    "default": {
+                        "type": "standard"
+                    }
+                }
+            }
+        },
+        "mappings": {
+            "_source": {
+                "excludes": ["embedding"]  # Don't return embeddings in search results
+            },
+            "properties": {
+                "content": {"type": "text", "analyzer": "standard"},
+                "title": {"type": "text", "fields": {"keyword": {"type": "keyword"}}},
+                "section": {"type": "text", "fields": {"keyword": {"type": "keyword"}}},
+                "source": {"type": "keyword"},
+                "source_dir": {"type": "keyword"},
+                "page_id": {"type": "keyword"},
+                "url": {"type": "keyword"},
+                "page": {"type": "integer"},
+                "char_start": {"type": "integer"},
+                "content_sha": {"type": "keyword"},
+                "vector": {
+                    "type": "dense_vector",
+                    "dims": dims,
+                    "index": True,
+                    "similarity": "cosine",
+                    "index_options": {
+                        "type": "hnsw",
+                        "m": 16,
+                        "ef_construction": 100
+                    }
+                },
+                "indexed_at": {"type": "date"}
+            }
+        }
+    }
+
+    es.indices.create(index=index_name, body=body)
+    logger.info(f"Created index: {index_name}")
+
+
+def prepare_index(es: Elasticsearch, dims: int) -> str:
+    """Prepare index based on strategy."""
+    if INDEX_STRATEGY == "RESET":
+        logger.info(f"RESET strategy: deleting and recreating index '{INDEX_NAME}'")
+        try:
+            if es.indices.exists(index=INDEX_NAME):
+                es.indices.delete(index=INDEX_NAME)
+        except Exception as e:
+            logger.warning(f"Could not check/delete existing index: {e}")
+        ensure_index(es, dims, INDEX_NAME)
+        return INDEX_NAME
+
+    # Default: APPEND
+    try:
+        if not es.indices.exists(index=INDEX_NAME):
+            ensure_index(es, dims, INDEX_NAME)
+    except Exception:
+        ensure_index(es, dims, INDEX_NAME)
+    return INDEX_NAME
+
+
+def load_website_pages(markdown_dirs: List[str]) -> List[WebsitePage]:
+    """Load all markdown files from website directories."""
+    parser = WebsiteMarkdownParser()
+    pages = []
+
+    for markdown_dir in markdown_dirs:
+        if not os.path.exists(markdown_dir):
+            logger.warning(f"Directory does not exist: {markdown_dir}")
+            continue
+
+        base_path = Path(markdown_dir)
+
+        # Find all markdown files
+        md_files = list(base_path.glob("**/*.md"))
+
+        logger.info(f"Found {len(md_files)} markdown files in {markdown_dir}")
+
+        for md_file in tqdm(md_files, desc=f"Parsing {os.path.basename(markdown_dir)}"):
+            try:
+                page = parser.parse_markdown_file(md_file, os.path.basename(markdown_dir))
+                if page:
+                    pages.append(page)
+            except Exception as e:
+                logger.warning(f"Skipping {md_file}: {e}")
+                continue
+
+    return pages
+
+
+def chunk_pages(pages: List[WebsitePage]) -> List[Dict[str, Any]]:
+    """Split pages into chunks for indexing."""
+    splitter = RecursiveCharacterTextSplitter(
+        chunk_size=800,
+        chunk_overlap=80,
+        separators=["\n\n", "\n", " ", ""]
+    )
+
+    chunks = []
+
+    for page in pages:
+        # Create chunks from content
+        page_chunks = splitter.split_text(page.content)
+
+        for i, chunk_text in enumerate(page_chunks):
+            chunk = {
+                'content': chunk_text,
+                'title': page.title,
+                'source': page.url,
+                'source_dir': page.source_dir,
+                'page_id': page.page_id,
+                'url': page.url,
+                'page': i,  # Chunk number within page
+                'section': f"{page.source_dir}/{page.title}",
+                'metadata': page.metadata
+            }
+            chunks.append(chunk)
+
+    return chunks
+
+
+def make_id(source: str, page: int, chunk_text: str) -> str:
+    """Generate unique ID for a chunk."""
+    base = f"{source}|{page}|{hashlib.md5(chunk_text.encode()).hexdigest()}"
+    return hashlib.sha1(base.encode()).hexdigest()[:20]
+
+
+def index_chunks(chunks: List[Dict[str, Any]], es: Elasticsearch, encoder: SentenceTransformer, index_name: str):
+    """Index chunks into Elasticsearch."""
+    logger.info(f"Indexing {len(chunks)} chunks into '{index_name}'...")
+
+    batch_size = 100
+    for i in tqdm(range(0, len(chunks), batch_size), desc="Indexing batches"):
+        batch = chunks[i:i + batch_size]
+
+        # Generate embeddings for batch
+        texts = [chunk['content'] for chunk in batch]
+        embeddings = encoder.encode(texts, normalize_embeddings=True, show_progress_bar=False)
+
+        # Prepare bulk operations
+        bulk_ops = []
+        for chunk, embedding in zip(batch, embeddings):
+            doc_id = make_id(chunk['source'], chunk['page'], chunk['content'])
+
+            doc = {
+                'content': chunk['content'],
+                'title': chunk.get('title', ''),
+                'source': chunk['source'],
+                'source_dir': chunk.get('source_dir', ''),
+                'page_id': chunk.get('page_id', ''),
+                'url': chunk.get('url', ''),
+                'page': chunk['page'],
+                'section': chunk.get('section', ''),
+                'char_start': 0,
+                'content_sha': hashlib.sha1(chunk['content'].encode()).hexdigest(),
+                'vector': embedding.tolist(),
+                'indexed_at': datetime.datetime.utcnow().isoformat()
+            }
+
+            bulk_ops.extend([
+                {"index": {"_index": index_name, "_id": doc_id}},
+                doc
+            ])
+
+        # Bulk index
+        if bulk_ops:
+            es.bulk(body=bulk_ops)
+
+    # Refresh index
+    es.indices.refresh(index=index_name)
+    logger.info(f"Indexing complete. Indexed {len(chunks)} chunks.")
+
+
+def verify_index(es: Elasticsearch, index_name: str):
+    """Verify index statistics."""
+    stats = es.indices.stats(index=index_name)
+    doc_count = stats['indices'][index_name]['primaries']['docs']['count']
+    size = stats['indices'][index_name]['primaries']['store']['size_in_bytes']
+
+    logger.info(f"Index '{index_name}' statistics:")
+    logger.info(f"  - Documents: {doc_count:,}")
+    logger.info(f"  - Size: {size / (1024**2):.2f} MB")
+
+    # Test search
+    test_query = "machine learning research"
+    result = es.search(
+        index=index_name,
+        body={
+            "size": 3,
+            "query": {
+                "match": {
+                    "content": test_query
+                }
+            }
+        }
+    )
+
+    logger.info(f"Test search for '{test_query}': {result['hits']['total']['value']} hits")
+    if result['hits']['hits']:
+        logger.info(f"Top result: {result['hits']['hits'][0]['_source'].get('title', 'N/A')}")
+
+
+def main():
+    """Main indexing pipeline."""
+    logger.info("Starting website indexing pipeline")
+
+    # Initialize components
+    encoder = SentenceTransformer(EMBED_MODEL)
+    es = es_client()
+
+    # Prepare index
+    dims = encoder.get_sentence_embedding_dimension()
+    index_name = prepare_index(es, dims)
+
+    # Load and parse website pages
+    pages = load_website_pages(MARKDOWN_DIRS)
+    logger.info(f"Loaded {len(pages)} website pages")
+
+    if not pages:
+        logger.error("No pages loaded! Check your MARKDOWN_DIR paths.")
+        return
+
+    # Chunk pages
+    chunks = chunk_pages(pages)
+    logger.info(f"Created {len(chunks)} chunks from pages")
+
+    # Index chunks
+    index_chunks(chunks, es, encoder, index_name)
+
+    # Verify
+    verify_index(es, index_name)
+
+    logger.info("Website indexing complete!")
+
+
+if __name__ == "__main__":
+    main()

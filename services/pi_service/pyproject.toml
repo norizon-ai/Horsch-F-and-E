@@ -1,0 +1,38 @@
+[build-system]
+requires = [
+    "setuptools>=42",
+    "wheel"
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "PII_Service"
+version = "0.1.0"
+
+authors = [
+    {name = "Mohammad Talib Daryabi", email = "talibdaryabi@gmail.com"},
+]
+
+description = ""
+readme = "README.md"
+requires-python = ">=3.11"
+license = {file="LICENSE"}
+dependencies = [
+    "presidio_analyzer==2.2.355",
+    "presidio_anonymizer==2.2.355",
+    "transformers==4.48.0",
+    "flair==0.15.0",
+    "torch==2.5.1",
+    "spacy==3.8.4",
+    "pandas",
+    "numpy",
+    "pydantic>=2.0.0",
+    "pyyaml>=6.0"
+]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["pii_deid_service*"]

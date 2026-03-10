@@ -1,0 +1,214 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	/* Nora Design System Colors */
+	--deep-blue: #1E3A5F;
+	--deep-blue-hover: #162d4a;
+	--orange-500: #F97316;
+	--orange-400: #FB923C;
+	--orange-100: #FFEDD5;
+	--orange-50: #FFF7ED;
+	--blue-600: #2563EB;
+	--blue-500: #3B82F6;
+	--blue-400: #60A5FA;
+	--blue-300: #93C5FD;
+	--blue-200: #BFDBFE;
+	--blue-100: #DBEAFE;
+	--blue-50: #EFF6FF;
+	--slate-900: #0F172A;
+	--slate-800: #1E293B;
+	--slate-700: #334155;
+	--slate-600: #475569;
+	--slate-500: #64748B;
+	--slate-400: #94A3B8;
+	--slate-300: #CBD5E1;
+	--slate-200: #E2E8F0;
+	--slate-100: #F1F5F9;
+	--slate-50: #F8FAFC;
+	--white: #FFFFFF;
+	--green-600: #16A34A;
+	--green-500: #22C55E;
+	--green-100: #DCFCE7;
+	--amber-500: #F59E0B;
+	--red-500: #EF4444;
+	--purple-500: #A855F7;
+
+	/* Primary (unified brand) */
+	--primary: var(--deep-blue);
+	--primary-hover: var(--deep-blue-hover);
+
+	/* Text colors - higher contrast for authority */
+	--text-primary: #1F2937;    /* gray-800, authoritative body text */
+	--text-secondary: #4B5563;  /* gray-600, secondary text */
+
+	/* Surfaces */
+	--surface-primary: var(--white);
+	--surface-secondary: var(--slate-50);
+
+	/* Typography Scale */
+	--text-xs: 11px;
+	--text-sm: 13px;
+	--text-base: 15px;
+	--text-lg: 17px;
+	--text-xl: 20px;
+	--text-2xl: 24px;
+
+	/* Line Heights */
+	--leading-tight: 1.3;
+	--leading-normal: 1.5;
+	--leading-relaxed: 1.7;
+
+	/* Spacing Scale (8px base) */
+	--space-1: 4px;
+	--space-2: 8px;
+	--space-3: 12px;
+	--space-4: 16px;
+	--space-6: 24px;
+	--space-8: 32px;
+
+	/* Shadows */
+	--shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+	--shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
+
+	/* Border Radius */
+	--radius-sm: 6px;
+	--radius-md: 10px;
+	--radius-lg: 16px;
+
+	/* Content Rail */
+	--content-rail-width: 720px;
+	--content-max-width: 960px;
+}
+
+/* shadcn-svelte semantic tokens (HSL, space-separated) */
+:root {
+	--background: 210 40% 98%;
+	--foreground: 222.2 47.4% 11.2%;
+	--card: 0 0% 100%;
+	--card-foreground: 222.2 47.4% 11.2%;
+	--popover: 0 0% 100%;
+	--popover-foreground: 222.2 47.4% 11.2%;
+	--primary: 24.6 95% 53.1%;
+	--primary-foreground: 0 0% 100%;
+	--secondary: 210 40% 96.1%;
+	--secondary-foreground: 222.2 47.4% 11.2%;
+	--muted: 210 40% 96.1%;
+	--muted-foreground: 215.4 16.3% 46.9%;
+	--accent: 213.1 93.9% 92.7%;
+	--accent-foreground: 225.9 76.5% 48%;
+	--destructive: 0 84.2% 60.2%;
+	--destructive-foreground: 0 0% 100%;
+	--border: 214.3 31.8% 91.4%;
+	--input: 214.3 31.8% 91.4%;
+	--ring: 24.6 95% 53.1%;
+	--radius: 0.625rem;
+}
+
+@layer base {
+	* {
+		@apply border-border;
+	}
+	body {
+		@apply bg-background text-foreground;
+	}
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #888;
+	border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
+}
+
+/* Markdown styles */
+.prose {
+	max-width: none;
+}
+
+.prose code {
+	background: #f3f4f6;
+	padding: 0.2em 0.4em;
+	border-radius: 0.25rem;
+	font-size: 0.875em;
+}
+
+.prose pre {
+	background: #1f2937;
+	border-radius: 0.5rem;
+	overflow-x: auto;
+}
+
+.prose pre code {
+	background: transparent;
+	color: #e5e7eb;
+	padding: 0;
+}
+
+/* Chat bubble animations */
+@keyframes slideIn {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.chat-message {
+	animation: slideIn 0.3s ease-out;
+}
+
+/* Typing indicator */
+@keyframes typing {
+	0%, 100% { opacity: 0.3; }
+	50% { opacity: 1; }
+}
+
+.typing-dot {
+	animation: typing 1.4s infinite;
+}
+
+.typing-dot:nth-child(2) {
+	animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+	animation-delay: 0.4s;
+}
+
+/* Source card highlight effect (scroll-to from citation click) */
+.highlighted {
+	@apply border-blue-400 bg-blue-50 ring-2 ring-blue-200;
+}
+
+/* Elasticsearch keyword highlighting in source snippets */
+.source-snippet em {
+	background: #fef3c7;
+	color: #0f172a;
+	font-style: normal;
+	padding: 1px 3px;
+	border-radius: 2px;
+	font-weight: 500;
+}

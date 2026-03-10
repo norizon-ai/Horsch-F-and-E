@@ -1,0 +1,53 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+
+# Build outputs
+build/
+dist/
+.svelte-kit/
+frontend/build/
+frontend/.svelte-kit/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+logs/
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Docker
+*.dockerignore
+
+# Test coverage
+coverage/
+
+# Temporary files
+*.tmp
+*.temp
+.turbo
+
+# Data volumes (for local development)
+data/
+ollama-data/
+searxng-data/

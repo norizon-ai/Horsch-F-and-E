@@ -1,0 +1,2737 @@
+# Topic 46: hpcverantwortung_hpcgrundversorgung_hpcportal_hpcportalgrundversorgung_legacy
+
+Number of tickets: 7
+
+## Tickets in this topic:
+
+### 2023053042000241_Umstellung%20von%20bcpc%20das%20rein%20elektronische%20HPC-Portal.md
+# Ticket 2023053042000241
+
+ # HPC-Support Ticket Conversation Analysis
+
+## Keywords
+- HPC-Portal
+- SSO-Login
+- SSH-Keys
+- PI/Manager
+- Exportkontrolle
+- ClusterCockpit
+- Jupyterhub
+- Tier3-FAU-Grundversorgung
+- IdM-System
+- HPC-Accounts
+- HPC-Ablaufdatum
+- HPC-Nutzenden
+- HPC-Dienste
+- HPC-Kennung
+- HPC-Portal
+- HPC-Anträge
+- HPC-Gruppe
+- HPC-Systeme
+- HPC-Einladung
+- HPC-Devices
+- HPC-Ressourcen
+- HPC-Rechenzeit
+- HPC-Monitoring
+- HPC-Statistiken
+- HPC-Sicherheit
+- HPC-Vertragsänderungen
+- HPC-Verantwortung
+- HPC-Verzeichnisse
+- HPC-Einträge
+- HPC-Projektkategorien
+- HPC-Projektpartner
+- HPC-Gastkennungen
+- HPC-Re-validierung
+- HPC-Frequenz
+- HPC-Exportkontrollerklärung
+- HPC-FAQs
+- HPC-Dokumentation
+- HPC-Workflow
+- HPC-Anleitung
+- HPC-Umstellung
+- HPC-Import
+- HPC-Synchronisierung
+- HPC-Update
+- HPC-Email
+- HPC-Vertretung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+- HPC-Verantwortung
+---
+
+### 2023110642000589_Anfrage%20zu%20HPC-Nutzung%20-%20mpt5%20_%20Hanno%20Sahlmann.md
+# Ticket 2023110642000589
+
+ # HPC Support Ticket Conversation Summary
+
+## Keywords
+- HPC Account
+- Tier3-Grundversorgung
+- NHR-Schiene
+- GPGPU-Ressourcen
+- HPC-Portal
+- SSH-Keys
+- Exportkontrolle
+- ClusterCockpit
+- Jupyterhub
+- KONWIHR
+- DFG Antrag
+- Industrieprojekte
+- Auftragsforschung
+- HPC-Café
+- FAQ
+- Single Sign-on
+- IdM-Kennung
+- IdM-Passwort
+- DFN/AAI
+- eduGAIN
+- SSO-Attribute
+- HPC-Antrag
+- mpt5
+- mpt3
+- TinyGPU
+- Alex
+- Woody
+- TinyFAT
+- Meggie
+- Fritz
+- Slurm-Einträge
+- User-Verzeichnisse
+- Rechenzeitverbrauch
+- Passphrase
+- HPC-Systeme
+- HPC-Ressourcen
+- HPC-Accounts
+- HPC-Anträge
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Projekte
+- HPC-Nutzende
+- HPC-Umgebung
+- HPC-Einladung
+- HPC-Portal
+- HPC-Support
+- HPC-Admins
+- HPC-Café
+- HPC-FAQ
+- HPC-Antrag
+- HPC-Gruppe
+- HPC-Kennungen
+- HPC-Dienste
+- HPC-Pro
+---
+
+### 2023090142001636_Richtlinien%20f%C3%83%C2%BCr%20IT-Systeme%20des%20RRZE.md
+# Ticket 2023090142001636
+
+ # HPC-Support Ticket Conversation Analysis
+
+## Keywords
+- RRZE
+- HPC-Systeme
+- GitLab
+- FAU DataCloud
+- Intrusion Detection Systems
+- Backup
+- Risk Assessment
+- Novartis
+- digiOnko
+- 21CFR part 11
+- Training Prozesse
+- Emergency Procedures
+- Disaster Recovery
+- Fire Suppression
+- Evacuation
+- Brandschutzunterweisung
+- Sicherheitsmaßnahmen
+- Organisatorische Strukturen
+- Multi-User-Systeme
+- SSH-Keys
+- Passwörter
+- Administratoren
+- Zugriffsrechte
+- Datenschutz
+- Sicherheitslücken
+- Servicezeiten
+- Unbedienter Betrieb
+- Sicherheitsvorfälle
+- Zugangsbeschränkungen
+- Datensicherung
+- Tape
+- Atempo Timenavigator
+- FAU-Backup
+- HPC-Cluster
+- Compute-Nodes
+- User-Daten
+- FAU-intern
+- IPV4
+- IPV6
+- SSO-Portal
+- IdM-Portal
+- RAID6
+- RAID10
+- Keep-your-harddrive
+- Garantieabwicklung
+- HDD/SSD
+- Massenspeichermedium
+- FAU-Server
+- RRZE-GitLab
+- HPC-Systeme
+- FAU DataCloud
+- ACL/firewall
+- IP monitoring
+- Standard best practices
+- Third Party Risk Assessment
+- Anonymisierte Datenbank-Exporte
+- Klinische Studien
+- Daten
+- Richtlinien
+- Textbausteine
+- Backup-Kollegen
+- HPC Admins
+- 2nd Level Support Team
+- Head of the Datacenter
+- Training and Support Group Leader
+- NHR Rechenzeit Support
+- Applications for Grants
+- Software and Tools Developer
+
+## What Can Be Learned
+
+### Root Cause of the Problem
+The user requires detailed information about the IT systems and security measures at RRZE for a Third Party Risk Assessment by Novartis. Specifically, the user needs information about:
+- Computerized systems, software, platforms, and clouds used.
+- Intrusion detection systems.
+- Backup generators.
+- Raw data backup procedures and frequency.
+- Emergency procedures and training curricula.
+
+### Solution Provided
+- **HPC Admins** provided a standard text outlining the general conditions and security measures for HPC systems at RRZE.
+- Specific answers to the user's questions were given, including:
+  - No intrusion detection systems (IDS) for HPC systems, but limited internet access.
+  - Admin servers of HPC clusters are regularly backed up using Atempo Timenavigator.
+  - Raw data backup is done on tape, with varying frequencies depending on the system.
+  - Annual brandschutzunterweisung (fire safety training) for all employees.
+- The user was informed that the processing of personal or medical data is generally prohibited on HPC systems, with exceptions requiring agreement between the system operator and the user.
+- The user was advised to contact the Backup-Kollegen for further assistance with backup-related questions.
+
+### General Learnings
+- **HPC Systems Security**: Understanding the security measures and limitations of HPC systems, including access controls, data encryption, and backup procedures.
+- **Compliance**: Awareness of regulatory compliance (e.g., 21CFR part 11) and the importance of adhering to data protection guidelines.
+- **Training and Emergency Procedures**: The necessity of regular training and established emergency procedures for maintaining system security and data integrity.
+- **Collaboration**: Effective communication and collaboration between different teams (HPC Admins, 2nd Level Support Team, etc.) to address complex user inquiries.
+
+This analysis can serve as a reference for future support tickets involving similar inquiries about IT systems, security measures, and compliance at RRZE.
+---
+
+### 2022041242000878_Anmeldung%20NHR%40FAU%3A%20Interesse%20-%20Formulare.md
+# Ticket 2022041242000878
+
+ # HPC-Support Ticket Conversation Analysis
+
+## Keywords
+- HPC
+- NHR@FAU
+- Rechenzeit
+- Antrag
+- DFG-Projekt
+- SLURM
+- Lustre
+- Linux Cluster
+- GPU
+- CPU
+- Fritz
+- Alex
+- SSO
+- IdP
+- SP
+- Attribute
+- Freigabe
+- Rechenzentrum
+- Hochschullehrer
+- Alumninetzwerk
+- FAU
+- HS Aalen
+- Ostalb
+- BaWü
+- DFN-AI
+- TensorFlow
+- PyTorch
+- Matlab
+- U-Nets
+- A100
+- A40
+- Gutachten
+- Projektbetreuung
+- Fehlermeldung
+- Nutzer-Eintrag
+- NHR-Rechenleistung
+- Normalprojekte
+- Antragsaufwand
+- wissenschaftlich begutachtetes Projekt
+- Antragsformular
+- Projektkategorien
+- Rechencluster
+- Antragsteller
+- Hochleistungsrechnen
+- Erlangen
+- NHR@FAU Portal
+- eduPersonPrincipalName
+- sn
+- givenName
+- eduPersonScopedAffiliation
+- mail
+- urn Codes
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+- Rechenzentrum-Freigabe
+- Nutzer-Daten
+- Nutzer-Übersicht
+- Datenübermittlung
+- Mitarbeiter
+- Professoren
+- Freischaltung
+- Nutzer-Eintrag
+- SSO-Login
+- SSO-Antwort
+- IdP-Attribute
+- SP-Attribute
+---
+
+### 2024011542000838_Vorbereitungen%20zur%20Umstellung%20des%20LSTM%20von%20Papier-HPC-Antr%C3%83%C2%A4gen%20auf%20das%20.md
+# Ticket 2024011542000838
+
+ ```markdown
+# HPC Support Ticket Conversation Summary
+
+## Keywords
+- HPC-Portal
+- SSO-Login
+- Manager-Rechte
+- HPC-Accounts
+- SSH-Keys
+- Export-Kontrollbestimmungen
+- HPC-Kennungen
+- Kategorien
+- Ablaufdaten
+- HPC-Portal Import
+- HPC-Portal Benutzung
+- HPC-Portal Dokumentation
+- HPC-Portal Vorteile
+- HPC-Portal Sicherheit
+- HPC-Portal Anleitung
+- HPC-Portal Features
+- HPC-Portal Workflow
+- HPC-Portal Statistiken
+- HPC-Portal Re-validierung
+- HPC-Portal Frequenz
+- HPC-Portal ClusterCockpit
+- HPC-Portal Jupyterhub
+- HPC-Portal Dialogserver
+- HPC-Portal CISO
+- HPC-Portal VPN
+- HPC-Portal SSH-Keys
+- HPC-Portal Passphrase
+- HPC-Portal Phishing
+- HPC-Portal FAQs
+- HPC-Portal SSH-Secure-Shell-Access
+- HPC-Portal Dialogserver
+- HPC-Portal ClusterCockpit
+- HPC-Portal Jupyterhub
+- HPC-Portal Dienste
+- HPC-Portal Einladungen
+- HPC-Portal User-Verzeichnisse
+- HPC-Portal Slurm-Einträge
+- HPC-Portal Projektpartner
+- HPC-Portal IdM-Gastkennungen
+- HPC-Portal Laufzeitveränderungen
+- HPC-Portal Sperrung
+- HPC-Portal Vertragsänderungen
+- HPC-Portal Rechenzeitverbrauch
+- HPC-Portal Core-h
+- HPC-Portal Fritz
+- HPC-Portal Meggie
+- HPC-Portal Export-Kontrollbestimmungen
+- HPC-Portal IdM-Kennung
+- HPC-Portal IdM-Passwort
+- HPC-Portal SSO-Login
+- HPC-Portal Manager-Rechte
+- HPC-Portal Import
+- HPC-Portal Benutzung
+- HPC-Portal Dokumentation
+- HPC-Portal Vorteile
+- HPC-Portal Sicherheit
+- HPC-Portal Anleitung
+- HPC-Portal Features
+- HPC-Portal Workflow
+- HPC-Portal Statistiken
+- HPC-Portal Re-validierung
+- HPC-Portal Frequenz
+- HPC-Portal ClusterCockpit
+- HPC-Portal Jupyterhub
+- HPC-Portal Dialogserver
+- HPC-Portal CISO
+- HPC-Portal VPN
+- HPC-Portal SSH-Keys
+- HPC-Portal Passphrase
+- HPC-Portal Phishing
+- HPC-Portal FAQs
+- HPC-Portal SSH-Secure-Shell-Access
+- HPC-Portal Dialogserver
+- HPC-Portal ClusterCockpit
+- HPC-Portal Jupyterhub
+- HPC-Portal Dienste
+- HPC-Portal Einladungen
+- HPC-Portal User-Verzeichnisse
+- HPC-Portal Slurm-Einträge
+- HPC-Portal Projektpartner
+- HPC-Portal IdM-Gastkennungen
+- HPC-Portal Laufzeitveränderungen
+- HPC-Portal Sperrung
+- HPC-Portal Vertragsänderungen
+- HPC-Portal Rechenzeitverbrauch
+- HPC-Portal Core-h
+- HPC-Portal Fritz
+- HPC-Portal Meggie
+- HPC-Portal Export-Kontrollbestimmungen
+- HPC-Portal IdM-Kennung
+- HPC-Portal IdM-Passwort
+- HPC-Portal SSO-Login
+- HPC-Portal Manager-Rechte
+- HPC-Portal Import
+- HPC-Portal Benutzung
+- HPC-Portal Dokumentation
+- HPC-Portal Vorteile
+- HPC-Portal Sicherheit
+- HPC-Portal Anleitung
+- HPC-Portal Features
+- HPC-Portal Workflow
+- HPC-Portal Statistiken
+- HPC-Portal Re-validierung
+- HPC-Portal Frequenz
+- HPC-Portal ClusterCockpit
+- HPC-Portal Jupyterhub
+- HPC-Portal Dialogserver
+- HPC-Portal CISO
+- HPC-Portal VPN
+- HPC-Portal SSH-Keys
+- HPC-Portal Passphrase
+- HPC-Portal Phishing
+- HPC-Portal FAQs
+- HPC-Portal SSH-Secure-Shell-Access
+- HPC-Portal Dialogserver
+- HPC-Portal ClusterCockpit
+- HPC-Portal Jupyterhub
+- HPC-Portal Dienste
+- HPC-Portal Einladungen
+- HPC-Portal User-Verzeichnisse
+- HPC-Portal Slurm-Einträge
+- HPC-Portal Projektpartner
+- HPC-Portal IdM-Gastkennungen
+- HPC-Portal Laufzeitveränderungen
+- HPC-Portal Sperrung
+- HPC-Portal Vertragsänderungen
+- HPC-Portal Rechenzeitverbrauch
+- HPC-Portal Core-h
+- HPC-Portal Fritz
+- HPC-Portal Meggie
+- HPC-Portal Export-Kontrollbestimmungen
+- HPC-Portal IdM-Kennung
+- HPC-Portal IdM-Passwort
+- HPC-Portal SSO-Login
+- HPC-Portal Manager-Rechte
+- HPC-Portal Import
+- HPC-Portal Benutzung
+- HPC-Portal Dokumentation
+- HPC-Portal Vorteile
+- HPC-Portal Sicherheit
+- HPC-Portal Anleitung
+- HPC-Portal Features
+- HPC-Portal Workflow
+- HPC-Portal Statistiken
+- HPC-Portal Re-validierung
+- HPC-Portal Frequenz
+- HPC-Portal ClusterCockpit
+- HPC-Portal Jupyterhub
+- HPC-Portal Dialogserver
+- HPC-Portal CISO
+- HPC-Portal VPN
+- HPC-Portal SSH-Keys
+- HPC-Portal Passphrase
+- HPC-Portal Phishing
+- HPC-Portal FAQs
+- HPC-Portal SSH-Secure-Shell-Access
+- HPC-Portal Dialogserver
+- HPC-Portal ClusterCockpit
+- HPC-Portal Jupyterhub
+- HPC-Portal Dienste
+- HPC-Portal Einladungen
+- HPC-Portal User-Verzeichnisse
+- HPC-Portal Slurm-Einträge
+- HPC-Portal Projektpartner
+- HPC-Portal IdM-Gastkennungen
+- HPC-Portal Laufzeitveränderungen
+- HPC-Portal Sperrung
+- HPC-Portal Vertragsänderungen
+- HPC-Portal Rechenzeitverbrauch
+- HPC-Portal Core-h
+- HPC-Portal Fritz
+- HPC-Portal Meggie
+- HPC-Portal Export-Kontrollbestimmungen
+- HPC-Portal IdM-Kennung
+- HPC-Portal IdM-Passwort
+- HPC-Portal SSO-Login
+- HPC-Portal Manager-Rechte
+- HPC-Portal Import
+- HPC-Portal Benutzung
+- HPC-Portal Dokumentation
+- HPC-Portal Vorteile
+- HPC-Portal Sicherheit
+- HPC-Portal Anleitung
+- HPC-Portal Features
+- HPC-Portal Workflow
+- HPC-Portal Statistiken
+- HPC-Portal Re-validierung
+- HPC-Portal Frequenz
+- HPC-Portal ClusterCockpit
+- HPC-Portal Jupyterhub
+- HPC-Portal Dialogserver
+- HPC-Portal CISO
+- HPC-Portal VPN
+- HPC-Portal SSH-Keys
+- HPC-Portal Passphrase
+- HPC-Portal Phishing
+- HPC-Portal FAQs
+- HPC-Portal SSH-Secure-Shell-Access
+- HPC-Portal Dialogserver
+- HPC-Portal ClusterCockpit
+- HPC-Portal Jupyterhub
+- HPC-Portal Dienste
+- HPC-Portal Einladungen
+- HPC-Portal User-Verzeichnisse
+- HPC-Portal Slurm-Einträge
+- HPC-Portal Projektpartner
+- HPC-Portal IdM-Gastkennungen
+- HPC-Portal Laufzeitveränderungen
+- HPC-Portal Sperrung
+- HPC-Portal Vertragsänderungen
+- HPC-Portal Rechenzeitverbrauch
+- HPC-Portal Core-h
+- HPC-Portal Fritz
+- HPC-Portal Meggie
+- HPC-Portal Export-Kontrollbestimmungen
+- HPC-Portal IdM-Kennung
+- HPC-Portal IdM-Passwort
+- HPC-Portal SSO-Login
+- HPC-Portal Manager-Rechte
+- HPC-Portal Import
+- HPC-Portal Benutzung
+- HPC-Portal Dokumentation
+- HPC-Portal Vorteile
+- HPC-Portal Sicherheit
+- HPC-Portal Anleitung
+- HPC-Portal Features
+- HPC-Portal Workflow
+- HPC-Portal Statistiken
+- HPC-Portal Re-validierung
+- HPC-Portal Frequenz
+- HPC-Portal ClusterCockpit
+- HPC-Portal Jupyterhub
+- HPC-Portal Dialogserver
+- HPC-Portal CISO
+- HPC-Portal VPN
+- HPC-Portal SSH-Keys
+- HPC-Portal Passphrase
+- HPC-Portal Phishing
+- HPC-Portal FAQs
+- HPC-Portal SSH-Secure-Shell-Access
+- HPC-Portal Dialogserver
+- HPC-Portal ClusterCockpit
+- HPC-Portal Jupyterhub
+- HPC-Portal Dienste
+- HPC-Portal Einladungen
+- HPC-Portal User-Verzeichnisse
+- HPC-Portal Slurm-Einträge
+- HPC-Portal Projektpartner
+- HPC-Portal IdM-Gastkennungen
+- HPC-Portal Laufzeitveränderungen
+- HPC-Portal Sperrung
+- HPC-Portal Vertragsänderungen
+- HPC-Portal Rechenzeitverbrauch
+- HPC-Portal Core-h
+- HPC-Portal Fritz
+- HPC-Portal Meggie
+- HPC-Portal Export-Kontrollbestimmungen
+- HPC-Portal IdM-Kennung
+- HPC-Portal IdM-Passwort
+- HPC-Portal SSO-Login
+- HPC-Portal Manager-Rechte
+- HPC-Portal Import
+- HPC-Portal Benutzung
+- HPC-Portal Dokumentation
+- HPC-Portal Vorteile
+- HPC-Portal Sicherheit
+- HPC-Portal Anleitung
+- HPC-Portal Features
+- HPC-Portal Workflow
+- HPC-Portal Statistiken
+- HPC-Portal Re-validierung
+- HPC-Portal Frequenz
+- HPC-Portal ClusterCockpit
+- HPC-Portal Jupyterhub
+- HPC-Portal Dialogserver
+- HPC-Portal CISO
+- HPC-Portal VPN
+- HPC-Portal SSH-Keys
+- HPC-Portal Passphrase
+- HPC-Portal Phishing
+- HPC-Portal FAQs
+- HPC-Portal SSH-Secure-Shell-Access
+- HPC-Portal Dialogserver
+- HPC-Portal ClusterCockpit
+- HPC-Portal Jupyterhub
+- HPC-Portal Dienste
+- HPC-Portal Einladungen
+- HPC-Portal User-Verzeichnisse
+- HPC-Portal Slurm-Einträge
+- HPC-Portal Projektpartner
+- HPC-Portal IdM-Gastkennungen
+- HPC-Portal Laufzeitveränderungen
+- HPC-Portal Sperrung
+- HPC-Portal Vertragsänderungen
+- HPC-Portal Rechenzeitverbrauch
+- HPC-Portal Core-h
+- HPC-Portal Fritz
+- HPC-Portal Meggie
+- HPC-Portal Export-Kontrollbestimmungen
+- HPC-Portal IdM-Kennung
+- HPC-Portal IdM-Passwort
+- HPC-Portal SSO-Login
+- HPC-Portal Manager-Rechte
+- HPC-Portal Import
+- HPC-Portal Benutzung
+- HPC-Portal Dokumentation
+- HPC-Portal Vorteile
+- HPC-Portal Sicherheit
+- HPC-Portal Anleitung
+- HPC-Portal Features
+- HPC-Portal Workflow
+- HPC-Portal Statistiken
+- HPC-Portal Re-validierung
+- HPC-Portal Frequenz
+- HPC-Portal ClusterCockpit
+- HPC-Portal Jupyterhub
+- HPC-Portal Dialogserver
+- HPC-Portal CISO
+- HPC-Portal VPN
+- HPC-Portal SSH-Keys
+- HPC-Portal Passphrase
+- HPC-Portal Phishing
+- HPC-Portal FAQs
+- HPC-Portal SSH-Secure-Shell-Access
+- HPC-Portal Dialogserver
+- HPC-Portal ClusterCockpit
+- HPC-Portal Jupyterhub
+- HPC-Portal Dienste
+- HPC-Portal Einladungen
+- HPC-Portal User-Verzeichnisse
+- HPC-Portal Slurm-Einträge
+- HPC-Portal Projektpartner
+- HPC-Portal IdM-Gastkennungen
+- HPC-Portal Laufzeitveränderungen
+- HPC-Portal Sperrung
+- HPC-Portal Vertragsänderungen
+- HPC-Portal Rechenzeitverbrauch
+- HPC-Portal Core-h
+- HPC-Portal Fritz
+- HPC-Portal Meggie
+- HPC-Portal Export-Kontrollbestimmungen
+- HPC-Portal IdM-Kennung
+- HPC-Portal IdM-Passwort
+- HPC-Portal SSO-Login
+- HPC-Portal Manager-Rechte
+- HPC-Portal Import
+- HPC-Portal Benutzung
+- HPC-Portal Dokumentation
+- HPC-Portal Vorteile
+- HPC-Portal Sicherheit
+- HPC-Portal Anleitung
+- HPC-Portal Features
+- HPC-Portal Workflow
+- HPC-Portal Statistiken
+- HPC-Portal Re-validierung
+- HPC-Portal Frequenz
+- HPC-Portal ClusterCockpit
+- HPC-Portal Jupyterhub
+- HPC-Portal Dialogserver
+- HPC-Portal CISO
+- HPC-Portal VPN
+- HPC-Portal SSH-Keys
+- HPC-Portal Passphrase
+- HPC-Portal Phishing
+- HPC-Portal FAQs
+- HPC-Portal SSH-Secure-Shell-Access
+- HPC-Portal Dialogserver
+- HPC-Portal ClusterCockpit
+- HPC-Portal Jupyterhub
+- HPC-Portal Dienste
+- HPC-Portal Einladungen
+- HPC-Portal User-Verzeichnisse
+- HPC-Portal Slurm-Einträge
+- HPC-Portal Projektpartner
+- HPC-Portal IdM-Gastkennungen
+- HPC-Portal L
+---
+
+### 2024011542000865_Vorbereitungen%20zur%20Umstellung%20der%20iwpa%20Legacy-Accounts%20von%20Papier-HPC-Antr%C3%83%C2%A4.md
+# Ticket 2024011542000865
+
+ # HPC-Support Ticket Conversation Analysis
+
+## Keywords
+- HPC-Portal
+- SSO-Login
+- Export-Kontrollbestimmungen
+- HPC-Kennungen
+- Manager-Rechte
+- SSH-Keys
+- Rechenzeitverbrauch
+- ClusterCockpit
+- Jupyterhub
+- IdM-System
+- DFN/AAI
+- eduGAIN
+- FAQs
+- SSH-Passphrase
+- HPC-Accounts
+- HPC-Systeme
+- HPC-Anträge
+- HPC-Dienste
+- HPC-Nutzende
+- HPC-Grundversorgung
+- HPC-Portal-Import
+- HPC-Portal-Umstellung
+- HPC-Portal-Einladungen
+- HPC-Portal-Re-validierung
+- HPC-Portal-Statistiken
+- HPC-Portal-Dokumentation
+- HPC-Portal-Features
+- HPC-Portal-SSO
+- HPC-Portal-SSH
+- HPC-Portal-Manager
+- HPC-Portal-PI
+- HPC-Portal-Projektpartner
+- HPC-Portal-Studentische Abschlussarbeiten
+- HPC-Portal-Projektpartner
+- HPC-Portal-Grundversorgung
+- HPC-Portal-Grundversorgung Legacy accounts
+- HPC-Portal-Grundversorgung Legacy accounts IPAT
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Flo
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Florian Wachter
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Sebastian Röhl
+- HPC-Portal-Grundversorgung Legacy accounts IPAT Manager-Rechte Felix Czwielong
+- HPC-Portal-Grundversorgung Legacy accounts
+---
+
+### 2024052842001743_Help%20With%20New%20Account%20of%20NHR%20Project%20Application%20-%20Professur%20f%C3%83%C2%BCr%20qu.md
+# Ticket 2024052842001743
+
+ # HPC Support Ticket Conversation Analysis
+
+## Keywords
+- HPC Account
+- Tier3 Basic HPC Service
+- Professur für quantitative MR-Bildgebung
+- Export Control Regulations
+- HPC Portal
+- SSO Login
+- Manager Rights
+- Projektpartner
+- Sensitive Data Processing
+- SSH Keys
+- ClusterCockpit
+- Jupyterhub
+- NHR Project Application
+- FAU IdM Account
+- DFN/AAI
+- eduGAIN
+- Rechenzeitbedarf
+- HPC-Kennungen
+- HPC-Accounts
+- HPC-Systeme
+- HPC-Dienste
+- HPC-Portal
+- HPC-Anträge
+- HPC-Ressourcen
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+- HPC-Grundversorgung
+-
+---
+

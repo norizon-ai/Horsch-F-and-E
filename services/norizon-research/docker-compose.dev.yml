@@ -1,0 +1,425 @@
+version: '3.8'
+
+services:
+  # Frontend - Development with hot reload
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    container_name: nora-frontend-dev
+    ports:
+      - "5173:5173"
+    environment:
+      - NODE_ENV=development
+      - VITE_API_BASE_URL=http://localhost:8000/api/v1
+      - VITE_SSR_API_BASE_URL=http://deepsearch:8000/api/v1
+      - VITE_WORKFLOW_API_URL=http://localhost:8001
+      - PUBLIC_AUTH0_DOMAIN=${PUBLIC_AUTH0_DOMAIN}
+      - PUBLIC_AUTH0_CLIENT_ID=${PUBLIC_AUTH0_CLIENT_ID}
+      - PUBLIC_AUTH0_AUDIENCE=${PUBLIC_AUTH0_AUDIENCE}
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.svelte-kit
+    # depends_on:
+    #   - deepsearch
+    networks:
+      - nora-network
+    command: sh -c "npm install && npx svelte-kit sync && npm run dev"
+
+  # Custom DeepSearch Backend
+  deepsearch:
+    build:
+      context: ../custom-deepresearch
+      dockerfile: Dockerfile
+    container_name: nora-deepsearch-dev
+    ports:
+      - "8000:8000"
+    env_file:
+      - ../custom-deepresearch/.env
+    volumes:
+      - ../custom-deepresearch/agents.yaml:/app/agents.yaml:ro
+      - ../custom-deepresearch/prompts:/app/prompts:ro
+    depends_on:
+      searxng:
+        condition: service_started
+    networks:
+      - nora-network
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8000/api/v1/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # SearxNG - Search Engine (for web search agent)
+  searxng:
+    image: searxng/searxng:latest
+    container_name: nora-searxng-dev
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./searxng/settings.yml:/etc/searxng/settings.yml:ro
+    environment:
+      - SEARXNG_BASE_URL=http://localhost:8080/
+    networks:
+      - nora-network
+    restart: unless-stopped
+
+  # Phoenix - OpenTelemetry trace consumer and UI
+  phoenix:
+    image: arizephoenix/phoenix:latest
+    container_name: nora-phoenix-dev
+    ports:
+      - "6006:6006" # Phoenix UI
+    environment:
+      - PHOENIX_WORKING_DIR=/data
+    volumes:
+      - phoenix_data:/data
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:6006/healthz" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    profiles:
+      - with-tracing
+    networks:
+      - nora-network
+
+  # PostgreSQL - Primary database
+  postgres:
+    image: postgres:15-alpine
+    container_name: nora-postgres-dev
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=norizon
+      - POSTGRES_PASSWORD=norizon
+      - POSTGRES_DB=workflows
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - nora-network
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U norizon -d workflows" ]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  # Redis - Message broker and cache for KStudio
+  redis:
+    image: redis:7-alpine
+    container_name: nora-redis-dev
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - nora-network
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  # MinIO - S3-compatible object storage (dev only)
+  minio:
+    image: minio/minio:latest
+    container_name: nora-minio-dev
+    ports:
+      - "9000:9000" # S3 API
+      - "9001:9001" # Web Console
+    environment:
+      - MINIO_ROOT_USER=minioadmin
+      - MINIO_ROOT_PASSWORD=minioadmin
+    volumes:
+      - minio_data:/data
+    command: server /data --console-address ":9001"
+    networks:
+      - nora-network
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "mc", "ready", "local" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Workflow Service - Meeting Documentation API Gateway
+  workflow-service:
+    build:
+      context: ../workflow-service
+      dockerfile: Dockerfile
+    container_name: nora-workflow-dev
+    ports:
+      - "8001:8001"
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://norizon:norizon@postgres:5432/workflows
+      - WORKFLOW_USE_MOCKS=false
+      - WORKFLOW_KSTUDIO_URL=http://deepgram-service:8002
+      - WORKFLOW_DEEPSEARCH_URL=http://deepsearch:8000
+      - WORKFLOW_CONFLUENCE_PUBLISHER_URL=http://confluence-publisher:8003
+      - WORKFLOW_UPLOAD_DIR=/app/uploads
+      - WORKFLOW_MS_TENANT_ID=${WORKFLOW_MS_TENANT_ID}
+      - WORKFLOW_MS_CLIENT_ID=${WORKFLOW_MS_CLIENT_ID}
+      - WORKFLOW_MS_CLIENT_SECRET=${WORKFLOW_MS_CLIENT_SECRET}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - AUTH0_DOMAIN=${PUBLIC_AUTH0_DOMAIN}
+      - AUTH0_AUDIENCE=${PUBLIC_AUTH0_AUDIENCE}
+    volumes:
+      - ../workflow-service/app:/app/app:ro
+      - ../workflow-service/alembic:/app/alembic:ro
+      - ../workflow-service/meeting_templates.yaml:/app/meeting_templates.yaml:ro
+      - workflow_uploads:/app/uploads
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      deepgram-service:
+        condition: service_started
+      # deepsearch:
+      #   condition: service_started
+    networks:
+      - nora-network
+    restart: unless-stopped
+
+  # KStudio - ML Pipeline (DISABLED - replaced by deepgram-service)
+  # kstudio:
+  #   build:
+  #     context: ../kstudio
+  #     dockerfile: Dockerfile
+  #   container_name: nora-kstudio-dev
+  #   ports:
+  #     - "8002:8002"
+  #   environment:
+  #     # Redis
+  #     - REDIS_URL=redis://redis:6379/0
+  #     - CELERY_BROKER_URL=redis://redis:6379/1
+  #     - CELERY_RESULT_BACKEND=redis://redis:6379/2
+  #     # ML APIs
+  #     - OPENAI_API_KEY=${OPENAI_API_KEY}
+  #     - REPLICATE_API_TOKEN=${REPLICATE_API_TOKEN:-}
+  #     - ASR_ENGINE=remote
+  #     # Storage
+  #     - UPLOAD_DIR=/app/uploads
+  #     - DATA_DIR=/app/data
+  #     # App config
+  #     - APP_NAME=KStudio ML Pipeline
+  #     - DEBUG=true
+  #   volumes:
+  #     - ../kstudio/src:/app/src:ro
+  #     - workflow_uploads:/app/uploads
+  #     - kstudio_data:/app/data
+  #   depends_on:
+  #     redis:
+  #       condition: service_healthy
+  #   networks:
+  #     - nora-network
+  #   restart: unless-stopped
+  #   command: uvicorn src.app.main:app --host 0.0.0.0 --port 8002 --reload
+
+  # KStudio Worker - Celery background processing (DISABLED - replaced by deepgram-service)
+  # kstudio-worker:
+  #   build:
+  #     context: ../kstudio
+  #     dockerfile: Dockerfile
+  #   container_name: nora-kstudio-worker-dev
+  #   environment:
+  #     # Redis
+  #     - REDIS_URL=redis://redis:6379/0
+  #     - CELERY_BROKER_URL=redis://redis:6379/1
+  #     - CELERY_RESULT_BACKEND=redis://redis:6379/2
+  #     # ML APIs
+  #     - OPENAI_API_KEY=${OPENAI_API_KEY}
+  #     - REPLICATE_API_TOKEN=${REPLICATE_API_TOKEN:-}
+  #     - ASR_ENGINE=remote
+  #     # Storage
+  #     - UPLOAD_DIR=/app/uploads
+  #     - DATA_DIR=/app/data
+  #   volumes:
+  #     - ../kstudio/src:/app/src:ro
+  #     - workflow_uploads:/app/uploads
+  #     - kstudio_data:/app/data
+  #   depends_on:
+  #     redis:
+  #       condition: service_healthy
+  #   networks:
+  #     - nora-network
+  #   restart: unless-stopped
+  #   command: celery -A src.app.workers.celery_app worker --loglevel=info
+
+  # Deepgram Service - Deepgram-based transcription pipeline (API server)
+  deepgram-service:
+    build:
+      context: ../deepgram-service
+      dockerfile: Dockerfile
+    container_name: nora-deepgram-dev
+    user: "0:0" # Run as root to fix volume permissions
+    ports:
+      - "8002:8002"
+    environment:
+      # Deepgram API
+      - DEEPGRAM_API_KEY=${DEEPGRAM_API_KEY}
+      - DEEPGRAM_MODEL=nova-2
+      # Redis
+      - REDIS_URL=redis://redis:6379/0
+      # OpenAI API (for speaker inference)
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      # S3/MinIO Storage
+      - S3_ENDPOINT=http://minio:9000
+      - S3_ACCESS_KEY=minioadmin
+      - S3_SECRET_KEY=minioadmin
+      - S3_BUCKET=nora-meeting-data
+      - S3_PUBLIC_URL=http://localhost:9000
+      # Local storage (fallback)
+      - UPLOAD_DIR=/app/uploads
+      - DATA_DIR=/app/data
+      # App config
+      - DEBUG=true
+    volumes:
+      - workflow_uploads:/app/uploads:ro
+      - kstudio_data:/app/data
+      - ../deepgram-service/prompts:/app/prompts:ro
+    depends_on:
+      redis:
+        condition: service_healthy
+      minio:
+        condition: service_started
+    networks:
+      - nora-network
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8002/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    command: uvicorn src.main:app --host 0.0.0.0 --port 8002 --reload
+
+  # Celery Worker - Async audio processing (uses Deepgram Service codebase)
+  #
+  # MANUAL SCALING (Development):
+  #   docker-compose up --scale celery-worker=3 -d
+  #   docker-compose up --scale celery-worker=1 -d  # Scale down
+  #
+  # AUTO-SCALING (Production/Kubernetes):
+  #   See k8s/README.md for HPA/KEDA configuration
+  #   Scales 1-10 workers based on Redis queue depth
+  #
+  celery-worker:
+    build:
+      context: ../deepgram-service
+      dockerfile: Dockerfile
+    # No container_name - allows multiple instances
+    user: "0:0"
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 4G
+        reservations:
+          cpus: '0.5'
+          memory: 1G
+    environment:
+      # Deepgram API
+      - DEEPGRAM_API_KEY=${DEEPGRAM_API_KEY}
+      - DEEPGRAM_MODEL=nova-2
+      # Redis
+      - REDIS_URL=redis://redis:6379/0
+      # OpenAI API (for speaker inference)
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      # S3/MinIO Storage
+      - S3_ENDPOINT=http://minio:9000
+      - S3_ACCESS_KEY=minioadmin
+      - S3_SECRET_KEY=minioadmin
+      - S3_BUCKET=nora-meeting-data
+      - S3_PUBLIC_URL=http://localhost:9000
+      # Local storage (fallback)
+      - UPLOAD_DIR=/app/uploads
+      - DATA_DIR=/app/data
+      # App config
+      - DEBUG=true
+    volumes:
+      - workflow_uploads:/app/uploads
+      - kstudio_data:/app/data
+      - ../deepgram-service/prompts:/app/prompts:ro
+      - ../deepgram-service/src:/app/src:ro # Hot reload for development
+    depends_on:
+      redis:
+        condition: service_healthy
+      minio:
+        condition: service_started
+    networks:
+      - nora-network
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "celery", "-A", "src.celery_app", "inspect", "ping" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    command: celery -A src.celery_app worker --loglevel=info --concurrency=2
+
+  # Transcription Service - Audio to text processing (DEPRECATED - replaced by KStudio)
+  # transcription-service:
+  #   build:
+  #     context: ../transcription-service
+  #     dockerfile: Dockerfile
+  #   container_name: nora-transcription-dev
+  #   ports:
+  #     - "8002:8002"
+  #   volumes:
+  #     - ../transcription-service/app:/app/app:ro
+  #     - transcription_uploads:/tmp/transcription-uploads
+  #   networks:
+  #     - nora-network
+  #   restart: unless-stopped
+
+  # Confluence MCP - MCP server for Confluence Cloud
+  confluence-mcp:
+    build:
+      context: ../confluence-mcp
+      dockerfile: Dockerfile
+    container_name: nora-confluence-mcp-dev
+    ports:
+      - "8005:8005"
+    environment:
+      - CONFLUENCE_URL=${CONFLUENCE_URL}
+      - CONFLUENCE_USERNAME=${CONFLUENCE_USERNAME}
+      - CONFLUENCE_API_TOKEN=${CONFLUENCE_API_TOKEN}
+    networks:
+      - nora-network
+    restart: unless-stopped
+
+  # Confluence Publisher - Confluence/PDF export
+  confluence-publisher:
+    build:
+      context: ../confluence-publisher
+      dockerfile: Dockerfile
+    container_name: nora-confluence-dev
+    ports:
+      - "8003:8003"
+    environment:
+      - PUBLISHER_MCP_SERVER_URL=http://confluence-mcp:8005
+      - CONFLUENCE_URL=${CONFLUENCE_URL}
+      - CONFLUENCE_USERNAME=${CONFLUENCE_USERNAME}
+      - CONFLUENCE_API_TOKEN=${CONFLUENCE_API_TOKEN}
+    volumes:
+      - ../confluence-publisher/app:/app/app:ro
+    networks:
+      - nora-network
+    restart: unless-stopped
+
+networks:
+  nora-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  phoenix_data:
+  workflow_uploads:
+  redis_data:
+  kstudio_data:
+  minio_data: # transcription_uploads:  # DEPRECATED - no longer needed with KStudio

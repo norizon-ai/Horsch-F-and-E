@@ -1,0 +1,23 @@
+FROM python:3.10-slim
+
+# Install FFmpeg for audio processing
+RUN apt-get update && \
+    apt-get install -y ffmpeg && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Set working directory
+WORKDIR /app
+
+# Copy requirements first for better caching
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy application code
+COPY . .
+
+# Expose port
+EXPOSE 8002
+
+# Ultra-debug: run python directly, capture all output
+ENTRYPOINT ["python", "-u", "-c", "import sys, os; print('ENV KEYS:', sorted(os.environ.keys()), flush=True); exec(open('/app/debug_start.py').read())"]

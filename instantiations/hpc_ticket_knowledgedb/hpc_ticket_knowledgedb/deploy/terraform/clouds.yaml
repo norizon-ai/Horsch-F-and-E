@@ -1,0 +1,10 @@
+clouds:
+  openstack:
+    auth:
+      auth_url: https://api.cc.rrze.de:5000
+      application_credential_id: "19f2c50127f74650a6c0f9eaefef32e2"
+      application_credential_secret: "ItocYp2VRJGU5-lvLFOHS8CiYemmGdcndC1ZYHgmHKZrtDxcA9uqRgteNCuUkxJA1jEDNQjjBNZVINjMuvdt2w"
+    region_name: "DE-ERL"
+    interface: "public"
+    identity_api_version: 3
+    auth_type: "v3applicationcredential"

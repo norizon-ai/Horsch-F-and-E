@@ -1,0 +1,22 @@
+UI Improvements
+- Make available in German as well as in English via the settings menu 
+- Adapt all ui components to be available in both languages
+- Remove the landing page, if someone opens nora, thex should directly see the search interface
+- If no chat is opened, show a welcome message in the chat area with some example questions and the idea boxes that the old landing page contained
+- Make "What's nora" section smaller and more concise, mention that souces need to be checked, display it only when no chat is opened
+- Remove the "delegate_to_..." part from the ui, it is confusing for users
+- Display the "copy", "share" and "regenerate" buttons always and not only on hover
+
+
+Chat functionality
+- "Analyzing query" state appears to often. It should show something like "nora is thinking..." 
+- The tick mark next to "Analyzing query" is confusing, it should be removed. it also does not need a "done" state
+- "10 sources" in der suchladeanzeige, aber nur 2 Quellen oben zitiert. Diese Diskrepanz verwirrt den nutzer
+
+Die 3 kritischsten Usability-Probleme
+1. HTML-Tags und Debug-Texte in der Nutzeroberfläche
+Die sichtbaren <em>-Tags und der Text "URL (hypothetical, as the actual URL was not provided in the research)" sind für Enterprise-Kunden inakzeptabel. Das signalisiert ein unfertiges Produkt und untergräbt das Vertrauen in die Datenzuverlässigkeit massiv. Für IT-Entscheider, die Budgetverantwortung tragen, ist das ein Ausschlusskriterium.
+2. Diskrepanz zwischen Tonalität und Zielgruppe
+Die casual "Hey there"-Ansprache, die verspielten Farben und die generischen Quick-Actions (Creative Ideas, Research Papers) kommunizieren Consumer-App statt Enterprise-Lösung. Deutsche Industrieunternehmen erwarten Seriosität, klare Sachsprache und auf ihren Arbeitskontext zugeschnittene Funktionen. Die aktuelle Positionierung verfehlt das.
+3. Überladene Prozess-Transparenz
+Die sechsteilige Statusanzeige während der Suche ist gut gemeint als Vertrauensbildung, wirkt aber wie ein technisches Log. Für die Zielgruppe ist relevant, dass gesucht wird und in welchen Quellen, nicht jeder interne Verarbeitungsschritt. Die dreifache "Analyzing query"-Wiederholung wirkt zudem wie ein Fehler.

@@ -1,0 +1,90 @@
+version: '3.8'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3.13-management
+    container_name: intranet-rabbitmq
+    ports:
+      - "5672:5672"     # AMQP port
+      - "15672:15672"   # Management UI port
+    environment:
+      RABBITMQ_DEFAULT_USER: test_user
+      RABBITMQ_DEFAULT_PASS: test_pass
+      RABBITMQ_DEFAULT_VHOST: /
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "check_port_connectivity"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    networks:
+      - intranet-network
+
+  elasticsearch:
+    image: elasticsearch:8.11.0
+    container_name: intranet-elasticsearch
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9200/_cluster/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    networks:
+      - intranet-network
+
+  intranet-connector:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: intranet-connector-service
+    ports:
+      - "8000:8000"
+    environment:
+      # Message Queue Configuration
+      - CRAWLER_RABBITMQ_URL=amqp://test_user:test_pass@rabbitmq:5672/
+      - CRAWLER_INPUT_QUEUE=crawl.requested
+      - CRAWLER_OUTPUT_QUEUE=content.raw.received
+      
+      # Crawler Configuration
+      - CRAWLER_STRATEGY=bfs
+      - CRAWLER_MAX_PAGES=20
+      - CRAWLER_MAX_DEPTH=2
+      - CRAWLER_USE_PLAYWRIGHT=false
+      
+      # Content Filtering
+      - CRAWLER_EXCLUDE_EXTERNAL_LINKS=true
+      - CRAWLER_EXCLUDE_SOCIAL_MEDIA_LINKS=true
+      
+      # Service Configuration
+      - PYTHONUNBUFFERED=1
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      elasticsearch:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      start_period: 60s
+      retries: 3
+    networks:
+      - intranet-network
+    restart: unless-stopped
+
+networks:
+  intranet-network:
+    driver: bridge
+
+volumes:
+  rabbitmq_data:
+  elasticsearch_data:

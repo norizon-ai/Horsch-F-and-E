@@ -1,0 +1,54 @@
+#!/bin/bash
+set -e
+
+# Configuration
+LOCAL_IMAGE="${IMAGE_NAME:-fau-website-elasticsearch}"
+LOCAL_TAG="${TAG:-latest}"
+DOCKER_USERNAME="${DOCKER_USERNAME:-}"
+
+if [ -z "$DOCKER_USERNAME" ]; then
+    echo "ERROR: DOCKER_USERNAME environment variable not set"
+    echo "Usage: export DOCKER_USERNAME=your-dockerhub-username && ./push.sh"
+    exit 1
+fi
+
+REMOTE_IMAGE="$DOCKER_USERNAME/$LOCAL_IMAGE"
+
+echo "========================================"
+echo "Pushing Image to Docker Hub"
+echo "========================================"
+echo "Local image:  $LOCAL_IMAGE:$LOCAL_TAG"
+echo "Remote image: $REMOTE_IMAGE:$LOCAL_TAG"
+echo ""
+
+# Check if local image exists
+if ! docker image inspect $LOCAL_IMAGE:$LOCAL_TAG >/dev/null 2>&1; then
+    echo "ERROR: Local image $LOCAL_IMAGE:$LOCAL_TAG not found!"
+    echo "Please build the image first with: ./build.sh"
+    exit 1
+fi
+
+# Login to Docker Hub (if not already logged in)
+echo "Logging into Docker Hub..."
+docker login
+
+# Tag the image
+echo ""
+echo "Tagging image..."
+docker tag $LOCAL_IMAGE:$LOCAL_TAG $REMOTE_IMAGE:$LOCAL_TAG
+
+# Push the image
+echo ""
+echo "Pushing image to Docker Hub..."
+echo "This may take several minutes depending on image size and network speed..."
+docker push $REMOTE_IMAGE:$LOCAL_TAG
+
+echo ""
+echo "========================================"
+echo "Push complete!"
+echo "Image available at: $REMOTE_IMAGE:$LOCAL_TAG"
+echo ""
+echo "To use in docker-compose.yml:"
+echo "  elasticsearch:"
+echo "    image: $REMOTE_IMAGE:$LOCAL_TAG"
+echo "========================================"

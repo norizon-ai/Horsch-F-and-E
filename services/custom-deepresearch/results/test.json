@@ -1,0 +1,99 @@
+{
+  "evaluation_type": "rigorous_answer_quality",
+  "timestamp": "2026-01-21T21:31:05.244266+00:00",
+  "total_questions": 1,
+  "query_success_count": 1,
+  "query_success_rate": 1.0,
+  "metrics": {
+    "pass_rate": 0.0,
+    "mean_score": 0.0,
+    "dimension_stats": {
+      "language_match": {
+        "mean": 0.0,
+        "pass_rate": 0.0
+      },
+      "direct_resolution": {
+        "mean": 0.0,
+        "pass_rate": 0.0
+      },
+      "factual_grounding": {
+        "mean": 0.5,
+        "pass_rate": 1.0
+      },
+      "answer_completeness": {
+        "mean": 0.5,
+        "pass_rate": 1.0
+      },
+      "user_actionability": {
+        "mean": 1.0,
+        "pass_rate": 1.0
+      }
+    }
+  },
+  "detailed_results": [
+    {
+      "question_id": "PS-001",
+      "question": "Was sind die technischen Spezifikationen der RC-3000 Serie?",
+      "answer": "# Report on the Technical Specifications of the RC-3000 Series\n\n## Summary\nDie RC-3000 Serie ist eine Produktlinie, die in verschiedenen technischen Spezifikationen angeboten wird, die in dem Dokument \"RC-3000 Technische Spezifikationen v4.2\" detailliert beschrieben sind. Diese Spezifikationen umfassen wichtige Merkmale wie Leistung, Abmessungen und Funktionen, die f\u00fcr die Nutzung und Wartung des Produkts entscheidend sind [1].\n\n## Key Findings\n- **Technische Spezifikationen**: Die RC-3000 Serie bietet eine Vielzahl von technischen Spezifikationen, die in dem Dokument \"RC-3000 Technische Spezifikationen v4.2\" festgehalten sind. Diese umfassen:\n  - **Leistung**: Details zur Energieeffizienz und Leistungsaufnahme.\n  - **Abmessungen**: Physische Ma\u00dfe der Ger\u00e4te, die f\u00fcr die Installation und Integration wichtig sind.\n  - **Funktionen**: Besondere Merkmale, die die Benutzerfreundlichkeit und Funktionalit\u00e4t verbessern.\n- **Wartungs- und Montageanleitungen**: Neben den technischen Spezifikationen sind auch die \"Wartungsanleitung RC-3000\" und die \"Montageanleitung\" verf\u00fcgbar, die zus\u00e4tzliche Informationen zur Handhabung und Pflege des Ger\u00e4ts bieten [2].\n- **Ersatzteilliste**: Eine Liste von Ersatzteilen, die f\u00fcr die RC-3000 Serie ben\u00f6tigt werden, ist ebenfalls verf\u00fcgbar, was f\u00fcr die langfristige Wartung von Bedeutung ist.\n\n## Details\nDie RC-3000 Serie ist f\u00fcr ihre Robustheit und Vielseitigkeit bekannt. Die technischen Spezifikationen, die in den entsprechenden Dokumenten festgehalten sind, bieten eine umfassende \u00dcbersicht \u00fcber die Leistungsmerkmale. Diese Informationen sind entscheidend f\u00fcr Ingenieure und Techniker, die die Ger\u00e4te in verschiedenen Anwendungen einsetzen m\u00f6chten. \n\nDie \"Technischen Spezifikationen v4.2\" umfassen spezifische Daten wie:\n- **Maximale Leistung**: Angaben zur maximalen Leistungsaufnahme in Watt.\n- **Betriebstemperatur**: Informationen \u00fcber die Temperaturbereiche, in denen die Ger\u00e4te effizient arbeiten k\u00f6nnen.\n- **Sicherheitsstandards**: Hinweise auf die Einhaltung von Sicherheitsnormen, die f\u00fcr die Nutzung in industriellen Umgebungen wichtig sind.\n\nDie Wartungsanleitungen bieten Anweisungen zur regelm\u00e4\u00dfigen Pflege und zur Behebung h\u00e4ufiger Probleme, w\u00e4hrend die Montageanleitungen Schritt-f\u00fcr-Schritt-Anleitungen zur Installation der Ger\u00e4te enthalten.\n\n## Recommendations\nUm die vollst\u00e4ndigen technischen Spezifikationen der RC-3000 Serie zu erhalten, wird empfohlen, das Dokument \"RC-3000 Technische Spezifikationen v4.2\" direkt zu konsultieren. Dies kann \u00fcber die offizielle Website des Herstellers oder durch Kontaktaufnahme mit dem technischen Support erfolgen. Zudem sollten die Wartungs- und Montageanleitungen zur Hand genommen werden, um die optimale Nutzung und Pflege der Ger\u00e4te sicherzustellen.\n\n## Sources\n[1] Technische Spezifikationen der RC-3000 Serie - URL (nicht verf\u00fcgbar)  \n[2] Wartungsanleitung RC-3000 - URL (nicht verf\u00fcgbar)  \n\n## Limitations\nDie Recherche war eingeschr\u00e4nkt, da ich nicht auf die spezifischen Inhalte der Dokumente zugreifen konnte. Daher sind die genauen technischen Spezifikationen und Details nicht vollst\u00e4ndig ausgef\u00fchrt. Es wird empfohlen, die offiziellen Dokumente zu konsultieren, um die genauesten und aktuellsten Informationen zu erhalten.",
+      "sources": [
+        "RC-3000 Technische Spezifikationen v4.2",
+        "RC-3000 Serie",
+        "RC-5000 Serie",
+        "RoboCell RC-3000 Serie",
+        "RoboCell RC-5000 Serie (Heavy Duty)",
+        "Wartungsanleitung RC-3000",
+        "RC-3000 Ersatzteilliste",
+        "RC-3000 Montageanleitung",
+        "RC-3000 Pneumatikschema",
+        "Ersatzteilkatalog RC-3000",
+        "Bedienerschulung RC-3000 Pr\u00e4sentation",
+        "Kamerasystem Spezifikationen",
+        "RC-3000 Elektrische Schaltpl\u00e4ne"
+      ],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "HARD FAIL [language_match]: Die Antwort ist in deutscher Sprache verfasst und behandelt die technischen Spezifikationen der RC-3000 Serie, was der Frage entspricht. Die Verwendung von englischen \u00dcberschriften ist jedoch nicht akzeptabel.",
+        "HARD FAIL [direct_resolution]: Die Antwort verweist haupts\u00e4chlich auf das Dokument 'RC-3000 Technische Spezifikationen v4.2' und gibt keine konkreten technischen Spezifikationen oder Zahlen an, sondern beschreibt nur allgemein, was in diesem Dokument enthalten sein k\u00f6nnte."
+      ],
+      "dimensions": {
+        "language_match": {
+          "dimension": "language_match",
+          "verdict": "fail",
+          "score": 0.0,
+          "reasoning": "Die Antwort ist in deutscher Sprache verfasst und behandelt die technischen Spezifikationen der RC-3000 Serie, was der Frage entspricht. Die Verwendung von englischen \u00dcberschriften ist jedoch nicht akzeptabel.",
+          "evidence": "{\"fragesprache\": \"Deutsch\", \"antwortsprache\": \"Deutsch\"}"
+        },
+        "direct_resolution": {
+          "dimension": "direct_resolution",
+          "verdict": "fail",
+          "score": 0.0,
+          "reasoning": "Die Antwort verweist haupts\u00e4chlich auf das Dokument 'RC-3000 Technische Spezifikationen v4.2' und gibt keine konkreten technischen Spezifikationen oder Zahlen an, sondern beschreibt nur allgemein, was in diesem Dokument enthalten sein k\u00f6nnte.",
+          "evidence": "{\"user_braucht\": \"technische Spezifikationen der RC-3000 Serie\", \"antwort_enthaelt_info\": false}"
+        },
+        "factual_grounding": {
+          "dimension": "factual_grounding",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die Antwort st\u00fctzt sich gr\u00f6\u00dftenteils auf den Kontext, insbesondere auf die allgemeinen Informationen zur RC-3000 Serie und deren technische Spezifikationen. Einige spezifische Details, wie die maximale Leistung und die Betriebstemperatur, sind jedoch nicht im Kontext enthalten und scheinen extrapoliert oder halluziniert zu sein.",
+          "evidence": "{\"behauptungen\": [\"Die RC-3000 Serie ist eine Produktlinie, die in verschiedenen technischen Spezifikationen angeboten wird.\", \"Diese Spezifikationen umfassen wichtige Merkmale wie Leistung, Abmessungen und Funktionen.\", \"Die technischen Spezifikationen, die in den entsprechenden Dokumenten festgehalten sind, bieten eine umfassende \u00dcbersicht \u00fcber die Leistungsmerkmale.\", \"Die Wartungsanleitungen bieten Anweisungen zur regelm\u00e4\u00dfigen Pflege und zur Behebung h\u00e4ufiger Probleme.\", \"Die Montageanleitungen enthalten Schritt-f\u00fcr-Schritt-Anleitungen zur Installation der Ger\u00e4te.\"], \"gestuetzt\": [\"Die RC-3000 Serie ist eine Produktlinie, die in verschiedenen technischen Spezifikationen angeboten wird.\", \"Diese Spezifikationen umfassen wichtige Merkmale wie Leistung, Abmessungen und Funktionen.\", \"Die technischen Spezifikationen, die in den entsprechenden Dokumenten festgehalten sind, bieten eine umfassende \u00dcbersicht \u00fcber die Leistungsmerkmale.\"], \"nicht_gestuetzt\": [\"Details zur Energieeffizienz und Leistungsaufnahme.\", \"Angaben zur maximalen Leistungsaufnahme in Watt.\", \"Informationen \u00fcber die Temperaturbereiche, in denen die Ger\u00e4te effizient arbeiten k\u00f6nnen.\", \"Hinweise auf die Einhaltung von Sicherheitsnormen, die f\u00fcr die Nutzung in industriellen Umgebungen wichtig sind.\"]}"
+        },
+        "answer_completeness": {
+          "dimension": "answer_completeness",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die Antwort gibt einen \u00dcberblick \u00fcber die technischen Spezifikationen der RC-3000 Serie und verweist auf relevante Dokumente, jedoch fehlen konkrete Werte und Details, die f\u00fcr eine vollst\u00e4ndige Beurteilung der technischen Spezifikationen notwendig w\u00e4ren.",
+          "evidence": "{\"informationsbedarfe\": [\"konkrete technische Spezifikationen wie Wattzahl, Abmessungen, Temperaturbereiche\"], \"adressiert\": [\"allgemeine technische Spezifikationen\", \"Wartungs- und Montageanleitungen\", \"Ersatzteilliste\"], \"fehlend\": [\"spezifische Werte f\u00fcr Leistung, Abmessungen, Betriebstemperatur und Sicherheitsstandards\"]}"
+        },
+        "user_actionability": {
+          "dimension": "user_actionability",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort gibt an, dass die technischen Spezifikationen in einem bestimmten Dokument zu finden sind und empfiehlt, dieses Dokument zu konsultieren, was dem Nutzer einen klaren Handlungsweg bietet.",
+          "evidence": "{\"nutzer_kann_fortfahren\": true, \"was_nutzer_tun_kann\": \"Das Dokument 'RC-3000 Technische Spezifikationen v4.2' konsultieren, um detaillierte technische Spezifikationen zu erhalten.\", \"was_noch_fehlt\": \"Direkte Links zu den Dokumenten oder spezifische technische Daten.\"}"
+        }
+      },
+      "latency_ms": 6898.23
+    }
+  ]
+}

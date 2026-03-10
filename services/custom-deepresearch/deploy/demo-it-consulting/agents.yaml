@@ -1,0 +1,80 @@
+# =============================================================================
+# Demo IT Consulting - Agent Configuration
+# =============================================================================
+# Agents: Multiple knowledge bases + web search for research
+
+agents:
+  # ---------------------------------------------------------------------------
+  # Project Knowledge Base
+  # ---------------------------------------------------------------------------
+  projects:
+    type: elasticsearch
+    enabled: true
+    description: "Search project documentation, architectures, and lessons learned"
+    display_name: "Projects"
+    source_type: confluence
+    max_iterations: 3
+    preprocessors:
+      - reformulator
+    backend:
+      url: "http://localhost:9200"
+      index: "confluence_projects"
+      search_fields:
+        - "title^3"
+        - "content"
+        - "tags^2"
+
+  # ---------------------------------------------------------------------------
+  # Solutions Library
+  # ---------------------------------------------------------------------------
+  solutions:
+    type: elasticsearch
+    enabled: true
+    description: "Search solution patterns, code examples, and best practices"
+    display_name: "Solutions"
+    source_type: sharepoint
+    max_iterations: 3
+    backend:
+      url: "http://localhost:9200"
+      index: "sharepoint_solutions"
+      search_fields:
+        - "title^4"
+        - "content"
+        - "technology_tags^3"
+
+  # ---------------------------------------------------------------------------
+  # Support Tickets
+  # ---------------------------------------------------------------------------
+  tickets:
+    type: elasticsearch
+    enabled: true
+    description: "Search resolved support tickets and troubleshooting guides"
+    display_name: "Support"
+    source_type: jira
+    max_iterations: 2
+    backend:
+      url: "http://localhost:9200"
+      index: "jira_support"
+      search_fields:
+        - "summary^2"
+        - "description"
+        - "resolution^3"
+
+  # ---------------------------------------------------------------------------
+  # Web Search - ENABLED for research
+  # ---------------------------------------------------------------------------
+  web_search:
+    type: websearch
+    enabled: true
+    description: "Search the web for documentation, tutorials, and current best practices"
+    display_name: "Web"
+    max_iterations: 5
+    backend:
+      searxng_url: "http://localhost:8080"
+      default_engines:
+        - google
+        - bing
+        - duckduckgo
+        - stackoverflow
+        - github
+      timeout: 30.0

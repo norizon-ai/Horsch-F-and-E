@@ -1,0 +1,577 @@
+{
+  "results": [
+    {
+      "pipeline_name": "bm25",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.9,
+        "NDCG@3": 0.9,
+        "NDCG@5": 0.9,
+        "NDCG@10": 0.84454,
+        "MAP@10": 0.77707,
+        "Recall@1": 0.14076,
+        "Recall@3": 0.42227,
+        "Recall@5": 0.67879,
+        "Recall@10": 0.83455,
+        "Precision@1": 0.9,
+        "Precision@10": 0.55,
+        "MRR@10": 0.9142857142857143,
+        "total_queries": 10,
+        "queries_per_second": 0.6070423942355588
+      },
+      "config": {
+        "name": "bm25",
+        "search_type": "bm25",
+        "bm25_weight": 0.6,
+        "vector_weight": 0.4,
+        "preprocessors": [],
+        "postprocessors": [],
+        "reranker_model": null
+      },
+      "timestamp": "2026-01-25T16:52:04.988310"
+    },
+    {
+      "pipeline_name": "bm25_stop",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.9,
+        "NDCG@3": 0.9,
+        "NDCG@5": 0.9,
+        "NDCG@10": 0.84454,
+        "MAP@10": 0.77707,
+        "Recall@1": 0.14076,
+        "Recall@3": 0.42227,
+        "Recall@5": 0.67879,
+        "Recall@10": 0.83455,
+        "Precision@1": 0.9,
+        "Precision@10": 0.55,
+        "MRR@10": 0.9142857142857143,
+        "total_queries": 10,
+        "queries_per_second": 2.4497032476131726
+      },
+      "config": {
+        "name": "bm25_stop",
+        "search_type": "bm25",
+        "bm25_weight": 0.6,
+        "vector_weight": 0.4,
+        "preprocessors": [
+          "stopwords"
+        ],
+        "postprocessors": [],
+        "reranker_model": null
+      },
+      "timestamp": "2026-01-25T16:52:09.072751"
+    },
+    {
+      "pipeline_name": "bm25_kw",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.9,
+        "NDCG@3": 0.9,
+        "NDCG@5": 0.9,
+        "NDCG@10": 0.84454,
+        "MAP@10": 0.77707,
+        "Recall@1": 0.14076,
+        "Recall@3": 0.42227,
+        "Recall@5": 0.67879,
+        "Recall@10": 0.83455,
+        "Precision@1": 0.9,
+        "Precision@10": 0.55,
+        "MRR@10": 0.9142857142857143,
+        "total_queries": 10,
+        "queries_per_second": 3.7972206612859405
+      },
+      "config": {
+        "name": "bm25_kw",
+        "search_type": "bm25",
+        "bm25_weight": 0.6,
+        "vector_weight": 0.4,
+        "preprocessors": [
+          "keywords"
+        ],
+        "postprocessors": [],
+        "reranker_model": null
+      },
+      "timestamp": "2026-01-25T16:52:11.709042"
+    },
+    {
+      "pipeline_name": "bm25_stop_kw",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.9,
+        "NDCG@3": 0.9,
+        "NDCG@5": 0.9,
+        "NDCG@10": 0.84454,
+        "MAP@10": 0.77707,
+        "Recall@1": 0.14076,
+        "Recall@3": 0.42227,
+        "Recall@5": 0.67879,
+        "Recall@10": 0.83455,
+        "Precision@1": 0.9,
+        "Precision@10": 0.55,
+        "MRR@10": 0.9142857142857143,
+        "total_queries": 10,
+        "queries_per_second": 3.633057946019305
+      },
+      "config": {
+        "name": "bm25_stop_kw",
+        "search_type": "bm25",
+        "bm25_weight": 0.6,
+        "vector_weight": 0.4,
+        "preprocessors": [
+          "stopwords",
+          "keywords"
+        ],
+        "postprocessors": [],
+        "reranker_model": null
+      },
+      "timestamp": "2026-01-25T16:52:14.469367"
+    },
+    {
+      "pipeline_name": "bm25_rerank",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.9,
+        "NDCG@3": 0.87654,
+        "NDCG@5": 0.79146,
+        "NDCG@10": 0.74542,
+        "MAP@10": 0.61583,
+        "Recall@1": 0.13576,
+        "Recall@3": 0.40227,
+        "Recall@5": 0.58561,
+        "Recall@10": 0.69788,
+        "Precision@1": 0.9,
+        "Precision@10": 0.47,
+        "MRR@10": 0.95,
+        "total_queries": 10,
+        "queries_per_second": 0.15304076788641974
+      },
+      "config": {
+        "name": "bm25_rerank",
+        "search_type": "bm25",
+        "bm25_weight": 0.6,
+        "vector_weight": 0.4,
+        "preprocessors": [],
+        "postprocessors": [
+          "reranker"
+        ],
+        "reranker_model": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+      },
+      "timestamp": "2026-01-25T16:53:19.814924"
+    },
+    {
+      "pipeline_name": "bm25_kw_rerank",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.9,
+        "NDCG@3": 0.87654,
+        "NDCG@5": 0.79146,
+        "NDCG@10": 0.75204,
+        "MAP@10": 0.6235,
+        "Recall@1": 0.13576,
+        "Recall@3": 0.40227,
+        "Recall@5": 0.58561,
+        "Recall@10": 0.70788,
+        "Precision@1": 0.9,
+        "Precision@10": 0.48,
+        "MRR@10": 0.95,
+        "total_queries": 10,
+        "queries_per_second": 0.9219248659755999
+      },
+      "config": {
+        "name": "bm25_kw_rerank",
+        "search_type": "bm25",
+        "bm25_weight": 0.6,
+        "vector_weight": 0.4,
+        "preprocessors": [
+          "keywords"
+        ],
+        "postprocessors": [
+          "reranker"
+        ],
+        "reranker_model": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+      },
+      "timestamp": "2026-01-25T16:53:30.668797"
+    },
+    {
+      "pipeline_name": "vector",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.8,
+        "NDCG@3": 0.7,
+        "NDCG@5": 0.69851,
+        "NDCG@10": 0.66321,
+        "MAP@10": 0.52283,
+        "Recall@1": 0.11576,
+        "Recall@3": 0.27727,
+        "Recall@5": 0.47879,
+        "Recall@10": 0.64864,
+        "Precision@1": 0.8,
+        "Precision@10": 0.45,
+        "MRR@10": 0.85,
+        "total_queries": 10,
+        "queries_per_second": 18.934054767546474
+      },
+      "config": {
+        "name": "vector",
+        "search_type": "vector",
+        "bm25_weight": 0.6,
+        "vector_weight": 0.4,
+        "preprocessors": [],
+        "postprocessors": [],
+        "reranker_model": null
+      },
+      "timestamp": "2026-01-25T16:53:31.198325"
+    },
+    {
+      "pipeline_name": "vector_rerank",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.9,
+        "NDCG@3": 0.87654,
+        "NDCG@5": 0.73452,
+        "NDCG@10": 0.6914,
+        "MAP@10": 0.55545,
+        "Recall@1": 0.13576,
+        "Recall@3": 0.40227,
+        "Recall@5": 0.5047,
+        "Recall@10": 0.61197,
+        "Precision@1": 0.9,
+        "Precision@10": 0.43,
+        "MRR@10": 0.95,
+        "total_queries": 10,
+        "queries_per_second": 3.440919211776509
+      },
+      "config": {
+        "name": "vector_rerank",
+        "search_type": "vector",
+        "bm25_weight": 0.6,
+        "vector_weight": 0.4,
+        "preprocessors": [],
+        "postprocessors": [
+          "reranker"
+        ],
+        "reranker_model": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+      },
+      "timestamp": "2026-01-25T16:53:34.105619"
+    },
+    {
+      "pipeline_name": "hybrid_50_50",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.8,
+        "NDCG@3": 0.88268,
+        "NDCG@5": 0.86299,
+        "NDCG@10": 0.86754,
+        "MAP@10": 0.78515,
+        "Recall@1": 0.11576,
+        "Recall@3": 0.41227,
+        "Recall@5": 0.64379,
+        "Recall@10": 0.89364,
+        "Precision@1": 0.8,
+        "Precision@10": 0.6,
+        "MRR@10": 0.9,
+        "total_queries": 10,
+        "queries_per_second": 17.173807297151665
+      },
+      "config": {
+        "name": "hybrid_50_50",
+        "search_type": "hybrid",
+        "bm25_weight": 0.5,
+        "vector_weight": 0.5,
+        "preprocessors": [],
+        "postprocessors": [],
+        "reranker_model": null
+      },
+      "timestamp": "2026-01-25T16:53:34.688952"
+    },
+    {
+      "pipeline_name": "hybrid_50_50_stop",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.8,
+        "NDCG@3": 0.83575,
+        "NDCG@5": 0.84368,
+        "NDCG@10": 0.82701,
+        "MAP@10": 0.73176,
+        "Recall@1": 0.11576,
+        "Recall@3": 0.37227,
+        "Recall@5": 0.62379,
+        "Recall@10": 0.83864,
+        "Precision@1": 0.8,
+        "Precision@10": 0.57,
+        "MRR@10": 0.9,
+        "total_queries": 10,
+        "queries_per_second": 15.279489846287232
+      },
+      "config": {
+        "name": "hybrid_50_50_stop",
+        "search_type": "hybrid",
+        "bm25_weight": 0.5,
+        "vector_weight": 0.5,
+        "preprocessors": [
+          "stopwords"
+        ],
+        "postprocessors": [],
+        "reranker_model": null
+      },
+      "timestamp": "2026-01-25T16:53:35.344356"
+    },
+    {
+      "pipeline_name": "hybrid_50_50_kw",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.9,
+        "NDCG@3": 0.87039,
+        "NDCG@5": 0.86871,
+        "NDCG@10": 0.8452,
+        "MAP@10": 0.74951,
+        "Recall@1": 0.13576,
+        "Recall@3": 0.39227,
+        "Recall@5": 0.64379,
+        "Recall@10": 0.84864,
+        "Precision@1": 0.9,
+        "Precision@10": 0.57,
+        "MRR@10": 0.95,
+        "total_queries": 10,
+        "queries_per_second": 19.728153147856354
+      },
+      "config": {
+        "name": "hybrid_50_50_kw",
+        "search_type": "hybrid",
+        "bm25_weight": 0.5,
+        "vector_weight": 0.5,
+        "preprocessors": [
+          "keywords"
+        ],
+        "postprocessors": [],
+        "reranker_model": null
+      },
+      "timestamp": "2026-01-25T16:53:35.851755"
+    },
+    {
+      "pipeline_name": "hybrid_50_50_stop_kw",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.9,
+        "NDCG@3": 0.87039,
+        "NDCG@5": 0.86871,
+        "NDCG@10": 0.8452,
+        "MAP@10": 0.74951,
+        "Recall@1": 0.13576,
+        "Recall@3": 0.39227,
+        "Recall@5": 0.64379,
+        "Recall@10": 0.84864,
+        "Precision@1": 0.9,
+        "Precision@10": 0.57,
+        "MRR@10": 0.95,
+        "total_queries": 10,
+        "queries_per_second": 20.276982651721895
+      },
+      "config": {
+        "name": "hybrid_50_50_stop_kw",
+        "search_type": "hybrid",
+        "bm25_weight": 0.5,
+        "vector_weight": 0.5,
+        "preprocessors": [
+          "stopwords",
+          "keywords"
+        ],
+        "postprocessors": [],
+        "reranker_model": null
+      },
+      "timestamp": "2026-01-25T16:53:36.345546"
+    },
+    {
+      "pipeline_name": "hybrid_50_50_rerank",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.9,
+        "NDCG@3": 0.87654,
+        "NDCG@5": 0.79146,
+        "NDCG@10": 0.74473,
+        "MAP@10": 0.62596,
+        "Recall@1": 0.13576,
+        "Recall@3": 0.40227,
+        "Recall@5": 0.58561,
+        "Recall@10": 0.69288,
+        "Precision@1": 0.9,
+        "Precision@10": 0.47,
+        "MRR@10": 0.95,
+        "total_queries": 10,
+        "queries_per_second": 2.864028787343795
+      },
+      "config": {
+        "name": "hybrid_50_50_rerank",
+        "search_type": "hybrid",
+        "bm25_weight": 0.5,
+        "vector_weight": 0.5,
+        "preprocessors": [],
+        "postprocessors": [
+          "reranker"
+        ],
+        "reranker_model": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+      },
+      "timestamp": "2026-01-25T16:53:39.838263"
+    },
+    {
+      "pipeline_name": "hybrid_50_50_kw_rerank",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.9,
+        "NDCG@3": 0.87654,
+        "NDCG@5": 0.79146,
+        "NDCG@10": 0.74363,
+        "MAP@10": 0.62278,
+        "Recall@1": 0.13576,
+        "Recall@3": 0.40227,
+        "Recall@5": 0.58561,
+        "Recall@10": 0.69288,
+        "Precision@1": 0.9,
+        "Precision@10": 0.47,
+        "MRR@10": 0.95,
+        "total_queries": 10,
+        "queries_per_second": 3.0656235628647015
+      },
+      "config": {
+        "name": "hybrid_50_50_kw_rerank",
+        "search_type": "hybrid",
+        "bm25_weight": 0.5,
+        "vector_weight": 0.5,
+        "preprocessors": [
+          "keywords"
+        ],
+        "postprocessors": [
+          "reranker"
+        ],
+        "reranker_model": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+      },
+      "timestamp": "2026-01-25T16:53:43.101906"
+    },
+    {
+      "pipeline_name": "hybrid_70_30",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.9,
+        "NDCG@3": 0.87039,
+        "NDCG@5": 0.89047,
+        "NDCG@10": 0.85615,
+        "MAP@10": 0.78424,
+        "Recall@1": 0.14076,
+        "Recall@3": 0.39727,
+        "Recall@5": 0.67879,
+        "Recall@10": 0.86455,
+        "Precision@1": 0.9,
+        "Precision@10": 0.58,
+        "MRR@10": 0.9142857142857143,
+        "total_queries": 10,
+        "queries_per_second": 14.580632108368587
+      },
+      "config": {
+        "name": "hybrid_70_30",
+        "search_type": "hybrid",
+        "bm25_weight": 0.7,
+        "vector_weight": 0.3,
+        "preprocessors": [],
+        "postprocessors": [],
+        "reranker_model": null
+      },
+      "timestamp": "2026-01-25T16:53:43.789019"
+    },
+    {
+      "pipeline_name": "hybrid_70_30_rerank",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.9,
+        "NDCG@3": 0.87654,
+        "NDCG@5": 0.79146,
+        "NDCG@10": 0.75458,
+        "MAP@10": 0.63385,
+        "Recall@1": 0.13576,
+        "Recall@3": 0.40227,
+        "Recall@5": 0.58561,
+        "Recall@10": 0.71288,
+        "Precision@1": 0.9,
+        "Precision@10": 0.48,
+        "MRR@10": 0.95,
+        "total_queries": 10,
+        "queries_per_second": 2.949786444329559
+      },
+      "config": {
+        "name": "hybrid_70_30_rerank",
+        "search_type": "hybrid",
+        "bm25_weight": 0.7,
+        "vector_weight": 0.3,
+        "preprocessors": [],
+        "postprocessors": [
+          "reranker"
+        ],
+        "reranker_model": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+      },
+      "timestamp": "2026-01-25T16:53:47.180208"
+    },
+    {
+      "pipeline_name": "hybrid_30_70",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.7,
+        "NDCG@3": 0.83575,
+        "NDCG@5": 0.78674,
+        "NDCG@10": 0.74962,
+        "MAP@10": 0.64206,
+        "Recall@1": 0.09576,
+        "Recall@3": 0.39227,
+        "Recall@5": 0.57379,
+        "Recall@10": 0.73864,
+        "Precision@1": 0.7,
+        "Precision@10": 0.52,
+        "MRR@10": 0.85,
+        "total_queries": 10,
+        "queries_per_second": 15.10177114301752
+      },
+      "config": {
+        "name": "hybrid_30_70",
+        "search_type": "hybrid",
+        "bm25_weight": 0.3,
+        "vector_weight": 0.7,
+        "preprocessors": [],
+        "postprocessors": [],
+        "reranker_model": null
+      },
+      "timestamp": "2026-01-25T16:53:47.843088"
+    },
+    {
+      "pipeline_name": "hybrid_30_70_rerank",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.9,
+        "NDCG@3": 0.87654,
+        "NDCG@5": 0.79146,
+        "NDCG@10": 0.7514,
+        "MAP@10": 0.63151,
+        "Recall@1": 0.13576,
+        "Recall@3": 0.40227,
+        "Recall@5": 0.58561,
+        "Recall@10": 0.70288,
+        "Precision@1": 0.9,
+        "Precision@10": 0.48,
+        "MRR@10": 0.95,
+        "total_queries": 10,
+        "queries_per_second": 2.969591155026345
+      },
+      "config": {
+        "name": "hybrid_30_70_rerank",
+        "search_type": "hybrid",
+        "bm25_weight": 0.3,
+        "vector_weight": 0.7,
+        "preprocessors": [],
+        "postprocessors": [
+          "reranker"
+        ],
+        "reranker_model": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+      },
+      "timestamp": "2026-01-25T16:53:51.211509"
+    }
+  ],
+  "metadata": {}
+}

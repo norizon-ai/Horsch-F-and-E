@@ -1,0 +1,73 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: celery-worker-hpa
+  namespace: norizon
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: celery-worker
+  minReplicas: 1    # Minimum workers (idle state)
+  maxReplicas: 10   # Maximum workers (peak load)
+  metrics:
+  # Primary metric: CPU utilization
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70  # Scale up if CPU > 70%
+  # Secondary metric: Memory utilization
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80  # Scale up if memory > 80%
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300  # Wait 5 min before scaling down
+      policies:
+      - type: Percent
+        value: 50          # Scale down max 50% of pods at once
+        periodSeconds: 60  # Every 60 seconds
+    scaleUp:
+      stabilizationWindowSeconds: 0    # Scale up immediately
+      policies:
+      - type: Percent
+        value: 100         # Scale up max 100% (double) at once
+        periodSeconds: 15  # Every 15 seconds
+      - type: Pods
+        value: 2           # Or add 2 pods at once (whichever is smaller)
+        periodSeconds: 15
+      selectPolicy: Max    # Use the policy that scales faster
+---
+# KEDA ScaledObject - Advanced queue-based autoscaling
+# Install KEDA first: kubectl apply -f https://github.com/kedacore/keda/releases/download/v2.12.0/keda-2.12.0.yaml
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: celery-worker-scaler
+  namespace: norizon
+spec:
+  scaleTargetRef:
+    name: celery-worker
+  minReplicaCount: 1
+  maxReplicaCount: 10
+  pollingInterval: 15     # Check queue every 15 seconds
+  cooldownPeriod: 300     # Wait 5 min before scaling to zero
+  triggers:
+  # Trigger 1: Redis queue length (primary) - MONITORS JOB QUEUE DIRECTLY
+  - type: redis
+    metadata:
+      address: redis-service.norizon.svc.cluster.local:6379
+      databaseIndex: "1"   # Celery uses Redis DB 1 for broker
+      listName: "default"  # Our Celery queue name (see src/celery_app.py:48)
+      listLength: "5"      # Scale up if > 5 jobs waiting per worker
+      activationListLength: "1"  # Activate scaling if queue has any jobs
+  # Trigger 2: CPU (fallback)
+  - type: cpu
+    metricType: Utilization
+    metadata:
+      value: "70"

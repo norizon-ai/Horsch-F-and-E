@@ -1,0 +1,293 @@
+{
+  "timestamp": "2026-01-22T08:14:26.648091+00:00",
+  "total": 5,
+  "passed": 1,
+  "pass_rate": 0.2,
+  "mean_score": 0.16499999999999998,
+  "results": [
+    {
+      "question_id": "PS-001",
+      "question": "Was sind die technischen Spezifikationen der RC-3000 Serie?",
+      "answer": "# Technische Spezifikationen der RC-3000 Serie\n\n## Zusammenfassung\nDie technischen Spezifikationen der RC-3000 Serie sind in einem spezifischen Dokument detailliert beschrieben, jedoch konnten keine konkreten Werte oder technische Daten wie Abmessungen, Gewicht oder Leistung extrahiert werden. Für eine vollständige Übersicht wäre der direkte Zugriff auf das Dokument \"RC-3000 Technische Spezifikationen v4.2\" erforderlich [2].\n\n## Wichtige Erkenntnisse\n- Es gibt ein Dokument mit dem Titel \"RC-3000 Technische Spezifikationen v4.2\", das relevante Informationen enthält [2].\n- Weitere Dokumente wie Wartungs- und Montageanleitungen könnten nützliche Informationen bieten, jedoch keine direkten technischen Spezifikationen [2].\n\n## Details\nDie Quellen enthalten keine spezifischen technischen Details oder Zahlen zur RC-3000 Serie. Es wird empfohlen, die offiziellen Dokumente zu konsultieren, um genaue Informationen zu erhalten. \n\n## Empfehlungen\nUm die vollständigen technischen Spezifikationen der RC-3000 Serie zu erhalten, sollte das Dokument \"RC-3000 Technische Spezifikationen v4.2\" direkt eingesehen werden.\n\n## Quellen\n[1] Dokumenttitel - URL  \n[2] Dokumenttitel - URL\n\n## Einschränkungen\nDie Quellen enthalten keine Informationen zu spezifischen technischen Aspekten wie Abmessungen, Gewicht oder Leistung der RC-3000 Serie.",
+      "sources": [
+        "RC-3000 Technische Spezifikationen v4.2",
+        "RC-3000 Serie",
+        "RC-5000 Serie",
+        "RoboCell RC-3000 Serie",
+        "RoboCell RC-5000 Serie (Heavy Duty)",
+        "Wartungsanleitung RC-3000",
+        "RC-3000 Ersatzteilliste",
+        "RC-3000 Montageanleitung",
+        "RC-3000 Pneumatikschema",
+        "Ersatzteilkatalog RC-3000"
+      ],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "HARD FAIL [direct_resolution]: Die Antwort verweist lediglich auf ein Dokument, das die Informationen enthält, ohne konkrete technische Spezifikationen oder Daten bereitzustellen."
+      ],
+      "dimensions": {
+        "language_match": {
+          "dimension": "language_match",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort ist in deutscher Sprache verfasst und entspricht somit der Sprache der Frage. Es werden keine englischen Überschriften verwendet, und die Antwort enthält relevante Informationen zur Frage, auch wenn keine spezifischen technischen Daten bereitgestellt werden.",
+          "evidence": "{\"fragesprache\": \"Deutsch\", \"antwortsprache\": \"Deutsch\"}"
+        },
+        "direct_resolution": {
+          "dimension": "direct_resolution",
+          "verdict": "fail",
+          "score": 0.0,
+          "reasoning": "Die Antwort verweist lediglich auf ein Dokument, das die Informationen enthält, ohne konkrete technische Spezifikationen oder Daten bereitzustellen.",
+          "evidence": "{\"user_braucht\": \"technische Spezifikationen der RC-3000 Serie\", \"antwort_enthaelt_info\": false}"
+        },
+        "factual_grounding": {
+          "dimension": "factual_grounding",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die Antwort bezieht sich auf die Existenz eines spezifischen Dokuments, das technische Spezifikationen enthält, was im Kontext erwähnt wird. Allerdings wird die Behauptung, dass die Quellen keine spezifischen technischen Details enthalten, nicht durch den Kontext gestützt, da im Kontext tatsächlich einige technische Spezifikationen aufgeführt sind. Daher ist die Antwort teilweise korrekt, aber nicht vollständig.",
+          "evidence": "{\"behauptungen\": [\"Die technischen Spezifikationen der RC-3000 Serie sind in einem spezifischen Dokument detailliert beschrieben.\", \"Für eine vollständige Übersicht wäre der direkte Zugriff auf das Dokument 'RC-3000 Technische Spezifikationen v4.2' erforderlich.\", \"Es gibt ein Dokument mit dem Titel 'RC-3000 Technische Spezifikationen v4.2', das relevante Informationen enthält.\", \"Weitere Dokumente wie Wartungs- und Montageanleitungen könnten nützliche Informationen bieten, jedoch keine direkten technischen Spezifikationen.\", \"Die Quellen enthalten keine spezifischen technischen Details oder Zahlen zur RC-3000 Serie.\"], \"gestuetzt\": [\"Die technischen Spezifikationen der RC-3000 Serie sind in einem spezifischen Dokument detailliert beschrieben.\", \"Es gibt ein Dokument mit dem Titel 'RC-3000 Technische Spezifikationen v4.2', das relevante Informationen enthält.\"], \"nicht_gestuetzt\": [\"Die Quellen enthalten keine spezifischen technischen Details oder Zahlen zur RC-3000 Serie.\"]}"
+        },
+        "answer_completeness": {
+          "dimension": "answer_completeness",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die Antwort verweist auf ein Dokument, das die technischen Spezifikationen enthält, bietet jedoch keine konkreten Werte oder Details, die in der Frage erwartet werden. Daher werden einige Teilaspekte der Frage nicht vollständig adressiert.",
+          "evidence": "{\"informationsbedarfe\": [\"konkrete technische Daten wie Abmessungen, Gewicht, Leistung\"], \"adressiert\": [\"Existenz eines Dokuments mit technischen Spezifikationen\", \"Empfehlung, das Dokument einzusehen\"], \"fehlend\": [\"spezifische technische Details zur RC-3000 Serie\"]}"
+        },
+        "user_actionability": {
+          "dimension": "user_actionability",
+          "verdict": "fail",
+          "score": 0.0,
+          "reasoning": "Die Antwort verweist auf ein spezifisches Dokument, das für die benötigten Informationen erforderlich ist, bietet jedoch keine direkten technischen Details oder Werte, sodass der Nutzer ohne Zugriff auf das Dokument nicht weiterkommt.",
+          "evidence": "{\"nutzer_kann_fortfahren\": false, \"was_nutzer_tun_kann\": \"Das Dokument \\\"RC-3000 Technische Spezifikationen v4.2\\\" einsehen, um die benötigten technischen Spezifikationen zu erhalten.\", \"was_noch_fehlt\": \"Konkrete technische Daten oder Werte zur RC-3000 Serie sind nicht vorhanden.\"}"
+        }
+      }
+    },
+    {
+      "question_id": "PS-002",
+      "question": "Welche Greifersysteme sind für die RC-5000 Heavy Duty verfügbar?",
+      "answer": "# Verfügbare Greifersysteme für die RC-5000 Heavy Duty\n\n## Zusammenfassung\nDie RC-5000 Heavy Duty bietet eine Reihe von Greifersystemen, die für verschiedene Anwendungen geeignet sind. Eine detaillierte Übersicht über die spezifischen Modelle und deren Eigenschaften fehlt jedoch in den Quellen [1].\n\n## Wichtige Erkenntnisse\n- Es gibt verschiedene Greifersysteme, die mit der RC-5000 Heavy Duty kompatibel sind, jedoch sind keine spezifischen Modelle oder deren technischen Spezifikationen in den Quellen angegeben [1], [2].\n- Die Informationen zu den Anwendungsbereichen der Greifersysteme sind ebenfalls unzureichend dokumentiert.\n\n## Details\nDie Quellen bieten eine allgemeine Übersicht über die Greifersysteme, die mit der RC-5000 Heavy Duty verwendet werden können. Es wird jedoch nicht auf konkrete Modelle oder deren spezifische Eigenschaften eingegangen. Der Ersatzteilkatalog könnte nützliche Informationen enthalten, jedoch liegt der Fokus nicht ausschließlich auf den Greifersystemen [1].\n\n## Empfehlungen\nFür detaillierte Informationen zu spezifischen Greifern und deren Einsatzmöglichkeiten wäre es sinnvoll, die technischen Spezifikationen direkt bei einem Anbieter oder Hersteller zu erfragen.\n\n## Quellen\n[1] RC-5000 Greifersysteme - Übersicht  \n[2] RC-5000 Serie - Technische Spezifikationen  \n\n## Einschränkungen\nDie Quellen enthalten keine Informationen zu spezifischen Modellen, deren Eigenschaften oder Preisen der Greifersysteme.",
+      "sources": [
+        "RoboCell RC-5000 Serie (Heavy Duty)",
+        "RC-5000 Greifersysteme - Übersicht",
+        "RC-5000 Serie",
+        "Wartungsanleitung RC-5000",
+        "RC-5000 Konstruktionszeichnungen",
+        "Geräuschemissionsmessungen RC-5000",
+        "RC-5000 Sicherheitskonzept",
+        "Ersatzteilkatalog RC-5000",
+        "Störungsdiagnose RC-5000",
+        "Kraftberechnungen Greifersysteme",
+        "RC-5000 Vibrationsanalyse Testbericht"
+      ],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "HARD FAIL [direct_resolution]: Die Antwort verweist auf die Verfügbarkeit von Greifersystemen, enthält jedoch keine spezifischen Modelle oder deren Eigenschaften und verweist auf Quellen, die keine detaillierten Informationen bieten."
+      ],
+      "dimensions": {
+        "language_match": {
+          "dimension": "language_match",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort ist in deutscher Sprache verfasst und entspricht somit der Sprache der Frage. Es werden keine englischen Überschriften oder andere sprachliche Inkonsistenzen verwendet.",
+          "evidence": "{\"fragesprache\": \"Deutsch\", \"antwortsprache\": \"Deutsch\"}"
+        },
+        "direct_resolution": {
+          "dimension": "direct_resolution",
+          "verdict": "fail",
+          "score": 0.0,
+          "reasoning": "Die Antwort verweist auf die Verfügbarkeit von Greifersystemen, enthält jedoch keine spezifischen Modelle oder deren Eigenschaften und verweist auf Quellen, die keine detaillierten Informationen bieten.",
+          "evidence": "{\"user_braucht\": \"Information über spezifische Greifersysteme für die RC-5000 Heavy Duty\", \"antwort_enthaelt_info\": false}"
+        },
+        "factual_grounding": {
+          "dimension": "factual_grounding",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die Antwort enthält sowohl gestützte als auch nicht gestützte Behauptungen. Während die allgemeinen Aussagen über die Verfügbarkeit von Greifersystemen und deren Kompatibilität mit der RC-5000 Heavy Duty durch den Kontext unterstützt werden, sind spezifische Behauptungen über fehlende Details und Informationen zu Modellen nicht direkt aus den Quellen ableitbar. Daher ist die Antwort teilweise korrekt, aber nicht vollständig im Einklang mit dem Kontext.",
+          "evidence": "{\"behauptungen\": [\"Die RC-5000 Heavy Duty bietet eine Reihe von Greifersystemen, die für verschiedene Anwendungen geeignet sind.\", \"Es gibt verschiedene Greifersysteme, die mit der RC-5000 Heavy Duty kompatibel sind.\", \"Die Informationen zu den Anwendungsbereichen der Greifersysteme sind unzureichend dokumentiert.\", \"Die Quellen bieten eine allgemeine Übersicht über die Greifersysteme, die mit der RC-5000 Heavy Duty verwendet werden können.\", \"Für detaillierte Informationen zu spezifischen Greifern und deren Einsatzmöglichkeiten wäre es sinnvoll, die technischen Spezifikationen direkt bei einem Anbieter oder Hersteller zu erfragen.\"], \"gestuetzt\": [\"Die RC-5000 Heavy Duty bietet eine Reihe von Greifersystemen, die für verschiedene Anwendungen geeignet sind.\", \"Es gibt verschiedene Greifersysteme, die mit der RC-5000 Heavy Duty kompatibel sind.\"], \"nicht_gestuetzt\": [\"Eine detaillierte Übersicht über die spezifischen Modelle und deren Eigenschaften fehlt jedoch in den Quellen.\", \"Die Informationen zu den Anwendungsbereichen der Greifersysteme sind ebenfalls unzureichend dokumentiert.\", \"Der Ersatzteilkatalog könnte nützliche Informationen enthalten, jedoch liegt der Fokus nicht ausschließlich auf den Greifersystemen.\", \"Die Quellen enthalten keine Informationen zu spezifischen Modellen, deren Eigenschaften oder Preisen der Greifersysteme.\"]}"
+        },
+        "answer_completeness": {
+          "dimension": "answer_completeness",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die Antwort gibt einen allgemeinen Überblick über die Verfügbarkeit von Greifersystemen für die RC-5000 Heavy Duty, jedoch fehlen spezifische Details zu den Modellen und deren Eigenschaften, was für eine vollständige Beantwortung der Frage notwendig wäre.",
+          "evidence": "{\"informationsbedarfe\": [\"spezifische Modelle der Greifersysteme\", \"technische Spezifikationen der Greifersysteme\", \"Anwendungsbereiche der Greifersysteme\"], \"adressiert\": [\"allgemeine Verfügbarkeit von Greifersystemen für die RC-5000 Heavy Duty\"], \"fehlend\": [\"konkrete Modelle und deren Eigenschaften\", \"Preisinformationen\"]}"
+        },
+        "user_actionability": {
+          "dimension": "user_actionability",
+          "verdict": "fail",
+          "score": 0.0,
+          "reasoning": "Die Antwort bietet keine spezifischen Informationen zu den verfügbaren Greifersystemen, was es dem Nutzer erschwert, eine informierte Entscheidung zu treffen oder weiterführende Schritte zu unternehmen.",
+          "evidence": "{\"nutzer_kann_fortfahren\": false, \"was_nutzer_tun_kann\": \"Den Anbieter oder Hersteller kontaktieren, um spezifische Informationen zu den Greifersystemen zu erhalten.\", \"was_noch_fehlt\": \"Konkrete Modelle, technische Spezifikationen und Anwendungsbereiche der Greifersysteme.\"}"
+        }
+      }
+    },
+    {
+      "question_id": "PS-003",
+      "question": "Wie wird die Positioniergenauigkeit beim LTS-X gemessen?",
+      "answer": "# Messung der Positioniergenauigkeit beim LTS-X\n\n## Zusammenfassung\nDie Positioniergenauigkeit des Lineartransportsystems LTS-X wird durch spezifische Messprotokolle erfasst, die im Dokument \"Positioniergenauigkeit LTS-X - Messprotokolle\" beschrieben sind. Diese Protokolle enthalten Methoden zur genauen Erfassung der Positioniergenauigkeit, jedoch sind keine detaillierten technischen Spezifikationen oder spezifische Messwerte in den Quellen enthalten [1].\n\n## Wichtige Erkenntnisse\n- Die Messung erfolgt anhand von Protokollen, die im genannten Dokument festgehalten sind [1].\n- Es gibt allgemeine Informationen zur Servomotor-Konfiguration und zur Kinematik sowie Dynamik des Systems, die für die Positionierung relevant sind [1].\n\n## Details\nDie Quellen beschreiben, dass die Positioniergenauigkeit des LTS-X durch festgelegte Protokolle erfasst wird, die jedoch keine spezifischen technischen Details oder Messwerte zur Positioniergenauigkeit enthalten. Es wird empfohlen, die Protokolle direkt zu konsultieren, um präzisere Daten und Methoden zu erhalten [1].\n\n## Empfehlungen\nFür eine genauere Analyse der Positioniergenauigkeit sollten die spezifischen Messprotokolle im Dokument \"Positioniergenauigkeit LTS-X - Messprotokolle\" eingesehen werden.\n\n## Quellen\n[1] Positioniergenauigkeit LTS-X - Messprotokolle - URL\n\n## Einschränkungen\nDie Quellen enthalten keine spezifischen technischen Spezifikationen oder Messwerte zur Positioniergenauigkeit des LTS-X.",
+      "sources": [
+        "Positioniergenauigkeit LTS-X - Messprotokolle",
+        "Lineartransportsystem LTS-X",
+        "LTS-X Servomotor Konfiguration",
+        "LTS-X Kinematik und Dynamik",
+        "Problembehebung X-200 Kommunikationsfehler SPS",
+        "Messprotokolle vor Ort",
+        "RC-3000 Technische Spezifikationen v4.2",
+        "8D-2024-067 - SPS Kommunikationsfehler X-200",
+        "Störaussendung Grenzwerte",
+        "Drehmomentschlüssel DMS-45 (Kalibrierung 03/2025)"
+      ],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "HARD FAIL [direct_resolution]: Die Antwort verweist hauptsächlich auf ein Dokument und enthält keine spezifischen Informationen oder Details zur Messung der Positioniergenauigkeit selbst."
+      ],
+      "dimensions": {
+        "language_match": {
+          "dimension": "language_match",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort ist in deutscher Sprache verfasst und behandelt die Frage zur Positioniergenauigkeit des LTS-X entsprechend. Es werden keine englischen Überschriften verwendet, und die Antwort enthält relevante technische Informationen, die zur Frage passen.",
+          "evidence": "{\"fragesprache\": \"Deutsch\", \"antwortsprache\": \"Deutsch\"}"
+        },
+        "direct_resolution": {
+          "dimension": "direct_resolution",
+          "verdict": "fail",
+          "score": 0.0,
+          "reasoning": "Die Antwort verweist hauptsächlich auf ein Dokument und enthält keine spezifischen Informationen oder Details zur Messung der Positioniergenauigkeit selbst.",
+          "evidence": "{\"user_braucht\": \"Information zur Messung der Positioniergenauigkeit beim LTS-X\", \"antwort_enthaelt_info\": false}"
+        },
+        "factual_grounding": {
+          "dimension": "factual_grounding",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die Antwort stützt sich größtenteils auf den Kontext, insbesondere auf die Erwähnung der Messprotokolle zur Positioniergenauigkeit. Allerdings sind einige Behauptungen, wie die allgemeinen Informationen zur Servomotor-Konfiguration und zur Kinematik, nicht direkt aus dem Kontext abgeleitet, sondern eher extrapoliert. Daher ist die Antwort nicht vollständig pass.",
+          "evidence": "{\"behauptungen\": [\"Die Positioniergenauigkeit des Lineartransportsystems LTS-X wird durch spezifische Messprotokolle erfasst.\", \"Diese Protokolle enthalten Methoden zur genauen Erfassung der Positioniergenauigkeit.\", \"Es gibt allgemeine Informationen zur Servomotor-Konfiguration und zur Kinematik sowie Dynamik des Systems, die für die Positionierung relevant sind.\", \"Die Quellen beschreiben, dass die Positioniergenauigkeit des LTS-X durch festgelegte Protokolle erfasst wird.\", \"Es wird empfohlen, die Protokolle direkt zu konsultieren, um präzisere Daten und Methoden zu erhalten.\"], \"gestuetzt\": [\"Die Positioniergenauigkeit des Lineartransportsystems LTS-X wird durch spezifische Messprotokolle erfasst.\", \"Diese Protokolle enthalten Methoden zur genauen Erfassung der Positioniergenauigkeit.\", \"Die Quellen beschreiben, dass die Positioniergenauigkeit des LTS-X durch festgelegte Protokolle erfasst wird.\"], \"nicht_gestuetzt\": [\"Es gibt allgemeine Informationen zur Servomotor-Konfiguration und zur Kinematik sowie Dynamik des Systems, die für die Positionierung relevant sind.\", \"Es werden keine spezifischen technischen Spezifikationen oder Messwerte zur Positioniergenauigkeit in den Quellen erwähnt.\"]}"
+        },
+        "answer_completeness": {
+          "dimension": "answer_completeness",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die Antwort gibt einen Überblick über die Messung der Positioniergenauigkeit und verweist auf die relevanten Protokolle, jedoch fehlen spezifische technische Details und konkrete Messwerte, die für ein vollständiges Verständnis notwendig wären.",
+          "evidence": "{\"informationsbedarfe\": [\"spezifische technische Spezifikationen\", \"konkrete Messwerte zur Positioniergenauigkeit\"], \"adressiert\": [\"Messprotokolle zur Erfassung der Positioniergenauigkeit\", \"allgemeine Informationen zur Servomotor-Konfiguration und Kinematik\"], \"fehlend\": [\"konkrete Methoden zur Messung der Positioniergenauigkeit\", \"Details zu den verwendeten Messinstrumenten oder -techniken\"]}"
+        },
+        "user_actionability": {
+          "dimension": "user_actionability",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort gibt an, dass es spezifische Protokolle gibt, die konsultiert werden sollten, um die Positioniergenauigkeit zu messen, was dem Nutzer eine klare Handlungsmöglichkeit bietet.",
+          "evidence": "{\"nutzer_kann_fortfahren\": true, \"was_nutzer_tun_kann\": \"Die spezifischen Messprotokolle im Dokument \\\"Positioniergenauigkeit LTS-X - Messprotokolle\\\" einsehen, um genauere Daten und Methoden zur Positioniergenauigkeit zu erhalten.\", \"was_noch_fehlt\": \"Detaillierte technische Spezifikationen oder spezifische Messwerte zur Positioniergenauigkeit sind nicht enthalten.\"}"
+        }
+      }
+    },
+    {
+      "question_id": "PS-004",
+      "question": "Welche Kamera-Spezifikationen hat das Vision System VS-Pro 3.0?",
+      "answer": "# Kamera-Spezifikationen des Vision Systems VS-Pro 3.0\n\n## Zusammenfassung\nDas Vision System VS-Pro 3.0 verwendet hochauflösende Kameras, die für präzise Bildverarbeitung ausgelegt sind. Die Kameras bieten eine hohe Bildauflösung und unterstützen hohe Bildraten, was für Echtzeitanwendungen wichtig ist. Detaillierte technische Spezifikationen wie die genaue Auflösung und die unterstützten Schnittstellen sind jedoch nicht vollständig dokumentiert [1].\n\n## Wichtige Erkenntnisse\n- **Kameratyp**: Hochauflösende Kameras für Bildverarbeitung [1].\n- **Auflösung**: Hohe Bildauflösung, genaue Werte fehlen [1].\n- **Bildrate**: Unterstützung hoher Bildraten, spezifische Zahlen sind nicht angegeben [1].\n- **Schnittstellen**: Verschiedene Schnittstellen zur Integration, genaue Details fehlen [1].\n\n## Details\nDie Kameras im VS-Pro 3.0 sind darauf ausgelegt, feine Details in der Bildverarbeitung zu erfassen, was für viele industrielle Anwendungen entscheidend ist. Die Unterstützung hoher Bildraten ermöglicht eine effiziente Echtzeitverarbeitung, was besonders in dynamischen Umgebungen von Vorteil ist. Es gibt jedoch keine genauen Angaben zur Auflösung in Megapixeln oder zu den spezifischen Bildraten in Bildern pro Sekunde. Auch die unterstützten Schnittstellen wie USB oder Ethernet sind nicht spezifiziert, was die Integration in bestehende Systeme erschweren könnte [1].\n\n## Empfehlungen\nFür eine umfassendere Analyse der Kamera-Spezifikationen könnte es hilfreich sein, direkt beim Hersteller nach detaillierten technischen Daten zu fragen.\n\n## Quellen\n[1] Dokumenttitel - URL\n\n## Einschränkungen\nDie Quellen enthalten keine Informationen zu spezifischen technischen Daten wie der genauen Auflösung in Megapixeln oder den unterstützten Bildraten in Bildern pro Sekunde. Auch Details zu den verwendeten Schnittstellen sind nicht verfügbar.",
+      "sources": [
+        "Vision System VS-Pro 3.0",
+        "Kalibrierverfahren VS-Pro",
+        "Kamerasystem Spezifikationen",
+        "Lastenheft AutoTech AG",
+        "Siemens SPS-Systeme",
+        "Lastenheft mit Payload-Spezifikationen",
+        "Inbetriebnahme-Protokolle",
+        "Edelstahl vs. Aluminium - Anwendungsrichtlinien",
+        "Hydraulik vs. Elektrik Entscheidungsdokumentation",
+        "RC-3000 Technische Spezifikationen v4.2",
+        "Rollenbahn-System RBS-2400"
+      ],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "HARD FAIL [direct_resolution]: Die Antwort gibt allgemeine Informationen über die Kameras, erwähnt jedoch, dass genaue technische Spezifikationen wie Auflösung und Bildrate fehlen und verweist auf eine Quelle, die diese Informationen nicht bereitstellt."
+      ],
+      "dimensions": {
+        "language_match": {
+          "dimension": "language_match",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort ist in deutscher Sprache verfasst und enthält keine englischen Überschriften oder unpassende Elemente. Sie behandelt die Frage zu den Kamera-Spezifikationen des Vision Systems VS-Pro 3.0 angemessen.",
+          "evidence": "{\"fragesprache\": \"Deutsch\", \"antwortsprache\": \"Deutsch\"}"
+        },
+        "direct_resolution": {
+          "dimension": "direct_resolution",
+          "verdict": "fail",
+          "score": 0.0,
+          "reasoning": "Die Antwort gibt allgemeine Informationen über die Kameras, erwähnt jedoch, dass genaue technische Spezifikationen wie Auflösung und Bildrate fehlen und verweist auf eine Quelle, die diese Informationen nicht bereitstellt.",
+          "evidence": "{\"user_braucht\": \"Kamera-Spezifikationen des Vision Systems VS-Pro 3.0\", \"antwort_enthaelt_info\": false}"
+        },
+        "factual_grounding": {
+          "dimension": "factual_grounding",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die Antwort enthält einige korrekte Informationen, die im Kontext erwähnt werden, wie die Verwendung hochauflösender Kameras und die Unterstützung hoher Bildraten. Allerdings sind viele spezifische technische Details, die in der Antwort genannt werden, nicht im Kontext enthalten oder extrapoliert, was die Bewertung auf 'partial' reduziert.",
+          "evidence": "{\"behauptungen\": [\"Das Vision System VS-Pro 3.0 verwendet hochauflösende Kameras, die für präzise Bildverarbeitung ausgelegt sind.\", \"Die Kameras bieten eine hohe Bildauflösung und unterstützen hohe Bildraten.\", \"Die Kameras im VS-Pro 3.0 sind darauf ausgelegt, feine Details in der Bildverarbeitung zu erfassen.\", \"Die Unterstützung hoher Bildraten ermöglicht eine effiziente Echtzeitverarbeitung.\"], \"gestuetzt\": [\"Das Vision System VS-Pro 3.0 verwendet hochauflösende Kameras, die für präzise Bildverarbeitung ausgelegt sind.\", \"Die Kameras bieten eine hohe Bildauflösung und unterstützen hohe Bildraten.\"], \"nicht_gestuetzt\": [\"Detaillierte technische Spezifikationen wie die genaue Auflösung und die unterstützten Schnittstellen sind jedoch nicht vollständig dokumentiert.\", \"Es gibt jedoch keine genauen Angaben zur Auflösung in Megapixeln oder zu den spezifischen Bildraten in Bildern pro Sekunde.\", \"Auch die unterstützten Schnittstellen wie USB oder Ethernet sind nicht spezifiziert.\"]}"
+        },
+        "answer_completeness": {
+          "dimension": "answer_completeness",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die Antwort gibt einen Überblick über die Kamera-Spezifikationen des Vision Systems VS-Pro 3.0 und erwähnt wichtige Aspekte wie den Kameratyp und die allgemeine Leistungsfähigkeit. Allerdings fehlen spezifische technische Details, die für eine vollständige Beurteilung der Kamera-Spezifikationen notwendig wären. Daher wird die Hauptfrage zwar angesprochen, aber einige wichtige Teilaspekte sind nicht vollständig abgedeckt.",
+          "evidence": "{\"informationsbedarfe\": [\"genaue Auflösung in Megapixeln\", \"spezifische Bildraten in Bildern pro Sekunde\", \"Details zu unterstützten Schnittstellen wie USB oder Ethernet\"], \"adressiert\": [\"Kameratyp\", \"hohe Bildauflösung\", \"Unterstützung hoher Bildraten\"], \"fehlend\": [\"konkrete technische Spezifikationen\", \"exakte Werte für Auflösung und Bildrate\"]}"
+        },
+        "user_actionability": {
+          "dimension": "user_actionability",
+          "verdict": "fail",
+          "score": 0.0,
+          "reasoning": "Die Antwort bietet allgemeine Informationen über die Kameras, jedoch fehlen spezifische technische Daten, die für eine fundierte Entscheidung oder Handlung notwendig sind.",
+          "evidence": "{\"nutzer_kann_fortfahren\": false, \"was_nutzer_tun_kann\": \"Den Hersteller kontaktieren, um detaillierte technische Daten zu erhalten.\", \"was_noch_fehlt\": \"Genauere Angaben zur Auflösung, Bildrate und unterstützten Schnittstellen.\"}"
+        }
+      }
+    },
+    {
+      "question_id": "PS-005",
+      "question": "Wie funktioniert die Temperaturkompensation bei DMS-Sensoren?",
+      "answer": "# Temperaturkompensation bei DMS-Sensoren\n\n## Zusammenfassung\nDie Temperaturkompensation bei Dehnungsmessstreifen (DMS)-Sensoren ist entscheidend für die Genauigkeit der Messwerte, da die Empfindlichkeit und der Widerstand stark von der Temperatur abhängen. Es werden sowohl Hardware- als auch Software-Kompensationstechniken eingesetzt, um die Auswirkungen von Temperaturänderungen zu minimieren [1].\n\n## Wichtige Erkenntnisse\n- **Temperaturabhängigkeit**: Die Widerstandsänderung von DMS-Sensoren ist temperaturabhängig, was zu fehlerhaften Messungen führen kann [1].\n- **Kompensationstechniken**:\n  - **Hardware-Kompensation**: Verwendung zusätzlicher, nicht belasteter DMS-Elemente zur Messung von Temperaturänderungen [1].\n  - **Software-Kompensation**: Einsatz von Algorithmen zur Anpassung der Messwerte basierend auf Temperaturdaten [1].\n  - **Temperatursensoren**: Integration separater Temperatursensoren zur Messung der Umgebungstemperatur [1].\n- **Kalibrierung**: Regelmäßige Kalibrierung bei unterschiedlichen Temperaturen erhöht die Genauigkeit [1].\n\n## Details\nDMS-Sensoren bestehen aus einem dünnen Draht oder einer Folie, die auf einem Trägermaterial angebracht ist. Die Widerstandsänderung, die durch mechanische Dehnung oder Stauchung verursacht wird, ist stark temperaturabhängig. Höhere Temperaturen können den Widerstand erhöhen, was zu ungenauen Messungen führt. Um diese Effekte zu kompensieren, werden verschiedene Techniken angewendet:\n\n1. **Hardware-Kompensation**: Hierbei werden zusätzliche DMS-Elemente verwendet, die nicht belastet werden, um die Temperaturänderungen zu messen. Diese Elemente liefern Referenzwerte zur Korrektur der Hauptmessungen.\n   \n2. **Software-Kompensation**: In modernen Systemen werden Algorithmen eingesetzt, die Temperaturdaten erfassen und die Messwerte entsprechend anpassen. Dies geschieht oft durch Kalibrierung bei verschiedenen Temperaturen, um ein präzises Modell der Temperaturabhängigkeit zu erstellen.\n\n3. **Temperatursensoren**: Oft werden separate Temperatursensoren integriert, um die Umgebungstemperatur zu messen. Diese Daten werden zur Anpassung der DMS-Messwerte verwendet.\n\nZusätzlich wird digitale Signalverarbeitung eingesetzt, um die Rohdaten des Sensors zu analysieren und die Temperaturkompensation in Echtzeit durchzuführen. Die Wahl von Materialien mit geringer Temperaturabhängigkeit kann ebenfalls zur Verbesserung der Temperaturstabilität beitragen [1].\n\n## Empfehlungen\nFür Anwendungen, die eine hohe Genauigkeit erfordern, sollte eine regelmäßige Kalibrierung der DMS-Sensoren bei unterschiedlichen Temperaturen in Betracht gezogen werden. Zudem könnte die Implementierung von Software-Kompensationstechniken die Messgenauigkeit weiter verbessern.\n\n## Quellen\n[1] Dokumenttitel - URL\n\n## Einschränkungen\nDie Quellen enthalten keine Informationen zu spezifischen Algorithmen oder deren Implementierung zur Software-Kompensation. Auch fehlen umfassende Vergleichsstudien zwischen verschiedenen Kompensationsmethoden und deren Auswirkungen auf die Messgenauigkeit.",
+      "sources": [],
+      "overall_pass": true,
+      "overall_score": 0.825,
+      "failure_reasons": [],
+      "dimensions": {
+        "language_match": {
+          "dimension": "language_match",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort ist in deutscher Sprache verfasst und behandelt die Frage zur Temperaturkompensation bei DMS-Sensoren umfassend und präzise.",
+          "evidence": "{\"fragesprache\": \"Deutsch\", \"antwortsprache\": \"Deutsch\"}"
+        },
+        "direct_resolution": {
+          "dimension": "direct_resolution",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort beschreibt detailliert die Temperaturkompensation bei DMS-Sensoren, einschließlich der Hardware- und Software-Kompensationstechniken sowie der Rolle von Temperatursensoren und Kalibrierung. Sie enthält spezifische Informationen und Schritte zur Kompensation.",
+          "evidence": "{\"user_braucht\": \"Information über die Funktionsweise der Temperaturkompensation bei DMS-Sensoren\", \"antwort_enthaelt_info\": true}"
+        },
+        "factual_grounding": {
+          "dimension": "factual_grounding",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort enthält detaillierte Informationen zur Temperaturkompensation bei DMS-Sensoren, die alle im Kontext erwähnt werden. Es gibt keine Halluzinationen oder Widersprüche, und alle Behauptungen sind durch den Kontext gestützt.",
+          "evidence": "{\"behauptungen\": [\"Die Temperaturkompensation bei DMS-Sensoren ist entscheidend für die Genauigkeit der Messwerte.\", \"Die Widerstandsänderung von DMS-Sensoren ist temperaturabhängig.\", \"Es werden sowohl Hardware- als auch Software-Kompensationstechniken eingesetzt.\", \"Regelmäßige Kalibrierung bei unterschiedlichen Temperaturen erhöht die Genauigkeit.\"], \"gestuetzt\": [\"Die Temperaturkompensation bei DMS-Sensoren ist entscheidend für die Genauigkeit der Messwerte.\", \"Die Widerstandsänderung von DMS-Sensoren ist temperaturabhängig.\", \"Es werden sowohl Hardware- als auch Software-Kompensationstechniken eingesetzt.\", \"Regelmäßige Kalibrierung bei unterschiedlichen Temperaturen erhöht die Genauigkeit.\"], \"nicht_gestuetzt\": []}"
+        },
+        "answer_completeness": {
+          "dimension": "answer_completeness",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die Antwort behandelt die Hauptaspekte der Temperaturkompensation bei DMS-Sensoren umfassend, einschließlich der verschiedenen Kompensationstechniken und deren Bedeutung. Es fehlen jedoch spezifische Details zu Algorithmen und Vergleichsstudien, die für eine vollständige Beurteilung der Methoden hilfreich wären.",
+          "evidence": "{\"informationsbedarfe\": [], \"adressiert\": [\"Temperaturabhängigkeit der DMS-Sensoren\", \"Hardware-Kompensation\", \"Software-Kompensation\", \"Integration von Temperatursensoren\", \"Kalibrierung\"], \"fehlend\": [\"spezifische Algorithmen zur Software-Kompensation\", \"Vergleichsstudien zwischen Kompensationsmethoden\"]}"
+        },
+        "user_actionability": {
+          "dimension": "user_actionability",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort bietet umfassende Informationen über die Temperaturkompensation bei DMS-Sensoren und gibt dem Nutzer klare Handlungsempfehlungen zur Verbesserung der Messgenauigkeit.",
+          "evidence": "{\"nutzer_kann_fortfahren\": true, \"was_nutzer_tun_kann\": \"Die Informationen zur Temperaturkompensation bei DMS-Sensoren nutzen, um geeignete Kompensationsmethoden für ihre spezifischen Anwendungen auszuwählen und gegebenenfalls Kalibrierungsmaßnahmen zu planen.\", \"was_noch_fehlt\": \"Konkrete Beispiele für Algorithmen zur Software-Kompensation und deren Implementierung sowie Vergleichsstudien zu den verschiedenen Kompensationsmethoden.\"}"
+        }
+      }
+    }
+  ]
+}

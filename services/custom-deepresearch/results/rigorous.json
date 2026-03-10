@@ -1,0 +1,82 @@
+{
+  "evaluation_type": "rigorous_answer_quality",
+  "timestamp": "2026-01-21T20:39:50.953770",
+  "total_questions": 1,
+  "query_success_count": 1,
+  "query_success_rate": 1.0,
+  "metrics": {
+    "pass_rate": 0.0,
+    "mean_score": 0.0,
+    "dimension_stats": {
+      "language_match": {
+        "mean": 0.0,
+        "pass_rate": 0.0
+      },
+      "direct_resolution": {
+        "mean": 0.0,
+        "pass_rate": 0.0
+      },
+      "factual_grounding": {
+        "mean": 0.5,
+        "pass_rate": 1.0
+      },
+      "answer_completeness": {
+        "mean": 0.5,
+        "pass_rate": 1.0
+      },
+      "user_actionability": {
+        "mean": 1.0,
+        "pass_rate": 1.0
+      }
+    }
+  },
+  "detailed_results": [
+    {
+      "question_id": "PS-001",
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "HARD FAIL [language_match]: Die Antwort ist in deutscher Sprache verfasst und behandelt die technischen Spezifikationen der RC-3000 Serie, was der Frage entspricht. Die Verwendung von englischen \u00dcberschriften ist jedoch nicht akzeptabel.",
+        "HARD FAIL [direct_resolution]: Die Antwort verweist auf Dokumente zur technischen Spezifikation, ohne die spezifischen technischen Details direkt bereitzustellen. Es werden keine konkreten Zahlen oder Fakten genannt, die die Frage direkt beantworten."
+      ],
+      "dimensions": {
+        "language_match": {
+          "dimension": "language_match",
+          "verdict": "fail",
+          "score": 0.0,
+          "reasoning": "Die Antwort ist in deutscher Sprache verfasst und behandelt die technischen Spezifikationen der RC-3000 Serie, was der Frage entspricht. Die Verwendung von englischen \u00dcberschriften ist jedoch nicht akzeptabel.",
+          "evidence": "{\"fragesprache\": \"Deutsch\", \"antwortsprache\": \"Deutsch\"}"
+        },
+        "direct_resolution": {
+          "dimension": "direct_resolution",
+          "verdict": "fail",
+          "score": 0.0,
+          "reasoning": "Die Antwort verweist auf Dokumente zur technischen Spezifikation, ohne die spezifischen technischen Details direkt bereitzustellen. Es werden keine konkreten Zahlen oder Fakten genannt, die die Frage direkt beantworten.",
+          "evidence": "{\"user_braucht\": \"technische Spezifikationen der RC-3000 Serie\", \"antwort_enthaelt_info\": false}"
+        },
+        "factual_grounding": {
+          "dimension": "factual_grounding",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die meisten Behauptungen in der Antwort sind durch den Kontext gest\u00fctzt, jedoch gibt es einige generische Aussagen, die nicht direkt im Kontext erw\u00e4hnt werden, wie die spezifische Erw\u00e4hnung von 'Maschinenbau' und die detaillierte Bedeutung der pneumatischen Schemata, die nicht explizit im Kontext behandelt werden. Daher ist die Antwort gr\u00f6\u00dftenteils korrekt, aber enth\u00e4lt einige extrapolierte Informationen.",
+          "evidence": "{\"behauptungen\": [\"Die RC-3000 Serie ist eine hochentwickelte Produktreihe, die f\u00fcr verschiedene industrielle Anwendungen konzipiert wurde.\", \"Die technischen Spezifikationen umfassen wichtige Leistungsmerkmale, Abmessungen und Betriebsf\u00e4higkeiten.\", \"Die RC-3000 Serie wird in verschiedenen Industrien eingesetzt, einschlie\u00dflich Automatisierungstechnik und Maschinenbau.\", \"Es gibt spezifische Wartungs- und Montageanleitungen, die darauf abzielen, die Lebensdauer der Ger\u00e4te zu maximieren und eine korrekte Installation sicherzustellen.\", \"Die pneumatischen Schemata sind wichtig f\u00fcr das Verst\u00e4ndnis der Fluiddynamik und Steuerungssysteme innerhalb der RC-3000 Serie.\"], \"gestuetzt\": [\"Die RC-3000 Serie ist eine hochmoderne Automatisierungsl\u00f6sung, die f\u00fcr verschiedene industrielle Anwendungen konzipiert wurde.\", \"Die technischen Spezifikationen umfassen wichtige Leistungsmerkmale, Abmessungen und Betriebsf\u00e4higkeiten.\", \"Die RC-3000 Roboterzelle eignet sich f\u00fcr Anwendungen in der Automobilindustrie, Lebensmittelverarbeitung und Pharmaindustrie.\", \"Die Wartungsanleitung bietet wichtige Informationen zur regelm\u00e4\u00dfigen Pflege der Ger\u00e4te, um deren optimale Leistung \u00fcber die gesamte Lebensdauer zu gew\u00e4hrleisten.\", \"Die Montageanleitung stellt sicher, dass die Installation korrekt durchgef\u00fchrt wird.\"], \"nicht_gestuetzt\": [\"Die RC-3000 Serie wird in verschiedenen Industrien eingesetzt, einschlie\u00dflich Automatisierungstechnik und Maschinenbau.\", \"Die pneumatischen Schemata sind besonders wichtig f\u00fcr Anwendungen, die auf Druckluftsysteme angewiesen sind, da sie die Funktionsweise und den Aufbau der pneumatischen Komponenten detailliert darstellen.\"]}"
+        },
+        "answer_completeness": {
+          "dimension": "answer_completeness",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die Antwort bietet eine umfassende \u00dcbersicht \u00fcber die RC-3000 Serie und behandelt viele relevante Aspekte wie Anwendungen, Wartung und Montage. Allerdings fehlen spezifische technische Details und Werte, die f\u00fcr eine vollst\u00e4ndige Beurteilung der technischen Spezifikationen notwendig w\u00e4ren.",
+          "evidence": "{\"informationsbedarfe\": [\"konkrete technische Spezifikationen wie Leistung, Materialien, Schnittstellen, etc.\"], \"adressiert\": [\"Robustheit und Vielseitigkeit der RC-3000 Serie\", \"Anwendungen in verschiedenen Industrien\", \"Wartungs- und Montageanleitungen\", \"Pneumatikschemata\"], \"fehlend\": [\"konkrete Zahlen und Werte zu den technischen Spezifikationen\", \"Details zu spezifischen Leistungsmetriken\"]}"
+        },
+        "user_actionability": {
+          "dimension": "user_actionability",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort bietet umfassende Informationen \u00fcber die technischen Spezifikationen und Empfehlungen zur weiteren Vorgehensweise, was dem Nutzer erm\u00f6glicht, die n\u00e4chsten Schritte zu planen.",
+          "evidence": "{\"nutzer_kann_fortfahren\": true, \"was_nutzer_tun_kann\": \"Die Nutzer k\u00f6nnen die technischen Spezifikationen der RC-3000 Serie einsehen, Schulungen in Betracht ziehen und sich in Foren austauschen.\", \"was_noch_fehlt\": \"Direkte Links zu den technischen Dokumenten und spezifische URLs f\u00fcr die Wartungsanleitungen.\"}"
+        }
+      },
+      "latency_ms": 12549.9
+    }
+  ]
+}

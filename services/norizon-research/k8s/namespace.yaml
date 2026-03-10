@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: norizon-research
+  labels:
+    name: norizon-research
+    environment: production

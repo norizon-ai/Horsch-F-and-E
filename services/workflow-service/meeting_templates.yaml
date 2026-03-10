@@ -1,0 +1,1341 @@
+meeting_templates:
+  version: "1.0"
+  
+  classification:
+    description: "Classify meeting transcript into one of the defined types"
+    function_name: "classify_meeting"
+    parameters:
+      transcript:
+        type: string
+        required: true
+        description: "Diarized meeting transcript with speaker labels"
+      metadata:
+        type: object
+        required: false
+        properties:
+          date:
+            type: string
+            format: date
+          calendar_title:
+            type: string
+          attendees:
+            type: array
+            items:
+              type: string
+    returns:
+      meeting_type:
+        type: enum
+        values:
+          - CLIENT_UPDATE
+          - CLIENT_TECHNICAL
+          - PROSPECT_SALES
+          - PARTNER
+          - COACH_MENTOR
+          - NETWORKING
+          - TEAM_SYNC
+          - TEAM_DESIGN
+      confidence:
+        type: float
+        min: 0.0
+        max: 1.0
+      reasoning:
+        type: string
+
+  templates:
+    
+    # =========================================================================
+    # CLIENT_UPDATE
+    # =========================================================================
+    CLIENT_UPDATE:
+      name: "Client Meeting - Update / General"
+      confluence_page_id: "1114120"
+      classification_signals:
+        - "existing client"
+        - "status update"
+        - "project progress"
+        - "relationship management"
+        - "check-in"
+        - "quarterly review"
+      
+      schema:
+        metadata:
+          date:
+            type: string
+            format: date
+            required: true
+            extraction: "From calendar or transcript date references"
+          client:
+            type: string
+            required: true
+            extraction: "Company name of the client"
+          participants:
+            type: array
+            required: true
+            items:
+              type: object
+              properties:
+                name:
+                  type: string
+                role:
+                  type: string
+            extraction: "Extract from speaker labels and introductions"
+          duration_minutes:
+            type: integer
+            required: false
+            extraction: "Calculate from transcript timestamps if available"
+        
+        tldr:
+          type: string
+          required: true
+          max_sentences: 4
+          extraction_prompt: |
+            Summarize in 3-4 sentences: who met, main topic, key outcome, next step.
+            Be factual, no fluff. A busy person should get 80% value from this alone.
+        
+        status_updates:
+          type: string
+          required: true
+          extraction_patterns:
+            - "project is"
+            - "we completed"
+            - "milestone"
+            - "deliverable"
+            - "phase"
+            - "on track"
+            - "behind schedule"
+          extraction_prompt: |
+            Extract project progress, milestones achieved, deliverables discussed.
+            Be specific with numbers and dates when mentioned.
+        
+        decisions:
+          type: array
+          required: true
+          items:
+            type: string
+          extraction_patterns:
+            - "let's go with"
+            - "we agreed"
+            - "confirmed"
+            - "decided"
+            - "the plan is"
+            - "we'll do"
+          extraction_prompt: |
+            Only include explicit agreements, not suggestions or possibilities.
+            Each decision should be one clear statement.
+        
+        action_items:
+          type: array
+          required: true
+          items:
+            type: object
+            properties:
+              owner:
+                type: string
+                required: true
+              task:
+                type: string
+                required: true
+              due:
+                type: string
+                required: false
+                default: "TBD"
+          extraction_patterns:
+            - "I'll"
+            - "you'll"
+            - "we need to"
+            - "can you"
+            - "will you"
+            - "by [date]"
+            - "next week"
+            - "tomorrow"
+            - "action item"
+          extraction_prompt: |
+            Be specific - "follow up" is bad, "send proposal draft to Maria" is good.
+            Owner must be a specific person, not "we" or "team".
+        
+        key_insights:
+          type: string
+          required: true
+          extraction_prompt: |
+            Notable context, changing priorities, organizational shifts.
+            Capture exact language for important quotes.
+            Example: "Client mentioned 'our CEO is very skeptical of AI tools'"
+        
+        watchouts:
+          type: array
+          required: true
+          items:
+            type: string
+          extraction_patterns:
+            - "risk"
+            - "concern"
+            - "worried"
+            - "blocker"
+            - "issue"
+            - "problem"
+            - "challenge"
+            - "delay"
+          extraction_prompt: |
+            Risks, concerns raised, potential blockers, timeline threats.
+        
+        client_sentiment:
+          type: object
+          required: true
+          properties:
+            overall:
+              type: enum
+              values: ["positive", "neutral", "concerned"]
+            indicators:
+              type: array
+              items:
+                type: string
+              max_items: 3
+          extraction_prompt: |
+            Analyze tone across the conversation.
+            - Positive: enthusiasm, gratitude, forward momentum
+            - Neutral: transactional, matter-of-fact
+            - Concerned: hesitation, frustration, doubt, criticism
+            Provide 1-2 specific quotes or behaviors as evidence.
+        
+        open_questions:
+          type: array
+          required: false
+          items:
+            type: string
+          extraction_patterns:
+            - "we need to figure out"
+            - "still unclear"
+            - "TBD"
+            - "let's discuss later"
+            - "parking lot"
+            - "?"
+          extraction_prompt: |
+            Only include genuinely unresolved items.
+        
+        full_transcript:
+          type: string
+          required: true
+          extraction: "Complete diarized transcript"
+      
+      output_format: |
+        # {date}_{client}_{topic}
+
+        | **Date** | {date} |
+        |----------|--------|
+        | **Client** | {client} |
+        | **Participants** | {participants} |
+        | **Duration** | {duration_minutes} min |
+
+        ---
+
+        ## TL;DR
+
+        {tldr}
+
+        ---
+
+        ## Status Updates
+
+        {status_updates}
+
+        ---
+
+        ## Decisions
+
+        {decisions}
+
+        ---
+
+        ## Action Items
+
+        | Owner | Task | Due |
+        |-------|------|-----|
+        {action_items}
+
+        ---
+
+        ## Key Insights
+
+        {key_insights}
+
+        ---
+
+        ## Watchouts
+
+        {watchouts}
+
+        ---
+
+        ## Client Sentiment
+
+        {client_sentiment}
+
+        ---
+
+        ## Open Questions
+
+        {open_questions}
+
+        ---
+
+        ## Full Transcript
+
+        {full_transcript}
+
+    # =========================================================================
+    # CLIENT_TECHNICAL
+    # =========================================================================
+    CLIENT_TECHNICAL:
+      name: "Client Meeting - Technical"
+      confluence_page_id: "1572866"
+      classification_signals:
+        - "existing client"
+        - "technical discussion"
+        - "integration"
+        - "API"
+        - "system"
+        - "architecture"
+        - "requirements"
+        - "SAP"
+        - "SharePoint"
+        - "data flow"
+      
+      schema:
+        metadata:
+          date:
+            type: string
+            format: date
+            required: true
+          client:
+            type: string
+            required: true
+          participants:
+            type: array
+            required: true
+            items:
+              type: object
+              properties:
+                name:
+                  type: string
+                role:
+                  type: string
+          duration_minutes:
+            type: integer
+            required: false
+          systems_discussed:
+            type: array
+            required: true
+            items:
+              type: string
+            extraction_prompt: "List all systems/tools mentioned (SAP, SharePoint, Confluence, etc.)"
+        
+        tldr:
+          type: string
+          required: true
+          max_sentences: 4
+          extraction_prompt: "Summarize the technical discussion in 3-4 sentences."
+        
+        technical_requirements:
+          type: array
+          required: true
+          items:
+            type: object
+            properties:
+              requirement:
+                type: string
+              type:
+                type: enum
+                values: ["functional", "non-functional", "constraint"]
+              priority:
+                type: enum
+                values: ["must-have", "should-have", "nice-to-have"]
+                required: false
+          extraction_patterns:
+            - "must"
+            - "should"
+            - "need to"
+            - "require"
+            - "has to"
+            - "mandatory"
+          extraction_prompt: |
+            Specific functional and non-functional requirements captured.
+            Be precise - include exact specifications when mentioned.
+        
+        system_landscape:
+          type: string
+          required: true
+          extraction_prompt: |
+            Current systems, integrations, data flows discussed.
+            Draw connections between systems mentioned.
+        
+        technical_decisions:
+          type: array
+          required: true
+          items:
+            type: object
+            properties:
+              decision:
+                type: string
+              rationale:
+                type: string
+                required: false
+          extraction_patterns:
+            - "we'll use"
+            - "decided on"
+            - "going with"
+            - "architecture"
+            - "approach"
+          extraction_prompt: |
+            Architecture choices, integration approaches, tool selections.
+            Include rationale when given.
+        
+        implementation_details:
+          type: string
+          required: false
+          extraction_prompt: "Specifics about how something should work."
+        
+        constraints_limitations:
+          type: array
+          required: true
+          items:
+            type: object
+            properties:
+              constraint:
+                type: string
+              type:
+                type: enum
+                values: ["technical", "security", "compliance", "legacy", "resource"]
+          extraction_patterns:
+            - "can't"
+            - "won't work"
+            - "limitation"
+            - "legacy"
+            - "security"
+            - "compliance"
+            - "GDPR"
+            - "blocked"
+          extraction_prompt: |
+            Technical blockers, legacy system issues, security requirements, compliance needs.
+        
+        data_integration_points:
+          type: array
+          required: true
+          items:
+            type: object
+            properties:
+              system:
+                type: string
+              data_type:
+                type: string
+              direction:
+                type: enum
+                values: ["import", "export", "bidirectional"]
+              notes:
+                type: string
+                required: false
+          extraction_prompt: "Map all data flows between systems discussed."
+        
+        action_items:
+          type: array
+          required: true
+          items:
+            type: object
+            properties:
+              owner:
+                type: string
+                required: true
+              task:
+                type: string
+                required: true
+              due:
+                type: string
+                required: false
+                default: "TBD"
+        
+        open_technical_questions:
+          type: array
+          required: false
+          items:
+            type: string
+          extraction_prompt: "Unresolved technical items that need follow-up or investigation."
+        
+        watchouts:
+          type: array
+          required: true
+          items:
+            type: string
+          extraction_prompt: "Technical risks, dependencies, potential issues."
+        
+        full_transcript:
+          type: string
+          required: true
+
+    # =========================================================================
+    # PROSPECT_SALES
+    # =========================================================================
+    PROSPECT_SALES:
+      name: "Prospect / Sales / Demo"
+      confluence_page_id: "1376257"
+      classification_signals:
+        - "new company"
+        - "discovery"
+        - "demo"
+        - "pricing"
+        - "sales pitch"
+        - "interested in"
+        - "looking for"
+        - "evaluate"
+        - "pilot"
+      
+      schema:
+        metadata:
+          date:
+            type: string
+            format: date
+            required: true
+          company:
+            type: string
+            required: true
+          contacts:
+            type: array
+            required: true
+            items:
+              type: object
+              properties:
+                name:
+                  type: string
+                role:
+                  type: string
+                email:
+                  type: string
+                  required: false
+          duration_minutes:
+            type: integer
+            required: false
+          meeting_type:
+            type: enum
+            required: true
+            values: ["Demo", "Discovery", "Follow-up", "Intro"]
+        
+        tldr:
+          type: string
+          required: true
+          max_sentences: 4
+        
+        company_context:
+          type: object
+          required: true
+          properties:
+            industry:
+              type: string
+            size:
+              type: string
+              extraction: "employee count, revenue, or descriptive size"
+            current_tools:
+              type: array
+              items:
+                type: string
+            reason_looking:
+              type: string
+          extraction_prompt: |
+            Industry, size, current tools, why they're evaluating solutions.
+        
+        pain_points:
+          type: array
+          required: true
+          items:
+            type: string
+          extraction_patterns:
+            - "problem"
+            - "challenge"
+            - "struggle"
+            - "difficult"
+            - "pain"
+            - "frustrating"
+            - "losing"
+            - "wasting"
+          extraction_prompt: |
+            Problems they explicitly mentioned. Use their exact words when impactful.
+        
+        interest_level:
+          type: object
+          required: true
+          properties:
+            level:
+              type: enum
+              values: ["Hot", "Warm", "Cold"]
+            evidence:
+              type: array
+              items:
+                type: string
+              max_items: 3
+          extraction_prompt: |
+            Assess based on: urgency, budget mentions, timeline, decision-maker involvement.
+            Hot: ready to buy, clear timeline, budget confirmed
+            Warm: interested but obstacles, longer timeline
+            Cold: just exploring, no urgency
+        
+        questions_asked:
+          type: array
+          required: true
+          items:
+            type: string
+          extraction_prompt: |
+            Their questions reveal priorities. Capture verbatim.
+        
+        objections_concerns:
+          type: array
+          required: true
+          items:
+            type: object
+            properties:
+              objection:
+                type: string
+              addressed:
+                type: boolean
+              response:
+                type: string
+                required: false
+          extraction_patterns:
+            - "but"
+            - "however"
+            - "concerned"
+            - "worried"
+            - "what about"
+            - "how do you handle"
+            - "competitor"
+          extraction_prompt: |
+            Hesitations, blockers, skepticism raised. Note if addressed.
+        
+        action_items:
+          type: array
+          required: true
+          items:
+            type: object
+            properties:
+              owner:
+                type: string
+                required: true
+              task:
+                type: string
+                required: true
+              due:
+                type: string
+                required: false
+                default: "TBD"
+        
+        next_steps:
+          type: string
+          required: true
+          extraction_prompt: |
+            Agreed follow-up: next meeting, proposal, pilot, trial?
+            Be specific about timeline and who initiates.
+        
+        full_transcript:
+          type: string
+          required: true
+
+    # =========================================================================
+    # PARTNER
+    # =========================================================================
+    PARTNER:
+      name: "Partner Discussion"
+      confluence_page_id: "1015817"
+      classification_signals:
+        - "partner"
+        - "integrator"
+        - "supplier"
+        - "reseller"
+        - "strategic alliance"
+        - "collaboration"
+        - "joint"
+        - "channel"
+      
+      schema:
+        metadata:
+          date:
+            type: string
+            format: date
+            required: true
+          partner:
+            type: string
+            required: true
+          partner_type:
+            type: enum
+            required: true
+            values: ["Integrator", "Supplier", "Reseller", "Strategic"]
+          contacts:
+            type: array
+            required: true
+            items:
+              type: object
+              properties:
+                name:
+                  type: string
+                role:
+                  type: string
+          duration_minutes:
+            type: integer
+            required: false
+        
+        tldr:
+          type: string
+          required: true
+          max_sentences: 4
+        
+        discussion_topics:
+          type: array
+          required: true
+          items:
+            type: string
+          extraction_prompt: "Main subjects covered in the discussion."
+        
+        potential_value:
+          type: object
+          required: true
+          properties:
+            for_norizon:
+              type: string
+              extraction_prompt: "What we could gain from this partnership."
+            for_partner:
+              type: string
+              extraction_prompt: "What they could gain from partnering with us."
+        
+        decisions:
+          type: array
+          required: true
+          items:
+            type: string
+          extraction_patterns:
+            - "agreed"
+            - "decided"
+            - "will"
+            - "commit"
+        
+        concerns_blockers:
+          type: array
+          required: true
+          items:
+            type: object
+            properties:
+              concern:
+                type: string
+              raised_by:
+                type: enum
+                values: ["Norizon", "Partner", "Both"]
+          extraction_prompt: "Issues raised by either side."
+        
+        action_items:
+          type: array
+          required: true
+          items:
+            type: object
+            properties:
+              owner:
+                type: string
+                required: true
+              task:
+                type: string
+                required: true
+              due:
+                type: string
+                required: false
+                default: "TBD"
+        
+        open_questions:
+          type: array
+          required: false
+          items:
+            type: string
+        
+        full_transcript:
+          type: string
+          required: true
+
+    # =========================================================================
+    # COACH_MENTOR
+    # =========================================================================
+    COACH_MENTOR:
+      name: "Coach / Mentor Session"
+      confluence_page_id: "917543"
+      classification_signals:
+        - "coach"
+        - "mentor"
+        - "advisor"
+        - "feedback"
+        - "advice"
+        - "guidance"
+        - "AktivSenioren"
+        - "EXIST"
+      
+      schema:
+        metadata:
+          date:
+            type: string
+            format: date
+            required: true
+          coach_mentor:
+            type: string
+            required: true
+          context:
+            type: enum
+            required: true
+            values: ["AktivSenioren", "EXIST", "Personal", "Other"]
+          duration_minutes:
+            type: integer
+            required: false
+        
+        tldr:
+          type: string
+          required: true
+          max_sentences: 4
+        
+        topics_discussed:
+          type: array
+          required: true
+          items:
+            type: string
+          extraction_prompt: "What we brought to the session / topics covered."
+        
+        feedback_received:
+          type: array
+          required: true
+          items:
+            type: object
+            properties:
+              feedback:
+                type: string
+              type:
+                type: enum
+                values: ["observation", "critique", "validation", "warning"]
+          extraction_patterns:
+            - "I think"
+            - "you should"
+            - "have you considered"
+            - "be careful"
+            - "good job"
+            - "concern"
+          extraction_prompt: |
+            Their observations, critiques, validations. Capture their perspective.
+        
+        recommendations:
+          type: array
+          required: true
+          items:
+            type: object
+            properties:
+              recommendation:
+                type: string
+              priority:
+                type: enum
+                values: ["high", "medium", "low"]
+                required: false
+          extraction_patterns:
+            - "I recommend"
+            - "you should"
+            - "consider"
+            - "try"
+            - "focus on"
+          extraction_prompt: |
+            Specific advice given. Be actionable and specific.
+        
+        action_items:
+          type: array
+          required: true
+          items:
+            type: object
+            properties:
+              owner:
+                type: string
+                required: true
+              task:
+                type: string
+                required: true
+              due:
+                type: string
+                required: false
+                default: "TBD"
+        
+        follow_up_commitment:
+          type: string
+          required: false
+          extraction_prompt: "Next session, check-ins promised, deliverables to bring."
+        
+        full_transcript:
+          type: string
+          required: true
+
+    # =========================================================================
+    # NETWORKING
+    # =========================================================================
+    NETWORKING:
+      name: "Networking"
+      confluence_page_id: "1409025"
+      classification_signals:
+        - "networking"
+        - "event"
+        - "conference"
+        - "meetup"
+        - "introduction"
+        - "met at"
+        - "connected"
+        - "new contact"
+      
+      schema:
+        metadata:
+          date:
+            type: string
+            format: date
+            required: true
+          person:
+            type: string
+            required: true
+          organization:
+            type: string
+            required: true
+            extraction: "Company, community, or event"
+          contact:
+            type: object
+            required: false
+            properties:
+              email:
+                type: string
+              linkedin:
+                type: string
+              phone:
+                type: string
+          context:
+            type: string
+            required: true
+            extraction: "Where/how you met"
+        
+        tldr:
+          type: string
+          required: true
+          max_sentences: 4
+          extraction_prompt: "Who they are and why the conversation matters."
+        
+        their_background:
+          type: string
+          required: true
+          extraction_prompt: "Role, expertise, interests."
+        
+        what_theyre_working_on:
+          type: string
+          required: true
+          extraction_prompt: "Their current focus, challenges, projects."
+        
+        potential_value:
+          type: object
+          required: true
+          properties:
+            for_us:
+              type: string
+              extraction_prompt: "How they might help Norizon."
+            for_them:
+              type: string
+              extraction_prompt: "How we might help them."
+        
+        follow_up_actions:
+          type: array
+          required: true
+          items:
+            type: object
+            properties:
+              owner:
+                type: string
+                required: true
+              task:
+                type: string
+                required: true
+              due:
+                type: string
+                required: false
+                default: "TBD"
+        
+        notes:
+          type: string
+          required: false
+          extraction_prompt: "Anything else worth remembering."
+        
+        full_transcript:
+          type: string
+          required: false
+          extraction: "Include if conversation was recorded."
+
+    # =========================================================================
+    # TEAM_SYNC
+    # =========================================================================
+    TEAM_SYNC:
+      name: "Team Sync"
+      confluence_page_id: "1015836"
+      classification_signals:
+        - "internal only"
+        - "team"
+        - "sync"
+        - "standup"
+        - "check-in"
+        - "Lisa"
+        - "Nina"
+        - "Omar"
+        - "weekly"
+        - "daily"
+      
+      schema:
+        metadata:
+          date:
+            type: string
+            format: date
+            required: true
+          participants:
+            type: array
+            required: true
+            items:
+              type: string
+          duration_minutes:
+            type: integer
+            required: false
+        
+        tldr:
+          type: string
+          required: true
+          max_sentences: 4
+          extraction_prompt: "Key outcomes of this sync."
+        
+        updates_by_person:
+          type: object
+          required: true
+          additionalProperties:
+            type: array
+            items:
+              type: string
+          extraction_prompt: |
+            Group updates by person. Extract what each person shared.
+            Format: person_name: [list of updates]
+        
+        decisions:
+          type: array
+          required: true
+          items:
+            type: string
+          extraction_patterns:
+            - "agreed"
+            - "decided"
+            - "let's"
+            - "will"
+        
+        blockers:
+          type: array
+          required: true
+          items:
+            type: object
+            properties:
+              blocker:
+                type: string
+              owner:
+                type: string
+              needs_help_from:
+                type: string
+                required: false
+          extraction_patterns:
+            - "stuck"
+            - "blocked"
+            - "waiting"
+            - "need help"
+            - "can't proceed"
+          extraction_prompt: "What's stuck and needs help."
+        
+        action_items:
+          type: array
+          required: true
+          items:
+            type: object
+            properties:
+              owner:
+                type: string
+                required: true
+              task:
+                type: string
+                required: true
+              due:
+                type: string
+                required: false
+                default: "TBD"
+        
+        full_transcript:
+          type: string
+          required: true
+
+    # =========================================================================
+    # TEAM_DESIGN
+    # =========================================================================
+    TEAM_DESIGN:
+      name: "Team Design Session"
+      confluence_page_id: "1015855"
+      classification_signals:
+        - "design"
+        - "feature"
+        - "user flow"
+        - "UX"
+        - "product"
+        - "how should"
+        - "user story"
+        - "wireframe"
+        - "mockup"
+      
+      schema:
+        metadata:
+          date:
+            type: string
+            format: date
+            required: true
+          feature_topic:
+            type: string
+            required: true
+            extraction: "What's being designed"
+          participants:
+            type: array
+            required: true
+            items:
+              type: string
+          duration_minutes:
+            type: integer
+            required: false
+        
+        tldr:
+          type: string
+          required: true
+          max_sentences: 4
+          extraction_prompt: "What we designed and key outcomes."
+        
+        problem_statement:
+          type: string
+          required: true
+          extraction_prompt: "What user problem are we solving?"
+        
+        user_flow:
+          type: array
+          required: true
+          items:
+            type: object
+            properties:
+              step_number:
+                type: integer
+              actor:
+                type: enum
+                values: ["User", "System"]
+              action:
+                type: string
+          extraction_prompt: |
+            Step-by-step description of how the user interacts with the feature.
+            Number each step, indicate whether User or System acts.
+        
+        design_decisions:
+          type: array
+          required: true
+          items:
+            type: object
+            properties:
+              decision:
+                type: string
+              rationale:
+                type: string
+                required: false
+          extraction_patterns:
+            - "let's go with"
+            - "decided"
+            - "will be"
+            - "should"
+          extraction_prompt: |
+            Choices made and rationale. Include why when discussed.
+        
+        open_questions_tbd:
+          type: array
+          required: true
+          items:
+            type: string
+          extraction_patterns:
+            - "TBD"
+            - "need to figure out"
+            - "not sure"
+            - "later"
+            - "?"
+          extraction_prompt: "Things we couldn't resolve yet."
+        
+        edge_cases:
+          type: array
+          required: true
+          items:
+            type: object
+            properties:
+              scenario:
+                type: string
+              resolution:
+                type: string
+                required: false
+          extraction_patterns:
+            - "what if"
+            - "what happens when"
+            - "edge case"
+            - "corner case"
+            - "exception"
+          extraction_prompt: "What happens when... scenarios discussed."
+        
+        next_steps:
+          type: array
+          required: true
+          items:
+            type: object
+            properties:
+              owner:
+                type: string
+                required: true
+              task:
+                type: string
+                required: true
+              due:
+                type: string
+                required: false
+                default: "TBD"
+        
+        full_transcript:
+          type: string
+          required: true
+
+  # ===========================================================================
+  # FUNCTION DEFINITIONS FOR API
+  # ===========================================================================
+  functions:
+    
+    classify_meeting:
+      description: "Analyze transcript and determine meeting type"
+      parameters:
+        type: object
+        required:
+          - transcript
+        properties:
+          transcript:
+            type: string
+            description: "Full diarized transcript"
+          calendar_title:
+            type: string
+            description: "Calendar event title if available"
+          attendees:
+            type: array
+            items:
+              type: string
+            description: "List of attendee names/emails"
+      returns:
+        type: object
+        properties:
+          meeting_type:
+            type: string
+            enum:
+              - CLIENT_UPDATE
+              - CLIENT_TECHNICAL
+              - PROSPECT_SALES
+              - PARTNER
+              - COACH_MENTOR
+              - NETWORKING
+              - TEAM_SYNC
+              - TEAM_DESIGN
+          confidence:
+            type: number
+          reasoning:
+            type: string
+    
+    extract_meeting_notes:
+      description: "Extract structured meeting notes from transcript"
+      parameters:
+        type: object
+        required:
+          - transcript
+          - meeting_type
+        properties:
+          transcript:
+            type: string
+            description: "Full diarized transcript"
+          meeting_type:
+            type: string
+            enum:
+              - CLIENT_UPDATE
+              - CLIENT_TECHNICAL
+              - PROSPECT_SALES
+              - PARTNER
+              - COACH_MENTOR
+              - NETWORKING
+              - TEAM_SYNC
+              - TEAM_DESIGN
+            description: "Type of meeting"
+          metadata:
+            type: object
+            properties:
+              date:
+                type: string
+                format: date
+              attendees:
+                type: array
+                items:
+                  type: string
+            description: "Optional pre-filled metadata"
+      returns:
+        type: object
+        description: "Structured meeting notes matching template schema"
+    
+    generate_confluence_page:
+      description: "Generate Confluence-ready markdown from extracted notes"
+      parameters:
+        type: object
+        required:
+          - meeting_type
+          - extracted_notes
+        properties:
+          meeting_type:
+            type: string
+          extracted_notes:
+            type: object
+            description: "Output from extract_meeting_notes"
+      returns:
+        type: object
+        properties:
+          page_title:
+            type: string
+            description: "Formatted as YYYY_MM_DD_Context_Topic"
+          markdown_content:
+            type: string
+          parent_page_suggestion:
+            type: string
+            description: "Recommended Confluence parent page"
+
+  # ===========================================================================
+  # QUALITY VALIDATION RULES
+  # ===========================================================================
+  validation:
+    tldr:
+      max_sentences: 4
+      min_words: 20
+      rules:
+        - "Must include key outcome"
+        - "No generic statements like 'discussed project'"
+    
+    action_items:
+      rules:
+        - "Owner must be a specific person name, not 'we' or 'team'"
+        - "Task must be concrete and verifiable"
+        - "If deadline mentioned in transcript, must be captured"
+    
+    decisions:
+      rules:
+        - "Must be explicit agreements, not suggestions"
+        - "Must distinguish from 'discussed' or 'considered'"
+    
+    sentiment:
+      rules:
+        - "Must include specific evidence quote or behavior"
+        - "Cannot be generic like 'seemed positive'"
+    
+    general:
+      rules:
+        - "Do not invent information not in transcript"
+        - "Use 'TBD' or 'Not discussed' for missing information"
+        - "Capture exact quotes when notable"

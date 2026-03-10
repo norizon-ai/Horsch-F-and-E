@@ -1,0 +1,59 @@
+# German translations for Nora frontend
+
+common:
+  copy: Kopieren
+  regenerate: Neu generieren
+  share: Teilen
+  cancel: Abbrechen
+  confirm: Bestätigen
+  delete: Löschen
+  save: Speichern
+  close: Schließen
+
+search:
+  placeholder: Stellen Sie eine Frage...
+  thinking: Nora denkt nach...
+  writing: Antwort wird erstellt...
+  complete: Suche abgeschlossen
+  documents_found: "{count} Dokument(e) gefunden"
+
+chat:
+  new_chat: Neuer Chat
+  your_chats: Ihre Chats
+  no_chats: Noch keine Chats. Starten Sie eine Unterhaltung!
+  continue_session: Letzte Sitzung fortsetzen
+  delete_confirm: Möchten Sie diese Sitzung wirklich löschen?
+  input_hint:
+    send: Zum Senden
+    new_line: Für neue Zeile
+
+welcome:
+  title: Wie kann ich Ihnen helfen?
+  subtitle: Stellen Sie mir eine Frage und ich durchsuche Ihre verbundenen Quellen nach umfassenden Antworten.
+  disclaimer: Nora durchsucht verbundene Quellen. Quellenangaben bei kritischen Entscheidungen prüfen.
+
+sources:
+  title: Quellen
+  sections: Abschnitte
+  show_sections: "{count} weitere(n) Abschnitt(e) anzeigen"
+  hide_sections: "{count} Abschnitt(e) ausblenden"
+  show_all: Alle anzeigen
+  show_less: Weniger anzeigen
+  open_source: Quelle öffnen
+  types:
+    sharepoint: SharePoint
+    confluence: Confluence
+    wiki: Internes Wiki
+    jira: Jira
+    web: Web
+    elasticsearch: Wissensdatenbank
+    document: Dokument
+
+actions:
+  thumbs_up: Hilfreich
+  thumbs_down: Nicht hilfreich
+  export_pdf: Als PDF exportieren
+  export_word: Als Word exportieren
+
+errors:
+  search_failed: Entschuldigung, bei der Suche ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.

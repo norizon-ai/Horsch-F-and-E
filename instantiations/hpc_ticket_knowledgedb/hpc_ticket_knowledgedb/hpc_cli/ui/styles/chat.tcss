@@ -1,0 +1,87 @@
+/* HPC Assistant Chat UI Styles - Light Theme
+ * Color Palette:
+ * - Light blue: #cef1ff (backgrounds, highlights)
+ * - Linen: #fef0e3 (main background, cards)
+ * - Orange: #f86a0d (accents, buttons)
+ * - Blue: #1b3893 (primary text accents, links)
+ * - Dark blue: #0c2c40 (headers, primary text)
+ */
+
+Screen {
+    background: #fef0e3;
+}
+
+Header {
+    background: #0c2c40;
+    color: #ffffff;
+    text-style: bold;
+}
+
+Footer {
+    background: #cef1ff;
+    height: 1;
+}
+
+/* Main container */
+#main-container {
+    height: 100%;
+    width: 100%;
+    layout: vertical;
+    background: #fef0e3;
+}
+
+/* Chat area */
+#chat-container {
+    height: 1fr;
+    width: 100%;
+    scrollbar-gutter: stable;
+    overflow-y: auto;
+    background: #fef0e3;
+}
+
+/* Input area */
+#chat-input {
+    height: auto;
+    min-height: 3;
+    max-height: 10;
+}
+
+/* Status bar */
+#status-bar {
+    height: 1;
+    background: #cef1ff;
+    padding: 0 2;
+}
+
+/* Message bubbles - defined in message_bubble.py widgets */
+
+/* Loading indicator */
+.loading {
+    color: #f86a0d;
+    text-style: italic;
+}
+
+/* Error messages */
+.error {
+    color: #d9534f;
+    text-style: bold;
+}
+
+/* Success messages */
+.success {
+    color: #5cb85c;
+    text-style: bold;
+}
+
+/* Dimmed text */
+.dim {
+    color: #6c757d;
+}
+
+/* Code blocks */
+.code-block {
+    margin: 1 0;
+    padding: 1;
+    background: #ffffff;
+    border: solid #1b3893;
+}

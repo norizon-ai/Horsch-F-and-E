@@ -1,0 +1,35 @@
+# OpenStack Authentication
+application_credential_id     = "your-application-credential-id-here"
+application_credential_secret = "your-application-credential-secret-here"
+
+# SSH Configuration
+ssh_public_key       = "ssh-rsa AAAAB3NzaC1yc2E... your-public-key-here"
+ssh_private_key_path = "~/.ssh/fau_openstack_key"
+
+# VM Configuration
+vm_name      = "hpc-knowledge-database"
+flavor_name  = "SCS-4V-16-100"  # 4 vCPU, 16GB RAM, 100GB disk
+image_name   = "Ubuntu 22.04"
+
+# Network Configuration
+network_name = "hpc_kb_net"
+subnet_name  = "hpc_kb_sub"
+subnet_cidr  = "10.240.60.0/24"
+gateway_ip   = "10.240.60.1"
+vm_fixed_ip  = "10.240.60.10"
+
+# Security - IMPORTANT: Restrict these in production!
+ssh_allowed_cidr = "0.0.0.0/0"  # Replace with your IP range
+api_allowed_cidr = "0.0.0.0/0"  # Replace with your OpenWebUI IP
+
+# Storage
+elasticsearch_volume_size = 100  # GB
+
+# Docker Images
+docker_registry = "lisarebecca"
+dr_api_tag      = "latest"
+indexer_tag     = "latest"
+
+# LLM Configuration
+llm_base_url = "http://lme49.cs.fau.de:30000/v1"
+llm_model    = "openai/gpt-oss-120b"

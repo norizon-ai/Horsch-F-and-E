@@ -1,0 +1,53 @@
+{
+  "name": "flair_with_transformer_pipeline",
+  "description": "Pipeline with both Flair and Transformers recognizers for English NER",
+  "models": [],
+  "recognizers": [
+    {
+      "name": "flair_recognizer",
+      "config": {
+        "SUPPORTED_LANGUAGE": "en",
+        "PRESIDIO_SUPPORTED_ENTITIES": ["PERSON", "ORGANIZATION", "LOCATION", "PHONE_NUMBER"],
+        "DEFAULT_EXPLANATION": "Identified as {} by Flair's Named Entity Recognition",
+        "CHECK_LABEL_GROUPS": [
+          [["LOCATION"], ["LOC", "LOCATION"]],
+          [["PERSON"], ["PER", "PERSON"]],
+          [["ORGANIZATION"], ["ORG"]]
+        ],
+        "PRESIDIO_EQUIVALENCES": {
+          "PER": "PERSON",
+          "PERSON": "PERSON",
+          "PATIENT": "PERSON",
+          "ORG": "ORGANIZATION",
+          "PATORG": "ORGANIZATION",
+          "LOCATION": "LOCATION",
+          "LOC": "LOCATION",
+          "PHONE": "PHONE_NUMBER"
+        },
+        "MODEL_PATH": "ner-german-large.pt"
+      }
+    },
+    {
+      "name": "german_phone_recognizer",
+      "config": {},
+      "config_path": "user_configs/recognizers/german_phone_recognizer.json"
+    },
+    {
+      "name": "transformers_recognizer",
+      "config_path": "user_configs/models/transformers_recognizer.json"
+    }
+  ],
+  "operators": [
+    {
+      "name": "entity_sanitizer",
+      "config_path": "user_configs/operators/entity_sanitizer.json"
+    },
+    {
+      "name": "presidio_operator",
+      "config": {
+        "anonymization_method": "replace",
+        "language": "en"
+      }
+    }
+  ]
+} 

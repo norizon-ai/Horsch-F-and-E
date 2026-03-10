@@ -1,0 +1,12 @@
+graph TD
+    A[plugins/<br/>Root plugin system directory] --> B[base.py<br/>Abstract base classes for all plugins<br/>BasePlugin, RecognizerPlugin, OperatorPlugin]
+    A --> C[registry.py<br/>Plugin registry system<br/>Registration, lookup, and instantiation]
+    A --> D[loader.py<br/>Dynamic plugin discovery<br/>Loads plugins from directories]
+    A --> E[manager.py<br/>Plugin system orchestrator<br/>Initialization, validation, built-in registration]
+    A --> F[__init__.py<br/>Main package exports<br/>Exposes core plugin classes and instances]
+    A --> G[builtin/<br/>Built-in plugin implementations<br/>Default recognizers, operators, models]
+    
+    G --> H[recognizer_plugins.py<br/>Built-in PII recognizer plugins<br/>Email, phone, SSN detection, etc.]
+    G --> I[operators.py<br/>Built-in data transformation operators<br/>Redaction, masking, encryption]
+    G --> J[models.py<br/>Built-in ML model plugins<br/>Pre-trained models for PII detection]
+    G --> K[__init__.py<br/>Built-in package exports<br/>Exposes built-in plugin classes]

@@ -1,0 +1,141 @@
+version: '3.8'
+
+services:
+  deepsearch:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: deepsearch
+    ports:
+      - "8000:8000"
+    environment:
+      # LLM Configuration
+      - DR_LLM_PROVIDER=${DR_LLM_PROVIDER:-gpt-oss}
+      - DR_LLM_BASE_URL=${DR_LLM_BASE_URL:-http://host.docker.internal:30000/v1}
+      - DR_LLM_API_KEY=${DR_LLM_API_KEY:-dummy}
+      - DR_LLM_MODEL=${DR_LLM_MODEL:-openai/gpt-oss-120b}
+
+      # Supervisor Configuration
+      - DR_EXECUTION_STRATEGY=${DR_EXECUTION_STRATEGY:-iterative}
+      - DR_MAX_ITERATIONS=${DR_MAX_ITERATIONS:-3}
+      - DR_QUALITY_THRESHOLD=${DR_QUALITY_THRESHOLD:-0.7}
+
+      # Prompts
+      - DR_PROMPTS_DIR=/app/prompts
+
+      # Observability
+      - DR_LOG_LEVEL=${DR_LOG_LEVEL:-INFO}
+      - DR_LOG_FORMAT=${DR_LOG_FORMAT:-json}
+      - DR_ENABLE_TRACING=${DR_ENABLE_TRACING:-false}
+      - DR_PHOENIX_ENDPOINT=${DR_PHOENIX_ENDPOINT:-http://phoenix:6006/v1/traces}
+
+      # Confluence MCP agent
+      - CONFLUENCE_MCP_URL=${CONFLUENCE_MCP_URL:-http://confluence-mcp:8005}
+    depends_on:
+      confluence-mcp:
+        condition: service_started
+    volumes:
+      - ./prompts:/app/prompts:ro
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+    networks:
+      - deepsearch_net
+
+  # mcp-atlassian - Confluence MCP server
+  confluence-mcp:
+    build:
+      context: ../confluence-mcp
+      dockerfile: Dockerfile
+    container_name: confluence_mcp
+    ports:
+      - "8005:8005"
+    environment:
+      - CONFLUENCE_URL=${CONFLUENCE_URL}
+      - CONFLUENCE_USERNAME=${CONFLUENCE_USERNAME}
+      - CONFLUENCE_API_TOKEN=${CONFLUENCE_API_TOKEN}
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf --max-time 2 http://localhost:8005/sse | head -1 | grep -q event"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 20s
+    restart: unless-stopped
+    networks:
+      - deepsearch_net
+
+  # Confluence Publisher - Protocol → markdown → Confluence
+  confluence-publisher:
+    build:
+      context: ../confluence-publisher
+      dockerfile: Dockerfile
+    container_name: confluence_publisher
+    ports:
+      - "8003:8003"
+    environment:
+      - PUBLISHER_MCP_SERVER_URL=http://confluence-mcp:8005
+    depends_on:
+      confluence-mcp:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8003/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    networks:
+      - deepsearch_net
+
+  # Phoenix - OpenTelemetry trace consumer and UI
+  phoenix:
+    image: arizephoenix/phoenix:latest
+    container_name: deepsearch_phoenix
+    ports:
+      - "6006:6006"  # Phoenix UI
+    environment:
+      - PHOENIX_WORKING_DIR=/data
+    volumes:
+      - phoenix_data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6006/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    profiles:
+      - with-tracing
+    networks:
+      - deepsearch_net
+
+  # Optional: Elasticsearch for local development
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+    container_name: deepsearch_es
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9200/_cluster/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    profiles:
+      - with-elasticsearch
+    networks:
+      - deepsearch_net
+
+networks:
+  deepsearch_net:
+    driver: bridge
+
+volumes:
+  es_data:
+  phoenix_data:

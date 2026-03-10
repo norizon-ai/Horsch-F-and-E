@@ -1,0 +1,21 @@
+# FastAPI and server requirements
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+pydantic>=2.0.0
+python-multipart>=0.0.6
+
+# LangChain and LLM requirements
+langchain-openai>=0.0.2
+langchain-core>=0.1.0
+
+# HTTP and async
+httpx>=0.25.0
+aiohttp>=3.9.0
+requests>=2.31.0
+
+# Elasticsearch
+elasticsearch>=8.11.0
+elasticsearch[async]>=8.11.0
+
+# Data processing
+pandas>=2.0.0

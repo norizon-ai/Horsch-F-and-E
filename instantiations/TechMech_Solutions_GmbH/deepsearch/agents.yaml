@@ -1,0 +1,112 @@
+# =============================================================================
+# Norizon DeepSearch - Agent Configuration
+# =============================================================================
+# Copy this file to agents.yaml and customize for your deployment.
+# Each agent can be enabled/disabled independently.
+# Environment variables can be substituted using ${VAR_NAME} syntax.
+
+agents:
+  # ---------------------------------------------------------------------------
+  # Web Search Agent (SearXNG)
+  # ---------------------------------------------------------------------------
+  # Searches the web using SearXNG metasearch engine.
+  # Requires a running SearXNG instance.
+  web_search:
+    type: websearch
+    enabled: false  # Disabled for internal knowledge base - websearch returns irrelevant hobby RC results
+    description: "Search the web for current information, news, and documentation"
+    max_iterations: 5
+    backend:
+      searxng_url: "http://localhost:8080"
+      default_engines:
+        - google
+        - bing
+        - duckduckgo
+      timeout: 30.0
+
+  # ---------------------------------------------------------------------------
+  # Document Search Agent (Elasticsearch)
+  # ---------------------------------------------------------------------------
+  # Searches internal documentation stored in Elasticsearch.
+  # Requires a running Elasticsearch instance with indexed documents.
+  techmech_docs:
+    type: elasticsearch
+    enabled: true
+    display_name: "TechMech Dokumentation"
+    icon_url: "/icons/confluence.svg"
+    source_type: "confluence"
+    description: "Durchsucht technische Dokumentation, Wartungsanleitungen und Spezifikationen für RC-Serie, LTS-X, VS-Pro und DMS-Sensoren"
+    max_iterations: 4
+
+    # Query preprocessing for German technical documents
+    preprocessors:
+      # Step 1: Query reformulation (pre-processing)
+      - type: reformulator
+        enabled: true
+        config:
+          max_terms: 12  # More terms for compound word expansion
+          min_term_length: 2
+          use_llm: true  # Use LLM for intelligent German compound splitting
+          prompt_name: "reformulate_for_german_technical"
+
+      # Step 2: Semantic reranking (post-processing)
+      # Uses cross-encoder to rerank BM25 results by semantic relevance
+      # Improves ranking accuracy by ~30-40% (per Elastic research)
+      - type: semantic_reranker
+        enabled: true
+        config:
+          model_name: "cross-encoder/ms-marco-MiniLM-L-6-v2"  # Fast, accurate reranker
+          top_k: 10  # Return top 10 after reranking
+          score_threshold: 0.1  # Filter out low-relevance results
+          preserve_original_score: true  # Keep ES score for debugging
+
+    backend:
+      url: "http://localhost:9201"
+      index: "techmech_confluence_kb"
+
+      # Hybrid search: 60% keyword, 40% semantic
+      hybrid_enabled: true
+      vector_field: "vector"
+      vector_weight: 0.4
+      bm25_weight: 0.6
+      embedding_model: "sentence-transformers/all-MiniLM-L6-v2"
+
+      # Field boosting for German technical content
+      search_fields:
+        - "title^4"
+        - "headings^2"
+        - "content"
+        - "product_codes^3"
+
+      source_fields:
+        - "title"
+        - "content"
+        - "space"
+        - "space_name"
+        - "hierarchy_path"
+        - "product_codes"
+        - "norm_references"
+        - "url"
+        - "chunk_index"
+        - "chunk_count"
+
+      highlight_fields:
+        content:
+          fragment_size: 200
+          number_of_fragments: 3
+
+
+  # ---------------------------------------------------------------------------
+  # Custom Agent (Plugin)
+  # ---------------------------------------------------------------------------
+  # Load a custom agent from a Python class path.
+  # The class must inherit from BaseAgent.
+  # custom_rag:
+  #   type: custom
+  #   enabled: false
+  #   class: "mypackage.agents.CustomRAGAgent"
+  #   description: "Custom RAG with proprietary backend"
+  #   max_iterations: 4
+  #   backend:
+  #     api_url: "http://internal-api:8000"
+  #     api_key: "${CUSTOM_API_KEY}"

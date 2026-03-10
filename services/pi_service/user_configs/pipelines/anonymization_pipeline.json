@@ -1,0 +1,56 @@
+{
+  "name": "sample_pipeline",
+  "description": "Sample pipeline for PII detection and anonymization",
+  "models": [],
+  "recognizers": [
+    { "name": "user_id_recognizer", "config_path": "user_configs/recognizers/user_id_recognizer.json" },
+    { "name": "currency_recognizer", "config_path": "user_configs/recognizers/currency_recognizer.json" },
+    { "name": "court_reference_recognizer", "config_path": "user_configs/recognizers/court_reference_recognizer.json" },
+    { "name": "reference_code_recognizer", "config_path": "user_configs/recognizers/reference_code_recognizer.json" },
+    { "name": "transformers_recognizer", "config_path": "user_configs/models/transformers_recognizer.json" },
+    { "name": "german_date_recognizer", "config_path": "user_configs/recognizers/german_date_recognizer.json" },
+    {
+      "name": "flair_recognizer",
+      "config": {
+        "SUPPORTED_LANGUAGE": "en",
+        "PRESIDIO_SUPPORTED_ENTITIES": [
+          "PERSON",
+          "ORGANIZATION",
+          "LOCATION",
+          "PHONE_NUMBER"
+        ],
+        "DEFAULT_EXPLANATION": "Identified as {} by Flair's Named Entity Recognition",
+        "CHECK_LABEL_GROUPS": [
+          [["LOCATION"], ["LOC", "LOCATION"]],
+          [["PERSON"], ["PER", "PERSON"]],
+          [["ORGANIZATION"], ["ORG"]]
+        ],
+        "PRESIDIO_EQUIVALENCES": {
+          "PER": "PERSON",
+          "PERSON": "PERSON",
+          "PATIENT": "PERSON",
+          "ORG": "ORGANIZATION",
+          "PATORG": "ORGANIZATION",
+          "LOCATION": "LOCATION",
+          "LOC": "LOCATION",
+          "PHONE": "PHONE_NUMBER"
+        },
+        "MODEL_PATH": "ner-german-large.pt"
+      }
+    },
+    { "name": "file_number_recognizer", "config_path": "user_configs/recognizers/file_number_recognizer.json" }
+  ],
+  "operators": [
+    {
+      "name": "entity_sanitizer",
+      "config_path": "user_configs/operators/entity_sanitizer.json"
+    },
+    {
+      "name": "presidio_operator",
+      "config": {
+        "anonymization_method": "replace",
+        "language": "en"
+      }
+    }
+  ]
+}

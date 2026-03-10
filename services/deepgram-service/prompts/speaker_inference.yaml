@@ -1,0 +1,4 @@
+# NOTE: System prompt is now embedded directly in inference.py (_SYSTEM_PROMPT constant).
+# This file is kept for reference only.
+legacy_system_prompt_reference: |
+  See src/services/inference.py _SYSTEM_PROMPT

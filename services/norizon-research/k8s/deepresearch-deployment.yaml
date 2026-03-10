@@ -1,0 +1,109 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: norizon-deepresearch
+  namespace: norizon-research
+  labels:
+    app: norizon-deepresearch
+    tier: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: norizon-deepresearch
+  template:
+    metadata:
+      labels:
+        app: norizon-deepresearch
+        tier: backend
+    spec:
+      containers:
+      - name: deepresearch
+        image: localdeepresearch/local-deep-research:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+          name: http
+        env:
+        - name: LDR_WEB_HOST
+          value: "0.0.0.0"
+        - name: LDR_WEB_PORT
+          value: "5000"
+        - name: LDR_DATA_DIR
+          value: "/data"
+        # Use OpenAI instead of Ollama
+        - name: LDR_LLM_PROVIDER
+          value: "openai"
+        - name: LDR_LLM_MODEL
+          value: "gpt-4o"
+        - name: LDR_LLM_MAX_TOKENS
+          value: "4096"
+        - name: LDR_LLM_OPENAI_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: norizon-research-secrets
+              key: openai-api-key
+        - name: LDR_ENABLE_FILE_LOGGING
+          value: "true"
+        - name: LDR_SEARCH_ENGINE_WEB_SEARXNG_DEFAULT_PARAMS_INSTANCE_URL
+          value: "http://norizon-searxng-service:8080"
+        volumeMounts:
+        - name: data
+          mountPath: /data
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 60
+          periodSeconds: 30
+          timeoutSeconds: 10
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: deepresearch-data-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: norizon-deepresearch-service
+  namespace: norizon-research
+  labels:
+    app: norizon-deepresearch
+spec:
+  type: ClusterIP
+  ports:
+  - port: 5000
+    targetPort: 5000
+    protocol: TCP
+    name: http
+  selector:
+    app: norizon-deepresearch
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: deepresearch-data-pvc
+  namespace: norizon-research
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: standard

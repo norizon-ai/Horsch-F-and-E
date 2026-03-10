@@ -1,0 +1,19 @@
+# Core dependen
+fastapi>=0.95.0
+uvicorn>=0.22.0
+pydantic>=1.10.7
+requests>=2.28.2
+huggingface-hub
+transformers>=4.30.0
+torch>=2.0.0
+numpy
+tqdm>=4.65.0
+
+# Model-specific dependencies
+flair
+sentence-transformers
+
+
+# Utility dependencies
+python-dotenv>=1.0.0
+loguru>=0.7.0

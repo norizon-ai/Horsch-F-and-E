@@ -1,0 +1,27 @@
+{
+  "search": {
+    "type": "hybrid",
+    "bm25_weight": 0.6,
+    "vector_weight": 0.4,
+    "fields": [
+      "title^4",
+      "headings^2",
+      "content",
+      "product_codes^3"
+    ]
+  },
+  "preprocessors": {
+    "enabled": []
+  },
+  "reranker": {
+    "enabled": false,
+    "model": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",
+    "top_k": 10
+  },
+  "metrics": {
+    "NDCG@10": 0.91864,
+    "MRR@10": 0.95,
+    "Recall@10": 0.91455
+  },
+  "tuned_on": "2026-01-25T18:03:31.215208"
+}

@@ -1,0 +1,238 @@
+architecture:
+  overview: "Norizon's Knowledge Management Platform"
+  layers:
+    - name: "Knowledge Producers"
+      description: "Sources and modules responsible for producing or providing knowledge artifacts."
+      components:
+        - name: "Connectors"
+          description: "Adapters that connect to external data sources."
+          subcomponents:
+            - name: "Connector X"
+              description: "Generic connector for external knowledge sources."
+            - name: "Confluence"
+              description: "Fetches pages and spaces from Confluence."
+              interfaces:
+                - type: "API"
+                  endpoint: "Confluence REST API"
+        - name: "Producer Modules"
+          description: "Tools for manual or media-based content contribution."
+          subcomponents:
+            - name: "Drag & Drop"
+              description: "Allows uploading of files such as PDF, DOCX, PPTX, and EML."
+              supported_formats: ["PDF", "DOCX", "PPTX", "EML"]
+            - name: "Voice"
+              description: "Voice input module for knowledge capture through speech."
+            - name: "Video Recordings"
+              description: "Handles video-based submissions for transcription and analysis."
+        - name: "Interviewer"
+          description: "Module for guided content to capture knowledge."
+          subcomponents:
+            - name: "Guided Offboarding"
+              description: "Facilitates structured offboarding preocesses."
+            - name: "Guided Content Creation"
+              description: "Facilitates structured content creation using the platform."
+
+    - name: "Norizon"
+      description: "The core intelligence layer that encompasses the search and retrieval capabilities."
+      components:
+        - name: "Search Modules"
+          description: "Handles search functionalities."
+          subcomponents:
+            - name: "Agentic - Deep Research"
+              description: "Advanced search module for deep research tasks."
+            - name: "Non Agentic - RAG"
+              description: "Standard search module using Retrieval-Augmented Generation."
+        - name: "DevHero - MCP Tools"
+          description: "DevHero tools for developers to interact with the platform."
+
+    - name: "Knowledge Consumers"
+      description: "Interfaces through which users interact with the processed knowledge and the platform."
+      components:
+        - name: "ChatKit"
+          description: "OpenAI's highy-quality AI-powered chat experience prividing a conversational interface for user interaction."
+        - name: "DevHero"
+          description: "Developer-facing interface providing the DevHero MCP tools."
+
+  shared_components:
+    - category: "Infrastructure"
+      components:
+        - name: "Message Queue / Bus"
+          description: "Asynchronous communication backbone connecting ingestion and processing of knowledge."
+          technology: "RabbitMQ"
+        - name: "Databases"
+          subcomponents:
+            - name: "Graph DB"
+              description: "Stores semantic relationships between entities."
+            - name: "Elastic DB"
+              description: "Full-text search and analytics engine."
+            - name: "RDBMS"
+              description: "Transactional data, user management, and knowledge gap recognition."
+
+    - category: "Core Services"
+      components:
+        - name: "Ingestion Worker"
+          description: "Processes, embeds, and anonymizes incoming data from the message queue before writing to the knowledge base."
+          depends_on:
+            - "Message Queue / Bus"
+        - name: "Embedding Service"
+          description: "Generates vector representations for semantic retrieval."
+        - name: "Transcriber (Audio)"
+          description: "Converts speech input to text."
+        - name: "Transcriber (Video)"
+          description: "Extracts and transcribes audio from video recordings."
+        - name: "Anonymization Service"
+          description: "Redacts sensitive information prior to storage or model use."
+        - name: "Web Search Service"
+          description: "Enables retrieval from the open web when internal knowledge is insufficient."
+
+    - category: "Intelligence & Insights"
+      components:
+        - name: "Knowledge Gap Recognition Module"
+          description: "Identifies missing or outdated knowledge areas within the knowledge base."
+        - name: "Knowledge Gap Dashboard"
+          description: "Visual interface displaying flagged knowledge gaps/leaks, and coverage metrics."
+        - name: "Expert Finder"
+          description: "Maps expertise across contributors and recommends subject-matter experts."
+
+    - category: "Access & Delivery"
+      components:
+        - name: "Chat Model"
+          description: "LLM-powered conversational interface for knowledge interaction."
+        - name: "API Gateway"
+          description: "Centralized access point for all external and internal API calls."
+
+  data_flow:
+    # --- Knowledge Production to Ingestion ---
+    - from: "Connectors"
+      to: "Message Queue / Bus"
+      label: "Publish knowledge events"
+
+    - from: "Producer Modules"
+      to: "Message Queue / Bus"
+      label: "Publish knowledge events"
+
+    - from: "Interviewer"
+      to: "Message Queue / Bus"
+      label: "Publish knowledge events"
+
+    # --- Media Transcription ---
+    - from: "Producer Modules: Voice"
+      to: "Transcriber (Audio)"
+      label: "Send audio for transcription"
+
+    - from: "Producer Modules: Video Recordings"
+      to: "Transcriber (Video)"
+      label: "Send video for transcription"
+
+    # --- Interviewer interaction ---
+    - from: "Interviewer"
+      to: "Chat Model"
+      label: "Generate guided interview content"
+
+    # --- Queue to Ingestion ---
+    - from: "Message Queue / Bus"
+      to: "Ingestion Worker"
+      label: "Stream raw knowledge data"
+      protocol: "RabbitMQ"
+
+    # --- Ingestion Worker -> Services ---
+    - from: "Ingestion Worker"
+      to: "Embedding Service"
+      label: "Request embeddings for documents"
+
+    - from: "Ingestion Worker"
+      to: "Anonymization Service"
+      label: "Send content for anonymization"
+
+    # --- Ingestion Worker -> Databases ---
+    - from: "Ingestion Worker"
+      to: "Graph DB"
+      label: "Write semantic relationships"
+
+    - from: "Ingestion Worker"
+      to: "Elastic DB"
+      label: "Write indexed text data"
+
+    - from: "Ingestion Worker"
+      to: "RDBMS"
+      label: "Write structured metadata and transactions"
+
+    # --- Knowledge Gap Recognition Module ---
+    - from: "Knowledge Gap Recognition Module"
+      to: "Graph DB"
+      label: "Read semantic knowledge"
+
+    - from: "Knowledge Gap Recognition Module"
+      to: "Elastic DB"
+      label: "Read indexed knowledge"
+
+    - from: "Knowledge Gap Recognition Module"
+      to: "RDBMS"
+      label: "Read transactional data"
+
+    - from: "Knowledge Gap Recognition Module"
+      to: "Chat Model"
+      label: "Leverage Chat Model for gap analysis"
+
+    - from: "Knowledge Gap Recognition Module"
+      to: "Knowledge Gap Dashboard"
+      label: "Send gap analysis results"
+
+    # --- Expert Finder ---
+    - from: "Expert Finder"
+      to: "RDBMS"
+      label: "Read contributor and expertise data"
+
+    - from: "Expert Finder"
+      to: "Knowledge Gap Dashboard"
+      label: "Send expert mapping and recommendations"
+
+    # --- Search Modules ---
+    - from: "Agentic - Deep Research"
+      to: "Chat Model"
+      label: "Forward research results for response synthesis"
+
+    - from: "Agentic - Deep Research"
+      to: "Embedding Service"
+      label: "Retrieve semantic matches"
+
+    - from: "Agentic - Deep Research"
+      to: "Web Search Service"
+      label: "Query external sources"
+
+    - from: "Non Agentic - RAG"
+      to: "Chat Model"
+      label: "Send retrieved knowledge for generation"
+
+    - from: "Non Agentic - RAG"
+      to: "Embedding Service"
+      label: "Retrieve semantic matches"
+
+    # --- DevHero & API Gateway ---
+    - from: "DevHero - MCP Tools"
+      to: "Chat Model"
+      label: "Issue developer queries"
+
+    - from: "DevHero - MCP Tools"
+      to: "API Gateway"
+      label: "Interact via API endpoints (Upstream call)"
+
+    - from: "API Gateway"
+      to: "Agentic - Deep Research"
+      label: "Route deep research requests (/DR)"
+
+    - from: "API Gateway"
+      to: "Non Agentic - RAG"
+      label: "Route RAG requests (/RAG)"
+
+    - from: "API Gateway"
+      to: "DevHero - MCP Tools"
+      label: "Route developer tool requests (/DevHero)"
+
+    - from: "API Gateway"
+      to: "ChatKit"
+      label: "Route chat-based user interactions"
+
+    - from: "API Gateway"
+      to: "DevHero"
+      label: "Route developer interface requests"

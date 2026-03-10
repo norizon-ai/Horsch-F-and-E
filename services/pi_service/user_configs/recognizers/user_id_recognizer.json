@@ -1,0 +1,9 @@
+{
+  "name": "user_id_recognizer",
+  "config": {
+    "pattern": "[a-z]{2}\\d{4}[a-z]{4}",
+    "supported_entity": "USER_ID",
+    "supported_language": "en",
+    "description": "Detects user IDs like uc1234abcd"
+  }
+} 

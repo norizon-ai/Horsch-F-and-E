@@ -1,0 +1,41 @@
+version: '3.8'
+
+# OpenWebUI Pipelines server - separate service for custom pipelines
+# Use this alongside OpenWebUI to enable pipeline functionality
+
+services:
+  pipelines:
+    image: ghcr.io/open-webui/pipelines:main
+    container_name: hpc-kb-pipelines
+    ports:
+      - "9099:9099"
+    environment:
+      - PIPELINES_DIR=/app/pipelines
+      # DR Pipeline Configuration
+      - DR_API_URL=http://host.docker.internal:8000
+      - DR_API_TIMEOUT=180
+      - ENABLE_BRIEF_MODE=false
+      - ENABLE_STREAMING=true
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./pipelines:/app/pipelines
+      - pipelines-data:/app/data
+    networks:
+      - hpc-kb-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9099/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+networks:
+  hpc-kb-network:
+    external: true
+    name: hpc_ticket_knowledgedb_hpc-kb-network
+
+volumes:
+  pipelines-data:
+    driver: local

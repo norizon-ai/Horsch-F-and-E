@@ -1,0 +1,59 @@
+version: '3.8'
+
+# Separate OpenWebUI compose file for local testing
+# Use this to run OpenWebUI alongside the main services
+#
+# Usage:
+#   docker compose -f docker-compose.yml -f docker-compose.openwebui.yml up -d openwebui
+#
+# Or use the helper script:
+#   ./scripts/start_openwebui.sh
+
+services:
+  # Open WebUI - Chat interface for HPC Deep Research
+  # Access at http://localhost:3000
+  openwebui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: hpc-kb-openwebui-test
+    ports:
+      - "${OPENWEBUI_PORT:-3000}:8080"
+    environment:
+      # OpenWebUI Configuration
+      - WEBUI_NAME=HPC Knowledge Assistant (Test)
+      - ENABLE_SIGNUP=${OPENWEBUI_ENABLE_SIGNUP:-true}
+      - DEFAULT_USER_ROLE=${OPENWEBUI_DEFAULT_ROLE:-user}
+
+      # Disable built-in models (we'll use pipeline only)
+      - ENABLE_OLLAMA_API=false
+      - ENABLE_OPENAI_API=false
+
+      # DR Pipeline Configuration (available to pipeline code)
+      # Use host.docker.internal to reach localhost from inside container
+      - DR_API_URL=${DR_API_URL:-http://host.docker.internal:8000}
+      - DR_API_TIMEOUT=180
+      - ENABLE_BRIEF_MODE=false
+      - ENABLE_STREAMING=true
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    # Note: No depends_on needed - works with both Docker and local API
+    networks:
+      - hpc-kb-network
+    volumes:
+      - openwebui-test-data:/app/backend/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+networks:
+  hpc-kb-network:
+    # Use existing network from main docker-compose.yml
+    external: true
+    name: hpc_ticket_knowledgedb_hpc-kb-network
+
+volumes:
+  openwebui-test-data:
+    driver: local

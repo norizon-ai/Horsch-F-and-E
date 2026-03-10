@@ -1,0 +1,89 @@
+# =============================================================================
+# Norizon DeepSearch - Agent Configuration
+# =============================================================================
+# Copy this file to agents.yaml and customize for your deployment.
+# Each agent can be enabled/disabled independently.
+# Environment variables can be substituted using ${VAR_NAME} syntax.
+
+agents:
+  # ---------------------------------------------------------------------------
+  # Web Search Agent (SearXNG)
+  # ---------------------------------------------------------------------------
+  # Searches the web using SearXNG metasearch engine.
+  # Requires a running SearXNG instance.
+  web_search:
+    type: websearch
+    enabled: false  # Disabled - websearch returns irrelevant hobby RC results for TechMech queries
+    display_name: "Web-Recherche"
+    icon_url: "/icons/web.svg"
+    source_type: "web"
+    description: "Search the web for current information, news, and documentation"
+    searching_label: "Web-Recherche..."
+    item_label: "Webseiten"
+    max_iterations: 5
+    backend:
+      # Use Docker network hostname when running in container, localhost for local dev
+      searxng_url: "http://searxng:8080"
+      default_engines:
+        - google
+        - bing
+        - duckduckgo
+      timeout: 30.0
+
+  # ---------------------------------------------------------------------------
+  # Confluence Live Agent (MCP)
+  # ---------------------------------------------------------------------------
+  # Searches Confluence in real-time via the mcp-atlassian MCP server.
+  # Queries Confluence Cloud directly using CQL — no ES indexing needed.
+  confluence_live:
+    type: confluence_mcp
+    enabled: true
+    display_name: "Confluence"
+    icon_url: "/icons/confluence.svg"
+    source_type: "confluence"
+    description: "Search Confluence documentation and knowledge base for company-specific information"
+    searching_label: "Durchsuche Confluence..."
+    item_label: "Seiten"
+    max_iterations: 3
+    backend:
+      # Set CONFLUENCE_MCP_URL env var; defaults to http://confluence-mcp:8005 in docker-compose
+      mcp_server_url: "${CONFLUENCE_MCP_URL}"
+
+  # ---------------------------------------------------------------------------
+  # Elasticsearch Agent (Demo Confluence - legacy, disabled)
+  # ---------------------------------------------------------------------------
+  # Kept for reference. Replaced by confluence_live above.
+  confluence_docs:
+    type: elasticsearch
+    enabled: false
+    display_name: "Confluence (ES)"
+    icon_url: "/icons/confluence.svg"
+    source_type: "confluence"
+    description: "Search internal Confluence documentation via Elasticsearch index (legacy)"
+    searching_label: "Durchsuche Confluence..."
+    item_label: "Seiten"
+    max_iterations: 3
+
+    preprocessors:
+      - type: reformulator
+        enabled: true
+        config:
+          max_terms: 8
+          min_term_length: 2
+          use_llm: false
+
+    backend:
+      url: "http://localhost:9201"
+      index: "techmech_confluence_kb"
+      search_fields:
+        - "title^4"
+        - "headings^2"
+        - "content"
+        - "product_codes^3"
+      timeout: 30.0
+      hybrid_enabled: true
+      vector_field: "vector"
+      vector_weight: 0.4
+      bm25_weight: 0.6
+      embedding_model: "sentence-transformers/all-MiniLM-L6-v2"
+

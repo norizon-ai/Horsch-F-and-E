@@ -1,0 +1,11 @@
+ich habe folgendes Problem:
+Ich hatte gestern einen Job laufen, der nach 14 Stunden Laufzeit folgenden Fehler geworfen hat:
+
+Traceback (most recent call last):
+  File "/anvme/workspace/b212dc10-memst3r_data/conda_envs/splat3d/lib/python3.10/site-packages/gsplat/cuda/_backend.py", line 83, in <module>
+    from gsplat import csrc as _C
+ImportError: /lib64/libm.so.6: version `GLIBC_2.29' not found (required by /anvme/workspace/b212dc10-memst3r_data/conda_envs/splat3d/lib/python3.10/site-packages/gsplat/csrc.so)
+
+Wenn ich jetzt versuche den gleichen Job neu zu starten, bekomme ich den Fehler direkt sobald der import ausgefuehrt wird.
+
+Ich hab in dieser Zeit nichts an der conda environment geanedert und bin ein bisschen verwirrt, wie das auf einmal nach so langer Zeit auftreten kann, wenn vorher alles noch wunderbar funktioniert hat. Haettet ihr da eine Idee?

@@ -1,0 +1,127 @@
+version: '3.8'
+
+services:
+  # Elasticsearch with pre-loaded Confluence data
+  #
+  # Option 1: Use pre-built image from Docker Hub (recommended)
+  # Uncomment the next line and comment out the 'build' section
+  # image: your-username/confluence-elasticsearch:latest
+  #
+  # Option 2: Build locally (requires Confluence export)
+  # Build your own image with: cd ../../services/connectors/confluence/elasticsearch_image && ./build.sh
+  elasticsearch:
+    image: lisarebecca/confluence-elasticsearch:latest
+    # Uncomment to build locally instead:
+    # build:
+    #   context: ../../services/connectors/confluence/elasticsearch_image
+    #   dockerfile: Dockerfile
+    container_name: horsch-es-confluence
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - ES_JAVA_OPTS=-Xms2g -Xmx2g
+      - bootstrap.memory_lock=false
+      - cluster.routing.allocation.disk.threshold_enabled=false
+    ports:
+      - "${ELASTICSEARCH_PORT:-9200}:9200"
+    volumes:
+      - es-data:/usr/share/elasticsearch/data
+    networks:
+      - horsch-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9200/_cluster/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+  # DeepResearch API - Agentic Retrieval Service
+  deepresearch-api:
+    build:
+      context: ../../services/deepresearch
+      dockerfile: Dockerfile
+    container_name: horsch-deepresearch-api
+    ports:
+      - "${DEEPRESEARCH_PORT:-8000}:8000"
+    environment:
+      # Model configuration
+      - SUPERVISOR_MODEL=${SUPERVISOR_MODEL:-openai:gpt-4o-mini}
+      - RESEARCHER_MODEL=${RESEARCHER_MODEL:-openai:gpt-4o-mini}
+
+      # Backend selection
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      # Optional: Uncomment to use alternative backends
+      # - GROQ_API_KEY=${GROQ_API_KEY}
+      # - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://ollama:11434}
+      # - CUSTOM_API_URL=${CUSTOM_API_URL}
+      # - CUSTOM_API_KEY=${CUSTOM_API_KEY}
+
+      # Search configuration
+      - SEARCH_API=${SEARCH_API:-elasticsearch}
+
+      # Elasticsearch configuration
+      - ELASTIC_URL=http://elasticsearch:9200
+      - ELASTIC_INDEX=${ELASTIC_INDEX:-confluence_kb}
+      - ELASTICSEARCH_HOST=http://elasticsearch:9200
+      - ELASTICSEARCH_INDEX=${ELASTICSEARCH_INDEX:-confluence_kb}
+
+      # Embedding model (must match what was used during indexing)
+      - EMBED_MODEL=${EMBED_MODEL:-sentence-transformers/all-MiniLM-L6-v2}
+
+      # Prompt configuration (for runtime prompt injection)
+      - PROMPTS_DIR=/app/prompts
+
+    volumes:
+      - ./prompts:/app/prompts:ro
+
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    networks:
+      - horsch-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Optional: Ollama for local model inference
+  # Uncomment if you want to use local models instead of OpenAI
+  # ollama:
+  #   image: ollama/ollama:latest
+  #   container_name: horsch-ollama
+  #   ports:
+  #     - "${OLLAMA_PORT:-11434}:11434"
+  #   volumes:
+  #     - ollama-data:/root/.ollama
+  #   networks:
+  #     - horsch-network
+  #   restart: unless-stopped
+
+  # Optional: SearXNG for web search augmentation
+  # Uncomment if you want to enable web search alongside Confluence data
+  # searxng:
+  #   image: searxng/searxng:latest
+  #   container_name: horsch-searxng
+  #   ports:
+  #     - "${SEARXNG_PORT:-8080}:8080"
+  #   volumes:
+  #     - ./searxng:/etc/searxng
+  #   environment:
+  #     - SEARXNG_BASE_URL=http://localhost:8080/
+  #   networks:
+  #     - horsch-network
+  #   restart: unless-stopped
+
+networks:
+  horsch-network:
+    driver: bridge
+
+volumes:
+  es-data:
+    driver: local
+  # ollama-data:
+  #   driver: local

@@ -1,0 +1,6 @@
+{
+  "name": "regex_phone_recognizer",
+  "module": "pii_deid_service.entity_recognizer.regex_phone_recognizer",
+  "class": "RegexPhoneRecognizerPlugin",
+  "config": {}
+} 

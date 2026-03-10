@@ -1,0 +1,24 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements
+COPY indexer_requirements.txt .
+RUN pip install --no-cache-dir -r indexer_requirements.txt
+
+# Copy the indexer code
+COPY indexer /app/indexer
+
+# Data will be mounted at runtime
+VOLUME /app/data
+
+# Set Python path
+ENV PYTHONPATH=/app
+
+# Default command (can be overridden)
+CMD ["python", "indexer/index_all.py"]

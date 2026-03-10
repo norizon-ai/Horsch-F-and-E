@@ -1,0 +1,36 @@
+{
+  "results": [
+    {
+      "id": "text_001",
+      "title": "Customer Support Conversation",
+      "category": "support",
+      "original_content": "Customer: Hi, my name is Jennifer Davis and I'm calling about my order. My order number is ORD-2024-789 and my email is jennifer.davis@email.com. I live at 567 Pine Street, Seattle, WA 98101. Can you help me track my package?",
+      "anonymized_content": "Customer: Hi, my name is <PERSON> and I'm calling about my order. My order number is ORD-2024-789 and my email is <PERSON>@<ORGANIZATION>. I live at 567 <LOCATION>, <LOCATION>, <LOCATION> 98101. Can you help me track my package?",
+      "processed_at": "2025-07-15T18:38:13.999104"
+    },
+    {
+      "id": "text_002",
+      "title": "Medical Report",
+      "category": "medical",
+      "original_content": "Patient: Robert Wilson, DOB: 1985-07-22, Phone: (555) 234-5678, Email: robert.wilson@health.com. Address: 890 Health Plaza, Boston, MA 02101. Diagnosis: Routine checkup required. Contact Dr. Emily Thompson at ethompson@hospital.com for follow-up.",
+      "anonymized_content": "Patient: <PERSON>, DOB: 1985-07-22, Phone: (555) 234-5678, Email: <PERSON>@<ORGANIZATION>. Address: 890 <LOCATION>, <LOCATION>, <LOCATION> 02101. Diagnosis: Routine checkup required. Contact Dr. <PERSON> at ethompson@<ORGANIZATION> for follow-up.",
+      "processed_at": "2025-07-15T18:38:14.572654"
+    },
+    {
+      "id": "text_003",
+      "title": "Job Application",
+      "category": "employment",
+      "original_content": "Applicant: Lisa Chen, Email: lisa.chen@career.com, Phone: +1-555-789-0123. Current Address: 234 Career Lane, San Francisco, CA 94102. Previous employer: TechCorp Inc. References: John Smith (john.smith@techcorp.com) and Mary Johnson (mary.johnson@techcorp.com).",
+      "anonymized_content": "Applicant: <PERSON>, Email: <PERSON>@<ORGANIZATION>, Phone: +1-555-789-0123. Current Address: 234 <LOCATION>, <LOCATION>, <LOCATION> 94102. Previous employer: <ORGANIZATION>. References: <PERSON> (<PERSON>@<ORGANIZATION>) and <PERSON> (<PERSON>@<ORGANIZATION>).",
+      "processed_at": "2025-07-15T18:38:15.157860"
+    },
+    {
+      "id": "text_004",
+      "title": "Financial Document",
+      "category": "financial",
+      "original_content": "Account Holder: David Miller, Account Number: 9876-5432-1098-7654, Email: david.miller@bank.com, Phone: (555) 345-6789. Billing Address: 432 Finance Blvd, Dallas, TX 75201. Credit Card: 4111-1111-1111-1111, Exp: 12/25.",
+      "anonymized_content": "Account Holder: <PERSON>, Account Number: 9876-5432-1098-7654, Email: <PERSON>@<ORGANIZATION>, Phone: (555) 345-6789. Billing Address: 432 <LOCATION>, <LOCATION>, <LOCATION> 75201. Credit Card: 4111-1111-1111-1111, Exp: <REFERENCE_CODE>.",
+      "processed_at": "2025-07-15T18:38:15.711013"
+    }
+  ]
+}

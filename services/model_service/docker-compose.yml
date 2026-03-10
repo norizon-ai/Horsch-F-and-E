@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  model-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: ${VLLM_DEVICE:-cpu}  # Build target based on VLLM_DEVICE
+    image: tierzero/model-service:${VLLM_DEVICE:-cpu}
+    container_name: model-service
+    restart: unless-stopped
+    environment:
+      # Core configuration
+      - MODEL_DIR=/models
+      - DOWNLOAD_MISSING=true
+      - MODEL_CONFIG_PATH=/app/config/models.json
+      - API_PORT=8000
+      - VLLM_PORT=8001
+      
+      # Ray configuration
+      - RAY_DASHBOARD_PORT=8265
+      # Set to 0 for CPU, 1+ for GPU/Metal
+      - RAY_NUM_GPUS=${RAY_NUM_GPUS:-0}
+      
+      # vLLM configuration
+      - VLLM_MODEL=${VLLM_MODEL:-meta-llama/Llama-2-7b-chat-hf}
+      - VLLM_MAX_BATCH_SIZE=${VLLM_MAX_BATCH_SIZE:-32}
+      - VLLM_MAX_MODEL_LEN=${VLLM_MAX_MODEL_LEN:-2048}
+      - VLLM_TENSOR_PARALLEL_SIZE=${VLLM_TENSOR_PARALLEL_SIZE:-1}
+      - VLLM_GPU_MEMORY_UTILIZATION=${VLLM_GPU_MEMORY_UTILIZATION:-0.9}
+      # Set to 'cuda' for NVIDIA, 'metal' for Apple Silicon, 'cpu' for CPU-only
+      - VLLM_DEVICE=${VLLM_DEVICE:-cpu}
+    ports:
+      - "8000:8000"  # API port
+      - "8001:8001"  # vLLM OpenAI API port
+      - "8265:8265"  # Ray dashboard
+    volumes:
+      - model_data:/models
+      - ./config:/app/config
+    networks:
+      - tierzero_net
+
+networks:
+  tierzero_net:
+    external: true
+
+volumes:
+  model_data:
+    driver: local

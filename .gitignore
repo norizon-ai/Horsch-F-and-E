@@ -1,0 +1,133 @@
+
+# Data files (but not config files)
+*.jsonl
+*.ndjson
+**.key
+**.env
+**.dockerignore
+
+# Specific data directories
+/services/middleware/mcp_deepresearch/deployment
+
+# Allow important config files (exceptions to broad patterns)
+!package.json
+!package-lock.json
+!tsconfig.json
+!tsconfig.*.json
+!requirements.txt
+!**/requirements.txt
+
+# Model directories (large files)
+services/model_service/models/llm/
+services/model_service/models/ner/
+services/pi_service/pii_deid_service/models/
+
+# External repositories
+services/model_service/vllm/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+# But allow frontend src/lib directories (for Svelte/React/etc)
+!**/src/lib/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.env
+.venv
+venv
+
+# Ignore package manager files
+package-lock.json
+yarn.lock
+node_modules/
+
+# SvelteKit build artifacts
+.svelte-kit/
+build/
+
+# Ignore temporary files
+*.tmp
+*.temp
+.x
+openwui.pyc
+main_local.py
+start_openwebui.ps1
+
+.webui_secret_key
+search_service_copy
+
+# Ignore Python cache files
+__pycache__/
+*.pyo
+*.pyd
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Docker
+.dockerignore
+
+*.html
+/fau_temp_html
+/services/connectors/website_connector/fau_docsmd
+/services/connectors/website_connector/fau_temp_html_eu_de
+/services/connectors/website_connector/lme_docsmd
+/services/connectors/website_connector/lme_fau_temp_html
+.env
+products/fau_website_deepresearch/deploy/terraform/.terraform
+services/connectors/confluence/confluence_export
+services/connectors/intranet_connector/dev_crawled_data
+services/connectors/intranet_connector/src/dev_crawled_data
+services/connectors/intranet_connector/src/dev_crawled_data_old
+products/hpc_ticket_knowledgedb/ticketknowledgedb/docsmd
+products/hpc_ticket_knowledgedb/ticketknowledgedb/knowledgebase
+#Ignore full book text files
+crime_and_punishment_full_book.txt
+
+services/connectors/website_connector/fau_docsmd
+services/connectors/website_connector/lme_docsmd
+services/connectors/website_connector/fau_temp_html_eu_de
+services/connectors/website_connector/lme_fau_temp_html
+**subdomains.txt
+**valid_web
+services/connectors/website_connector/subdomains_combined.txt
+services/connectors/website_connector/valid_websites copy.txt
+services/connectors/website_connector/subdomains_eu.txt
+services/connectors/website_connector/valid_websites.txt
+services/connectors/website_connector/config.env
+services/connectors/confluence/confluence_export
+
+services/knowledge-studio/backend/data/

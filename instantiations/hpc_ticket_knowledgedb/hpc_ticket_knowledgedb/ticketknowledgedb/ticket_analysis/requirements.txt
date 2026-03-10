@@ -1,0 +1,10 @@
+bertopic==0.15.0
+pandas
+numpy
+plotly
+tqdm
+umap-learn==0.5.3
+hdbscan==0.8.29
+scikit-learn>=1.0.0
+scipy>=1.8.0
+sentence-transformers>=2.0.0

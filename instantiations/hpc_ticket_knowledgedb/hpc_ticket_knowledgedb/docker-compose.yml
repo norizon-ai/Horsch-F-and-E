@@ -1,0 +1,99 @@
+version: '3.8'
+
+services:
+  # Elasticsearch with HPC knowledge data (tickets, docs, knowledgebase)
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+    container_name: hpc-kb-elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - ES_JAVA_OPTS=-Xms2g -Xmx2g
+      - bootstrap.memory_lock=false
+      - cluster.routing.allocation.disk.threshold_enabled=false
+    ports:
+      - "${ELASTICSEARCH_PORT:-9200}:9200"
+    volumes:
+      - es-data:/usr/share/elasticsearch/data
+    networks:
+      - hpc-kb-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9200/_cluster/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+  # HPC DR Pipeline API - Deep Research service
+  dr-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: hpc-kb-dr-api
+    ports:
+      - "${DR_API_PORT:-8001}:8000"
+    environment:
+      # LLM Configuration (NHR Hub Gateway)
+      - LLM_BASE_URL=${LLM_BASE_URL:-https://hub.nhr.fau.de/api/llmgw/v1}
+      - LLM_API_KEY=${LLM_API_KEY:-sk-a9uOWS13GwXfELWArWcnAA}
+      - LLM_MODEL=${LLM_MODEL:-gpt-oss-120b}
+      - LLM_TEMPERATURE=${LLM_TEMPERATURE:-0.2}
+      - LLM_MAX_TOKENS=${LLM_MAX_TOKENS:-2000}
+      - LLM_TIMEOUT=${LLM_TIMEOUT:-30}
+
+      # Elasticsearch Configuration
+      - ELASTIC_URL=http://elasticsearch:9200
+      - DOCS_INDEX=${DOCS_INDEX:-docs}
+      - TICKETS_INDEX=${TICKETS_INDEX:-tickets}
+      - KNOWLEDGEBASE_INDEX=${KNOWLEDGEBASE_INDEX:-knowledgebase}
+
+      # DR Process Configuration
+      - MAX_ITERATIONS=${MAX_ITERATIONS:-3}
+      - QUALITY_THRESHOLD=${QUALITY_THRESHOLD:-0.7}
+      - CONFIDENCE_THRESHOLD=${CONFIDENCE_THRESHOLD:-0.6}
+      - MAX_SEARCH_RESULTS=${MAX_SEARCH_RESULTS:-10}
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    networks:
+      - hpc-kb-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Data Indexer - Populates Elasticsearch with HPC data
+  # Run this once or on-demand to index/re-index data
+  indexer:
+    build:
+      context: .
+      dockerfile: Dockerfile.indexer
+    container_name: hpc-kb-indexer
+    environment:
+      - ELASTIC_URL=http://elasticsearch:9200
+      - DOCS_INDEX=${DOCS_INDEX:-docs}
+      - TICKETS_INDEX=${TICKETS_INDEX:-tickets}
+      - KNOWLEDGEBASE_INDEX=${KNOWLEDGEBASE_INDEX:-knowledgebase}
+      - EMBED_MODEL=${EMBED_MODEL:-sentence-transformers/all-MiniLM-L6-v2}
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    networks:
+      - hpc-kb-network
+    volumes:
+      - ./ticketknowledgedb:/app/data:ro
+    profiles:
+      - indexing  # Only run when explicitly requested
+    command: python indexer/index_all.py
+
+networks:
+  hpc-kb-network:
+    driver: bridge
+
+volumes:
+  es-data:
+    driver: local

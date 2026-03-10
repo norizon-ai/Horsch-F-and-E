@@ -1,0 +1,559 @@
+{
+  "results": [
+    {
+      "pipeline_name": "bm25",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.8,
+        "NDCG@3": 0.8,
+        "NDCG@5": 0.8,
+        "NDCG@10": 0.75929,
+        "MAP@10": 0.65414,
+        "Recall@1": 0.12152,
+        "Recall@3": 0.36455,
+        "Recall@5": 0.55758,
+        "Recall@10": 0.76909,
+        "Precision@1": 0.8,
+        "Precision@10": 0.5,
+        "MRR@10": 0.8285714285714285,
+        "total_queries": 5,
+        "queries_per_second": 0.2974050911153655
+      },
+      "config": {
+        "name": "bm25",
+        "search_type": "bm25",
+        "bm25_weight": 0.6,
+        "vector_weight": 0.4,
+        "preprocessors": [],
+        "postprocessors": []
+      },
+      "timestamp": "2026-01-25T16:11:47.744727"
+    },
+    {
+      "pipeline_name": "bm25_stop",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.8,
+        "NDCG@3": 0.8,
+        "NDCG@5": 0.8,
+        "NDCG@10": 0.75929,
+        "MAP@10": 0.65414,
+        "Recall@1": 0.12152,
+        "Recall@3": 0.36455,
+        "Recall@5": 0.55758,
+        "Recall@10": 0.76909,
+        "Precision@1": 0.8,
+        "Precision@10": 0.5,
+        "MRR@10": 0.8285714285714285,
+        "total_queries": 5,
+        "queries_per_second": 1.359757883381948
+      },
+      "config": {
+        "name": "bm25_stop",
+        "search_type": "bm25",
+        "bm25_weight": 0.6,
+        "vector_weight": 0.4,
+        "preprocessors": [
+          "stopwords"
+        ],
+        "postprocessors": []
+      },
+      "timestamp": "2026-01-25T16:11:51.430925"
+    },
+    {
+      "pipeline_name": "bm25_kw",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.8,
+        "NDCG@3": 0.8,
+        "NDCG@5": 0.8,
+        "NDCG@10": 0.75929,
+        "MAP@10": 0.65414,
+        "Recall@1": 0.12152,
+        "Recall@3": 0.36455,
+        "Recall@5": 0.55758,
+        "Recall@10": 0.76909,
+        "Precision@1": 0.8,
+        "Precision@10": 0.5,
+        "MRR@10": 0.8285714285714285,
+        "total_queries": 5,
+        "queries_per_second": 1.5215976473466553
+      },
+      "config": {
+        "name": "bm25_kw",
+        "search_type": "bm25",
+        "bm25_weight": 0.6,
+        "vector_weight": 0.4,
+        "preprocessors": [
+          "keywords"
+        ],
+        "postprocessors": []
+      },
+      "timestamp": "2026-01-25T16:11:54.721211"
+    },
+    {
+      "pipeline_name": "bm25_stop_kw",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.8,
+        "NDCG@3": 0.8,
+        "NDCG@5": 0.8,
+        "NDCG@10": 0.75929,
+        "MAP@10": 0.65414,
+        "Recall@1": 0.12152,
+        "Recall@3": 0.36455,
+        "Recall@5": 0.55758,
+        "Recall@10": 0.76909,
+        "Precision@1": 0.8,
+        "Precision@10": 0.5,
+        "MRR@10": 0.8285714285714285,
+        "total_queries": 5,
+        "queries_per_second": 2.6222551935833054
+      },
+      "config": {
+        "name": "bm25_stop_kw",
+        "search_type": "bm25",
+        "bm25_weight": 0.6,
+        "vector_weight": 0.4,
+        "preprocessors": [
+          "stopwords",
+          "keywords"
+        ],
+        "postprocessors": []
+      },
+      "timestamp": "2026-01-25T16:11:56.629887"
+    },
+    {
+      "pipeline_name": "bm25_rerank",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.8,
+        "NDCG@3": 0.70614,
+        "NDCG@5": 0.62819,
+        "NDCG@10": 0.65108,
+        "MAP@10": 0.48687,
+        "Recall@1": 0.11152,
+        "Recall@3": 0.29636,
+        "Recall@5": 0.41788,
+        "Recall@10": 0.63576,
+        "Precision@1": 0.8,
+        "Precision@10": 0.44,
+        "MRR@10": 0.8400000000000001,
+        "total_queries": 5,
+        "queries_per_second": 0.28411588150649675
+      },
+      "config": {
+        "name": "bm25_rerank",
+        "search_type": "bm25",
+        "bm25_weight": 0.6,
+        "vector_weight": 0.4,
+        "preprocessors": [],
+        "postprocessors": [
+          "reranker"
+        ]
+      },
+      "timestamp": "2026-01-25T16:12:14.235032"
+    },
+    {
+      "pipeline_name": "bm25_kw_rerank",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.8,
+        "NDCG@3": 0.70614,
+        "NDCG@5": 0.62819,
+        "NDCG@10": 0.65108,
+        "MAP@10": 0.48687,
+        "Recall@1": 0.11152,
+        "Recall@3": 0.29636,
+        "Recall@5": 0.41788,
+        "Recall@10": 0.63576,
+        "Precision@1": 0.8,
+        "Precision@10": 0.44,
+        "MRR@10": 0.8400000000000001,
+        "total_queries": 5,
+        "queries_per_second": 0.5842740592232649
+      },
+      "config": {
+        "name": "bm25_kw_rerank",
+        "search_type": "bm25",
+        "bm25_weight": 0.6,
+        "vector_weight": 0.4,
+        "preprocessors": [
+          "keywords"
+        ],
+        "postprocessors": [
+          "reranker"
+        ]
+      },
+      "timestamp": "2026-01-25T16:12:22.805913"
+    },
+    {
+      "pipeline_name": "vector",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.8,
+        "NDCG@3": 0.69386,
+        "NDCG@5": 0.72329,
+        "NDCG@10": 0.69628,
+        "MAP@10": 0.57491,
+        "Recall@1": 0.11152,
+        "Recall@3": 0.25455,
+        "Recall@5": 0.47758,
+        "Recall@10": 0.69727,
+        "Precision@1": 0.8,
+        "Precision@10": 0.5,
+        "MRR@10": 0.8333333333333334,
+        "total_queries": 5,
+        "queries_per_second": 2.052512320053618
+      },
+      "config": {
+        "name": "vector",
+        "search_type": "vector",
+        "bm25_weight": 0.6,
+        "vector_weight": 0.4,
+        "preprocessors": [],
+        "postprocessors": []
+      },
+      "timestamp": "2026-01-25T16:12:25.243233"
+    },
+    {
+      "pipeline_name": "vector_rerank",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.8,
+        "NDCG@3": 0.70614,
+        "NDCG@5": 0.67473,
+        "NDCG@10": 0.61906,
+        "MAP@10": 0.45627,
+        "Recall@1": 0.11152,
+        "Recall@3": 0.29636,
+        "Recall@5": 0.47788,
+        "Recall@10": 0.58242,
+        "Precision@1": 0.8,
+        "Precision@10": 0.4,
+        "MRR@10": 0.8400000000000001,
+        "total_queries": 5,
+        "queries_per_second": 1.3389637669592978
+      },
+      "config": {
+        "name": "vector_rerank",
+        "search_type": "vector",
+        "bm25_weight": 0.6,
+        "vector_weight": 0.4,
+        "preprocessors": [],
+        "postprocessors": [
+          "reranker"
+        ]
+      },
+      "timestamp": "2026-01-25T16:12:29.000046"
+    },
+    {
+      "pipeline_name": "hybrid_50_50",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.8,
+        "NDCG@3": 0.8,
+        "NDCG@5": 0.8,
+        "NDCG@10": 0.75929,
+        "MAP@10": 0.65414,
+        "Recall@1": 0.12152,
+        "Recall@3": 0.36455,
+        "Recall@5": 0.55758,
+        "Recall@10": 0.76909,
+        "Precision@1": 0.8,
+        "Precision@10": 0.5,
+        "MRR@10": 0.8285714285714285,
+        "total_queries": 5,
+        "queries_per_second": 1.1105312031884391
+      },
+      "config": {
+        "name": "hybrid_50_50",
+        "search_type": "hybrid",
+        "bm25_weight": 0.5,
+        "vector_weight": 0.5,
+        "preprocessors": [],
+        "postprocessors": []
+      },
+      "timestamp": "2026-01-25T16:12:33.507675"
+    },
+    {
+      "pipeline_name": "hybrid_50_50_stop",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.8,
+        "NDCG@3": 0.8,
+        "NDCG@5": 0.8,
+        "NDCG@10": 0.75929,
+        "MAP@10": 0.65414,
+        "Recall@1": 0.12152,
+        "Recall@3": 0.36455,
+        "Recall@5": 0.55758,
+        "Recall@10": 0.76909,
+        "Precision@1": 0.8,
+        "Precision@10": 0.5,
+        "MRR@10": 0.8285714285714285,
+        "total_queries": 5,
+        "queries_per_second": 0.8314000487544908
+      },
+      "config": {
+        "name": "hybrid_50_50_stop",
+        "search_type": "hybrid",
+        "bm25_weight": 0.5,
+        "vector_weight": 0.5,
+        "preprocessors": [
+          "stopwords"
+        ],
+        "postprocessors": []
+      },
+      "timestamp": "2026-01-25T16:12:39.548362"
+    },
+    {
+      "pipeline_name": "hybrid_50_50_kw",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.8,
+        "NDCG@3": 0.8,
+        "NDCG@5": 0.8,
+        "NDCG@10": 0.75929,
+        "MAP@10": 0.65414,
+        "Recall@1": 0.12152,
+        "Recall@3": 0.36455,
+        "Recall@5": 0.55758,
+        "Recall@10": 0.76909,
+        "Precision@1": 0.8,
+        "Precision@10": 0.5,
+        "MRR@10": 0.8285714285714285,
+        "total_queries": 5,
+        "queries_per_second": 0.8208843520799239
+      },
+      "config": {
+        "name": "hybrid_50_50_kw",
+        "search_type": "hybrid",
+        "bm25_weight": 0.5,
+        "vector_weight": 0.5,
+        "preprocessors": [
+          "keywords"
+        ],
+        "postprocessors": []
+      },
+      "timestamp": "2026-01-25T16:12:45.680102"
+    },
+    {
+      "pipeline_name": "hybrid_50_50_stop_kw",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.8,
+        "NDCG@3": 0.8,
+        "NDCG@5": 0.8,
+        "NDCG@10": 0.75929,
+        "MAP@10": 0.65414,
+        "Recall@1": 0.12152,
+        "Recall@3": 0.36455,
+        "Recall@5": 0.55758,
+        "Recall@10": 0.76909,
+        "Precision@1": 0.8,
+        "Precision@10": 0.5,
+        "MRR@10": 0.8285714285714285,
+        "total_queries": 5,
+        "queries_per_second": 0.7318062918985004
+      },
+      "config": {
+        "name": "hybrid_50_50_stop_kw",
+        "search_type": "hybrid",
+        "bm25_weight": 0.5,
+        "vector_weight": 0.5,
+        "preprocessors": [
+          "stopwords",
+          "keywords"
+        ],
+        "postprocessors": []
+      },
+      "timestamp": "2026-01-25T16:12:52.525320"
+    },
+    {
+      "pipeline_name": "hybrid_50_50_rerank",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.8,
+        "NDCG@3": 0.70614,
+        "NDCG@5": 0.62819,
+        "NDCG@10": 0.65263,
+        "MAP@10": 0.49068,
+        "Recall@1": 0.11152,
+        "Recall@3": 0.29636,
+        "Recall@5": 0.41788,
+        "Recall@10": 0.63576,
+        "Precision@1": 0.8,
+        "Precision@10": 0.44,
+        "MRR@10": 0.8400000000000001,
+        "total_queries": 5,
+        "queries_per_second": 0.15660387099996279
+      },
+      "config": {
+        "name": "hybrid_50_50_rerank",
+        "search_type": "hybrid",
+        "bm25_weight": 0.5,
+        "vector_weight": 0.5,
+        "preprocessors": [],
+        "postprocessors": [
+          "reranker"
+        ]
+      },
+      "timestamp": "2026-01-25T16:13:24.520950"
+    },
+    {
+      "pipeline_name": "hybrid_50_50_kw_rerank",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.8,
+        "NDCG@3": 0.70614,
+        "NDCG@5": 0.62819,
+        "NDCG@10": 0.65263,
+        "MAP@10": 0.49068,
+        "Recall@1": 0.11152,
+        "Recall@3": 0.29636,
+        "Recall@5": 0.41788,
+        "Recall@10": 0.63576,
+        "Precision@1": 0.8,
+        "Precision@10": 0.44,
+        "MRR@10": 0.8400000000000001,
+        "total_queries": 5,
+        "queries_per_second": 0.17306503710469925
+      },
+      "config": {
+        "name": "hybrid_50_50_kw_rerank",
+        "search_type": "hybrid",
+        "bm25_weight": 0.5,
+        "vector_weight": 0.5,
+        "preprocessors": [
+          "keywords"
+        ],
+        "postprocessors": [
+          "reranker"
+        ]
+      },
+      "timestamp": "2026-01-25T16:13:53.466120"
+    },
+    {
+      "pipeline_name": "hybrid_70_30",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.8,
+        "NDCG@3": 0.8,
+        "NDCG@5": 0.8,
+        "NDCG@10": 0.75929,
+        "MAP@10": 0.65414,
+        "Recall@1": 0.12152,
+        "Recall@3": 0.36455,
+        "Recall@5": 0.55758,
+        "Recall@10": 0.76909,
+        "Precision@1": 0.8,
+        "Precision@10": 0.5,
+        "MRR@10": 0.8285714285714285,
+        "total_queries": 5,
+        "queries_per_second": 0.4944082402379249
+      },
+      "config": {
+        "name": "hybrid_70_30",
+        "search_type": "hybrid",
+        "bm25_weight": 0.7,
+        "vector_weight": 0.3,
+        "preprocessors": [],
+        "postprocessors": []
+      },
+      "timestamp": "2026-01-25T16:14:03.585349"
+    },
+    {
+      "pipeline_name": "hybrid_70_30_rerank",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.8,
+        "NDCG@3": 0.70614,
+        "NDCG@5": 0.62819,
+        "NDCG@10": 0.65263,
+        "MAP@10": 0.49068,
+        "Recall@1": 0.11152,
+        "Recall@3": 0.29636,
+        "Recall@5": 0.41788,
+        "Recall@10": 0.63576,
+        "Precision@1": 0.8,
+        "Precision@10": 0.44,
+        "MRR@10": 0.8400000000000001,
+        "total_queries": 5,
+        "queries_per_second": 0.5344825736266469
+      },
+      "config": {
+        "name": "hybrid_70_30_rerank",
+        "search_type": "hybrid",
+        "bm25_weight": 0.7,
+        "vector_weight": 0.3,
+        "preprocessors": [],
+        "postprocessors": [
+          "reranker"
+        ]
+      },
+      "timestamp": "2026-01-25T16:14:12.947887"
+    },
+    {
+      "pipeline_name": "hybrid_30_70",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.8,
+        "NDCG@3": 0.8,
+        "NDCG@5": 0.8,
+        "NDCG@10": 0.75929,
+        "MAP@10": 0.65414,
+        "Recall@1": 0.12152,
+        "Recall@3": 0.36455,
+        "Recall@5": 0.55758,
+        "Recall@10": 0.76909,
+        "Precision@1": 0.8,
+        "Precision@10": 0.5,
+        "MRR@10": 0.8285714285714285,
+        "total_queries": 5,
+        "queries_per_second": 0.9133891135393218
+      },
+      "config": {
+        "name": "hybrid_30_70",
+        "search_type": "hybrid",
+        "bm25_weight": 0.3,
+        "vector_weight": 0.7,
+        "preprocessors": [],
+        "postprocessors": []
+      },
+      "timestamp": "2026-01-25T16:14:18.423010"
+    },
+    {
+      "pipeline_name": "hybrid_30_70_rerank",
+      "dataset": "techmech_golden",
+      "metrics": {
+        "NDCG@1": 0.8,
+        "NDCG@3": 0.70614,
+        "NDCG@5": 0.62522,
+        "NDCG@10": 0.63655,
+        "MAP@10": 0.47448,
+        "Recall@1": 0.11152,
+        "Recall@3": 0.29636,
+        "Recall@5": 0.41788,
+        "Recall@10": 0.61758,
+        "Precision@1": 0.8,
+        "Precision@10": 0.42,
+        "MRR@10": 0.8400000000000001,
+        "total_queries": 5,
+        "queries_per_second": 0.9568262207410108
+      },
+      "config": {
+        "name": "hybrid_30_70_rerank",
+        "search_type": "hybrid",
+        "bm25_weight": 0.3,
+        "vector_weight": 0.7,
+        "preprocessors": [],
+        "postprocessors": [
+          "reranker"
+        ]
+      },
+      "timestamp": "2026-01-25T16:14:23.651193"
+    }
+  ],
+  "metadata": {}
+}

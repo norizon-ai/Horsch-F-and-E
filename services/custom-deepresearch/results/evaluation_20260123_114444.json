@@ -1,0 +1,646 @@
+{
+  "timestamp": "2026-01-23T10:44:44.241816+00:00",
+  "search_completed": true,
+  "judge_completed": true,
+  "total": 10,
+  "passed": 7,
+  "pass_rate": 0.7,
+  "mean_score": 0.7424999999999999,
+  "results": [
+    {
+      "question_id": "PS-001",
+      "question": "Was sind die technischen Spezifikationen der RC-3000 Serie?",
+      "category": "product_spec",
+      "answer": "# Technische Spezifikationen der RC-3000 Serie\n\n## Zusammenfassung\nDie RC-3000 Serie ist eine hochmoderne Roboterzelle, die für industrielle Anwendungen in verschiedenen Sektoren konzipiert ist. Sie bietet eine maximale Traglast von 150 kg und eine Reichweite von 1,5 m, unterstützt durch ein fortschrittliches Antriebssystem und umfassende Sicherheitsstandards [1].\n\n## Wichtige Erkenntnisse\n- **Modell:** RC-3000\n- **Baugröße:** 1500 mm x 2000 mm x 2200 mm (L x B x H)\n- **Gewicht:** 800 kg\n- **Max. Traglast:** 150 kg\n- **Max. Reichweite:** 1.5 m\n- **Anzahl der Achsen:** 6\n- **Max. Geschwindigkeit:** 2 m/s\n- **Positioniergenauigkeit:** ± 0.02 mm\n- **Sicherheitsstandard:** EN ISO 13849-1 (Kat. 4) [1], [2].\n\n## Details\nDie RC-3000 Serie ist mit einem Antriebssystem ausgestattet, das Servomotoren mit integrierter Steuerung nutzt. Die Steuerung erfolgt über einen Industrie-PC mit Windows 10 IoT, und die Programmierung kann in C# sowie PLC erfolgen. Die Roboterzelle verfügt über verschiedene Schnittstellen, darunter Ethernet/IP, Profinet, RS-232 und USB 3.0.\n\nFür die Sensorik sind 3D-Kameras mit integrierter Bildverarbeitung sowie verschiedene Sensoren wie induktive Näherungssensoren, Kraft-/Drehmomentsensoren und Temperatursensoren integriert. In Bezug auf die Sicherheit bietet die RC-3000 eine doppelt redundante Not-Halt-Schaltung und hat die Schutzart IP54.\n\nDie Roboterzelle eignet sich besonders für automatisierte Montageprozesse, Verpackungslösungen im Lebensmittel- und Pharmabereich sowie für die Integration von Prüfstationen zur Qualitätskontrolle [1].\n\n## Empfehlungen\nFür weitere Informationen oder spezifische Anwendungsfragen ist es ratsam, die offizielle Website des Herstellers zu besuchen oder sich in spezialisierten Technikforen umzusehen.\n\n## Quellen\n[1] RC-3000 Technische Spezifikationen v4.2  \n[2] RC-3000 Serie - RoboCell RC-3000 Serie",
+      "confidence": 0.525,
+      "sources": [
+        "RC-3000 Technische Spezifikationen v4.2",
+        "RC-3000 Serie",
+        "RC-5000 Serie",
+        "RoboCell RC-3000 Serie",
+        "RoboCell RC-5000 Serie (Heavy Duty)",
+        "Wartungsanleitung RC-3000",
+        "RC-3000 Ersatzteilliste",
+        "RC-3000 Montageanleitung",
+        "RC-3000 Pneumatikschema",
+        "Ersatzteilkatalog RC-3000"
+      ],
+      "context": "[Quelle: RC-3000 Technische Spezifikationen v4.2]\n# <em>RC</em>-<em>3000</em> <em>Technische</em> <em>Spezifikationen</em> v4.2\n\n## 1. ... <em>Technische</em> <em>Spezifikationen</em>\n\n### 2.1 Allgemeine Daten\n- **Modell:** <em>RC</em>-<em>3000</em>\n- **Baugröße:** 1500 mm x <em>2000</em> mm x 2200 mm (L x B x H)\n- **Gewicht:** 800 kg\n\n---\n\n[Quelle: RC-3000 Serie]\n# <em>RC</em>-<em>3000</em> <em>Serie</em>\n\n## Übersicht\n\nDie <em>RC</em>-<em>3000</em> <em>Serie</em> ist eine fortschrittliche Produktlinie von Roboterzellen, die für die Automatisierung von Fertigungsprozessen ... Die <em>RC</em>-<em>3000</em> Roboterzellen sind ideal für Anwendungen in der Automobilindustrie, Lebensmittelverarbeitung und Pharmaindustrie.\n\n## <em>Technische</em> <em>Spezifikationen</em>\n\n---\n\n[Quelle: RC-5000 Serie]\n# <em>RC</em>-<em>5000</em> <em>Serie</em>\n\n## Übersicht\n\nDie <em>RC</em>-<em>5000</em> <em>Serie</em> von TechMech Solutions GmbH bietet hochmoderne Roboterzellen, die speziell für den Einsatz in der Automatisierungstechnik ... Die Modularität und Flexibilität der <em>RC</em>-<em>5000</em> <em>Serie</em> ermöglicht eine einfache Anpassung an spezifische Produktionsanforderungen.\n\n## <em>Technische</em> <em>Spezifikationen</em>\n\n---\n\n[Quelle: RoboCell RC-3000 Serie]\n# RoboCell <em>RC</em>-<em>3000</em> <em>Serie</em>\n\n## Einleitung\nDie RoboCell <em>RC</em>-<em>3000</em> <em>Serie</em> stellt eine innovative Lösung im Bereich der Automatisierungstechnik dar. ... Die <em>RC</em>-<em>3000</em> <em>Serie</em> eignet sich besonders für den Einsatz in der Automobilindustrie, Lebensmittelproduktion und Pharmazie.\n\n## <em>Technische</em> <em>Spezifikationen</em>\n\n---\n\n[Quelle: RoboCell RC-5000 Serie (Heavy Duty)]\n# RoboCell <em>RC</em>-<em>5000</em> <em>Serie</em> (Heavy Duty)\n\n## Einführung\n\nDie RoboCell <em>RC</em>-<em>5000</em> <em>Serie</em> (Heavy Duty) ist eine hochmoderne Roboterzelle, die speziell für den Einsatz ... .\n\n## Fazit\n\nDie RoboCell <em>RC</em>-<em>5000</em> <em>Serie</em> (Heavy Duty) stellt eine innovative Lösung für Unternehmen dar, die in der Lage sein möchten, komplexe und anspruchsvolle\n\n---\n\n[Quelle: Wartungsanleitung RC-3000]\n# Wartungsanleitung <em>RC</em>-<em>3000</em>\n\n## Einleitung\nDie Wartungsanleitung für die Roboterzelle <em>RC</em>-<em>3000</em> beschreibt die notwendigen Schritte zur Instandhaltung und ... Diese Anleitung richtet sich an qualifizierte Servicetechniker und Instandhaltungsmitarbeiter.\n\n## <em>Technische</em> <em>Spezifikationen</em>\n- **Modell:** <em>RC</em>-<em>3000</em>\n- *\n\n---\n\n[Quelle: RC-3000 Ersatzteilliste]\n# <em>RC</em>-<em>3000</em> Ersatzteilliste\n\n## Einleitung\nDie <em>RC</em>-<em>3000</em> Roboterzelle von TechMech Solutions GmbH ist eine hochmoderne Automatisierungslösung, die für verschiedene ... <em>Spezifikationen</em>\n\n- **Roboterzellen-Typ:** <em>RC</em>-<em>3000</em>\n- **Maximale Traglast:** 5 kg\n- **Bewegungsbereich:** X: 800 mm, Y: 600 mm, Z: 400 mm\n- **Anzahl der\n\n---\n\n[Quelle: RC-3000 Montageanleitung]\n# <em>RC</em>-<em>3000</em> Montageanleitung\n\n## Einleitung\nDie <em>RC</em>-<em>3000</em> Roboterzelle ist ein hochmodernes Automatisierungssystem, das für den Einsatz in verschiedenen Industrien ... <em>Spezifikationen</em>\n| <em>Spezifikation</em>          | Wert                     |\n|-----------------------|-------------------------|\n| Max.\n\n---\n\n[Quelle: RC-3000 Pneumatikschema]\n# <em>RC</em>-<em>3000</em> Pneumatikschema\n\n## Einführung\nDas Pneumatikschema der <em>RC</em>-<em>3000</em> Roboterzelle stellt die grundlegende Anordnung und Funktionsweise der pneumatischen ... Dies gewährleistet eine präzise Positionierung und verhindert Über- oder Unterbewegungen während des Betriebs.\n\n## <em>Technische</em> <em>Spezifikationen</em>\n\n- **Druckbereich\n\n---\n\n[Quelle: Ersatzteilkatalog RC-3000]\n# Ersatzteilkatalog <em>RC</em>-<em>3000</em>\n\n## Einleitung\nDer Ersatzteilkatalog für die Roboterzelle <em>RC</em>-<em>3000</em> dient als umfassende Ressource für die Identifizierung und ... Dieser Katalog beinhaltet alle relevanten Informationen zu den verfügbaren Komponenten, deren <em>Spezifikationen</em> sowie Anleitungen zur Installation und Wartung",
+      "latency_ms": 50252.30312347412,
+      "iterations": 2,
+      "search_success": true,
+      "search_error": null,
+      "search_timestamp": "2026-01-23T10:45:34.618051+00:00",
+      "overall_pass": true,
+      "overall_score": 0.825,
+      "failure_reasons": [],
+      "dimensions": {
+        "language_match": {
+          "dimension": "language_match",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort ist in deutscher Sprache verfasst und enthält keine englischen Überschriften oder unpassende Elemente. Sie beantwortet die Frage zu den technischen Spezifikationen der RC-3000 Serie umfassend und präzise.",
+          "evidence": "{\"fragesprache\": \"Deutsch\", \"antwortsprache\": \"Deutsch\"}"
+        },
+        "direct_resolution": {
+          "dimension": "direct_resolution",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort enthält detaillierte technische Spezifikationen wie Modell, Baugröße, Gewicht, maximale Traglast, Reichweite, Anzahl der Achsen, Geschwindigkeit, Positioniergenauigkeit und Sicherheitsstandards.",
+          "evidence": "{\"user_braucht\": \"technische Spezifikationen der RC-3000 Serie\", \"antwort_enthaelt_info\": true}"
+        },
+        "factual_grounding": {
+          "dimension": "factual_grounding",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die Antwort enthält viele spezifische technische Details, die im Kontext nicht erwähnt werden, wie die maximale Traglast, Reichweite, Anzahl der Achsen, Geschwindigkeit, Positioniergenauigkeit und Sicherheitsstandards. Diese Informationen scheinen extrapoliert oder halluziniert zu sein, da sie nicht im bereitgestellten Kontext zu finden sind. Daher ist die Antwort nicht vollständig durch den Kontext gestützt.",
+          "evidence": "{\"behauptungen\": [\"Die RC-3000 Serie ist eine hochmoderne Roboterzelle, die für industrielle Anwendungen in verschiedenen Sektoren konzipiert ist.\", \"Sie bietet eine maximale Traglast von 150 kg.\", \"Die Baugröße beträgt 1500 mm x 2000 mm x 2200 mm (L x B x H).\", \"Das Gewicht beträgt 800 kg.\", \"Die maximale Reichweite beträgt 1,5 m.\", \"Die Anzahl der Achsen beträgt 6.\", \"Die maximale Geschwindigkeit beträgt 2 m/s.\", \"Die Positioniergenauigkeit beträgt ± 0.02 mm.\", \"Der Sicherheitsstandard ist EN ISO 13849-1 (Kat. 4).\", \"Die Roboterzelle ist mit einem Antriebssystem ausgestattet, das Servomotoren mit integrierter Steuerung nutzt.\", \"Die Steuerung erfolgt über einen Industrie-PC mit Windows 10 IoT.\", \"Die Programmierung kann in C# sowie PLC erfolgen.\", \"Die Roboterzelle verfügt über verschiedene Schnittstellen, darunter Ethernet/IP, Profinet, RS-232 und USB 3.0.\", \"Für die Sensorik sind 3D-Kameras mit integrierter Bildverarbeitung sowie verschiedene Sensoren integriert.\", \"In Bezug auf die Sicherheit bietet die RC-3000 eine doppelt redundante Not-Halt-Schaltung und hat die Schutzart IP54.\", \"Die Roboterzelle eignet sich besonders für automatisierte Montageprozesse, Verpackungslösungen im Lebensmittel- und Pharmabereich sowie für die Integration von Prüfstationen zur Qualitätskontrolle.\"], \"gestuetzt\": [\"Die RC-3000 Serie ist eine hochmoderne Roboterzelle, die für industrielle Anwendungen in verschiedenen Sektoren konzipiert ist.\", \"Die Baugröße beträgt 1500 mm x 2000 mm x 2200 mm (L x B x H).\", \"Das Gewicht beträgt 800 kg.\"], \"nicht_gestuetzt\": [\"Sie bietet eine maximale Traglast von 150 kg.\", \"Die maximale Reichweite beträgt 1,5 m.\", \"Die Anzahl der Achsen beträgt 6.\", \"Die maximale Geschwindigkeit beträgt 2 m/s.\", \"Die Positioniergenauigkeit beträgt ± 0.02 mm.\", \"Der Sicherheitsstandard ist EN ISO 13849-1 (Kat. 4).\", \"Die Roboterzelle ist mit einem Antriebssystem ausgestattet, das Servomotoren mit integrierter Steuerung nutzt.\", \"Die Steuerung erfolgt über einen Industrie-PC mit Windows 10 IoT.\", \"Die Programmierung kann in C# sowie PLC erfolgen.\", \"Die Roboterzelle verfügt über verschiedene Schnittstellen, darunter Ethernet/IP, Profinet, RS-232 und USB 3.0.\", \"Für die Sensorik sind 3D-Kameras mit integrierter Bildverarbeitung sowie verschiedene Sensoren integriert.\", \"In Bezug auf die Sicherheit bietet die RC-3000 eine doppelt redundante Not-Halt-Schaltung und hat die Schutzart IP54.\", \"Die Roboterzelle eignet sich besonders für automatisierte Montageprozesse, Verpackungslösungen im Lebensmittel- und Pharmabereich sowie für die Integration von Prüfstationen zur Qualitätskontrolle.\"]}"
+        },
+        "answer_completeness": {
+          "dimension": "answer_completeness",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort deckt umfassend alle relevanten technischen Spezifikationen der RC-3000 Serie ab und bietet zusätzliche Informationen zu Anwendungsgebieten und Sicherheitsmerkmalen. Es sind keine wesentlichen Aspekte der Frage unberücksichtigt geblieben.",
+          "evidence": "{\"informationsbedarfe\": [], \"adressiert\": [\"Technische Spezifikationen der RC-3000 Serie\", \"Maximale Traglast\", \"Reichweite\", \"Baugröße\", \"Gewicht\", \"Anzahl der Achsen\", \"Max. Geschwindigkeit\", \"Positioniergenauigkeit\", \"Sicherheitsstandard\", \"Antriebssystem\", \"Steuerung\", \"Programmierung\", \"Schnittstellen\", \"Sensorik\", \"Sicherheitsmerkmale\", \"Anwendungsgebiete\"], \"fehlend\": []}"
+        },
+        "user_actionability": {
+          "dimension": "user_actionability",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort enthält umfassende technische Spezifikationen und Anwendungsbereiche der RC-3000 Serie, die dem Nutzer helfen, informierte Entscheidungen zu treffen und die Roboterzelle in seinen Projekten zu berücksichtigen.",
+          "evidence": "{\"nutzer_kann_fortfahren\": true, \"was_nutzer_tun_kann\": \"Die technischen Spezifikationen der RC-3000 Serie nutzen, um Entscheidungen über den Einsatz der Roboterzelle in industriellen Anwendungen zu treffen.\", \"was_noch_fehlt\": \"Möglicherweise spezifische Informationen zu den Anwendungsfällen oder eine detaillierte Anleitung zur Programmierung.\"}"
+        }
+      },
+      "judge_timestamp": "2026-01-23T10:46:34.614862+00:00"
+    },
+    {
+      "question_id": "PS-002",
+      "question": "Welche Greifersysteme sind für die RC-5000 Heavy Duty verfügbar?",
+      "category": "product_spec",
+      "answer": "# Verfügbare Greifersysteme für die RC-5000 Heavy Duty\n\n## Zusammenfassung\nDie RC-5000 Heavy Duty Roboterzellen bieten eine Vielzahl von Greifersystemen, die modular aufgebaut sind und eine maximale Tragfähigkeit von bis zu 50 kg haben. Diese Systeme sind für verschiedene Anwendungen in der Automatisierungstechnik konzipiert, darunter die Automobil-, Lebensmittel- und pharmazeutische Industrie [1].\n\n## Wichtige Erkenntnisse\n- **Modularer Aufbau**: Anpassbar an unterschiedliche Anwendungen.\n- **Tragfähigkeit**: Bis zu 50 kg.\n- **Präzise Steuerung**: Integrierte Sensorik für hochpräzise Greifbewegungen.\n- **Schnelle Umrüstzeiten**: Effiziente Konfiguration und Wechsel der Greifersysteme.\n- **Anwendungsbereiche**: Automotive, Lebensmittelindustrie, pharmazeutische Industrie.\n\n## Details\nDie Greifersysteme der RC-5000 Serie sind speziell für die Handhabung schwerer Teile in verschiedenen Industrien ausgelegt. Sie verfügen über eine maximale Tragfähigkeit von 50 kg und ermöglichen eine präzise Steuerung der Greifbewegungen durch integrierte Sensorik. Die schnelle Umrüstzeit der Greifersysteme erhöht die Effizienz in der Produktion erheblich. Die technischen Spezifikationen umfassen einen Greifbereich von 100 mm bis 500 mm, eine Wiederholgenauigkeit von ± 0,1 mm und eine Geschwindigkeit von bis zu 2 m/s. Die Antriebssysteme bestehen aus Servomotoren, und die Materialien sind Aluminium oder Hochfestkunststoff [1].\n\n## Empfehlungen\nFür spezifische Anwendungen sollten die Greifersysteme entsprechend den Anforderungen der jeweiligen Industrie ausgewählt und konfiguriert werden, um maximale Effizienz und Flexibilität zu gewährleisten.\n\n## Quellen\n[1] RoboCell RC-5000 Serie (Heavy Duty) - URL  \n[2] RC-5000 Greifersysteme - Übersicht - URL\n\n## Einschränkungen\nDie Quellen enthalten keine Informationen zu spezifischen Modellen oder Varianten der Greifersysteme.",
+      "confidence": 0.8500000000000001,
+      "sources": [
+        "RoboCell RC-5000 Serie (Heavy Duty)",
+        "RC-5000 Greifersysteme - Übersicht",
+        "RC-5000 Serie",
+        "Wartungsanleitung RC-5000",
+        "RC-5000 Konstruktionszeichnungen",
+        "Geräuschemissionsmessungen RC-5000",
+        "RC-5000 Sicherheitskonzept",
+        "Ersatzteilkatalog RC-5000",
+        "Störungsdiagnose RC-5000",
+        "Kraftberechnungen Greifersysteme"
+      ],
+      "context": "[Quelle: RoboCell RC-5000 Serie (Heavy Duty)]\n# RoboCell <em>RC</em>-<em>5000</em> Serie (<em>Heavy</em> <em>Duty</em>)\n\n## Einführung\n\nDie RoboCell <em>RC</em>-<em>5000</em> Serie (<em>Heavy</em> <em>Duty</em>) ist eine hochmoderne Roboterzelle, die speziell für den Einsatz ... .\n\n## Fazit\n\nDie RoboCell <em>RC</em>-<em>5000</em> Serie (<em>Heavy</em> <em>Duty</em>) stellt eine innovative Lösung für Unternehmen dar, die in der Lage sein möchten, komplexe und anspruchsvolle\n\n---\n\n[Quelle: RC-5000 Greifersysteme - Übersicht]\n# <em>RC</em>-<em>5000</em> <em>Greifersysteme</em> - Übersicht\n\nDie <em>RC</em>-<em>5000</em> <em>Greifersysteme</em> sind hochentwickelte Lösungen für die Automatisierung in verschiedenen Branchen. ... Im Folgenden finden Sie eine detaillierte Übersicht über die Hauptmerkmale, technischen Spezifikationen und Anwendungsbereiche der <em>RC</em>-<em>5000</em> <em>Greifersysteme</em>\n\n---\n\n[Quelle: RC-5000 Serie]\n# <em>RC</em>-<em>5000</em> Serie\n\n## Übersicht\n\nDie <em>RC</em>-<em>5000</em> Serie von TechMech Solutions GmbH bietet hochmoderne Roboterzellen, die speziell für den Einsatz in der Automatisierungstechnik ... Die Modularität und Flexibilität der <em>RC</em>-<em>5000</em> Serie ermöglicht eine einfache Anpassung an spezifische Produktionsanforderungen.\n\n## Technische Spezifikationen\n\n---\n\n[Quelle: Wartungsanleitung RC-5000]\n# Wartungsanleitung <em>RC</em>-<em>5000</em>\n\n## Einleitung\n\nDiese Wartungsanleitung dient der regelmäßigen Instandhaltung der Roboterzelle <em>RC</em>-<em>5000</em>. ... -<em>5000</em> ist entscheidend für die Betriebssicherheit und Langlebigkeit der Roboterzelle.\n\n---\n\n[Quelle: RC-5000 Konstruktionszeichnungen]\n# <em>RC</em>-<em>5000</em> Konstruktionszeichnungen\n\n## Überblick\n\nDie <em>RC</em>-<em>5000</em> Roboterzelle von TechMech Solutions GmbH ist eine hochmoderne Automatisierungslösung, die ... Diese Seite enthält die Konstruktionszeichnungen und technischen Spezifikationen der <em>RC</em>-<em>5000</em>, die für die Planung und Integration in bestehende Produktionslinien\n\n---\n\n[Quelle: Geräuschemissionsmessungen RC-5000]\n# Geräuschemissionsmessungen <em>RC</em>-<em>5000</em>\n\n## Einleitung\n\nDie Geräuschemissionsmessungen des Robotersystems <em>RC</em>-<em>5000</em> sind entscheidend für die Qualitätssicherung ... **Durchführung von Wartungsarbeiten, falls notwendig**\n\n## Fazit\n\nDie regelmäßigen Geräuschemissionsmessungen am <em>RC</em>-<em>5000</em> sind ein wichtiger Bestandteil\n\n---\n\n[Quelle: RC-5000 Sicherheitskonzept]\n# <em>RC</em>-<em>5000</em> Sicherheitskonzept\n\n## Einleitung\nDas <em>RC</em>-<em>5000</em> Sicherheitskonzept stellt sicher, dass alle Roboterzellen von TechMech Solutions GmbH höchsten ... Dieses Dokument beschreibt die Sicherheitsmaßnahmen, -richtlinien und -technologien, die in der Entwicklung und Implementierung der <em>RC</em>-<em>5000</em> Roboterzelle\n\n---\n\n[Quelle: Ersatzteilkatalog RC-5000]\n# Ersatzteilkatalog <em>RC</em>-<em>5000</em>\n\n## Einleitung\n\nDer Ersatzteilkatalog für die Roboterzelle <em>RC</em>-<em>5000</em> bietet eine umfassende Übersicht über alle verfügbaren Ersatzteile ... gewährleisten.\n\n## Aufbau der Roboterzelle <em>RC</em>-<em>5000</em>\n\nDie <em>RC</em>-<em>5000</em> ist in verschiedenen Konfigurationen erhältlich und kann an die spezifischen Anforderungen\n\n---\n\n[Quelle: Störungsdiagnose RC-5000]\n# Störungsdiagnose <em>RC</em>-<em>5000</em>\n\n## Einführung\nDie Störungsdiagnose der <em>RC</em>-<em>5000</em> Roboterzelle ist entscheidend für die Aufrechterhaltung der Funktionalität und ... Diese Seite bietet eine detaillierte Anleitung zur Identifikation und Behebung typischer Störungen. \n\n## Systemüberblick\nDie <em>RC</em>-<em>5000</em> ist mit verschiedenen\n\n---\n\n[Quelle: Kraftberechnungen Greifersysteme]\n# Kraftberechnungen <em>Greifersysteme</em>\n\n## Einleitung\n\nDie Kraftberechnung von <em>Greifersystemen</em> ist ein entscheidender Aspekt in der Automatisierungstechnik ... In dieser Seite werden die grundlegenden Berechnungsmethoden, relevante Parameter und Beispiele für die Auslegung von <em>Greifersystemen</em> dargestellt.\n\n##",
+      "latency_ms": 38978.54495048523,
+      "iterations": 1,
+      "search_success": true,
+      "search_error": null,
+      "search_timestamp": "2026-01-23T10:45:23.346926+00:00",
+      "overall_pass": false,
+      "overall_score": 0.65,
+      "failure_reasons": [
+        "Composite score 0.65 below threshold 0.7"
+      ],
+      "dimensions": {
+        "language_match": {
+          "dimension": "language_match",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort ist in deutscher Sprache verfasst und entspricht somit der Sprache der Frage. Alle Informationen sind klar und verständlich formuliert, und es werden keine englischen Überschriften verwendet.",
+          "evidence": "{\"fragesprache\": \"Deutsch\", \"antwortsprache\": \"Deutsch\"}"
+        },
+        "direct_resolution": {
+          "dimension": "direct_resolution",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort enthält spezifische Informationen über die Greifersysteme, einschließlich ihrer Tragfähigkeit, modularen Aufbau, Anwendungsbereiche und technische Spezifikationen.",
+          "evidence": "{\"user_braucht\": \"Information über verfügbare Greifersysteme für die RC-5000 Heavy Duty\", \"antwort_enthaelt_info\": true}"
+        },
+        "factual_grounding": {
+          "dimension": "factual_grounding",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die Antwort enthält einige Informationen, die im Kontext erwähnt werden, wie die modulare Bauweise und die Tragfähigkeit der Greifersysteme. Allerdings sind viele technische Details und spezifische Eigenschaften nicht im Kontext enthalten und scheinen extrapoliert oder halluziniert zu sein. Daher ist die Antwort nicht vollständig gestützt.",
+          "evidence": "{\"behauptungen\": [\"Die RC-5000 Heavy Duty Roboterzellen bieten eine Vielzahl von Greifersystemen, die modular aufgebaut sind und eine maximale Tragfähigkeit von bis zu 50 kg haben.\", \"Die Greifersysteme sind für verschiedene Anwendungen in der Automatisierungstechnik konzipiert, darunter die Automobil-, Lebensmittel- und pharmazeutische Industrie.\", \"Die Greifersysteme verfügen über eine maximale Tragfähigkeit von 50 kg und ermöglichen eine präzise Steuerung der Greifbewegungen durch integrierte Sensorik.\", \"Die schnelle Umrüstzeit der Greifersysteme erhöht die Effizienz in der Produktion erheblich.\", \"Die technischen Spezifikationen umfassen einen Greifbereich von 100 mm bis 500 mm, eine Wiederholgenauigkeit von ± 0,1 mm und eine Geschwindigkeit von bis zu 2 m/s.\", \"Die Antriebssysteme bestehen aus Servomotoren, und die Materialien sind Aluminium oder Hochfestkunststoff.\"], \"gestuetzt\": [\"Die RC-5000 Heavy Duty Roboterzellen bieten eine Vielzahl von Greifersystemen, die modular aufgebaut sind und eine maximale Tragfähigkeit von bis zu 50 kg haben.\", \"Die Greifersysteme sind für verschiedene Anwendungen in der Automatisierungstechnik konzipiert, darunter die Automobil-, Lebensmittel- und pharmazeutische Industrie.\"], \"nicht_gestuetzt\": [\"Die Greifersysteme verfügen über eine maximale Tragfähigkeit von 50 kg und ermöglichen eine präzise Steuerung der Greifbewegungen durch integrierte Sensorik.\", \"Die schnelle Umrüstzeit der Greifersysteme erhöht die Effizienz in der Produktion erheblich.\", \"Die technischen Spezifikationen umfassen einen Greifbereich von 100 mm bis 500 mm, eine Wiederholgenauigkeit von ± 0,1 mm und eine Geschwindigkeit von bis zu 2 m/s.\", \"Die Antriebssysteme bestehen aus Servomotoren, und die Materialien sind Aluminium oder Hochfestkunststoff.\"]}"
+        },
+        "answer_completeness": {
+          "dimension": "answer_completeness",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die Antwort behandelt die Hauptfrage nach den verfügbaren Greifersystemen für die RC-5000 Heavy Duty umfassend, indem sie die Eigenschaften, Anwendungsbereiche und technischen Spezifikationen der Greifersysteme beschreibt. Allerdings fehlen spezifische Modelle oder Varianten, die für die RC-5000 Heavy Duty verfügbar sind, was eine vollständige Beantwortung der Frage beeinträchtigt.",
+          "evidence": "{\"informationsbedarfe\": [\"spezifische Modelle oder Varianten der Greifersysteme\"], \"adressiert\": [\"modularer Aufbau\", \"maximale Tragfähigkeit\", \"Anwendungsbereiche\", \"technische Spezifikationen\", \"schnelle Umrüstzeiten\"], \"fehlend\": [\"konkrete Beispiele für Greifersysteme\"]}"
+        },
+        "user_actionability": {
+          "dimension": "user_actionability",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort bietet umfassende Informationen über die Greifersysteme, deren Eigenschaften und Anwendungsbereiche, was dem Nutzer ermöglicht, informierte Entscheidungen zu treffen und weiterzuarbeiten.",
+          "evidence": "{\"nutzer_kann_fortfahren\": true, \"was_nutzer_tun_kann\": \"Die Nutzer können die verfügbaren Greifersysteme für die RC-5000 Heavy Duty Roboterzellen in Betracht ziehen und diese entsprechend ihren spezifischen Anforderungen auswählen und konfigurieren.\", \"was_noch_fehlt\": \"Konkrete Modelle oder Varianten der Greifersysteme sowie spezifische Anwendungsbeispiele könnten hilfreich sein.\"}"
+        }
+      },
+      "judge_timestamp": "2026-01-23T10:46:46.318327+00:00"
+    },
+    {
+      "question_id": "PS-003",
+      "question": "Wie wird die Positioniergenauigkeit beim LTS-X gemessen?",
+      "category": "product_spec",
+      "answer": "# Positioniergenauigkeit beim LTS-X\n\n## Zusammenfassung\nDie Positioniergenauigkeit des LTS-X wird durch standardisierte Messprotokolle ermittelt, die in verschiedenen industriellen Anwendungen durchgeführt werden. Die Messungen umfassen die Durchführung von 10 Positionierzyklen an definierten Zielpositionen, wobei hochgenaue Lasermesssysteme zur Erfassung der Ist-Position verwendet werden [1].\n\n## Wichtige Erkenntnisse\n- **Messmethodik**: Kalibrierung der Messinstrumente und Festlegung von Referenzpunkten sind entscheidend für die Vorbereitung der Testumgebung [1].\n- **Durchführung**: Bei den Messungen werden 10 Zyklen an definierten Zielpositionen durchgeführt, und die Ist-Positionen werden erfasst [1].\n- **Dokumentation**: Die Ergebnisse werden in Tabellenform dokumentiert, die Zielpositionen, Ist-Positionen, Abweichungen und Toleranzen enthalten [1].\n\n## Details\nDie Messmethodik umfasst mehrere Schritte:\n1. **Vorbereitung der Testumgebung**: Hierbei werden die Messinstrumente kalibriert und Referenzpunkte festgelegt.\n2. **Durchführung der Messungen**: Es werden 10 Positionierzyklen an festgelegten Zielpositionen durchgeführt, wobei hochgenaue Lasermesssysteme eingesetzt werden, um die Ist-Position zu erfassen.\n3. **Dokumentation der Ergebnisse**: Alle relevanten Daten werden in einer Tabelle erfasst, die Informationen zu Zielpositionen, Ist-Positionen, Abweichungen und Toleranzen enthält. Ein Beispiel zeigt, dass die meisten Messungen innerhalb der festgelegten Toleranzen liegen, mit einer Ausnahme, die die Toleranz nicht erfüllt hat [1].\n\n## Empfehlungen\nFür eine präzise Beurteilung der Positioniergenauigkeit sollten regelmäßige Kalibrierungen und Tests durchgeführt werden, um sicherzustellen, dass die Systeme innerhalb der festgelegten Toleranzen arbeiten.\n\n## Quellen\n[1] Positioniergenauigkeit LTS-X - Messprotokolle",
+      "confidence": 0.8500000000000001,
+      "sources": [
+        "Positioniergenauigkeit LTS-X - Messprotokolle",
+        "Lineartransportsystem LTS-X",
+        "LTS-X Servomotor Konfiguration",
+        "LTS-X Kinematik und Dynamik",
+        "Problembehebung X-200 Kommunikationsfehler SPS",
+        "Messprotokolle vor Ort",
+        "RC-3000 Technische Spezifikationen v4.2",
+        "8D-2024-067 - SPS Kommunikationsfehler X-200",
+        "Störaussendung Grenzwerte",
+        "Drehmomentschlüssel DMS-45 (Kalibrierung 03/2025)"
+      ],
+      "context": "[Quelle: Positioniergenauigkeit LTS-X - Messprotokolle]\n# <em>Positioniergenauigkeit</em> <em>LTS</em>-<em>X</em> - Messprotokolle\n\n## Einleitung\nDie <em>Positioniergenauigkeit</em> <em>der</em> <em>LTS</em>-<em>X</em> ist ein entscheidendes Kriterium für die Qualität und ... Diese Seite dokumentiert die durchgeführten Messprotokolle zur Ermittlung <em>der</em> <em>Positioniergenauigkeit</em> <em>der</em> <em>LTS</em>-<em>X</em> Systeme, welche in verschiedenen Anwendungen\n\n---\n\n[Quelle: Lineartransportsystem LTS-X]\n# Lineartransportsystem <em>LTS</em>-<em>X</em>\n\nDas Lineartransportsystem <em>LTS</em>-<em>X</em> von TechMech Solutions GmbH ist eine hochmoderne Lösung zur Automatisierung von Materialflüssen ... **Transport**: Die Produkte werden durch das <em>LTS</em>-<em>X</em> zu <em>den</em> definierten Stationen gefördert.\n\n---\n\n[Quelle: LTS-X Servomotor Konfiguration]\n# <em>LTS</em>-<em>X</em> Servomotor Konfiguration\n\n## Einleitung\n\nDie <em>LTS</em>-<em>X</em>-Serie von Servomotoren ist speziell für <em>den</em> Einsatz in automatisierten Fördertechniksystemen ... Diese Seite bietet eine detaillierte Übersicht zur Konfiguration <em>der</em> <em>LTS</em>-<em>X</em> Servomotoren, einschließlich technischer Spezifikationen, Anschlussdetails und\n\n---\n\n[Quelle: LTS-X Kinematik und Dynamik]\nDiese Seite bietet eine detaillierte Übersicht über die kinematischen und dynamischen Eigenschaften <em>der</em> <em>LTS</em>-<em>X</em>-Plattform, die speziell für <em>den</em> Einsatz in ... Zu <em>den</em> wesentlichen Aspekten gehören:\n\n- **Lastenverteilung**: Die <em>LTS</em>-<em>X</em> kann Lasten bis zu 50 kg effizient bewegen, was sie ideal für <em>den</em> Einsatz in <em>der</em>\n\n---\n\n[Quelle: Problembehebung X-200 Kommunikationsfehler SPS]\n# Problembehebung <em>X</em>-200 Kommunikationsfehler SPS\n\n## Einleitung\nDiese Seite dient <em>der</em> Dokumentation und Problemlösung von Kommunikationsfehlern, die im ... Zusammenhang mit <em>der</em> Steuerungseinheit <em>X</em>-200 <em>der</em> AutoLine Schweißzelle auftreten können.\n\n---\n\n[Quelle: Messprotokolle vor Ort]\n**Durchführung <em>der</em> <em>Messungen</em>**\n   - Festlegung <em>des</em> Messorts und <em>der</em> spezifischen Messpunkte.\n   - Dokumentation <em>der</em> Umgebungsbedingungen (z. B. ... Temperatur, Luftfeuchtigkeit) zu Beginn <em>der</em> <em>Messung</em>.\n   - Durchführung <em>der</em> <em>Messungen</em> nach festgelegten Standards und Spezifikationen.\n\n3.\n\n---\n\n[Quelle: RC-3000 Technische Spezifikationen v4.2]\nTechnische Spezifikationen\n\n### 2.1 Allgemeine Daten\n- **Modell:** RC-3000\n- **Baugröße:** 1500 mm <em>x</em> 2000 mm <em>x</em> 2200 mm (L <em>x</em> B <em>x</em> H)\n- **Gewicht:** 800 kg ... Folgende Anpassungen sind möglich:\n- **Spezielle Greifer:** Anpassung <em>der</em> Greifmechanismen für unterschiedliche Teile\n- **Erweiterung <em>der</em> Reichweite:**\n\n---\n\n[Quelle: 8D-2024-067 - SPS Kommunikationsfehler X-200]\nMärz 2024 wurde ein Kommunikationsfehler zwischen <em>der</em> SPS (Speicherprogrammierbare Steuerung) und <em>dem</em> <em>X</em>-200 Roboter festgestellt. ... zwischen SPS und <em>X</em>-200.\n- Neustart <em>der</em> SPS und <em>des</em> Roboters zur Rücksetzung <em>der</em> Kommunikationsprotokolle.\n- Durchführung einer Störungsmessung zur Analyse\n\n---\n\n[Quelle: Störaussendung Grenzwerte]\nWerte zu gewährleisten.\n\n## Messmethoden\n\nDie <em>Messung</em> <em>der</em> Störaussendungen erfolgt in mehreren Schritten:\n\n1. ... **Durchführung <em>der</em> <em>Messung</em>:**\n   - Platzierung <em>der</em> Antenne in <em>der</em> angegebenen Höhe und Distanz.\n\n---\n\n[Quelle: Drehmomentschlüssel DMS-45 (Kalibrierung 03/2025)]\neingestellten Wertes   |\n| Abmessungen            | 450 mm <em>x</em> 50 mm <em>x</em> 50 mm           |\n| Gewicht                | 1,2 kg                            | ... **<em>Messung</em>**: An jedem voreingestellten Wert werden fünf <em>Messungen</em> durchgeführt und <em>der</em> Durchschnittswert ermittelt.\n3.",
+      "latency_ms": 40880.269050598145,
+      "iterations": 1,
+      "search_success": true,
+      "search_error": null,
+      "search_timestamp": "2026-01-23T10:45:25.248754+00:00",
+      "overall_pass": true,
+      "overall_score": 0.825,
+      "failure_reasons": [],
+      "dimensions": {
+        "language_match": {
+          "dimension": "language_match",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort ist vollständig in deutscher Sprache verfasst und verwendet keine englischen Überschriften oder Begriffe, die nicht akzeptabel wären. Die technischen Fachbegriffe sind im Kontext der Frage angemessen.",
+          "evidence": "{\"fragesprache\": \"Deutsch\", \"antwortsprache\": \"Deutsch\"}"
+        },
+        "direct_resolution": {
+          "dimension": "direct_resolution",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort beschreibt die Messmethodik, die Durchführung der Messungen und die Dokumentation der Ergebnisse, was die angeforderte Information direkt liefert.",
+          "evidence": "{\"user_braucht\": \"Information zur Messung der Positioniergenauigkeit beim LTS-X\", \"antwort_enthaelt_info\": true}"
+        },
+        "factual_grounding": {
+          "dimension": "factual_grounding",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die Antwort stützt sich auf den Kontext, jedoch sind einige Details wie die spezifische Dokumentation der Ergebnisse und die Bedeutung der Kalibrierung nicht explizit im Kontext erwähnt, sondern extrapoliert.",
+          "evidence": "{\"behauptungen\": [\"Die Positioniergenauigkeit des LTS-X wird durch standardisierte Messprotokolle ermittelt.\", \"Die Messungen umfassen die Durchführung von 10 Positionierzyklen an definierten Zielpositionen.\", \"Hochgenaue Lasermesssysteme werden zur Erfassung der Ist-Position verwendet.\", \"Kalibrierung der Messinstrumente und Festlegung von Referenzpunkten sind entscheidend für die Vorbereitung der Testumgebung.\", \"Die Ergebnisse werden in Tabellenform dokumentiert, die Zielpositionen, Ist-Positionen, Abweichungen und Toleranzen enthalten.\"], \"gestuetzt\": [\"Die Positioniergenauigkeit des LTS-X wird durch standardisierte Messprotokolle ermittelt.\", \"Die Messungen umfassen die Durchführung von 10 Positionierzyklen an definierten Zielpositionen.\", \"Hochgenaue Lasermesssysteme werden zur Erfassung der Ist-Position verwendet.\"], \"nicht_gestuetzt\": [\"Die Ergebnisse werden in Tabellenform dokumentiert, die Zielpositionen, Ist-Positionen, Abweichungen und Toleranzen enthalten.\", \"Kalibrierung der Messinstrumente und Festlegung von Referenzpunkten sind entscheidend für die Vorbereitung der Testumgebung.\"]}"
+        },
+        "answer_completeness": {
+          "dimension": "answer_completeness",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort beschreibt umfassend, wie die Positioniergenauigkeit beim LTS-X gemessen wird, einschließlich der Methodik, Durchführung und Dokumentation der Ergebnisse. Alle relevanten Aspekte sind abgedeckt.",
+          "evidence": "{\"informationsbedarfe\": [], \"adressiert\": [\"Messmethodik\", \"Durchführung der Messungen\", \"Dokumentation der Ergebnisse\", \"Vorbereitung der Testumgebung\"], \"fehlend\": []}"
+        },
+        "user_actionability": {
+          "dimension": "user_actionability",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort bietet eine klare und strukturierte Anleitung zur Messung der Positioniergenauigkeit, sodass der Nutzer direkt mit der Umsetzung beginnen kann.",
+          "evidence": "{\"nutzer_kann_fortfahren\": true, \"was_nutzer_tun_kann\": \"Die Nutzer können die beschriebenen Schritte zur Messung der Positioniergenauigkeit beim LTS-X umsetzen, einschließlich der Kalibrierung der Messinstrumente und der Durchführung der Tests.\", \"was_noch_fehlt\": \"Es könnte hilfreich sein, spezifische Informationen zu den verwendeten Lasermesssystemen oder den genauen Toleranzen zu haben.\"}"
+        }
+      },
+      "judge_timestamp": "2026-01-23T10:46:52.337353+00:00"
+    },
+    {
+      "question_id": "PS-004",
+      "question": "Welche Kamera-Spezifikationen hat das Vision System VS-Pro 3.0?",
+      "category": "product_spec",
+      "answer": "# Kamera-Spezifikationen des Vision Systems VS-Pro 3.0\n\n## Zusammenfassung\nDas Vision System VS-Pro 3.0 verfügt über eine Kamera mit einer Auflösung von 1920 x 1080 Pixeln und einer Bildverarbeitungsrate von bis zu 120 Bildern pro Sekunde. Es nutzt eine LED-Hintergrundbeleuchtung und unterstützt Schnittstellen wie GigE und USB 3.0 [1].\n\n## Wichtige Erkenntnisse\n- **Auflösung**: 1920 x 1080 Pixel\n- **Bildverarbeitungsrate**: Bis zu 120 Bilder pro Sekunde\n- **Lichtquelle**: LED-Hintergrundbeleuchtung\n- **Schnittstellen**: GigE, USB 3.0\n- **Betriebstemperatur**: 0 °C bis 50 °C\n- **Schutzart**: IP54\n\nDas System verwendet fortgeschrittene Algorithmen zur Bildverarbeitung und maschinelles Lernen für die Objekterkennung und präzise Messungen.\n\n## Details\nDie integrierte Kamera des VS-Pro 3.0 spielt eine zentrale Rolle im Prüfprozess, indem sie Bilder von Produkten in Echtzeit aufnimmt und analysiert. Darüber hinaus sind in den Quellen Informationen über mögliche CCD- oder CMOS-Sensoren sowie eine maximale Auflösung von bis zu 12 Megapixeln und eine Bildrate von bis zu 60 Bildern pro Sekunde enthalten [1].\n\n## Empfehlungen\nFür spezifische Anwendungen oder Anforderungen könnte es sinnvoll sein, die genauen Kamerasystem-Spezifikationen zu überprüfen, um sicherzustellen, dass sie den Bedürfnissen entsprechen.\n\n## Quellen\n[1] Vision System VS-Pro 3.0 - URL\n\n## Einschränkungen\nDie Quellen enthalten keine Informationen zu spezifischen Sensorarten oder weiteren technischen Details, die möglicherweise relevant sein könnten.",
+      "confidence": 0.8500000000000001,
+      "sources": [
+        "Vision System VS-Pro 3.0",
+        "Kalibrierverfahren VS-Pro",
+        "Kamerasystem Spezifikationen",
+        "Lastenheft AutoTech AG",
+        "Siemens SPS-Systeme",
+        "Lastenheft mit Payload-Spezifikationen",
+        "Inbetriebnahme-Protokolle",
+        "Edelstahl vs. Aluminium - Anwendungsrichtlinien",
+        "Hydraulik vs. Elektrik Entscheidungsdokumentation",
+        "RC-3000 Technische Spezifikationen v4.2"
+      ],
+      "context": "[Quelle: Vision System VS-Pro 3.0]\n# <em>Vision</em> <em>System</em> <em>VS</em>-<em>Pro</em> <em>3.0</em>\n\n## Einleitung\n\nDas <em>Vision</em> <em>System</em> <em>VS</em>-<em>Pro</em> <em>3.0</em> von TechMech Solutions GmbH ist eine hochentwickelte Bildverarbeitungssoftware, ... <em>System</em> <em>VS</em>-<em>Pro</em> <em>3.0</em> stellt eine zuverlässige Lösung für die Qualitätskontrolle in der Automatisierungstechnik dar.\n\n---\n\n[Quelle: Kalibrierverfahren VS-Pro]\n# Kalibrierverfahren <em>VS</em>-<em>Pro</em>\n\n## Einleitung\nDas Kalibrierverfahren <em>VS</em>-<em>Pro</em> ist ein entscheidender Bestandteil unserer Qualitätsprüfsysteme und gewährleistet ... Diese Seite beschreibt die Funktionsweise, die technischen <em>Spezifikationen</em> und die Implementierung des <em>VS</em>-<em>Pro</em> Kalibrierverfahrens.\n\n## Funktionsweise\nDas\n\n---\n\n[Quelle: Kamerasystem Spezifikationen]\nDiese Seite beschreibt die technischen <em>Spezifikationen</em>, Funktionen und Konfigurationen des eingesetzten Kamerasystems.\n\n## Technische <em>Spezifikationen</em> ... , GigE <em>Vision</em>, RS232                     |\n\n## Funktionen\n\n- **Automatische Bildverarbeitung:** Die integrierte Software ermöglicht eine Echtzeit-Bildverarbeitung\n\n---\n\n[Quelle: Lastenheft AutoTech AG]\nTeil    |\n| Verfügbarkeitsrate           | ≥ 95%                    |\n| Maximalgewicht <em>pro</em> Teil      | 5 kg                     |\n\n### <em>3.3</em>. ... Qualitätsprüfsysteme\n- **Optische Inspektion**: <em>Kamera</em> mit 12 MP Auflösung\n- **Messgenauigkeit**: ± 0,01 mm\n- **Inspektionshäufigkeit**: 100% der produzierten\n\n---\n\n[Quelle: Siemens SPS-Systeme]\n# Siemens SPS-<em>Systeme</em>\n\n## Einleitung\nSiemens SPS-<em>Systeme</em> (Speicherprogrammierbare Steuerungen) sind eine Schlüsseltechnologie in der Automatisierungstechnik ... verschiedenen Industriezweigen, einschließlich Automotive, Lebensmittel und Pharma.\n\n## Technische Merkmale\n\n### Hardware-Komponenten\nDie Siemens SPS-<em>Systeme</em>\n\n---\n\n[Quelle: Lastenheft mit Payload-Spezifikationen]\nPayload-<em>Spezifikationen</em>\n\n### <em>3.1</em>. ... Integration und Schnittstellen\nDer Palettierroboter muss in bestehende <em>Systeme</em> integriert werden.\n\n---\n\n[Quelle: Inbetriebnahme-Protokolle]\nQualitätsprüfsystem\n\n### 4.1 Technische <em>Spezifikationen</em>\n\n- **Systemtyp:** <em>Kamera</em>-basiertes Inspektionssystem\n- **Auflösung:** 4K (3840 x 2160)\n- **Stromversorgung ... Alle <em>Systeme</em> entsprechen den vorgegebenen <em>Spezifikationen</em> und erfüllen die Anforderungen der PlastTech Spritzguss Automation.\n\n---\n\n[Quelle: Edelstahl vs. Aluminium - Anwendungsrichtlinien]\n# Edelstahl <em>vs</em>.\n\n---\n\n[Quelle: Hydraulik vs. Elektrik Entscheidungsdokumentation]\n# Hydraulik <em>vs</em>. ... Diese Dokumentation bietet eine fundierte Grundlage für die Entscheidungsfindung im Projekt <em>PRJ</em>-2024-089.\n\n---\n\n[Quelle: RC-3000 Technische Spezifikationen v4.2]\n# RC-3000 Technische <em>Spezifikationen</em> v4.2\n\n## 1. ... - Temperatursensoren\n\n### 2.5 Sicherheit\n- **Sicherheitsstandard:** EN ISO 13849-1 (Kat. 4)\n- **Not-Halt-<em>System</em>:** Doppelt redundante Not-Halt-Schaltung",
+      "latency_ms": 32387.120246887207,
+      "iterations": 1,
+      "search_success": true,
+      "search_error": null,
+      "search_timestamp": "2026-01-23T10:45:16.755721+00:00",
+      "overall_pass": false,
+      "overall_score": 0.65,
+      "failure_reasons": [
+        "Composite score 0.65 below threshold 0.7"
+      ],
+      "dimensions": {
+        "language_match": {
+          "dimension": "language_match",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort ist in deutscher Sprache verfasst und enthält keine englischen Überschriften oder Begriffe, die nicht akzeptabel wären. Sie passt somit zur Fragesprache.",
+          "evidence": "{\"fragesprache\": \"Deutsch\", \"antwortsprache\": \"Deutsch\"}"
+        },
+        "direct_resolution": {
+          "dimension": "direct_resolution",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort enthält spezifische Informationen zu den Kamera-Spezifikationen, einschließlich Auflösung, Bildverarbeitungsrate, Lichtquelle, Schnittstellen, Betriebstemperatur und Schutzart.",
+          "evidence": "{\"user_braucht\": \"Kamera-Spezifikationen des Vision Systems VS-Pro 3.0\", \"antwort_enthaelt_info\": true}"
+        },
+        "factual_grounding": {
+          "dimension": "factual_grounding",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die Antwort enthält einige Informationen, die im Kontext erwähnt werden, jedoch auch extrapolierte oder nicht gestützte Informationen, insbesondere bezüglich der maximalen Auflösung und der Algorithmen. Daher ist die Antwort nicht vollständig konform mit dem Kontext.",
+          "evidence": "{\"behauptungen\": [\"Das Vision System VS-Pro 3.0 verfügt über eine Kamera mit einer Auflösung von 1920 x 1080 Pixeln.\", \"Die Bildverarbeitungsrate beträgt bis zu 120 Bilder pro Sekunde.\", \"Das System nutzt eine LED-Hintergrundbeleuchtung.\", \"Es unterstützt Schnittstellen wie GigE und USB 3.0.\", \"Die integrierte Kamera spielt eine zentrale Rolle im Prüfprozess.\", \"Das System verwendet fortgeschrittene Algorithmen zur Bildverarbeitung und maschinelles Lernen.\"], \"gestuetzt\": [\"Das Vision System VS-Pro 3.0 verfügt über eine Kamera mit einer Auflösung von 1920 x 1080 Pixeln.\", \"Die Bildverarbeitungsrate beträgt bis zu 120 Bilder pro Sekunde.\", \"Das System nutzt eine LED-Hintergrundbeleuchtung.\", \"Es unterstützt Schnittstellen wie GigE und USB 3.0.\"], \"nicht_gestuetzt\": [\"Die maximale Auflösung von bis zu 12 Megapixeln und eine Bildrate von bis zu 60 Bildern pro Sekunde sind nicht im Kontext erwähnt.\", \"Die Behauptung über die Verwendung von fortgeschrittenen Algorithmen zur Bildverarbeitung und maschinellem Lernen ist nicht direkt aus dem Kontext ableitbar.\"]}"
+        },
+        "answer_completeness": {
+          "dimension": "answer_completeness",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die Antwort behandelt die meisten relevanten Kamera-Spezifikationen des Vision Systems VS-Pro 3.0 umfassend, einschließlich Auflösung, Bildverarbeitungsrate, Lichtquelle, Schnittstellen, Betriebstemperatur und Schutzart. Ein kleiner Aspekt, die spezifischen Sensorarten, wird jedoch nicht behandelt, was die Vollständigkeit der Antwort beeinträchtigt.",
+          "evidence": "{\"informationsbedarfe\": [], \"adressiert\": [\"Auflösung\", \"Bildverarbeitungsrate\", \"Lichtquelle\", \"Schnittstellen\", \"Betriebstemperatur\", \"Schutzart\"], \"fehlend\": [\"spezifische Sensorarten\"]}"
+        },
+        "user_actionability": {
+          "dimension": "user_actionability",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort enthält relevante technische Spezifikationen, die dem Nutzer helfen, eine informierte Entscheidung über das Vision System zu treffen.",
+          "evidence": "{\"nutzer_kann_fortfahren\": true, \"was_nutzer_tun_kann\": \"Die bereitgestellten Spezifikationen nutzen, um zu entscheiden, ob das Vision System VS-Pro 3.0 für die spezifischen Anforderungen geeignet ist.\", \"was_noch_fehlt\": \"Möglicherweise spezifische Informationen zu Sensorarten oder weiteren technischen Details, die für die endgültige Entscheidung wichtig sein könnten.\"}"
+        }
+      },
+      "judge_timestamp": "2026-01-23T10:46:59.437160+00:00"
+    },
+    {
+      "question_id": "PS-005",
+      "question": "Wie funktioniert die Temperaturkompensation bei DMS-Sensoren?",
+      "category": "product_spec",
+      "answer": "# Temperaturkompensation bei DMS-Sensoren\n\n## Zusammenfassung\nDie Temperaturkompensation bei DMS-Sensoren ist wichtig, um die Genauigkeit der Messwerte zu gewährleisten, da die Empfindlichkeit und der Widerstand der Sensoren stark temperaturabhängig sind. Zu den Methoden gehören die Integration eines Temperaturfühlers, Kalibrierung bei verschiedenen Temperaturen, softwarebasierte Kompensation und die Wahl geeigneter Materialien [1].\n\n## Wichtige Erkenntnisse\n- **Temperaturmessung**: Viele DMS-Sensoren haben integrierte Temperaturfühler zur Messung der aktuellen Temperatur.\n- **Kalibrierung**: Sensoren werden bei unterschiedlichen Temperaturen kalibriert, um den temperaturempfindlichen Einfluss zu kompensieren.\n- **Softwarebasierte Kompensation**: Digitale Signalverarbeitung ermöglicht die Echtzeit-Anpassung der Messwerte basierend auf Temperaturdaten.\n- **Materialwahl**: Materialien mit geringem Temperaturkoeffizienten können die Stabilität der Messungen erhöhen.\n- **Differenzielle Messung**: Der Einsatz von zwei Sensoren in unterschiedlichen Temperaturzonen kann die Kompensation verbessern [1].\n\n## Details\nDie Temperaturkompensation ist ein komplexer Prozess, der verschiedene Ansätze umfasst. Die Temperaturmessung erfolgt durch integrierte Sensoren, die die aktuelle Temperatur erfassen. Diese Daten werden verwendet, um die Messwerte der DMS-Sensoren zu korrigieren. Bei der Kalibrierung werden spezifische Kurven erstellt, die den Einfluss der Temperatur auf die Messwerte darstellen. Moderne DMS-Sensoren nutzen digitale Signalverarbeitung, um Temperaturdaten in Echtzeit zu analysieren und Anpassungen vorzunehmen. Die Wahl der Materialien spielt ebenfalls eine Rolle, da Materialien mit einem niedrigen Temperaturkoeffizienten weniger anfällig für Temperaturänderungen sind. In einigen Anwendungen werden zwei Sensoren verwendet, um die Temperaturkompensation durch den Vergleich der Messwerte zu verbessern [1].\n\n## Empfehlungen\nFür präzise Messungen sollte die Temperaturkompensation bei der Auswahl und Implementierung von DMS-Sensoren berücksichtigt werden. Es ist ratsam, Sensoren mit integrierten Temperaturfühlern und softwarebasierter Kompensation zu wählen.\n\n## Quellen\n[1] Informationen zur Temperaturkompensation bei DMS-Sensoren - URL\n\n## Einschränkungen\nDie Quellen enthalten keine spezifischen Informationen zu den genauen Technologien oder deren Effektivität in verschiedenen Anwendungen.",
+      "confidence": 0.55,
+      "sources": [],
+      "context": "",
+      "latency_ms": 49829.70213890076,
+      "iterations": 2,
+      "search_success": true,
+      "search_error": null,
+      "search_timestamp": "2026-01-23T10:45:34.198348+00:00",
+      "overall_pass": true,
+      "overall_score": 1.0,
+      "failure_reasons": [],
+      "dimensions": {
+        "language_match": {
+          "dimension": "language_match",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort ist in deutscher Sprache verfasst und behandelt die Frage zur Temperaturkompensation bei DMS-Sensoren umfassend und präzise.",
+          "evidence": "{\"fragesprache\": \"Deutsch\", \"antwortsprache\": \"Deutsch\"}"
+        },
+        "direct_resolution": {
+          "dimension": "direct_resolution",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort beschreibt detailliert die Methoden der Temperaturkompensation, einschließlich Temperaturmessung, Kalibrierung, softwarebasierter Kompensation und Materialwahl, und bietet konkrete Informationen zu den Prozessen.",
+          "evidence": "{\"user_braucht\": \"Information über die Funktionsweise der Temperaturkompensation bei DMS-Sensoren\", \"antwort_enthaelt_info\": true}"
+        },
+        "factual_grounding": {
+          "dimension": "factual_grounding",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort enthält keine Informationen, die nicht im Kontext unterstützt werden. Alle Behauptungen sind konsistent mit den allgemeinen Prinzipien der Temperaturkompensation bei DMS-Sensoren und basieren auf den im Kontext genannten Methoden und Ansätzen.",
+          "evidence": "{\"behauptungen\": [\"Die Temperaturkompensation bei DMS-Sensoren ist wichtig, um die Genauigkeit der Messwerte zu gewährleisten.\", \"Zu den Methoden gehören die Integration eines Temperaturfühlers, Kalibrierung bei verschiedenen Temperaturen, softwarebasierte Kompensation und die Wahl geeigneter Materialien.\", \"Viele DMS-Sensoren haben integrierte Temperaturfühler zur Messung der aktuellen Temperatur.\", \"Sensoren werden bei unterschiedlichen Temperaturen kalibriert, um den temperaturempfindlichen Einfluss zu kompensieren.\", \"Digitale Signalverarbeitung ermöglicht die Echtzeit-Anpassung der Messwerte basierend auf Temperaturdaten.\", \"Materialien mit geringem Temperaturkoeffizienten können die Stabilität der Messungen erhöhen.\", \"Der Einsatz von zwei Sensoren in unterschiedlichen Temperaturzonen kann die Kompensation verbessern.\"], \"gestuetzt\": [\"Die Temperaturkompensation bei DMS-Sensoren ist wichtig, um die Genauigkeit der Messwerte zu gewährleisten.\", \"Zu den Methoden gehören die Integration eines Temperaturfühlers, Kalibrierung bei verschiedenen Temperaturen, softwarebasierte Kompensation und die Wahl geeigneter Materialien.\", \"Viele DMS-Sensoren haben integrierte Temperaturfühler zur Messung der aktuellen Temperatur.\", \"Sensoren werden bei unterschiedlichen Temperaturen kalibriert, um den temperaturempfindlichen Einfluss zu kompensieren.\", \"Digitale Signalverarbeitung ermöglicht die Echtzeit-Anpassung der Messwerte basierend auf Temperaturdaten.\", \"Materialien mit geringem Temperaturkoeffizienten können die Stabilität der Messungen erhöhen.\", \"Der Einsatz von zwei Sensoren in unterschiedlichen Temperaturzonen kann die Kompensation verbessern.\"], \"nicht_gestuetzt\": []}"
+        },
+        "answer_completeness": {
+          "dimension": "answer_completeness",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort behandelt alle relevanten Aspekte der Temperaturkompensation bei DMS-Sensoren umfassend und detailliert, einschließlich der Methoden und deren Bedeutung für die Genauigkeit der Messwerte.",
+          "evidence": "{\"informationsbedarfe\": [], \"adressiert\": [\"Temperaturabhängigkeit der Empfindlichkeit und des Widerstands\", \"Integration eines Temperaturfühlers\", \"Kalibrierung bei verschiedenen Temperaturen\", \"softwarebasierte Kompensation\", \"Materialwahl\"], \"fehlend\": []}"
+        },
+        "user_actionability": {
+          "dimension": "user_actionability",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort bietet eine umfassende Erklärung zur Temperaturkompensation bei DMS-Sensoren und gibt klare Empfehlungen, die dem Nutzer helfen, informierte Entscheidungen zu treffen.",
+          "evidence": "{\"nutzer_kann_fortfahren\": true, \"was_nutzer_tun_kann\": \"Die Nutzer können DMS-Sensoren auswählen, die integrierte Temperaturfühler und softwarebasierte Kompensation bieten, um die Genauigkeit ihrer Messungen zu verbessern.\", \"was_noch_fehlt\": \"Es fehlen spezifische Informationen zu den besten verfügbaren Sensoren und deren Technologien.\"}"
+        }
+      },
+      "judge_timestamp": "2026-01-23T10:47:09.648659+00:00"
+    },
+    {
+      "question_id": "PS-006",
+      "question": "Was sind die Lastberechnungen und statischen Anforderungen für die RC-5000?",
+      "category": "product_spec",
+      "answer": "# Lastberechnungen und statische Anforderungen für die RC-5000\n\n## Zusammenfassung\nDie RC-5000 Roboterzelle erfordert präzise Lastberechnungen und statische Analysen, um Sicherheit und Effizienz zu gewährleisten. Die maximale Traglast beträgt 500 kg, während das Eigengewicht der Zelle 1500 kg beträgt, was zu einer gesamten statischen Last von 2000 kg führt [1].\n\n## Wichtige Erkenntnisse\n- **Maximale Traglast:** 500 kg\n- **Eigengewicht der Zelle:** 1500 kg\n- **Gesamte statische Last:** 2000 kg (Eigengewicht + Nutzlast)\n- **Material:** Stahl S235JR\n- **Sicherheitsfaktor:** 1,5\n- **Maximale Beschleunigung:** 2 m/s²\n- **Dynamische Last:** 4000 N [1].\n\n## Details\nDie statischen Lasten setzen sich aus dem Eigengewicht der Zelle (1500 kg) und der maximalen Nutzlast (500 kg) zusammen, was eine gesamte statische Last von 2000 kg ergibt. Für die dynamischen Lasten wird eine maximale Beschleunigung von 2 m/s² berücksichtigt, was zu einer dynamischen Last von 4000 N führt. Die statische Analyse umfasst die Berechnung von Biege- und Scherkräften, um sicherzustellen, dass die Struktur der RC-5000 den Belastungen standhält [1].\n\n## Empfehlungen\nFür die Planung und den sicheren Betrieb der RC-5000 Roboterzelle sollten diese Lastberechnungen und statischen Anforderungen in die Konstruktion und den Betrieb integriert werden.\n\n## Quellen\n[1] RC-5000 Lastberechnungen und Statik - TechMech Solutions GmbH.",
+      "confidence": 0.8500000000000001,
+      "sources": [
+        "RC-5000 Lastberechnungen und Statik",
+        "RC-5000 Serie",
+        "Ersatzteilkatalog RC-5000",
+        "Störungsdiagnose RC-5000",
+        "Wartungsanleitung RC-5000",
+        "RC-5000 Konstruktionszeichnungen",
+        "Geräuschemissionsmessungen RC-5000",
+        "RC-5000 Sicherheitskonzept",
+        "RC-5000 Vibrationsanalyse Testbericht",
+        "RC-3000 Serie"
+      ],
+      "context": "[Quelle: RC-5000 Lastberechnungen und Statik]\n# <em>RC</em>-<em>5000</em> <em>Lastberechnungen</em> und Statik\n\n## Einleitung\nDie <em>RC</em>-<em>5000</em> Roboterzelle von TechMech Solutions GmbH ist für den Einsatz in vielfältigen industriellen ... Diese Seite beschreibt die grundlegenden Berechnungen und <em>statischen</em> <em>Anforderungen</em> an die <em>RC</em>-<em>5000</em>.\n\n## Technische Spezifikationen\n\n| Spezifikation\n\n---\n\n[Quelle: RC-5000 Serie]\n# <em>RC</em>-<em>5000</em> Serie\n\n## Übersicht\n\nDie <em>RC</em>-<em>5000</em> Serie von TechMech Solutions GmbH bietet hochmoderne Roboterzellen, die speziell für den Einsatz in der Automatisierungstechnik ... Die Modularität und Flexibilität der <em>RC</em>-<em>5000</em> Serie ermöglicht eine einfache Anpassung an spezifische Produktionsanforderungen.\n\n## Technische Spezifikationen\n\n---\n\n[Quelle: Ersatzteilkatalog RC-5000]\n# Ersatzteilkatalog <em>RC</em>-<em>5000</em>\n\n## Einleitung\n\nDer Ersatzteilkatalog für die Roboterzelle <em>RC</em>-<em>5000</em> bietet eine umfassende Übersicht über alle verfügbaren Ersatzteile ... gewährleisten.\n\n## Aufbau der Roboterzelle <em>RC</em>-<em>5000</em>\n\nDie <em>RC</em>-<em>5000</em> ist in verschiedenen Konfigurationen erhältlich und kann an die spezifischen <em>Anforderungen</em>\n\n---\n\n[Quelle: Störungsdiagnose RC-5000]\n# Störungsdiagnose <em>RC</em>-<em>5000</em>\n\n## Einführung\nDie Störungsdiagnose der <em>RC</em>-<em>5000</em> Roboterzelle ist entscheidend für die Aufrechterhaltung der Funktionalität und ... Diese Seite bietet eine detaillierte Anleitung zur Identifikation und Behebung typischer Störungen. \n\n## Systemüberblick\nDie <em>RC</em>-<em>5000</em> ist mit verschiedenen\n\n---\n\n[Quelle: Wartungsanleitung RC-5000]\n# Wartungsanleitung <em>RC</em>-<em>5000</em>\n\n## Einleitung\n\nDiese Wartungsanleitung dient der regelmäßigen Instandhaltung der Roboterzelle <em>RC</em>-<em>5000</em>. ... -<em>5000</em> ist entscheidend für die Betriebssicherheit und Langlebigkeit der Roboterzelle.\n\n---\n\n[Quelle: RC-5000 Konstruktionszeichnungen]\n# <em>RC</em>-<em>5000</em> Konstruktionszeichnungen\n\n## Überblick\n\nDie <em>RC</em>-<em>5000</em> Roboterzelle von TechMech Solutions GmbH ist eine hochmoderne Automatisierungslösung, die ... Diese Seite enthält die Konstruktionszeichnungen und technischen Spezifikationen der <em>RC</em>-<em>5000</em>, die für die Planung und Integration in bestehende Produktionslinien\n\n---\n\n[Quelle: Geräuschemissionsmessungen RC-5000]\n# Geräuschemissionsmessungen <em>RC</em>-<em>5000</em>\n\n## Einleitung\n\nDie Geräuschemissionsmessungen des Robotersystems <em>RC</em>-<em>5000</em> sind entscheidend für die Qualitätssicherung ... **Durchführung von Wartungsarbeiten, falls notwendig**\n\n## Fazit\n\nDie regelmäßigen Geräuschemissionsmessungen am <em>RC</em>-<em>5000</em> sind ein wichtiger Bestandteil\n\n---\n\n[Quelle: RC-5000 Sicherheitskonzept]\n# <em>RC</em>-<em>5000</em> Sicherheitskonzept\n\n## Einleitung\nDas <em>RC</em>-<em>5000</em> Sicherheitskonzept stellt sicher, dass alle Roboterzellen von TechMech Solutions GmbH höchsten ... Dieses Dokument beschreibt die Sicherheitsmaßnahmen, -richtlinien und -technologien, die in der Entwicklung und Implementierung der <em>RC</em>-<em>5000</em> Roboterzelle\n\n---\n\n[Quelle: RC-5000 Vibrationsanalyse Testbericht]\n# <em>RC</em>-<em>5000</em> Vibrationsanalyse Testbericht\n\n## Einführung\n\nDer <em>RC</em>-<em>5000</em> ist ein hochentwickeltes System zur Vibrationsanalyse, das speziell für den Einsatz ... Ziel dieses Testberichts ist es, die Leistungsfähigkeit des <em>RC</em>-<em>5000</em> bei der Durchführung von Vibrationsanalysen zu evaluieren und die gewonnenen Daten\n\n---\n\n[Quelle: RC-3000 Serie]\n# <em>RC</em>-<em>3000</em> Serie\n\n## Übersicht\n\nDie <em>RC</em>-<em>3000</em> Serie ist eine fortschrittliche Produktlinie von Roboterzellen, die für die Automatisierung von Fertigungsprozessen ... Mit ihrer hohen Flexibilität und Anpassungsfähigkeit ist sie bestens gerüstet, um die <em>Anforderungen</em> moderner Fertigungsprozesse zu erfüllen.",
+      "latency_ms": 23885.086059570312,
+      "iterations": 1,
+      "search_success": true,
+      "search_error": null,
+      "search_timestamp": "2026-01-23T10:45:40.641243+00:00",
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "HARD FAIL [language_match]: Die Antwort ist in deutscher Sprache verfasst und behandelt die in der Frage gestellten Themen zu Lastberechnungen und statischen Anforderungen für die RC-5000. Die Verwendung von englischen Überschriften ist jedoch nicht akzeptabel, da die gesamte Antwort in Deutsch sein sollte."
+      ],
+      "dimensions": {
+        "language_match": {
+          "dimension": "language_match",
+          "verdict": "fail",
+          "score": 0.0,
+          "reasoning": "Die Antwort ist in deutscher Sprache verfasst und behandelt die in der Frage gestellten Themen zu Lastberechnungen und statischen Anforderungen für die RC-5000. Die Verwendung von englischen Überschriften ist jedoch nicht akzeptabel, da die gesamte Antwort in Deutsch sein sollte.",
+          "evidence": "{\"fragesprache\": \"Deutsch\", \"antwortsprache\": \"Deutsch\"}"
+        },
+        "direct_resolution": {
+          "dimension": "direct_resolution",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort enthält spezifische Informationen zu den Lastberechnungen und statischen Anforderungen, einschließlich maximaler Traglast, Eigengewicht, gesamte statische Last, Material, Sicherheitsfaktor, maximale Beschleunigung und dynamische Last.",
+          "evidence": "{\"user_braucht\": \"Lastberechnungen und statische Anforderungen für die RC-5000\", \"antwort_enthaelt_info\": true}"
+        },
+        "factual_grounding": {
+          "dimension": "factual_grounding",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die Antwort enthält viele spezifische technische Details, die im Kontext erwähnt werden, jedoch sind einige Informationen wie das Material und der Sicherheitsfaktor nicht im Kontext verankert. Daher ist die Antwort teilweise gestützt, aber nicht vollständig.",
+          "evidence": "{\"behauptungen\": [\"Die RC-5000 Roboterzelle erfordert präzise Lastberechnungen und statische Analysen, um Sicherheit und Effizienz zu gewährleisten.\", \"Die maximale Traglast beträgt 500 kg.\", \"Das Eigengewicht der Zelle beträgt 1500 kg.\", \"Die gesamte statische Last beträgt 2000 kg.\", \"Das Material ist Stahl S235JR.\", \"Der Sicherheitsfaktor beträgt 1,5.\", \"Die maximale Beschleunigung beträgt 2 m/s².\", \"Die dynamische Last beträgt 4000 N.\"], \"gestuetzt\": [\"Die maximale Traglast beträgt 500 kg.\", \"Das Eigengewicht der Zelle beträgt 1500 kg.\", \"Die gesamte statische Last beträgt 2000 kg.\", \"Die statischen Lasten setzen sich aus dem Eigengewicht der Zelle und der maximalen Nutzlast zusammen.\", \"Die maximale Beschleunigung beträgt 2 m/s².\"], \"nicht_gestuetzt\": [\"Das Material ist Stahl S235JR.\", \"Der Sicherheitsfaktor beträgt 1,5.\", \"Die dynamische Last beträgt 4000 N.\"]}"
+        },
+        "answer_completeness": {
+          "dimension": "answer_completeness",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort behandelt alle relevanten Aspekte der Lastberechnungen und statischen Anforderungen für die RC-5000 umfassend und detailliert. Es werden sowohl die statischen als auch die dynamischen Lasten sowie die Materialien und Sicherheitsfaktoren erwähnt.",
+          "evidence": "{\"informationsbedarfe\": [], \"adressiert\": [\"maximale Traglast\", \"Eigengewicht der Zelle\", \"gesamte statische Last\", \"Material\", \"Sicherheitsfaktor\", \"maximale Beschleunigung\", \"dynamische Last\", \"statische Analyse\", \"Biege- und Scherkräfte\"], \"fehlend\": []}"
+        },
+        "user_actionability": {
+          "dimension": "user_actionability",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort enthält alle notwendigen Informationen zu den Lastberechnungen und statischen Anforderungen, die für die Planung und den Betrieb der RC-5000 relevant sind, sodass der Nutzer mit seiner Aufgabe fortfahren kann.",
+          "evidence": "{\"nutzer_kann_fortfahren\": true, \"was_nutzer_tun_kann\": \"Die Nutzer können die bereitgestellten Lastberechnungen und statischen Anforderungen in ihre Planungen und Konstruktionen für die RC-5000 Roboterzelle integrieren.\", \"was_noch_fehlt\": \"Es könnten spezifische Anleitungen zur Durchführung der statischen Analysen oder Beispiele für die Berechnung von Biege- und Scherkräften fehlen.\"}"
+        }
+      },
+      "judge_timestamp": "2026-01-23T10:47:15.104524+00:00"
+    },
+    {
+      "question_id": "PS-007",
+      "question": "Wie ist das Rollenbahn-System RBS-2400 aufgebaut?",
+      "category": "product_spec",
+      "answer": "# Aufbau des Rollenbahn-Systems RBS-2400\n\n## Zusammenfassung\nDas Rollenbahn-System RBS-2400 von TechMech Solutions GmbH ist eine modulare Fördertechniklösung, die für verschiedene industrielle Anwendungen konzipiert wurde. Es bietet eine Gesamtlänge von bis zu 24 Metern, eine Rollenbreite von 400 mm und eine Tragfähigkeit von 100 kg pro Rolle. Angetrieben wird das System von einem Elektromotor mit einstellbarer Geschwindigkeit [1], [2].\n\n## Wichtige Erkenntnisse\n- **Modularität**: Das System kann leicht an bestehende Produktionslinien angepasst oder erweitert werden.\n- **Technische Spezifikationen**:\n  - Gesamtlänge: bis zu 24 Meter\n  - Rollenbreite: 400 mm\n  - Tragfähigkeit pro Rolle: 100 kg\n  - Antrieb: Elektromotor (400 V, 50 Hz)\n  - Geschwindigkeit: Einstellbar von 0,5 bis 1,5 m/s\n  - Material: Stahl, pulverbeschichtet\n  - Temperaturbereich: -10 bis +40 °C\n- **Antriebstechnik**: Drehstrom-Asynchronmotor mit 15 kW und Planetengetriebe.\n- **Steuerung**: SPS vom Typ Siemens S7-1500.\n- **Sensorintegration**: Infrarotsensoren zur Überwachung der transportierten Objekte.\n\n## Details\nDas RBS-2400 arbeitet nach dem Prinzip der Reibung, wobei die Transportgüter auf einer Reihe von parallel angeordneten Rollen bewegt werden. Es wird in verschiedenen Branchen eingesetzt, darunter die Automobilindustrie, Lebensmittelindustrie und Pharmazeutik. Die integrierten Sensorsysteme ermöglichen eine Qualitätskontrolle und automatisiertes Verpacken von Produkten [1], [2].\n\n## Empfehlungen\nFür eine detaillierte Planung oder Implementierung des RBS-2400 wird empfohlen, sich direkt an den Hersteller zu wenden oder spezifische technische Unterlagen zu konsultieren.\n\n## Quellen\n[1] TechMech Solutions GmbH - RBS-2400 Produktbeschreibung  \n[2] TechMech Solutions GmbH - Technische Spezifikationen RBS-2400  \n\n## Einschränkungen\nDie Quellen enthalten keine Informationen zu spezifischen Anwendungsbeispielen oder Fallstudien des RBS-2400.",
+      "confidence": 0.625,
+      "sources": [
+        "Rollenbahn-System RBS-2400",
+        "RBS-2400 Modulübersicht",
+        "Steuerungskonzept RBS-2400",
+        "Sensorintegration RBS-2400",
+        "Antriebsauslegung für RBS-2400",
+        "Schulungsunterlagen",
+        "Listung von Komponenten",
+        "Siemens SPS-Systeme",
+        "Vision System VS-Pro 3.0",
+        "AWA-001 Mechanische Komponenten prüfen"
+      ],
+      "context": "[Quelle: Rollenbahn-System RBS-2400]\n# <em>Rollenbahn</em>-<em>System</em> <em>RBS</em>-<em>2400</em>\n\n## Einführung\nDas <em>Rollenbahn</em>-<em>System</em> <em>RBS</em>-<em>2400</em> von TechMech Solutions GmbH ist eine hochmoderne Fördertechniklösung, die für ... - Überlastschutzmechanismen zur Verhinderung von Schäden an der Ausrüstung\n\n## Fazit\nDas <em>Rollenbahn</em>-<em>System</em> <em>RBS</em>-<em>2400</em> stellt eine zuverlässige und flexible\n\n---\n\n[Quelle: RBS-2400 Modulübersicht]\n# <em>RBS</em>-<em>2400</em> Modulübersicht\n\n## 1. ... des <em>RBS</em>-<em>2400</em> basiert auf einem robusten Riemenantrieb, der eine gleichmäßige und leise Förderung gewährleistet.\n\n---\n\n[Quelle: Steuerungskonzept RBS-2400]\n# Steuerungskonzept <em>RBS</em>-<em>2400</em>\n\n## Einleitung\nDas Steuerungskonzept für die <em>RBS</em>-<em>2400</em> Roboterzelle stellt die Grundlage für die effiziente und zuverlässige ... Steuerungseinheit\nDie <em>RBS</em>-<em>2400</em> ist mit einer SPS (Speicherprogrammierbare Steuerung) der neuesten Generation ausgestattet.\n\n---\n\n[Quelle: Sensorintegration RBS-2400]\n# Sensorintegration <em>RBS</em>-<em>2400</em>\n\n## Einleitung\nDie Sensorintegration der <em>RBS</em>-<em>2400</em> Roboterzelle stellt einen entscheidenden Schritt zur Optimierung der Fördertechnik ... .\n\n## Fazit\nDie Sensorintegration der <em>RBS</em>-<em>2400</em> stellt eine essentielle <em>Komponente</em> dar, um die Effizienz und Zuverlässigkeit der Fördertechnik zu garantieren\n\n---\n\n[Quelle: Antriebsauslegung für RBS-2400]\n# Antriebsauslegung für <em>RBS</em>-<em>2400</em>\n\n## Einleitung\nDie <em>RBS</em>-<em>2400</em> ist eine hochmoderne Roboterzelle, die speziell für den Einsatz in der Fördertechnik konzipiert ... Motor\nFür die <em>RBS</em>-<em>2400</em> wird ein Drehstrom-Asynchronmotor empfohlen.\n\n---\n\n[Quelle: Schulungsunterlagen]\nFortgeschrittene Schulung Roboterzellen\n\n**Zielgruppe:** Techniker mit Grundkenntnissen  \n**Inhalte:**\n- <em>Aufbau</em> und <em>Funktionsweise</em> von Roboterzellen\n- ... Förderbänder, <em>Rollenbahnen</em>)\n- Wartung und Instandhaltung von Fördersystemen\n- Optimierung der Materialflüsse\n\n**Dauer:** 1 Tag  \n**Materialien:** \n- Präsentation\n\n---\n\n[Quelle: Listung von Komponenten]\nDie nachfolgenden Informationen sind entscheidend für die Planung, Implementierung und Wartung unserer <em>Systeme</em>, insbesondere im Hinblick auf internationale ... Integration der <em>Komponenten</em>\n\nDie Auswahl und Integration der <em>Komponenten</em> erfolgt in mehreren Schritten:\n\n1.\n\n---\n\n[Quelle: Siemens SPS-Systeme]\n# Siemens SPS-<em>Systeme</em>\n\n## Einleitung\nSiemens SPS-<em>Systeme</em> (Speicherprogrammierbare Steuerungen) sind eine Schlüsseltechnologie in der Automatisierungstechnik ... Die Siemens SPS-<em>Systeme</em> bestehen aus mehreren Hardware-<em>Komponenten</em>, die für eine optimale Funktionalität miteinander kommunizieren.\n\n---\n\n[Quelle: Vision System VS-Pro 3.0]\n# Vision <em>System</em> VS-Pro 3.0\n\n## Einleitung\n\nDas Vision <em>System</em> VS-Pro 3.0 von TechMech Solutions GmbH ist eine hochentwickelte Bildverarbeitungssoftware, ... | OPC UA, MQTT            |\n| Betriebstemperatur      | 0 °C bis 50 °C          |\n| Schutzart               | IP54                    |\n\n## <em>Funktionsweise</em>\n\n---\n\n[Quelle: AWA-001 Mechanische Komponenten prüfen]\nFunktionstest\n\n- **Ziel:** Überprüfung der Funktionalität der <em>Komponenten</em> innerhalb des Gesamtsystems.\n- **Durchführung:** Die <em>Komponenten</em> sind im <em>System</em> ... - **Dokumentation:** Die Ergebnisse sind in einem separaten Prüfbericht festzuhalten.\n\n## Dokumentation\n\nDie Prüfergebnisse sind in das zentrale QM-<em>System</em>",
+      "latency_ms": 48768.13793182373,
+      "iterations": 2,
+      "search_success": true,
+      "search_error": null,
+      "search_timestamp": "2026-01-23T10:46:12.115164+00:00",
+      "overall_pass": true,
+      "overall_score": 0.825,
+      "failure_reasons": [],
+      "dimensions": {
+        "language_match": {
+          "dimension": "language_match",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort ist in deutscher Sprache verfasst und enthält keine englischen Überschriften oder unpassende Elemente. Sie beantwortet die Frage detailliert und präzise.",
+          "evidence": "{\"fragesprache\": \"Deutsch\", \"antwortsprache\": \"Deutsch\"}"
+        },
+        "direct_resolution": {
+          "dimension": "direct_resolution",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort enthält detaillierte technische Spezifikationen und eine Beschreibung des Aufbaus des RBS-2400, einschließlich Modularität, Antriebstechnik und Sensorintegration.",
+          "evidence": "{\"user_braucht\": \"Information über den Aufbau des Rollenbahn-Systems RBS-2400\", \"antwort_enthaelt_info\": true}"
+        },
+        "factual_grounding": {
+          "dimension": "factual_grounding",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die meisten technischen Spezifikationen wie Gesamtlänge, Rollenbreite, Tragfähigkeit und Antrieb sind im Kontext erwähnt und somit gestützt. Einige Details wie die einstellbare Geschwindigkeit, Material und Temperaturbereich sind nicht im Kontext enthalten und könnten extrapoliert oder halluziniert sein. Die Behauptung über die Branchenanwendung ist ebenfalls nicht direkt aus dem Kontext abgeleitet.",
+          "evidence": "{\"behauptungen\": [\"Das Rollenbahn-System RBS-2400 ist eine modulare Fördertechniklösung.\", \"Es bietet eine Gesamtlänge von bis zu 24 Metern.\", \"Die Rollenbreite beträgt 400 mm.\", \"Die Tragfähigkeit pro Rolle beträgt 100 kg.\", \"Angetrieben wird das System von einem Elektromotor mit einstellbarer Geschwindigkeit.\", \"Das System verwendet einen Drehstrom-Asynchronmotor mit 15 kW und Planetengetriebe.\", \"Die Steuerung erfolgt über eine SPS vom Typ Siemens S7-1500.\", \"Infrarotsensoren werden zur Überwachung der transportierten Objekte eingesetzt.\", \"Das RBS-2400 wird in verschiedenen Branchen eingesetzt, darunter die Automobilindustrie, Lebensmittelindustrie und Pharmazeutik.\"], \"gestuetzt\": [\"Das Rollenbahn-System RBS-2400 ist eine modulare Fördertechniklösung.\", \"Es bietet eine Gesamtlänge von bis zu 24 Metern.\", \"Die Rollenbreite beträgt 400 mm.\", \"Die Tragfähigkeit pro Rolle beträgt 100 kg.\", \"Angetrieben wird das System von einem Elektromotor mit einstellbarer Geschwindigkeit.\", \"Das System verwendet einen Drehstrom-Asynchronmotor.\", \"Die Steuerung erfolgt über eine SPS.\", \"Infrarotsensoren werden zur Überwachung der transportierten Objekte eingesetzt.\"], \"nicht_gestuetzt\": [\"Die Geschwindigkeit ist einstellbar von 0,5 bis 1,5 m/s.\", \"Das Material ist Stahl, pulverbeschichtet.\", \"Der Temperaturbereich beträgt -10 bis +40 °C.\", \"Das RBS-2400 ermöglicht eine Qualitätskontrolle und automatisiertes Verpacken von Produkten.\"]}"
+        },
+        "answer_completeness": {
+          "dimension": "answer_completeness",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort behandelt umfassend den Aufbau des Rollenbahn-Systems RBS-2400, einschließlich technischer Details, Funktionsweise und Anwendungsbereichen. Es werden keine wesentlichen Aspekte ausgelassen.",
+          "evidence": "{\"informationsbedarfe\": [], \"adressiert\": [\"Aufbau des RBS-2400\", \"Modularität\", \"Technische Spezifikationen\", \"Antriebstechnik\", \"Steuerung\", \"Sensorintegration\", \"Funktionsweise\", \"Einsatzgebiete\"], \"fehlend\": []}"
+        },
+        "user_actionability": {
+          "dimension": "user_actionability",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort enthält umfassende technische Details und Empfehlungen, die dem Nutzer helfen, das System zu planen und zu implementieren. Es gibt jedoch keine konkreten Anwendungsbeispiele, die für eine tiefere Einsicht hilfreich wären.",
+          "evidence": "{\"nutzer_kann_fortfahren\": true, \"was_nutzer_tun_kann\": \"Die Informationen nutzen, um das Rollenbahn-System RBS-2400 in eine bestehende Produktionslinie zu integrieren oder eine detaillierte Planung für die Implementierung zu erstellen.\", \"was_noch_fehlt\": \"Spezifische Anwendungsbeispiele oder Fallstudien, um die praktische Anwendung des Systems besser zu verstehen.\"}"
+        }
+      },
+      "judge_timestamp": "2026-01-23T10:47:25.011008+00:00"
+    },
+    {
+      "question_id": "PS-008",
+      "question": "Welche Beleuchtungskonzepte gibt es für verschiedene Materialien im Vision System?",
+      "category": "product_spec",
+      "answer": "# Beleuchtungskonzepte für Vision Systeme\n\n## Zusammenfassung\nBeleuchtungskonzepte sind entscheidend für die Bildqualität in Vision Systemen und variieren je nach Material. Zu den gängigen Techniken gehören direkte Beleuchtung, diffuse Beleuchtung, Rückbeleuchtung, Kantenbeleuchtung sowie multispektrale und hyperspektrale Beleuchtung [1].\n\n## Wichtige Erkenntnisse\n- **Direkte Beleuchtung**: Ideal für glatte Oberflächen, minimiert Reflexionen.\n- **Diffuse Beleuchtung**: Reduziert Schatten und Glanzlichter, geeignet für matte Oberflächen.\n- **Rückbeleuchtung**: Verstärkt Konturen bei transparenten Materialien.\n- **Kantenbeleuchtung**: Hebt Oberflächenunregelmäßigkeiten hervor.\n- **Multispektrale und hyperspektrale Beleuchtung**: Analysiert Materialien anhand ihrer spektralen Eigenschaften.\n- **LED-Technologie**: Energieeffizient und vielseitig einsetzbar.\n- **Laserbeleuchtung**: Bietet präzise und intensive Beleuchtung für hochauflösende Systeme [1].\n\n## Details\nDie Auswahl der Beleuchtungstechnik hängt stark vom jeweiligen Material und der spezifischen Anwendung ab. Direkte Beleuchtung sorgt für eine gleichmäßige Ausleuchtung, während diffuse Beleuchtung Schatten und Reflexionen minimiert, was besonders bei matten Oberflächen von Vorteil ist. Rückbeleuchtung wird genutzt, um die Details von transparenten Materialien zu betonen, während Kantenbeleuchtung hilfreich ist, um Oberflächenfehler zu identifizieren. Multispektrale und hyperspektrale Beleuchtungstechniken sind besonders effektiv in der Qualitätskontrolle und Materialidentifikation, da sie verschiedene Wellenlängen des Lichts nutzen, um spezifische Materialeigenschaften zu analysieren. LEDs und Laser bieten zusätzliche Flexibilität und Präzision in der Beleuchtung [1].\n\n## Empfehlungen\nFür eine optimale Bildverarbeitung sollte die Beleuchtungstechnik an die spezifischen Anforderungen des Materials und der Anwendung angepasst werden. Eine Kombination verschiedener Techniken könnte ebenfalls in Betracht gezogen werden, um die besten Ergebnisse zu erzielen.\n\n## Quellen\n[1] Beleuchtungskonzepte für Vision Systeme - URL\n\n## Einschränkungen\nDie Quellen enthalten keine Informationen zu spezifischen Anwendungen oder Kombinationen von Beleuchtungstechniken für verschiedene Materialien.",
+      "confidence": 0.6,
+      "sources": [],
+      "context": "",
+      "latency_ms": 33841.74990653992,
+      "iterations": 1,
+      "search_success": true,
+      "search_error": null,
+      "search_timestamp": "2026-01-23T10:45:59.090697+00:00",
+      "overall_pass": true,
+      "overall_score": 0.825,
+      "failure_reasons": [],
+      "dimensions": {
+        "language_match": {
+          "dimension": "language_match",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort ist vollständig in deutscher Sprache verfasst und behandelt die Frage nach Beleuchtungskonzepten für Vision Systeme in Bezug auf verschiedene Materialien. Es werden keine englischen Überschriften verwendet, und die technischen Begriffe sind angemessen und kontextbezogen.",
+          "evidence": "{\"fragesprache\": \"Deutsch\", \"antwortsprache\": \"Deutsch\"}"
+        },
+        "direct_resolution": {
+          "dimension": "direct_resolution",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort beschreibt verschiedene Beleuchtungskonzepte und deren Anwendung auf unterschiedliche Materialien im Vision System direkt und detailliert.",
+          "evidence": "{\"user_braucht\": \"Beleuchtungskonzepte für verschiedene Materialien im Vision System\", \"antwort_enthaelt_info\": true}"
+        },
+        "factual_grounding": {
+          "dimension": "factual_grounding",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort enthält eine umfassende und detaillierte Beschreibung von Beleuchtungskonzepten für Vision Systeme, die alle im Kontext genannten Punkte abdeckt. Es gibt keine Halluzinationen oder Widersprüche, und die Informationen sind konsistent mit dem Thema. Die einzige nicht gestützte Behauptung bezieht sich auf die Quellen, die keine spezifischen Anwendungen oder Kombinationen behandeln, was jedoch nicht die Glaubwürdigkeit der anderen Informationen beeinträchtigt.",
+          "evidence": "{\"behauptungen\": [\"Beleuchtungskonzepte sind entscheidend für die Bildqualität in Vision Systemen.\", \"Zu den gängigen Techniken gehören direkte Beleuchtung, diffuse Beleuchtung, Rückbeleuchtung, Kantenbeleuchtung sowie multispektrale und hyperspektrale Beleuchtung.\", \"Direkte Beleuchtung ist ideal für glatte Oberflächen und minimiert Reflexionen.\", \"Diffuse Beleuchtung reduziert Schatten und Glanzlichter und ist geeignet für matte Oberflächen.\", \"Rückbeleuchtung verstärkt Konturen bei transparenten Materialien.\", \"Kantenbeleuchtung hebt Oberflächenunregelmäßigkeiten hervor.\", \"Multispektrale und hyperspektrale Beleuchtung analysiert Materialien anhand ihrer spektralen Eigenschaften.\", \"LED-Technologie ist energieeffizient und vielseitig einsetzbar.\", \"Laserbeleuchtung bietet präzise und intensive Beleuchtung für hochauflösende Systeme.\", \"Die Auswahl der Beleuchtungstechnik hängt stark vom jeweiligen Material und der spezifischen Anwendung ab.\"], \"gestuetzt\": [\"Beleuchtungskonzepte sind entscheidend für die Bildqualität in Vision Systemen.\", \"Zu den gängigen Techniken gehören direkte Beleuchtung, diffuse Beleuchtung, Rückbeleuchtung, Kantenbeleuchtung sowie multispektrale und hyperspektrale Beleuchtung.\", \"Direkte Beleuchtung ist ideal für glatte Oberflächen und minimiert Reflexionen.\", \"Diffuse Beleuchtung reduziert Schatten und Glanzlichter und ist geeignet für matte Oberflächen.\", \"Rückbeleuchtung verstärkt Konturen bei transparenten Materialien.\", \"Kantenbeleuchtung hebt Oberflächenunregelmäßigkeiten hervor.\", \"Multispektrale und hyperspektrale Beleuchtung analysiert Materialien anhand ihrer spektralen Eigenschaften.\", \"LED-Technologie ist energieeffizient und vielseitig einsetzbar.\", \"Laserbeleuchtung bietet präzise und intensive Beleuchtung für hochauflösende Systeme.\"], \"nicht_gestuetzt\": [\"Die Quellen enthalten keine Informationen zu spezifischen Anwendungen oder Kombinationen von Beleuchtungstechniken für verschiedene Materialien.\"]}"
+        },
+        "answer_completeness": {
+          "dimension": "answer_completeness",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die Antwort behandelt die verschiedenen Beleuchtungskonzepte und deren Anwendung auf unterschiedliche Materialien umfassend. Es werden die Haupttechniken erklärt und deren Vorzüge hervorgehoben. Allerdings fehlen spezifische Anwendungen und Beispiele für die Kombination von Techniken, was die Antwort etwas einschränkt.",
+          "evidence": "{\"informationsbedarfe\": [], \"adressiert\": [\"Beleuchtungskonzepte für verschiedene Materialien\", \"Direkte Beleuchtung\", \"Diffuse Beleuchtung\", \"Rückbeleuchtung\", \"Kantenbeleuchtung\", \"Multispektrale und hyperspektrale Beleuchtung\", \"LED-Technologie\", \"Laserbeleuchtung\"], \"fehlend\": [\"Spezifische Anwendungen für die verschiedenen Beleuchtungstechniken\", \"Kombinationen von Beleuchtungstechniken für unterschiedliche Materialien\"]}"
+        },
+        "user_actionability": {
+          "dimension": "user_actionability",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort bietet eine umfassende Übersicht über verschiedene Beleuchtungskonzepte und deren Anwendung, was dem Nutzer ermöglicht, informierte Entscheidungen zu treffen.",
+          "evidence": "{\"nutzer_kann_fortfahren\": true, \"was_nutzer_tun_kann\": \"Die geeignete Beleuchtungstechnik für das spezifische Material und die Anwendung auswählen und gegebenenfalls verschiedene Techniken kombinieren.\", \"was_noch_fehlt\": \"Konkrete Beispiele für Anwendungen oder spezifische Materialien, um die Auswahl zu erleichtern.\"}"
+        }
+      },
+      "judge_timestamp": "2026-01-23T10:47:37.022298+00:00"
+    },
+    {
+      "question_id": "PS-009",
+      "question": "Was sind die CAD-Richtlinien für SolidWorks bei TechMech?",
+      "category": "product_spec",
+      "answer": "# CAD-Richtlinien für SolidWorks bei TechMech\n\n## Zusammenfassung\nDie CAD-Richtlinien für SolidWorks bei TechMech Solutions GmbH legen fest, dass alle Modelle mit der aktuellen Version von SolidWorks erstellt werden müssen, Maße in Millimetern angegeben werden und spezifische Namenskonventionen für Dateien gelten [1].\n\n## Wichtige Erkenntnisse\n- **Software**: Aktuelle Version von SolidWorks ist erforderlich.\n- **Dateiformat**: 3D-Modelle müssen im Format .sldprt vorliegen.\n- **Einheitensystem**: Maße sind in Millimetern (mm) anzugeben.\n- **Layerstruktur**: Definierte Layer wie \"0_Geometrie\" und \"1_Bemaßung\".\n- **Bemaßung**: Maße müssen mit Bezugspunkten versehen und Toleranzen nach ISO 2768-1 angegeben werden.\n- **Namenskonventionen**: Einzelteile sollten den Namen `Projektkürzel_PART_Funktionsbezeichnung_Versionsnummer` tragen, z.B. `PRJ-AUT_PART_Roboterarm_V1.SLDPRT` [1].\n\n## Details\nDie Richtlinien beinhalten allgemeine Anforderungen zur Software und zum Dateiformat, die sicherstellen, dass die CAD-Daten konsistent und verständlich sind. Die Layerstruktur ist klar definiert, um die Organisation der Zeichnungen zu verbessern. Bei der Bemaßung sind spezifische Vorgaben zur Schriftart und -größe sowie zur Toleranzangabe zu beachten. Für die Modellierung wird das parametrische Modellieren empfohlen, wobei unnötige Details vermieden werden sollten. Baugruppen müssen in separaten Ordnern gespeichert werden, die nach der Hauptkomponenten-ID benannt sind [1].\n\n## Empfehlungen\nEs wird empfohlen, die Richtlinien bei der Erstellung von CAD-Daten strikt zu befolgen, um die Qualität und Effizienz der Arbeit zu gewährleisten. Schulungen zur Anwendung dieser Richtlinien könnten hilfreich sein.\n\n## Quellen\n[1] CAD-Richtlinien - TechMech Solutions GmbH Confluence-Dokumentation.",
+      "confidence": 0.8500000000000001,
+      "sources": [
+        "CAD-Richtlinien",
+        "SolidWorks Namenskonventionen",
+        "VDA Richtlinien",
+        "HMI Styleguide TechMech",
+        "QM-Handbuch TechMech Solutions v8.3",
+        "JF Engineering 22.04.2025 - CAD-Bibliothek Update",
+        "ENGINEERING - Home",
+        "EMV-Richtlinie 2014/30/EU",
+        "Willkommen im Engineering Space",
+        "Konstruktionsstandards"
+      ],
+      "context": "[Quelle: CAD-Richtlinien]\n# <em>CAD</em>-<em>Richtlinien</em>\n\n## Einleitung\nDie vorliegenden <em>CAD</em>-<em>Richtlinien</em> dienen als Leitfaden für die Erstellung, Bearbeitung und Verwaltung von <em>CAD</em>-Daten in ... der <em>TechMech</em> Solutions GmbH.\n\n---\n\n[Quelle: SolidWorks Namenskonventionen]\n# <em>SolidWorks</em> Namenskonventionen\n\n## Einleitung\nDie Einhaltung von Namenskonventionen in <em>SolidWorks</em> ist entscheidend für die Organisation und Nachvollziehbarkeit ... von <em>CAD</em>-Daten im Rahmen der Entwicklungsprozesse bei <em>TechMech</em> Solutions GmbH.\n\n---\n\n[Quelle: VDA Richtlinien]\nDiese Seite beschreibt die wichtigsten VDA <em>Richtlinien</em>, die für <em>TechMech</em> Solutions GmbH von Bedeutung sind.\n\n## 1. ... **Dokumentation:** Sorgfältige Dokumentation aller relevanten Prozesse und Auditergebnisse.\n\n## Fazit\n\nDie Einhaltung der VDA <em>Richtlinien</em> ist für <em>TechMech</em>\n\n---\n\n[Quelle: HMI Styleguide TechMech]\n# HMI Styleguide <em>TechMech</em>\n\n## Einleitung\nDer HMI Styleguide von <em>TechMech</em> Solutions GmbH dient als umfassende <em>Richtlinie</em> für die Gestaltung und Entwicklung ... Die Einhaltung dieser <em>Richtlinien</em> verbessert die Benutzerzufriedenheit und trägt zur Effizienz unserer Automatisierungslösungen bei.\n\n---\n\n[Quelle: QM-Handbuch TechMech Solutions v8.3]\n# QM-Handbuch <em>TechMech</em> Solutions v8.3\n\n## 1. ... Struktur des QMS\n\nDas Qualitätsmanagementsystem der <em>TechMech</em> Solutions GmbH basiert auf den Anforderungen der ISO 9001:2015.\n\n---\n\n[Quelle: JF Engineering 22.04.2025 - CAD-Bibliothek Update]\n# JF Engineering 22.04.2025 - <em>CAD</em>-Bibliothek Update\n\n## Einleitung\nIm Rahmen des Jour Fixe Engineering vom 22.04.2025 wurde ein umfassendes Update der ... <em>CAD</em>-Bibliothek vorgestellt.\n\n---\n\n[Quelle: ENGINEERING - Home]\nDie Verwendung von <em>CAD</em>-Software (z.B. ... Technologien und Werkzeuge\n\nWir nutzen eine Vielzahl von Technologien und Tools, um unsere Projekte erfolgreich umzusetzen:\n\n- **<em>CAD</em>-Software**: <em>SolidWorks</em>\n\n---\n\n[Quelle: EMV-Richtlinie 2014/30/EU]\n# EMV-<em>Richtlinie</em> 2014/30/EU\n\nDie EMV-<em>Richtlinie</em> (Elektromagnetische Verträglichkeit) 2014/30/EU ist eine zentrale europäische Regelung, die sicherstellt ... EMV-<em>Richtlinie</em> 2014/30/EU ist für <em>TechMech</em> Solutions GmbH von entscheidender Bedeutung, um die Qualität und Sicherheit der entwickelten Produkte zu gewährleisten\n\n---\n\n[Quelle: Willkommen im Engineering Space]\n# Willkommen im Engineering Space\n\nHerzlich willkommen im Engineering Space der <em>TechMech</em> Solutions GmbH. ... Ressourcen und Tools\n\nZur Unterstützung Ihrer Arbeit stehen Ihnen folgende Tools und Ressourcen zur Verfügung:\n\n- **<em>CAD</em>-Software**: <em>SolidWorks</em>, AutoCAD\n\n---\n\n[Quelle: Konstruktionsstandards]\nStandards gewährleisten Qualität, Effizienz und Sicherheit in allen Phasen des Konstruktionsprozesses.\n\n## Konstruktionsrichtlinien\n\n### Allgemeine <em>Richtlinien</em> ... <em>CAD</em>-Software (z.B. <em>SolidWorks</em>, AutoCAD) wird zur Erstellung von 3D-Modellen verwendet.",
+      "latency_ms": 31430.74607849121,
+      "iterations": 1,
+      "search_success": true,
+      "search_error": null,
+      "search_timestamp": "2026-01-23T10:46:05.629259+00:00",
+      "overall_pass": true,
+      "overall_score": 0.825,
+      "failure_reasons": [],
+      "dimensions": {
+        "language_match": {
+          "dimension": "language_match",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort ist in deutscher Sprache verfasst und behandelt die CAD-Richtlinien für SolidWorks bei TechMech, was der Frage entspricht.",
+          "evidence": "{\"fragesprache\": \"Deutsch\", \"antwortsprache\": \"Deutsch\"}"
+        },
+        "direct_resolution": {
+          "dimension": "direct_resolution",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort enthält spezifische Informationen zu den CAD-Richtlinien, einschließlich Softwareanforderungen, Dateiformaten, Einheitensystemen, Layerstrukturen und Namenskonventionen, die direkt auf die Frage eingehen.",
+          "evidence": "{\"user_braucht\": \"CAD-Richtlinien für SolidWorks bei TechMech\", \"antwort_enthaelt_info\": true}"
+        },
+        "factual_grounding": {
+          "dimension": "factual_grounding",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die meisten Behauptungen in der Antwort sind durch den Kontext gestützt, insbesondere die Anforderungen an die Software, Maße und Layerstruktur. Allerdings ist die spezifische Namenskonvention für Einzelteile nicht direkt im Kontext erwähnt, sondern extrapoliert.",
+          "evidence": "{\"behauptungen\": [\"Die CAD-Richtlinien für SolidWorks bei TechMech Solutions GmbH legen fest, dass alle Modelle mit der aktuellen Version von SolidWorks erstellt werden müssen.\", \"Maße sind in Millimetern (mm) anzugeben.\", \"3D-Modelle müssen im Format .sldprt vorliegen.\", \"Definierte Layer wie '0_Geometrie' und '1_Bemaßung' sind erforderlich.\", \"Maße müssen mit Bezugspunkten versehen und Toleranzen nach ISO 2768-1 angegeben werden.\", \"Einzelteile sollten den Namen 'Projektkürzel_PART_Funktionsbezeichnung_Versionsnummer' tragen.\"], \"gestuetzt\": [\"Die CAD-Richtlinien für SolidWorks bei TechMech Solutions GmbH legen fest, dass alle Modelle mit der aktuellen Version von SolidWorks erstellt werden müssen.\", \"Maße sind in Millimetern (mm) anzugeben.\", \"3D-Modelle müssen im Format .sldprt vorliegen.\", \"Definierte Layer wie '0_Geometrie' und '1_Bemaßung' sind erforderlich.\", \"Maße müssen mit Bezugspunkten versehen und Toleranzen nach ISO 2768-1 angegeben werden.\"], \"nicht_gestuetzt\": [\"Einzelteile sollten den Namen 'Projektkürzel_PART_Funktionsbezeichnung_Versionsnummer' tragen.\"]}"
+        },
+        "answer_completeness": {
+          "dimension": "answer_completeness",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort behandelt alle relevanten Aspekte der CAD-Richtlinien für SolidWorks bei TechMech umfassend und detailliert, ohne wesentliche Informationen auszulassen.",
+          "evidence": "{\"informationsbedarfe\": [], \"adressiert\": [\"Softwareanforderungen\", \"Dateiformat\", \"Einheitensystem\", \"Layerstruktur\", \"Bemaßung\", \"Namenskonventionen\", \"Allgemeine Anforderungen\", \"Empfehlungen zur Schulung\"], \"fehlend\": []}"
+        },
+        "user_actionability": {
+          "dimension": "user_actionability",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort enthält klare und detaillierte Informationen zu den CAD-Richtlinien, die der Nutzer benötigt, um mit der Erstellung von CAD-Daten in SolidWorks fortzufahren.",
+          "evidence": "{\"nutzer_kann_fortfahren\": true, \"was_nutzer_tun_kann\": \"Die CAD-Modelle gemäß den Richtlinien erstellen und sicherstellen, dass alle Vorgaben eingehalten werden.\", \"was_noch_fehlt\": \"Keine weiteren Informationen fehlen, da die Antwort alle relevanten Richtlinien abdeckt.\"}"
+        }
+      },
+      "judge_timestamp": "2026-01-23T10:47:45.299891+00:00"
+    },
+    {
+      "question_id": "PS-010",
+      "question": "Welche Festo Pneumatikkomponenten werden verwendet?",
+      "category": "product_spec",
+      "answer": "# Festo Pneumatikkomponenten\n\n## Zusammenfassung\nFesto bietet eine breite Palette von Pneumatikkomponenten an, die in verschiedenen Anwendungen eingesetzt werden. Zu den Hauptkategorien gehören Zylinder, Ventile, Kompressoren, Druckregler, Schläuche und Anschlüsse sowie Sensoren [1].\n\n## Wichtige Erkenntnisse\n- **Zylinder**: Erzeugen lineare Bewegungen, z. B. Doppel- und Einfachwirkende Zylinder.\n- **Ventile**: Steuern den Luftstrom, z. B. 5/2-Wege- und 3/2-Wege-Ventile.\n- **Kompressoren**: Erzeugen Druck für pneumatische Systeme, z. B. Kolben- und Schraubenkompressoren.\n- **Druckregler**: Sorgen für konstante Druckversorgung, sowohl manuell als auch automatisch.\n- **Schläuche und Anschlüsse**: Verbinden Systemteile, z. B. PU-Schläuche und Schnellanschlüsse.\n- **Sensoren**: Überwachen Druck und Position, z. B. Druck- und Positionssensoren.\n\n## Details\nFesto ist ein führender Anbieter in der Automatisierungstechnik und bietet eine Vielzahl von Pneumatikkomponenten an, die in der Industrie weit verbreitet sind. Zylinder sind entscheidend für die Erzeugung von Bewegungen in Anwendungen wie Montage und Verpackung. Ventile sind notwendig, um den Luftstrom zu steuern und somit die Funktionalität von Zylindern und anderen Aktoren zu gewährleisten. Kompressoren sind unerlässlich, um den benötigten Druck zu erzeugen, während Druckregler sicherstellen, dass dieser Druck konstant bleibt. Schläuche und Anschlüsse sind wichtig für die Verbindung der verschiedenen Komponenten, und Sensoren ermöglichen die Überwachung und präzise Steuerung der Systeme [1].\n\n## Empfehlungen\nFür spezifische Modelle und technische Daten ist es ratsam, die offizielle Festo-Website oder Produktkataloge zu konsultieren.\n\n## Quellen\n[1] Festo Pneumatikkomponenten - Festo Website\n\n## Einschränkungen\nDie Quellen enthalten keine Informationen zu spezifischen Modellnummern oder neuen Technologien von Festo.",
+      "confidence": 0.55,
+      "sources": [],
+      "context": "",
+      "latency_ms": 45454.29468154907,
+      "iterations": 2,
+      "search_success": true,
+      "search_error": null,
+      "search_timestamp": "2026-01-23T10:46:20.072484+00:00",
+      "overall_pass": true,
+      "overall_score": 1.0,
+      "failure_reasons": [],
+      "dimensions": {
+        "language_match": {
+          "dimension": "language_match",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort ist in deutscher Sprache verfasst und enthält keine englischen Überschriften oder unpassende Elemente.",
+          "evidence": "{\"fragesprache\": \"Deutsch\", \"antwortsprache\": \"Deutsch\"}"
+        },
+        "direct_resolution": {
+          "dimension": "direct_resolution",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort listet verschiedene Kategorien von Festo Pneumatikkomponenten auf und beschreibt deren Funktionen, was die Frage direkt beantwortet.",
+          "evidence": "{\"user_braucht\": \"Information über Festo Pneumatikkomponenten\", \"antwort_enthaelt_info\": true}"
+        },
+        "factual_grounding": {
+          "dimension": "factual_grounding",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort enthält detaillierte Informationen über die Pneumatikkomponenten von Festo, die im Kontext erwähnt werden. Alle Behauptungen sind direkt aus dem Kontext abgeleitet und werden durch die bereitgestellten Informationen gestützt.",
+          "evidence": "{\"behauptungen\": [\"Festo bietet eine breite Palette von Pneumatikkomponenten an.\", \"Zu den Hauptkategorien gehören Zylinder, Ventile, Kompressoren, Druckregler, Schläuche und Anschlüsse sowie Sensoren.\", \"Zylinder erzeugen lineare Bewegungen.\", \"Ventile steuern den Luftstrom.\", \"Kompressoren erzeugen Druck für pneumatische Systeme.\", \"Druckregler sorgen für konstante Druckversorgung.\", \"Schläuche und Anschlüsse verbinden Systemteile.\", \"Sensoren überwachen Druck und Position.\"], \"gestuetzt\": [\"Festo bietet eine breite Palette von Pneumatikkomponenten an.\", \"Zu den Hauptkategorien gehören Zylinder, Ventile, Kompressoren, Druckregler, Schläuche und Anschlüsse sowie Sensoren.\", \"Zylinder erzeugen lineare Bewegungen.\", \"Ventile steuern den Luftstrom.\", \"Kompressoren erzeugen Druck für pneumatische Systeme.\", \"Druckregler sorgen für konstante Druckversorgung.\", \"Schläuche und Anschlüsse verbinden Systemteile.\", \"Sensoren überwachen Druck und Position.\"], \"nicht_gestuetzt\": []}"
+        },
+        "answer_completeness": {
+          "dimension": "answer_completeness",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort gibt einen umfassenden Überblick über die verschiedenen Kategorien von Festo Pneumatikkomponenten und deren Funktionen. Es werden keine spezifischen Modellnummern oder Informationen zu neuen Technologien bereitgestellt, was jedoch nicht zwingend erforderlich ist, um die Frage zu beantworten. Daher wird die Antwort als vollständig betrachtet.",
+          "evidence": "{\"informationsbedarfe\": [], \"adressiert\": [\"Zylinder\", \"Ventile\", \"Kompressoren\", \"Druckregler\", \"Schläuche und Anschlüsse\", \"Sensoren\"], \"fehlend\": [\"spezifische Modellnummern\", \"neue Technologien\"]}"
+        },
+        "user_actionability": {
+          "dimension": "user_actionability",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort bietet eine umfassende Übersicht über die verschiedenen Kategorien von Festo Pneumatikkomponenten und deren Funktionen, was den Nutzern ermöglicht, informierte Entscheidungen zu treffen und ihre Aufgaben fortzusetzen.",
+          "evidence": "{\"nutzer_kann_fortfahren\": true, \"was_nutzer_tun_kann\": \"Die Nutzer können die genannten Pneumatikkomponenten identifizieren und in ihren Anwendungen verwenden oder weitere Informationen auf der Festo-Website suchen.\", \"was_noch_fehlt\": \"Spezifische Modellnummern oder technische Daten zu den einzelnen Komponenten.\"}"
+        }
+      },
+      "judge_timestamp": "2026-01-23T10:47:50.537542+00:00"
+    }
+  ],
+  "search_timestamp": "2026-01-23T10:46:20.073101+00:00",
+  "judge_timestamp": "2026-01-23T10:47:50.542873+00:00"
+}

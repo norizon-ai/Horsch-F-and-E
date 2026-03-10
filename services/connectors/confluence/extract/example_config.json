@@ -1,0 +1,14 @@
+{
+  "base_url": "https://confluence.horsch.com",
+  "bearer_token": "your-confluence-bearer-token-here",
+  "output_dir": "confluence_export",
+  "max_workers": 5,
+  "page_size": 50,
+  "retry_max_attempts": 3,
+  "retry_wait_exponential_multiplier": 2,
+  "retry_wait_exponential_max": 60,
+  "request_timeout": 30,
+  "download_attachments": true,
+  "export_format": ["json", "html"],
+  "checkpoint_file": "checkpoint.json"
+}

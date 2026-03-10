@@ -1,0 +1,8 @@
+pika
+pydantic
+psycopg2-binary
+elasticsearch
+beautifulsoup4
+markdownify
+langchain-text-splitters
+requests

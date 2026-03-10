@@ -1,0 +1,132 @@
+version: '3.8'
+
+services:
+  # Frontend - Norizon Research UI
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: norizon-research-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - VITE_DEEPRESEARCH_API_URL=http://proxy:5002
+      - DEEPRESEARCH_API_URL=http://proxy:5002
+    depends_on:
+      proxy:
+        condition: service_healthy
+    networks:
+      - norizon-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/', (r) => {if (r.statusCode !== 200) throw new Error(r.statusCode)})"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Nora Proxy - FastAPI proxy for DeepResearch
+  proxy:
+    build:
+      context: ./proxy
+      dockerfile: Dockerfile
+    container_name: norizon-proxy
+    ports:
+      - "5002:5002"
+    environment:
+      - DEEPRESEARCH_URL=http://deepresearch:5000
+      - PROXY_PORT=5002
+      - REQUEST_TIMEOUT=300
+      - CORS_ORIGINS=*
+    depends_on:
+      deepresearch:
+        condition: service_healthy
+    networks:
+      - norizon-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import httpx; httpx.get('http://localhost:5002/health', timeout=5)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # DeepResearch API (based on local-deep-research)
+  deepresearch:
+    image: localdeepresearch/local-deep-research:latest
+    container_name: norizon-deepresearch
+    ports:
+      - "5001:5000"
+    environment:
+      - LDR_WEB_HOST=0.0.0.0
+      - LDR_WEB_PORT=5000
+      - LDR_DATA_DIR=/data
+      - LDR_LLM_OLLAMA_URL=http://ollama:11434
+      - LDR_SEARCH_ENGINE_WEB_SEARXNG_DEFAULT_PARAMS_INSTANCE_URL=http://searxng:8080
+    volumes:
+      - deepresearch-data:/data
+    depends_on:
+      ollama:
+        condition: service_healthy
+      searxng:
+        condition: service_started
+    networks:
+      - norizon-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # Ollama - LLM Service
+  ollama:
+    image: ollama/ollama:latest
+    container_name: norizon-ollama
+    ports:
+      - "11434:11434"
+    environment:
+      - OLLAMA_KEEP_ALIVE=30m
+    volumes:
+      - ollama-data:/root/.ollama
+    networks:
+      - norizon-network
+    restart: unless-stopped
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        /bin/ollama serve &
+        sleep 5
+        /bin/ollama pull ${OLLAMA_MODEL:-llama3.2:latest}
+        wait
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+
+  # SearxNG - Search Engine
+  searxng:
+    image: searxng/searxng:latest
+    container_name: norizon-searxng
+    ports:
+      - "8080:8080"
+    volumes:
+      - searxng-data:/etc/searxng
+    networks:
+      - norizon-network
+    restart: unless-stopped
+    environment:
+      - SEARXNG_BASE_URL=http://localhost:8080/
+
+volumes:
+  deepresearch-data:
+  ollama-data:
+  searxng-data:
+
+networks:
+  norizon-network:
+    driver: bridge

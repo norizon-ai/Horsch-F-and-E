@@ -1,0 +1,140 @@
+Elasticsearch with Pre-loaded Confluence Data
+
+This directory contains the Docker configuration to build an Elasticsearch image with Confluence knowledge base data pre-loaded, ready for distribution via Docker Hub.
+Features
+
+    Elasticsearch 8.11.0 with pre-indexed Confluence data
+    Includes embeddings for semantic search (using all-MiniLM-L6-v2)
+    Optimized for DeepResearch RAG pipeline
+    Ready-to-use container with no additional setup required
+
+Prerequisites
+
+    Confluence export data at: /Users/lisaschmidt/Documents/GitHub/tier0-Horsch/confluence_export
+    Docker installed and running
+    Docker Hub account (for pushing the image)
+
+Building the Image
+
+    Make the build script executable:
+
+chmod +x build.sh
+
+    Run the build script:
+
+./build.sh
+
+This will:
+
+    Copy the Confluence data into the build context
+    Build a Docker image with Elasticsearch 8.11.0
+    Index all Confluence pages during the build
+    Create a final image with the indexed data baked in
+
+Testing Locally
+Option 1: Direct Docker Run
+
+docker run -p 9200:9200 confluence-elasticsearch:latest
+
+Option 2: Using Docker Compose
+
+docker-compose up
+
+Verify the Index
+
+# Check cluster health
+curl http://localhost:9200/_cluster/health
+
+# Check index statistics
+curl http://localhost:9200/confluence_kb/_stats
+
+# Test a search
+curl -X POST http://localhost:9200/confluence_kb/_search \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "query": {
+      "match": {
+        "content": "jira workflow"
+      }
+    },
+    "size": 3
+  }'
+
+Pushing to Docker Hub
+
+    Set your Docker Hub credentials:
+
+export DOCKER_HUB_USERNAME=your-username
+export DOCKER_HUB_REPO=confluence-elasticsearch
+export VERSION=1.0.0
+
+    Make the push script executable:
+
+chmod +x push.sh
+
+    Run the push script:
+
+./push.sh
+
+Using the Published Image
+
+Once pushed to Docker Hub, others can use:
+
+# Pull the image
+docker pull your-username/confluence-elasticsearch:latest
+
+# Run the container
+docker run -d \
+  --name es-confluence \
+  -p 9200:9200 \
+  your-username/confluence-elasticsearch:latest
+
+Environment Variables
+
+The container supports these environment variables:
+
+    ES_JAVA_OPTS: JVM heap size (default: -Xms2g -Xmx2g)
+    discovery.type: Cluster discovery type (default: single-node)
+    xpack.security.enabled: Security features (default: false)
+
+Index Schema
+
+The pre-loaded index (confluence_kb) contains:
+
+    content: Main text content (searchable)
+    title: Page title
+    section: Section/category name
+    source: Document identifier
+    space: Confluence space key
+    page_id: Unique page ID
+    vector: 384-dimensional embeddings for semantic search
+    indexed_at: Timestamp of indexing
+
+Data Privacy Note
+
+⚠️ Important: This image contains your Confluence data. Consider:
+
+    Using a private Docker registry if the data is sensitive
+    Implementing access controls on Docker Hub
+    Documenting data classification and usage restrictions
+
+Troubleshooting
+Build Fails with Memory Error
+
+Increase Docker's memory allocation in Docker Desktop settings (recommended: 4GB+)
+Indexing Takes Too Long
+
+The build process indexes all Confluence pages. For large exports, this may take 10-30 minutes.
+Container Won't Start
+
+Check logs:
+
+docker logs es-confluence
+
+Integration with DeepResearch
+
+Set the following in your DeepResearch .env:
+
+ELASTIC_URL=http://localhost:9200
+ELASTIC_INDEX=confluence_kb
+SEARCH_API=elasticsearch

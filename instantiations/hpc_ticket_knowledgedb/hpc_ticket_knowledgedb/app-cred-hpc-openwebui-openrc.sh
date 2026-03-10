@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+export OS_AUTH_TYPE=v3applicationcredential
+export OS_AUTH_URL=https://api.cc.rrze.de:5000
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME="DE-ERL"
+export OS_INTERFACE=public
+export OS_APPLICATION_CREDENTIAL_ID=19f2c50127f74650a6c0f9eaefef32e2
+export OS_APPLICATION_CREDENTIAL_SECRET=ItocYp2VRJGU5-lvLFOHS8CiYemmGdcndC1ZYHgmHKZrtDxcA9uqRgteNCuUkxJA1jEDNQjjBNZVINjMuvdt2w

@@ -1,0 +1,57 @@
+# =============================================================================
+# Demo Manufacturing Company - Agent Configuration
+# =============================================================================
+# Agents: Confluence docs only, no web search (security)
+
+agents:
+  # ---------------------------------------------------------------------------
+  # Technical Documentation (Confluence)
+  # ---------------------------------------------------------------------------
+  technical_docs:
+    type: elasticsearch
+    enabled: true
+    description: "Suche technische Dokumentation, Wartungsanleitungen und Spezifikationen"
+    display_name: "Technische Dokumentation"
+    source_type: confluence
+    max_iterations: 4
+    preprocessors:
+      - reformulator
+    backend:
+      url: "http://localhost:9200"
+      index: "confluence_manufacturing"
+      search_fields:
+        - "title^4"
+        - "content"
+        - "headings^2"
+      # Authentication (use env vars in production)
+      # username: "${ES_USERNAME}"
+      # password: "${ES_PASSWORD}"
+
+  # ---------------------------------------------------------------------------
+  # Service Tickets (Historical)
+  # ---------------------------------------------------------------------------
+  service_history:
+    type: elasticsearch
+    enabled: true
+    description: "Suche historische Servicefälle, Reparaturberichte und Lösungen"
+    display_name: "Service-Historie"
+    source_type: jira
+    max_iterations: 3
+    backend:
+      url: "http://localhost:9200"
+      index: "jira_service_tickets"
+      search_fields:
+        - "summary^3"
+        - "description"
+        - "resolution^2"
+        - "comments"
+
+  # ---------------------------------------------------------------------------
+  # Web Search - DISABLED for manufacturing (security)
+  # ---------------------------------------------------------------------------
+  web_search:
+    type: websearch
+    enabled: false
+    description: "Web-Suche (deaktiviert)"
+    backend:
+      searxng_url: "http://localhost:8080"

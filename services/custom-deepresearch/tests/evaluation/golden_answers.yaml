@@ -1,0 +1,744 @@
+# Golden Answer Dataset for Nora Search (DeepSearch)
+# Based on TechMech Solutions GmbH Demo Confluence (408 pages, 8 spaces)
+#
+# Data Source: /products/demo_confluence_assistant/generated_confluence/
+#
+# Spaces:
+#   ENG (Engineering) - 81 pages
+#   PRJ (Projects) - 61 pages
+#   CMP (Compliance) - 67 pages
+#   QM (Quality) - 52 pages
+#   SRV (Service) - 47 pages
+#   MTG (Meetings) - 25 pages
+#   IT (IT & Software) - 34 pages
+#   HR (HR & Admin) - 41 pages
+
+metadata:
+  version: "1.0.0"
+  created: "2025-01-21"
+  total_questions: 70
+  company: "TechMech Solutions GmbH"
+
+questions:
+  # =============================================================================
+  # PRODUCT SPECIFICATIONS (ENG) - 12 questions
+  # =============================================================================
+  - id: "PS-001"
+    question: "Was sind die technischen Spezifikationen der RC-3000 Serie?"
+    expected_source_pages:
+      - "RC-3000 Technische Spezifikationen v4.2"
+    space: "ENG"
+    category: "product_spec"
+    difficulty: "simple"
+    expected_answer_contains:
+      - "Tragfähigkeit"
+      - "Reichweite"
+      - "Wiederholgenauigkeit"
+
+  - id: "PS-002"
+    question: "Welche Greifersysteme sind für die RC-5000 Heavy Duty verfügbar?"
+    expected_source_pages:
+      - "RC-5000 Greifersysteme - Übersicht"
+    space: "ENG"
+    category: "product_spec"
+    difficulty: "simple"
+
+  - id: "PS-003"
+    question: "Wie wird die Positioniergenauigkeit beim LTS-X gemessen?"
+    expected_source_pages:
+      - "Positioniergenauigkeit LTS-X - Messprotokolle"
+      - "LTS-X Kinematik und Dynamik"
+    space: "ENG"
+    category: "product_spec"
+    difficulty: "medium"
+
+  - id: "PS-004"
+    question: "Welche Kamera-Spezifikationen hat das Vision System VS-Pro 3.0?"
+    expected_source_pages:
+      - "Vision System VS-Pro 3.0"
+      - "Kamerasystem Spezifikationen"
+    space: "ENG"
+    category: "product_spec"
+    difficulty: "simple"
+
+  - id: "PS-005"
+    question: "Wie funktioniert die Temperaturkompensation bei DMS-Sensoren?"
+    expected_source_pages:
+      - "Temperaturdrift bei DMS-Sensoren - Kompensation"
+    space: "ENG"
+    category: "product_spec"
+    difficulty: "medium"
+
+  - id: "PS-006"
+    question: "Was sind die Lastberechnungen und statischen Anforderungen für die RC-5000?"
+    expected_source_pages:
+      - "RC-5000 Lastberechnungen und Statik"
+    space: "ENG"
+    category: "product_spec"
+    difficulty: "medium"
+
+  - id: "PS-007"
+    question: "Wie ist das Rollenbahn-System RBS-2400 aufgebaut?"
+    expected_source_pages:
+      - "Rollenbahn-System RBS-2400"
+      - "RBS-2400 Modulübersicht"
+    space: "ENG"
+    category: "product_spec"
+    difficulty: "simple"
+
+  - id: "PS-008"
+    question: "Welche Beleuchtungskonzepte gibt es für verschiedene Materialien im Vision System?"
+    expected_source_pages:
+      - "Beleuchtungskonzepte für verschiedene Materialien"
+    space: "ENG"
+    category: "product_spec"
+    difficulty: "medium"
+
+  - id: "PS-009"
+    question: "Was sind die CAD-Richtlinien für SolidWorks bei TechMech?"
+    expected_source_pages:
+      - "CAD-Richtlinien"
+      - "SolidWorks Namenskonventionen"
+    space: "ENG"
+    category: "product_spec"
+    difficulty: "simple"
+
+  - id: "PS-010"
+    question: "Welche Festo Pneumatikkomponenten werden verwendet?"
+    expected_source_pages:
+      - "Festo Pneumatikkomponenten"
+    space: "ENG"
+    category: "product_spec"
+    difficulty: "simple"
+
+  - id: "PS-011"
+    question: "Was sind die Werkstoffauswahl-Kriterien bei TechMech?"
+    expected_source_pages:
+      - "Werkstoffauswahl - Entscheidungsmatrix"
+      - "Edelstahl vs. Aluminium - Anwendungsrichtlinien"
+    space: "ENG"
+    category: "product_spec"
+    difficulty: "medium"
+
+  - id: "PS-012"
+    question: "Welche Anzugsmomente gelten für Verschraubungen?"
+    expected_source_pages:
+      - "Verschraubungen - Anzugsmomente Tabelle"
+    space: "ENG"
+    category: "product_spec"
+    difficulty: "simple"
+
+  # =============================================================================
+  # TROUBLESHOOTING (SRV) - 12 questions
+  # =============================================================================
+  - id: "TS-001"
+    question: "Was sind die häufigsten Ursachen für Vibrationen bei Roboterzellen?"
+    expected_source_pages:
+      - "Vibrationen Roboterzelle - Troubleshooting Guide"
+    space: "SRV"
+    category: "troubleshooting"
+    difficulty: "medium"
+
+  - id: "TS-002"
+    question: "Die SPS startet nicht. Welche Schritte soll ich durchführen?"
+    expected_source_pages:
+      - "SPS startet nicht - Checkliste"
+    space: "SRV"
+    category: "troubleshooting"
+    difficulty: "simple"
+
+  - id: "TS-003"
+    question: "Wie behebe ich einen Encoderfehler beim Servomotor?"
+    expected_source_pages:
+      - "Servomotor Encoderfehler - Behebung"
+    space: "SRV"
+    category: "troubleshooting"
+    difficulty: "medium"
+
+  - id: "TS-004"
+    question: "Wie finde ich eine Leckage im Pneumatiksystem?"
+    expected_source_pages:
+      - "Druckabfall Pneumatiksystem - Leckagesuche"
+    space: "SRV"
+    category: "troubleshooting"
+    difficulty: "medium"
+
+  - id: "TS-005"
+    question: "Welche Fehlercodes gibt es bei der RC-3000 und wie werden sie behoben?"
+    expected_source_pages:
+      - "Fehlercodes und Behebung RC-3000"
+    space: "SRV"
+    category: "troubleshooting"
+    difficulty: "simple"
+
+  - id: "TS-006"
+    question: "Was tun bei einer Motorüberlastung Fehlermeldung?"
+    expected_source_pages:
+      - "Motorüberlastung Fehlermeldung - Lösungsansätze"
+    space: "SRV"
+    category: "troubleshooting"
+    difficulty: "medium"
+
+  - id: "TS-007"
+    question: "Wie diagnostiziere ich Getriebegeräusche?"
+    expected_source_pages:
+      - "Getriebegeräusche - Diagnose und Abhilfe"
+    space: "SRV"
+    category: "troubleshooting"
+    difficulty: "medium"
+
+  - id: "TS-008"
+    question: "Was tun wenn ein Ventil nicht schaltet?"
+    expected_source_pages:
+      - "Ventil schaltet nicht - Prüfablauf"
+    space: "SRV"
+    category: "troubleshooting"
+    difficulty: "simple"
+
+  - id: "TS-009"
+    question: "Wie behebe ich Signalstörungen bei langen Kabelwegen?"
+    expected_source_pages:
+      - "Signalstörungen lange Kabelwege - Best Practices"
+    space: "SRV"
+    category: "troubleshooting"
+    difficulty: "medium"
+
+  - id: "TS-010"
+    question: "Was sind die Wartungsintervalle für die RC-3000?"
+    expected_source_pages:
+      - "Wartungsintervalle und Checklisten RC-3000"
+      - "Wartungsanleitung RC-3000"
+    space: "SRV"
+    category: "troubleshooting"
+    difficulty: "simple"
+
+  - id: "TS-011"
+    question: "Wie richte ich einen Fernwartungszugang ein?"
+    expected_source_pages:
+      - "Fernwartungszugang Einrichtung"
+    space: "SRV"
+    category: "troubleshooting"
+    difficulty: "medium"
+
+  - id: "TS-012"
+    question: "Welche Ersatzteile sollten immer auf Lager sein?"
+    expected_source_pages:
+      - "Mindestlagerbestand kritische Teile"
+      - "Ersatzteilkatalog RC-3000"
+    space: "SRV"
+    category: "troubleshooting"
+    difficulty: "simple"
+
+  # =============================================================================
+  # COMPLIANCE & STANDARDS (CMP) - 10 questions
+  # =============================================================================
+  - id: "CM-001"
+    question: "Was sind die grundlegenden Anforderungen der Maschinenrichtlinie 2006/42/EG?"
+    expected_source_pages:
+      - "Maschinenrichtlinie 200642EG"
+      - "Grundlegende Anforderungen Übersicht"
+    space: "CMP"
+    category: "compliance"
+    difficulty: "medium"
+
+  - id: "CM-002"
+    question: "Wie wird eine Risikobeurteilung nach ISO 12100 durchgeführt?"
+    expected_source_pages:
+      - "Risikobeurteilung - Methodik nach ISO 12100"
+      - "Gefährdungsanalyse Methodik"
+    space: "CMP"
+    category: "compliance"
+    difficulty: "medium"
+
+  - id: "CM-003"
+    question: "Was sind die Unterschiede zwischen CE-Kennzeichnung und UL-Listung?"
+    expected_source_pages:
+      - "UL 508A Industrial Control Panels"
+      - "Unterschiede UL zu CE"
+    space: "CMP"
+    category: "compliance"
+    difficulty: "medium"
+
+  - id: "CM-004"
+    question: "Welche Performance Level gibt es nach ISO 13849 und wie werden sie berechnet?"
+    expected_source_pages:
+      - "ISO 13849 - Sicherheit Steuerungen"
+      - "Performance Level Berechnung"
+    space: "CMP"
+    category: "compliance"
+    difficulty: "hard"
+
+  - id: "CM-005"
+    question: "Was sind die EHEDG Hygienic Design Prinzipien?"
+    expected_source_pages:
+      - "EHEDG Hygienic Design Prinzipien"
+    space: "CMP"
+    category: "compliance"
+    difficulty: "medium"
+
+  - id: "CM-006"
+    question: "Welche EMV-Anforderungen gelten laut Richtlinie 2014/30/EU?"
+    expected_source_pages:
+      - "EMV-Richtlinie 201430EU"
+      - "Störfestigkeit Prüfungen"
+    space: "CMP"
+    category: "compliance"
+    difficulty: "medium"
+
+  - id: "CM-007"
+    question: "Was ist bei der ATEX-Zertifizierung zu beachten?"
+    expected_source_pages:
+      - "Ex-Schutz Dokumentation"
+      - "ATEX-Zertifizierung Unterlagen"
+    space: "CMP"
+    category: "compliance"
+    difficulty: "hard"
+
+  - id: "CM-008"
+    question: "Welche SIL-Einstufungen gibt es nach IEC 61508?"
+    expected_source_pages:
+      - "IEC 61508 - Funktionale Sicherheit"
+      - "SIL-Einstufung"
+    space: "CMP"
+    category: "compliance"
+    difficulty: "hard"
+
+  - id: "CM-009"
+    question: "Was muss in der technischen Dokumentation für CE enthalten sein?"
+    expected_source_pages:
+      - "Technische Dokumentation Checkliste"
+      - "Konformitätserklärung Vorlagen"
+    space: "CMP"
+    category: "compliance"
+    difficulty: "medium"
+
+  - id: "CM-010"
+    question: "Welche Sicherheitsabstände gelten nach ISO 13857?"
+    expected_source_pages:
+      - "ISO 13857 - Sicherheitsabstände"
+      - "Abstandstabellen für Schutzeinrichtungen"
+    space: "CMP"
+    category: "compliance"
+    difficulty: "medium"
+
+  # =============================================================================
+  # PROJECT DETAILS (PRJ) - 10 questions
+  # =============================================================================
+  - id: "PJ-001"
+    question: "Was sind die Projektanforderungen für die AutoTech AG Montageanlage?"
+    expected_source_pages:
+      - "PRJ-2025-018 - AutoTech AG Montageanlage"
+      - "Lastenheft AutoTech AG"
+    space: "PRJ"
+    category: "project"
+    difficulty: "medium"
+
+  - id: "PJ-002"
+    question: "Welche Lessons Learned gab es beim ElectroWerk Prüfstation Projekt?"
+    expected_source_pages:
+      - "PRJ-2024-067 - ElectroWerk Prüfstation"
+      - "Lessons Learned Workshop Protokoll"
+    space: "PRJ"
+    category: "project"
+    difficulty: "medium"
+
+  - id: "PJ-003"
+    question: "Welche Reinraumanforderungen gelten für das MediPack Projekt?"
+    expected_source_pages:
+      - "PRJ-2025-022 - MediPack Solutions Verpackungslinie"
+      - "Anforderungen Reinraumumgebung"
+    space: "PRJ"
+    category: "project"
+    difficulty: "medium"
+
+  - id: "PJ-004"
+    question: "Wie wurde das Vibrationsproblem bei der Sensor-Halterung gelöst?"
+    expected_source_pages:
+      - "Vibrationsproblem Sensor-Halterung - Lösung"
+    space: "PRJ"
+    category: "project"
+    difficulty: "medium"
+
+  - id: "PJ-005"
+    question: "Was sind die technischen Konzepte für das FoodProc Palettierroboter Projekt?"
+    expected_source_pages:
+      - "PRJ-2025-031 - FoodProc GmbH Palettierroboter"
+      - "Greiferwerkzeug für Lebensmittelkontakt"
+    space: "PRJ"
+    category: "project"
+    difficulty: "medium"
+
+  - id: "PJ-006"
+    question: "Welche Sonderlösungen wurden für die PlastTech Hochtemperatur-Umgebung entwickelt?"
+    expected_source_pages:
+      - "PRJ-2024-052 - PlastTech Spritzguss Automation"
+      - "Sonderlösung für Hochtemperatur-Umgebung"
+    space: "PRJ"
+    category: "project"
+    difficulty: "hard"
+
+  - id: "PJ-007"
+    question: "Wie ist das Template für eine Risikoanalyse aufgebaut?"
+    expected_source_pages:
+      - "Template Risikoanalyse"
+    space: "PRJ"
+    category: "project"
+    difficulty: "simple"
+
+  - id: "PJ-008"
+    question: "Was steht im Abnahmeprotokoll-Template?"
+    expected_source_pages:
+      - "Template Abnahmeprotokoll"
+    space: "PRJ"
+    category: "project"
+    difficulty: "simple"
+
+  - id: "PJ-009"
+    question: "Welche Warum-Verloren Analysen gibt es im Angebotsarchiv?"
+    expected_source_pages:
+      - "Warum-Verloren Analysen"
+      - "Angebotsarchiv 2024"
+    space: "PRJ"
+    category: "project"
+    difficulty: "medium"
+
+  - id: "PJ-010"
+    question: "Was sind die Temperaturanforderungen für das FoodProc Projekt?"
+    expected_source_pages:
+      - "Temperaturbeständigkeit Komponenten (−20°C bis +60°C)"
+    space: "PRJ"
+    category: "project"
+    difficulty: "simple"
+
+  # =============================================================================
+  # QUALITY PROCESSES (QM) - 10 questions
+  # =============================================================================
+  - id: "QM-001"
+    question: "Wie läuft der 8D-Report Prozess bei Kundenreklamationen ab?"
+    expected_source_pages:
+      - "8D-Reports und Reklamationen"
+      - "8D-2025-004"
+    space: "QM"
+    category: "quality"
+    difficulty: "medium"
+
+  - id: "QM-002"
+    question: "Welche Arbeitsanweisungen gelten für die Wareneingangsprüfung?"
+    expected_source_pages:
+      - "AWA-001 Mechanische Komponenten prüfen"
+      - "AWA-002 Elektrische Komponenten prüfen"
+    space: "QM"
+    category: "quality"
+    difficulty: "simple"
+
+  - id: "QM-003"
+    question: "Wie ist der Kalibrierplan 2025 organisiert?"
+    expected_source_pages:
+      - "Kalibrierplan 2025"
+      - "Prüfmittelliste aktuell"
+    space: "QM"
+    category: "quality"
+    difficulty: "simple"
+
+  - id: "QM-004"
+    question: "Welche KVP-Vorschläge wurden 2025 umgesetzt?"
+    expected_source_pages:
+      - "KVP-2025-012 - Reduzierung Montagezeit Schaltschrank"
+      - "KVP-2025-008"
+    space: "QM"
+    category: "quality"
+    difficulty: "medium"
+
+  - id: "QM-005"
+    question: "Wie ist das QM-Handbuch von TechMech aufgebaut?"
+    expected_source_pages:
+      - "QM-Handbuch TechMech Solutions v8.3"
+      - "Prozesslandkarte"
+    space: "QM"
+    category: "quality"
+    difficulty: "simple"
+
+  - id: "QM-006"
+    question: "Welche Arbeitsanweisung gilt für den Schaltschrankaufbau?"
+    expected_source_pages:
+      - "AWA-201 Schaltschrankaufbau"
+    space: "QM"
+    category: "quality"
+    difficulty: "simple"
+
+  - id: "QM-007"
+    question: "Wie wird die Funktionsprüfung vor Auslieferung durchgeführt?"
+    expected_source_pages:
+      - "AWA-301 Funktionsprüfung vor Auslieferung"
+    space: "QM"
+    category: "quality"
+    difficulty: "medium"
+
+  - id: "QM-008"
+    question: "Welche Lieferantenbewertungskriterien gibt es?"
+    expected_source_pages:
+      - "Lieferantenbewertung"
+      - "Bewertungskriterien"
+      - "Approved Vendor List"
+    space: "QM"
+    category: "quality"
+    difficulty: "medium"
+
+  - id: "QM-009"
+    question: "Was war das Problem beim 8D-2024-089 Sensor Ausfall?"
+    expected_source_pages:
+      - "8D-2024-089 - Sensor Ausfall nach 6 Monaten"
+      - "Fehleranalyse Labor"
+    space: "QM"
+    category: "quality"
+    difficulty: "medium"
+
+  - id: "QM-010"
+    question: "Wie wird eine Leckageprüfung bei Pneumatik durchgeführt?"
+    expected_source_pages:
+      - "AWA-303 Leckageprüfung Pneumatik"
+    space: "QM"
+    category: "quality"
+    difficulty: "simple"
+
+  # =============================================================================
+  # CROSS-DOMAIN - 8 questions
+  # =============================================================================
+  - id: "CD-001"
+    question: "Vergleiche die Konstruktionsstandards für RC-3000 und RC-5000"
+    expected_source_pages:
+      - "RC-3000 Technische Spezifikationen"
+      - "RC-5000 Konstruktionszeichnungen"
+      - "Werkstoffauswahl - Entscheidungsmatrix"
+    spaces:
+      - "ENG"
+    category: "cross_domain"
+    difficulty: "hard"
+
+  - id: "CD-002"
+    question: "Welche Compliance-Anforderungen gelten für Lebensmittelanlagen wie bei FoodProc?"
+    expected_source_pages:
+      - "PRJ-2025-031 - FoodProc GmbH"
+      - "EHEDG Hygienic Design Prinzipien"
+      - "FDA Regulations für Food Contact"
+    spaces:
+      - "PRJ"
+      - "CMP"
+    category: "cross_domain"
+    difficulty: "hard"
+
+  - id: "CD-003"
+    question: "Wie werden neue Mitarbeiter in die Werkstattsicherheit eingewiesen?"
+    expected_source_pages:
+      - "Einarbeitungsplan neue Mitarbeiter"
+      - "Sicherheitsunterweisung Werkstatt"
+      - "PSA-Anforderungen"
+    spaces:
+      - "HR"
+    category: "cross_domain"
+    difficulty: "medium"
+
+  - id: "CD-004"
+    question: "Welche Lieferanten sind für Pneumatikkomponenten zugelassen und wie werden sie bewertet?"
+    expected_source_pages:
+      - "Festo Pneumatikkomponenten"
+      - "Approved Vendor List"
+      - "Lieferantenbewertung Q4-2024"
+    spaces:
+      - "ENG"
+      - "QM"
+    category: "cross_domain"
+    difficulty: "hard"
+
+  - id: "CD-005"
+    question: "Wie hängen Projekt-Risikoanalyse und Compliance-Risikobeurteilung zusammen?"
+    expected_source_pages:
+      - "Template Risikoanalyse"
+      - "Risikobeurteilung - Methodik nach ISO 12100"
+    spaces:
+      - "PRJ"
+      - "CMP"
+    category: "cross_domain"
+    difficulty: "hard"
+
+  - id: "CD-006"
+    question: "Welche Schulungen braucht ein SPS-Programmierer bei TechMech?"
+    expected_source_pages:
+      - "Schulungsmatrix 2025"
+      - "SPS-Programmierung Grundlagen für Kunden"
+      - "Siemens TIA Portal"
+    spaces:
+      - "HR"
+      - "IT"
+    category: "cross_domain"
+    difficulty: "medium"
+
+  - id: "CD-007"
+    question: "Wie wird ein Kundenaudit vorbereitet und dokumentiert?"
+    expected_source_pages:
+      - "Kundenaudit AutoTech AG - April 2025"
+      - "ISO 9001 Zertifizierungsaudit 2024"
+    spaces:
+      - "CMP"
+      - "QM"
+    category: "cross_domain"
+    difficulty: "medium"
+
+  - id: "CD-008"
+    question: "Welche technischen und sicherheitstechnischen Anforderungen gelten für kollaborierende Roboter?"
+    expected_source_pages:
+      - "ISO 11161 - Industrieroboter Sicherheit"
+      - "Kollaborierende Roboter Anforderungen"
+      - "RC-5000 Sicherheitskonzept"
+    spaces:
+      - "CMP"
+      - "ENG"
+    category: "cross_domain"
+    difficulty: "hard"
+
+  # =============================================================================
+  # IT/SOFTWARE - 8 questions
+  # =============================================================================
+  - id: "IT-001"
+    question: "Welche Programmierrichtlinien gelten für Siemens TIA Portal?"
+    expected_source_pages:
+      - "Siemens TIA Portal"
+      - "TIA Portal Projektvorlagen"
+      - "Strukturierter Text Best Practices"
+    space: "IT"
+    category: "it_software"
+    difficulty: "medium"
+
+  - id: "IT-002"
+    question: "Wie ist das IP-Adressschema für Standardanlagen organisiert?"
+    expected_source_pages:
+      - "Netzwerkplan Standardanlage"
+      - "IP-Adressvergabe Schema"
+    space: "IT"
+    category: "it_software"
+    difficulty: "simple"
+
+  - id: "IT-003"
+    question: "Welche Security-Regeln gelten für die Anlagenvernetzung?"
+    expected_source_pages:
+      - "Firewall-Regeln für Anlagenvernetzung"
+      - "Security Assessment Industriesteuerungen"
+    space: "IT"
+    category: "it_software"
+    difficulty: "medium"
+
+  - id: "IT-004"
+    question: "Wie ist der Git Workflow für SPS-Code organisiert?"
+    expected_source_pages:
+      - "Git Workflow für SPS-Code"
+      - "Versionsnummern-Schema"
+    space: "IT"
+    category: "it_software"
+    difficulty: "medium"
+
+  - id: "IT-005"
+    question: "Welche HMI Design Guidelines gibt es?"
+    expected_source_pages:
+      - "HMI Design Guidelines"
+      - "HMI Styleguide TechMech"
+    space: "IT"
+    category: "it_software"
+    difficulty: "simple"
+
+  - id: "IT-006"
+    question: "Wie werden KUKA Roboter programmiert?"
+    expected_source_pages:
+      - "KUKA KRL Programmierrichtlinien"
+      - "Roboterprogrammierung"
+    space: "IT"
+    category: "it_software"
+    difficulty: "medium"
+
+  - id: "IT-007"
+    question: "Wie ist die VLAN Segmentierung zwischen Produktion und Office?"
+    expected_source_pages:
+      - "VLAN Segmentierung ProduktionOffice"
+    space: "IT"
+    category: "it_software"
+    difficulty: "medium"
+
+  - id: "IT-008"
+    question: "Wie wird Beckhoff TwinCAT konfiguriert?"
+    expected_source_pages:
+      - "Beckhoff TwinCAT"
+      - "TwinCAT Projektstruktur"
+    space: "IT"
+    category: "it_software"
+    difficulty: "medium"
+
+  # =============================================================================
+  # HR/ADMIN - 8 questions
+  # =============================================================================
+  - id: "HR-001"
+    question: "Welche Schulungen sind für 2025 geplant?"
+    expected_source_pages:
+      - "Schulungsmatrix 2025"
+      - "Innerbetriebliche Schulungen geplant"
+    space: "HR"
+    category: "hr_admin"
+    difficulty: "simple"
+
+  - id: "HR-002"
+    question: "Wie ist der Einarbeitungsplan für neue Mitarbeiter strukturiert?"
+    expected_source_pages:
+      - "Einarbeitungsplan neue Mitarbeiter"
+      - "IT-Equipment Checkliste"
+    space: "HR"
+    category: "hr_admin"
+    difficulty: "simple"
+
+  - id: "HR-003"
+    question: "Wie werden Reisekosten bei TechMech abgerechnet?"
+    expected_source_pages:
+      - "Reisekostenabrechnung Leitfaden"
+      - "Reiserichtlinien"
+    space: "HR"
+    category: "hr_admin"
+    difficulty: "simple"
+
+  - id: "HR-004"
+    question: "Welche PSA-Anforderungen gelten in der Werkstatt?"
+    expected_source_pages:
+      - "PSA-Anforderungen"
+      - "Gefährdungsbeurteilung Werkstatt"
+    space: "HR"
+    category: "hr_admin"
+    difficulty: "simple"
+
+  - id: "HR-005"
+    question: "Wie werden Auslandsreisen genehmigt?"
+    expected_source_pages:
+      - "Auslandsreisen Genehmigung"
+    space: "HR"
+    category: "hr_admin"
+    difficulty: "simple"
+
+  - id: "HR-006"
+    question: "Wer sind die Ersthelfer und wo ist die Erste-Hilfe Ausstattung?"
+    expected_source_pages:
+      - "Erste-Hilfe Ausstattung und Ersthelfer"
+    space: "HR"
+    category: "hr_admin"
+    difficulty: "simple"
+
+  - id: "HR-007"
+    question: "Wie werden Messgeräte ausgegeben und zurückgegeben?"
+    expected_source_pages:
+      - "Messgeräte Ausgabe und Rückgabe"
+    space: "HR"
+    category: "hr_admin"
+    difficulty: "simple"
+
+  - id: "HR-008"
+    question: "Was steht in den Arbeitssicherheitsausschuss Protokollen?"
+    expected_source_pages:
+      - "Arbeitssicherheitsausschuss Protokolle"
+      - "Unfallmeldungen und Statistik"
+    space: "HR"
+    category: "hr_admin"
+    difficulty: "medium"

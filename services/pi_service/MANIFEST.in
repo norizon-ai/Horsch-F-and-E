@@ -1,0 +1,7 @@
+recursive-include pii_deid_service/models *
+recursive-include pii_deid_service/configs *
+recursive-include pii_deid_service/entity_recognizer *
+recursive-include pii_deid_service/operators *
+recursive-include pii_deid_service/pipeline *
+recursive-include pii_deid_service/plugins *
+recursive-include pii_deid_service/config_management * 

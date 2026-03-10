@@ -1,0 +1,672 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2025-12-06T00:00:00.000Z",
+  "__export_source": "insomnia.desktop.app:v2023.5.0",
+  "resources": [
+    {
+      "_id": "wrk_hpc_knowledgedb",
+      "_type": "workspace",
+      "name": "HPC Ticket Knowledge Database",
+      "description": "Multi-agent deep research system for HPC support questions. FastAPI backend with Elasticsearch knowledge base.",
+      "scope": "collection",
+      "parentId": null
+    },
+    {
+      "_id": "env_base",
+      "_type": "environment",
+      "name": "Base Environment",
+      "data": {
+        "base_url": "http://localhost:8001",
+        "elasticsearch_url": "http://localhost:9200",
+        "llm_base_url": "http://lme49.cs.fau.de:30000/v1",
+        "llm_api_key": "dummy",
+        "llm_model": "openai/gpt-oss-120b",
+        "floating_ip": "",
+        "docs_index": "docs",
+        "tickets_index": "tickets"
+      },
+      "dataPropertyOrder": {
+        "&": [
+          "base_url",
+          "elasticsearch_url",
+          "llm_base_url",
+          "llm_api_key",
+          "llm_model",
+          "floating_ip",
+          "docs_index",
+          "tickets_index"
+        ]
+      },
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1000,
+      "parentId": "wrk_hpc_knowledgedb"
+    },
+    {
+      "_id": "env_local",
+      "_type": "environment",
+      "name": "Local Development",
+      "data": {
+        "base_url": "http://localhost:8001",
+        "elasticsearch_url": "http://localhost:9200"
+      },
+      "dataPropertyOrder": {
+        "&": [
+          "base_url",
+          "elasticsearch_url"
+        ]
+      },
+      "color": "#28a745",
+      "isPrivate": false,
+      "metaSortKey": 1001,
+      "parentId": "env_base"
+    },
+    {
+      "_id": "env_openstack",
+      "_type": "environment",
+      "name": "OpenStack Production",
+      "data": {
+        "base_url": "http://{{ _.floating_ip }}:8001",
+        "elasticsearch_url": "http://{{ _.floating_ip }}:9200",
+        "floating_ip": "YOUR_FLOATING_IP_HERE"
+      },
+      "dataPropertyOrder": {
+        "&": [
+          "floating_ip",
+          "base_url",
+          "elasticsearch_url"
+        ]
+      },
+      "color": "#dc3545",
+      "isPrivate": false,
+      "metaSortKey": 1002,
+      "parentId": "env_base"
+    },
+    {
+      "_id": "fld_dr_api",
+      "_type": "request_group",
+      "name": "DR API Endpoints",
+      "description": "Deep Research API endpoints for HPC support queries. These endpoints orchestrate multi-agent research workflows.",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": 1000,
+      "parentId": "wrk_hpc_knowledgedb"
+    },
+    {
+      "_id": "fld_elasticsearch",
+      "_type": "request_group",
+      "name": "Elasticsearch Direct Access",
+      "description": "Direct Elasticsearch endpoints for health checks, index inspection, and raw search queries.",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": 2000,
+      "parentId": "wrk_hpc_knowledgedb"
+    },
+    {
+      "_id": "fld_examples",
+      "_type": "request_group",
+      "name": "Example Queries",
+      "description": "Realistic HPC support questions demonstrating different query types and complexity levels.",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": 3000,
+      "parentId": "wrk_hpc_knowledgedb"
+    },
+    {
+      "_id": "fld_llm",
+      "_type": "request_group",
+      "name": "LLM Direct Access",
+      "description": "Direct LLM endpoint testing to verify GPT-OSS connectivity and model availability.",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": 4000,
+      "parentId": "wrk_hpc_knowledgedb"
+    },
+    {
+      "_id": "req_root",
+      "_type": "request",
+      "name": "Get Service Info",
+      "description": "Root endpoint returning service information and available endpoints",
+      "url": "{{ _.base_url }}/",
+      "method": "GET",
+      "body": {},
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": 1100,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_dr_api"
+    },
+    {
+      "_id": "req_health",
+      "_type": "request",
+      "name": "Health Check",
+      "description": "Health check endpoint - tests Elasticsearch connection and LLM configuration",
+      "url": "{{ _.base_url }}/health",
+      "method": "GET",
+      "body": {},
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": 1200,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_dr_api"
+    },
+    {
+      "_id": "req_query_brief",
+      "_type": "request",
+      "name": "Query (Brief Mode)",
+      "description": "Synchronous query with brief=true. Returns only concise answer without full research report. Faster response.",
+      "url": "{{ _.base_url }}/query",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"query\": \"How do I submit a SLURM job?\",\n  \"brief\": true\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": 1300,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_dr_api"
+    },
+    {
+      "_id": "req_query_comprehensive",
+      "_type": "request",
+      "name": "Query (Comprehensive Mode)",
+      "description": "Synchronous query with brief=false. Returns full research report with iterations, assumptions, and quality assessments. May take 60-180 seconds for complex queries.",
+      "url": "{{ _.base_url }}/query",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"query\": \"How do I optimize my parallel MPI job?\",\n  \"brief\": false,\n  \"max_iterations\": 3\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": 1400,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_dr_api"
+    },
+    {
+      "_id": "req_query_stream",
+      "_type": "request",
+      "name": "Query (Streaming SSE)",
+      "description": "Streaming query using Server-Sent Events. Returns incremental updates as research progresses. Use for real-time feedback in UI.",
+      "url": "{{ _.base_url }}/query/stream",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"query\": \"What GPU resources are available and how do I use them?\"\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": 1500,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_dr_api"
+    },
+    {
+      "_id": "req_search_docs",
+      "_type": "request",
+      "name": "Direct Search (Docs)",
+      "description": "Direct search bypassing DR pipeline. Searches documentation index. Fast, no LLM calls.",
+      "url": "{{ _.base_url }}/search",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"query\": \"JupyterHub\",\n  \"index\": \"docs\",\n  \"max_results\": 5\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": 1600,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_dr_api"
+    },
+    {
+      "_id": "req_search_tickets",
+      "_type": "request",
+      "name": "Direct Search (Tickets)",
+      "description": "Direct search of support tickets index. Returns historical problem-solution pairs.",
+      "url": "{{ _.base_url }}/search",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"query\": \"GPU memory error\",\n  \"index\": \"tickets\",\n  \"max_results\": 10\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": 1700,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_dr_api"
+    },
+    {
+      "_id": "req_es_health",
+      "_type": "request",
+      "name": "Cluster Health",
+      "description": "Elasticsearch cluster health status. Check before running queries.",
+      "url": "{{ _.elasticsearch_url }}/_cluster/health",
+      "method": "GET",
+      "body": {},
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": 2100,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_elasticsearch"
+    },
+    {
+      "_id": "req_es_indices",
+      "_type": "request",
+      "name": "List Indices",
+      "description": "List all Elasticsearch indices with document counts and sizes. Verify docs and tickets indices exist.",
+      "url": "{{ _.elasticsearch_url }}/_cat/indices?v",
+      "method": "GET",
+      "body": {},
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": 2200,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_elasticsearch"
+    },
+    {
+      "_id": "req_es_search_docs",
+      "_type": "request",
+      "name": "Search Docs Index",
+      "description": "Direct Elasticsearch query on docs index. Returns raw search results with scoring.",
+      "url": "{{ _.elasticsearch_url }}/{{ _.docs_index }}/_search",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"query\": {\n    \"multi_match\": {\n      \"query\": \"SLURM job submission\",\n      \"fields\": [\"title^3\", \"text\"],\n      \"type\": \"best_fields\"\n    }\n  },\n  \"size\": 5,\n  \"highlight\": {\n    \"fields\": {\n      \"title\": {},\n      \"text\": {\"fragment_size\": 120}\n    }\n  }\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": 2300,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_elasticsearch"
+    },
+    {
+      "_id": "req_es_search_tickets",
+      "_type": "request",
+      "name": "Search Tickets Index",
+      "description": "Direct Elasticsearch query on tickets index. Searches problem descriptions, solutions, and root causes.",
+      "url": "{{ _.elasticsearch_url }}/{{ _.tickets_index }}/_search",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"query\": {\n    \"multi_match\": {\n      \"query\": \"out of memory GPU\",\n      \"fields\": [\n        \"problem_description^5\",\n        \"solution^4\",\n        \"root_cause^3\",\n        \"title^3\",\n        \"keywords^2\"\n      ],\n      \"type\": \"best_fields\"\n    }\n  },\n  \"size\": 5,\n  \"_source\": [\n    \"ticket_id\",\n    \"title\",\n    \"problem_description\",\n    \"solution\",\n    \"root_cause\",\n    \"keywords\"\n  ]\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": 2400,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_elasticsearch"
+    },
+    {
+      "_id": "req_es_count_docs",
+      "_type": "request",
+      "name": "Count Docs",
+      "description": "Count total documents in docs index. Verify indexing completed successfully.",
+      "url": "{{ _.elasticsearch_url }}/{{ _.docs_index }}/_count",
+      "method": "GET",
+      "body": {},
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": 2500,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_elasticsearch"
+    },
+    {
+      "_id": "req_es_count_tickets",
+      "_type": "request",
+      "name": "Count Tickets",
+      "description": "Count total documents in tickets index. Verify ticket data is indexed.",
+      "url": "{{ _.elasticsearch_url }}/{{ _.tickets_index }}/_count",
+      "method": "GET",
+      "body": {},
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": 2600,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_elasticsearch"
+    },
+    {
+      "_id": "req_example_slurm",
+      "_type": "request",
+      "name": "Example: SLURM Job Submission",
+      "description": "Basic question - should return direct answer with high confidence (0.8+). Expected time: 10-30 seconds.",
+      "url": "{{ _.base_url }}/query",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"query\": \"How do I submit a SLURM job to the cluster?\",\n  \"brief\": false\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": 3100,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_examples"
+    },
+    {
+      "_id": "req_example_gpu",
+      "_type": "request",
+      "name": "Example: GPU Configuration",
+      "description": "Intermediate complexity - requires docs + tickets research. Expected time: 30-60 seconds. Should cite multiple sources.",
+      "url": "{{ _.base_url }}/query",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"query\": \"How do I allocate 4 GPUs for my TensorFlow training job?\",\n  \"brief\": false\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": 3200,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_examples"
+    },
+    {
+      "_id": "req_example_modules",
+      "_type": "request",
+      "name": "Example: Module Loading",
+      "description": "Simple question with brief mode. Fast response expected (10-20 seconds). Should return command example.",
+      "url": "{{ _.base_url }}/query",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"query\": \"How do I load the Python module on the cluster?\",\n  \"brief\": true\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": 3300,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_examples"
+    },
+    {
+      "_id": "req_example_jupyterhub",
+      "_type": "request",
+      "name": "Example: JupyterHub Access",
+      "description": "Domain-specific question. Should trigger assumption checking about file system access. Expected iterations: 2-3.",
+      "url": "{{ _.base_url }}/query",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"query\": \"How do I access my $WORK directory in JupyterHub?\",\n  \"brief\": false\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": 3400,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_examples"
+    },
+    {
+      "_id": "req_example_troubleshooting",
+      "_type": "request",
+      "name": "Example: Error Troubleshooting",
+      "description": "Complex troubleshooting question. Should trigger deep research (3 iterations). Expected time: 60-120 seconds. Should check tickets for similar issues.",
+      "url": "{{ _.base_url }}/query",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"query\": \"My GPU job is showing low utilization and running slower than expected. What could be wrong and how do I fix it?\",\n  \"brief\": false,\n  \"max_iterations\": 3\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": 3500,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_examples"
+    },
+    {
+      "_id": "req_llm_models",
+      "_type": "request",
+      "name": "List Models",
+      "description": "List available models from the LLM endpoint. Verifies LLM connectivity and shows which models are accessible.",
+      "url": "{{ _.llm_base_url }}/models",
+      "method": "GET",
+      "body": {},
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.llm_api_key }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": 4100,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_llm"
+    },
+    {
+      "_id": "req_llm_health",
+      "_type": "request",
+      "name": "LLM Health Check",
+      "description": "Simple test completion to verify LLM is responding. Sends a basic prompt and checks for successful response.",
+      "url": "{{ _.llm_base_url }}/chat/completions",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"model\": \"{{ _.llm_model }}\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Say 'OK' if you are working.\"\n    }\n  ],\n  \"max_tokens\": 10,\n  \"temperature\": 0.1\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.llm_api_key }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": 4200,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_llm"
+    },
+    {
+      "_id": "req_llm_test_hpc",
+      "_type": "request",
+      "name": "Test HPC Question",
+      "description": "Send a sample HPC question to the LLM to verify it can answer technical queries. Tests reasoning capabilities.",
+      "url": "{{ _.llm_base_url }}/chat/completions",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"model\": \"{{ _.llm_model }}\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are an expert HPC support assistant.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"What does the SLURM sbatch command do?\"\n    }\n  ],\n  \"max_tokens\": 200,\n  \"temperature\": 0.2\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.llm_api_key }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": 4300,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_llm"
+    }
+  ]
+}

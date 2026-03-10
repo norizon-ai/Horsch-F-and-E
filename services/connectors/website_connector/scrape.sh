@@ -1,0 +1,1 @@
+wget --recursive --no-clobber --continue --html-extension --restrict-file-names=windows --domains lme.tf.fau.de --no-parent --reject "*.pdf,*.zip,*.tar.gz,*.exe,*.dmg,*.jpg,*.jpeg,*.png,*.gif,*.svg,*.ico,*.webp,*.bmp,*.tiff,*.css,*.js" --directory-prefix lme_fau_temp_html https://lme.tf.fau.de

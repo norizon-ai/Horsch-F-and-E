@@ -1,0 +1,65 @@
+# SearXNG settings for Nora Research
+# This configuration enables JSON API access required by the deepsearch backend
+
+use_default_settings: true
+
+general:
+  debug: false
+  instance_name: "Nora SearXNG"
+  enable_metrics: false
+
+search:
+  safe_search: 0
+  autocomplete: ""
+  default_lang: "auto"
+  # Enable all formats including JSON (required for API access)
+  formats:
+    - html
+    - json
+    - csv
+    - rss
+
+server:
+  # Bind to all interfaces inside container
+  bind_address: "0.0.0.0"
+  port: 8080
+  # Disable limiter/bot detection for internal use
+  limiter: false
+  public_instance: false
+  # Generate a random secret key - this can be overridden by SEARXNG_SECRET env var
+  secret_key: "nora-searxng-dev-secret-key-change-in-production"
+  image_proxy: false
+  # Allow access from internal services
+  http_protocol_version: "1.1"
+  method: "GET"
+
+# Disable bot detection completely for internal API usage
+redis:
+  url: false
+
+# Engine configuration - enable popular search engines
+engines:
+  - name: google
+    engine: google
+    shortcut: g
+    disabled: false
+
+  - name: bing
+    engine: bing
+    shortcut: bi
+    disabled: false
+
+  - name: duckduckgo
+    engine: duckduckgo
+    shortcut: ddg
+    disabled: false
+
+  - name: wikipedia
+    engine: wikipedia
+    shortcut: wp
+    disabled: false
+
+  - name: wikidata
+    engine: wikidata
+    shortcut: wd
+    disabled: true

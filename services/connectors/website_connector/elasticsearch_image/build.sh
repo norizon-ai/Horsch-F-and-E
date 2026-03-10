@@ -1,0 +1,141 @@
+#!/bin/bash
+set -e
+
+echo "========================================"
+echo "Building FAU Website Elasticsearch Image"
+echo "========================================"
+
+# Configuration
+IMAGE_NAME="${IMAGE_NAME:-fau-website-elasticsearch}"
+TAG="${TAG:-latest}"
+ELASTIC_PORT="${ELASTIC_PORT:-9200}"
+CONTAINER_NAME="es-builder-temp"
+
+# Check if markdown directories exist
+MARKDOWN_DIR_1="${MARKDOWN_DIR_1:-../fau_docsmd}"
+MARKDOWN_DIR_2="${MARKDOWN_DIR_2:-../lme_docsmd}"
+
+if [ ! -d "$MARKDOWN_DIR_1" ] && [ ! -d "$MARKDOWN_DIR_2" ]; then
+    echo "ERROR: No markdown directories found!"
+    echo "Please set MARKDOWN_DIR_1 and/or MARKDOWN_DIR_2 environment variables"
+    echo "Example: export MARKDOWN_DIR_1=/path/to/fau_docsmd"
+    exit 1
+fi
+
+echo "Using markdown directories:"
+[ -d "$MARKDOWN_DIR_1" ] && echo "  - $MARKDOWN_DIR_1"
+[ -d "$MARKDOWN_DIR_2" ] && echo "  - $MARKDOWN_DIR_2"
+echo ""
+
+# Clean up any previous build artifacts
+echo "Cleaning up previous build artifacts..."
+rm -rf es_data/
+docker rm -f $CONTAINER_NAME 2>/dev/null || true
+
+# Step 1: Start temporary Elasticsearch container
+echo ""
+echo "Step 1: Starting temporary Elasticsearch container..."
+docker run -d \
+  --name $CONTAINER_NAME \
+  -p $ELASTIC_PORT:9200 \
+  -e "discovery.type=single-node" \
+  -e "xpack.security.enabled=false" \
+  -e "ES_JAVA_OPTS=-Xms2g -Xmx2g" \
+  docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+
+# Wait for Elasticsearch to be ready
+echo "Waiting for Elasticsearch to be ready..."
+for i in {1..30}; do
+  if curl -s http://localhost:$ELASTIC_PORT/_cluster/health >/dev/null 2>&1; then
+    echo "Elasticsearch is ready!"
+    break
+  fi
+  echo -n "."
+  sleep 2
+done
+echo ""
+
+# Step 2: Index the website data
+echo ""
+echo "Step 2: Indexing website data..."
+cd ..
+export ELASTIC_URL="http://localhost:$ELASTIC_PORT"
+export ELASTIC_INDEX="website_kb"
+export INDEX_STRATEGY="RESET"
+export WEBSITE_BASE_URL="${WEBSITE_BASE_URL:-https://www.fau.de}"
+
+# Set markdown directory paths (use absolute paths)
+if [ -d "$MARKDOWN_DIR_1" ]; then
+    export MARKDOWN_DIR_1="$(cd "$MARKDOWN_DIR_1" && pwd)"
+fi
+if [ -d "$MARKDOWN_DIR_2" ]; then
+    export MARKDOWN_DIR_2="$(cd "$MARKDOWN_DIR_2" && pwd)"
+fi
+
+# Activate virtual environment if it exists
+if [ -d "../venv" ]; then
+    echo "Activating virtual environment..."
+    source ../venv/bin/activate
+fi
+
+python3 index_website.py
+
+# Deactivate venv if it was activated
+if [ -n "$VIRTUAL_ENV" ]; then
+    deactivate
+fi
+
+if [ $? -ne 0 ]; then
+    echo "ERROR: Indexing failed!"
+    docker rm -f $CONTAINER_NAME
+    exit 1
+fi
+
+cd elasticsearch_image
+
+# Verify data was indexed
+echo ""
+echo "Verifying indexed data..."
+DOC_COUNT=$(curl -s http://localhost:$ELASTIC_PORT/website_kb/_count | grep -o '"count":[0-9]*' | grep -o '[0-9]*')
+echo "Indexed $DOC_COUNT documents"
+
+if [ "$DOC_COUNT" -eq 0 ]; then
+    echo "ERROR: No documents were indexed!"
+    docker rm -f $CONTAINER_NAME
+    exit 1
+fi
+
+# Step 3: Export Elasticsearch data
+echo ""
+echo "Step 3: Exporting Elasticsearch data directory..."
+docker exec $CONTAINER_NAME bash -c "chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/data"
+docker cp $CONTAINER_NAME:/usr/share/elasticsearch/data ./es_data
+
+# Step 4: Stop and remove temporary container
+echo ""
+echo "Step 4: Cleaning up temporary container..."
+docker rm -f $CONTAINER_NAME
+
+# Step 5: Build final Docker image with baked-in data
+echo ""
+echo "Step 5: Building final Docker image..."
+docker build -t $IMAGE_NAME:$TAG .
+
+# Clean up exported data directory
+rm -rf es_data/
+
+echo ""
+echo "========================================"
+echo "Build complete!"
+echo "Image: $IMAGE_NAME:$TAG"
+echo "Documents indexed: $DOC_COUNT"
+echo ""
+echo "To test the image:"
+echo "  docker run -d --name es-test -p 9200:9200 $IMAGE_NAME:$TAG"
+echo "  curl http://localhost:9200/website_kb/_count"
+echo "  docker rm -f es-test"
+echo ""
+echo "To push to Docker Hub:"
+echo "  export DOCKER_USERNAME=your-username"
+echo "  ./push.sh"
+echo "========================================"

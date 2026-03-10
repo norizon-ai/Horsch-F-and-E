@@ -1,0 +1,102 @@
+{
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 0,
+    "analysis": {
+      "filter": {
+        "german_stop": {
+          "type": "stop",
+          "stopwords": "_german_"
+        },
+        "german_stemmer": {
+          "type": "stemmer",
+          "language": "light_german"
+        }
+      },
+      "analyzer": {
+        "german_technical": {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": ["lowercase", "german_stop", "german_stemmer", "asciifolding"]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "_source": {
+      "excludes": ["vector"]
+    },
+    "properties": {
+      "title": {
+        "type": "text",
+        "analyzer": "german_technical",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
+          }
+        }
+      },
+      "content": {
+        "type": "text",
+        "analyzer": "german_technical"
+      },
+      "headings": {
+        "type": "text",
+        "analyzer": "german_technical"
+      },
+      "space": {
+        "type": "keyword"
+      },
+      "space_name": {
+        "type": "keyword"
+      },
+      "parent_page": {
+        "type": "keyword"
+      },
+      "hierarchy_path": {
+        "type": "keyword"
+      },
+      "level": {
+        "type": "integer"
+      },
+      "content_type": {
+        "type": "keyword"
+      },
+      "product_codes": {
+        "type": "keyword"
+      },
+      "norm_references": {
+        "type": "keyword"
+      },
+      "page_id": {
+        "type": "keyword"
+      },
+      "chunk_index": {
+        "type": "integer"
+      },
+      "chunk_count": {
+        "type": "integer"
+      },
+      "url": {
+        "type": "keyword"
+      },
+      "source_file": {
+        "type": "keyword"
+      },
+      "vector": {
+        "type": "dense_vector",
+        "dims": 384,
+        "index": true,
+        "similarity": "cosine",
+        "index_options": {
+          "type": "hnsw",
+          "m": 16,
+          "ef_construction": 100
+        }
+      },
+      "indexed_at": {
+        "type": "date"
+      }
+    }
+  }
+}

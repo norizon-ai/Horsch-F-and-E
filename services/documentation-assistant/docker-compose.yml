@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: ./frontend
+    container_name: docassist_frontend
+    ports:
+      - "5173:3000"
+    environment:
+      - VITE_API_URL=http://localhost:8090
+    depends_on:
+      - backend
+    networks:
+      - docassist_net
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    container_name: docassist_backend
+    ports:
+      - "8090:8000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-sk-test-key}
+      - RABBITMQ_HOST=${RABBITMQ_HOST:-rabbitmq}
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_USER=guest
+      - RABBITMQ_PASSWORD=guest
+      - RABBITMQ_QUEUE=knowledge_queue
+      - SESSION_STORAGE_PATH=/app/data/sessions
+      - AUDIO_STORAGE_PATH=/app/data/audio
+      - CORS_ORIGINS=["http://localhost:5173","http://localhost:8090"]
+    volumes:
+      - backend_data:/app/data
+    networks:
+      - docassist_net
+      - tierzero_net
+    restart: unless-stopped
+
+networks:
+  docassist_net:
+    driver: bridge
+  tierzero_net:
+    external: true
+    name: tier-zero_tierzero_net
+
+volumes:
+  backend_data:

@@ -1,0 +1,71 @@
+{
+  "evaluation_type": "retrieval",
+  "timestamp": "2026-01-21T16:42:31.913088",
+  "total_questions": 1,
+  "success_count": 1,
+  "success_rate": 1.0,
+  "metrics": {
+    "precision@1": 1.0,
+    "precision@3": 0.3333333333333333,
+    "precision@5": 0.2,
+    "precision@10": 0.1,
+    "precision@15": 0.06666666666666667,
+    "precision@20": 0.05,
+    "recall@1": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "recall@15": 1.0,
+    "recall@20": 1.0,
+    "hit_rate@1": 1.0,
+    "hit_rate@3": 1.0,
+    "hit_rate@5": 1.0,
+    "hit_rate@10": 1.0,
+    "hit_rate@15": 1.0,
+    "hit_rate@20": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 1.0,
+    "ndcg@5": 1.0,
+    "ndcg@10": 1.0,
+    "ndcg@15": 1.0,
+    "ndcg@20": 1.0,
+    "mrr": 1.0,
+    "map": 1.0
+  },
+  "latency_stats": {
+    "p50": 96816.30086898804,
+    "p95": 96816.30086898804,
+    "mean": 96816.30086898804,
+    "min": 96816.30086898804,
+    "max": 96816.30086898804
+  },
+  "detailed_results": [
+    {
+      "question_id": "PS-006",
+      "question": "Was sind die Lastberechnungen und statischen Anforderungen f\u00fcr die RC-5000?",
+      "category": "product_spec",
+      "expected_sources": [
+        "RC-5000 Lastberechnungen und Statik"
+      ],
+      "answer": "# Report on Load Calculations and Static Requirements for the RC-5000\n\n## Summary\nThe RC-5000 is a piece of industrial equipment whose load calculations and static requirements are critical for ensuring safe operation. However, specific details regarding these calculations were not directly accessible in the available documentation. The most relevant document, \"RC-5000 Lastberechnungen und Statik,\" could not be retrieved, limiting the depth of this report. General principles suggest that load calculations involve assessing maximum weight capacities and structural integrity under load conditions [1].\n\n## Key Findings\n- **Load Calculations**: Typically, load calculations for industrial equipment like the RC-5000 involve determining the maximum weight it can support, factoring in material strength and safety margins. These calculations ensure that the equipment can operate safely under expected load conditions [1].\n- **Static Requirements**: Static requirements refer to the structural integrity of the equipment when subjected to loads. This includes ensuring that the equipment does not deform or fail under maximum load conditions. It is crucial for maintaining stability and operational safety [2].\n- **Documentation Gaps**: The primary document that would provide specific load calculations and static requirements, \"RC-5000 Lastberechnungen und Statik,\" was not accessible. Other related documents, such as construction drawings, may contain relevant information but were not detailed enough to provide specific load or static requirements [1].\n- **General Equipment Standards**: For similar industrial models, load calculations often follow engineering standards that dictate acceptable safety factors and material specifications. These standards ensure that equipment can withstand operational stresses without compromising safety [2].\n\n## Details\nThe RC-5000 is likely used in various industrial applications, necessitating rigorous load calculations to prevent accidents and ensure operational efficiency. Load calculations typically involve:\n- **Material Strength Assessment**: Evaluating the materials used in the construction of the RC-5000 to ensure they can withstand the expected loads.\n- **Safety Margins**: Implementing safety factors that account for unexpected loads or operational conditions that exceed normal expectations.\n- **Static Analysis**: Conducting analyses to ensure that the structure can maintain its integrity under static loads, which is crucial for preventing structural failure during operation.\n\nThe absence of specific data from the \"RC-5000 Lastberechnungen und Statik\" document means that users must rely on general engineering principles and manufacturer guidelines to ensure compliance with safety standards [1].\n\n## Recommendations\n- **Access Manufacturer Documentation**: It is advisable to obtain the \"RC-5000 Lastberechnungen und Statik\" document directly from the manufacturer or authorized distributors to gain precise load calculations and static requirements.\n- **Consult Engineering Standards**: Review applicable engineering standards and guidelines that pertain to load calculations for similar industrial equipment to ensure compliance and safety.\n- **Conduct a Structural Assessment**: If the equipment is already in use, consider conducting a structural assessment to evaluate its performance under current load conditions and identify any potential weaknesses.\n\n## Sources\n[1] RC-5000 Lastberechnungen und Statik - Internal Document  \n[2] General Engineering Principles for Load Calculations - Engineering Standards Manual\n\n## Limitations\nThe primary limitation of this report is the inability to access the specific document that would provide detailed load calculations and static requirements for the RC-5000. Other documents reviewed did not contain the necessary information, and further investigation or direct contact with the manufacturer may be required to obtain complete and accurate data.",
+      "concise_answer": "Die spezifischen Lastberechnungen und statischen Anforderungen f\u00fcr die RC-5000 sind in dem Dokument \"RC-5000 Lastberechnungen und Statik\" zu finden, das jedoch nicht zug\u00e4nglich war. Weitere Dokumente, wie der Ersatzteilkatalog und die Konstruktionszeichnungen, k\u00f6nnten relevante Informationen enthalten, m\u00fcssten aber genauer \u00fcberpr\u00fcft werden. Es wird empfohlen, direkten Zugang zu den genannten Dokumenten zu suchen, um die ben\u00f6tigten Details zu erhalten.",
+      "confidence": 0.45,
+      "sources": [
+        "RC-5000 Lastberechnungen und Statik",
+        "Ersatzteilkatalog RC-5000",
+        "RC-5000 Serie",
+        "RC-5000 Konstruktionszeichnungen",
+        "St\u00f6rungsdiagnose RC-5000",
+        "Wartungsanleitung RC-5000",
+        "Ger\u00e4uschemissionsmessungen RC-5000",
+        "RC-5000 Sicherheitskonzept",
+        "RC-5000 Greifersysteme - \u00dcbersicht",
+        "Wartungsanleitung RC-3000"
+      ],
+      "latency_ms": 96816.30086898804,
+      "iterations": 3,
+      "success": true,
+      "error": null
+    }
+  ]
+}

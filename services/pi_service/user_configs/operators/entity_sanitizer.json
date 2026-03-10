@@ -1,0 +1,16 @@
+{
+  "name": "entity_sanitizer",
+  "config": {
+    // Strategy to use: "deduplicate", "merge_overlaps", "filter_by_confidence", "entity_priority"
+    "strategy": "filter_by_confidence",
+
+    // Minimum confidence score for entities to keep (float, 0.0-1.0)
+    "confidence_threshold": null,
+
+    // Priority order for entity types (array of strings, e.g., ["PERSON", "LOCATION"])
+    "entity_priority": [],
+
+    // (Future) Custom user rules (object or array, for advanced users)
+    "custom_rules": {}
+  }
+} 

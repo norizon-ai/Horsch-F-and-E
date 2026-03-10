@@ -1,0 +1,48 @@
+# Query Reformulator Prompts
+# Used to reformulate user queries for better search results.
+
+reformulate_query: |
+  Extract the most important search terms from this query.
+
+  Return only the key terms separated by spaces, nothing else.
+  Limit to {max_terms} terms maximum.
+
+  Focus on:
+  - Technical terms and jargon
+  - Nouns and key concepts
+  - Action verbs
+  - Keep the original language of the terms (German or English)
+
+  Query: {query}
+
+  Search terms:
+
+reformulate_for_tickets: |
+  Reformulate this question for searching support tickets.
+
+  Focus on:
+  - Error messages and codes
+  - Problem symptoms
+  - System components mentioned
+  - Actions that failed
+
+  Limit to {max_terms} terms.
+
+  Query: {query}
+
+  Search terms:
+
+reformulate_for_docs: |
+  Reformulate this question for searching documentation.
+
+  Focus on:
+  - Feature names
+  - Commands and procedures
+  - Configuration options
+  - Conceptual topics
+
+  Limit to {max_terms} terms.
+
+  Query: {query}
+
+  Search terms:

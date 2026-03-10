@@ -1,0 +1,17 @@
+Prompt (for each ticket):
+
+You are an expert technical assistant tasked with extracting helpful and reusable technical knowledge from internal HPC support conversations.
+
+The conversation below is a series of ticket messages between HPC users and the support team. Extract the following structured insights to populate a knowledge base:
+
+    Topic or Issue: What was the user's main problem or request?
+    Root Cause or Technical Detail: What was the underlying cause (if known)? Mention software, versions, system modules, etc.
+    Solution or Advice Given: What was the final resolution or workaround? Include paths, commands, modules, or configurations if mentioned.
+    Lessons or Best Practices: If any general advice can be inferred from this exchange (e.g. module dependencies, quotas, account expiration, compatibility issues), extract it.
+    Unresolved or Open Issues: If anything remained uncertain or was based on assumptions, highlight that.
+
+If helpful, you may include "educated guesses" or inferred knowledge based on patterns in the text (e.g., typical reasons for an error message or login problem), but clearly label them as such.
+
+--- Conversation Start --- [INSERT FULL TICKET TEXT HERE] --- Conversation End ---
+
+Output the result as structured bullet points for inclusion into a searchable internal wiki or knowledge base.

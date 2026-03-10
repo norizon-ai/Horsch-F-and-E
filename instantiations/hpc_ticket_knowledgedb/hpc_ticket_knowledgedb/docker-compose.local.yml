@@ -1,0 +1,36 @@
+services:
+  # DR API running locally, connecting to remote Elasticsearch and LLM
+  dr-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: hpc-kb-dr-api-local
+    ports:
+      - "8002:8000"
+    environment:
+      # LLM Configuration - remote LLM server
+      - LLM_BASE_URL=${LLM_BASE_URL:-http://lme49.cs.fau.de:30000/v1}
+      - LLM_API_KEY=${LLM_API_KEY:-dummy}
+      - LLM_MODEL=${LLM_MODEL:-openai/gpt-oss-120b}
+      - LLM_TEMPERATURE=${LLM_TEMPERATURE:-0.2}
+      - LLM_MAX_TOKENS=${LLM_MAX_TOKENS:-2000}
+      - LLM_TIMEOUT=${LLM_TIMEOUT:-60}
+
+      # Elasticsearch Configuration - use local ES
+      - ELASTIC_URL=${ELASTIC_URL:-http://host.docker.internal:9200}
+      - DOCS_INDEX=${DOCS_INDEX:-docs}
+      - TICKETS_INDEX=${TICKETS_INDEX:-tickets}
+      - KNOWLEDGEBASE_INDEX=${KNOWLEDGEBASE_INDEX:-knowledgebase}
+
+      # DR Process Configuration
+      - MAX_ITERATIONS=${MAX_ITERATIONS:-3}
+      - QUALITY_THRESHOLD=${QUALITY_THRESHOLD:-0.7}
+      - CONFIDENCE_THRESHOLD=${CONFIDENCE_THRESHOLD:-0.6}
+      - MAX_SEARCH_RESULTS=${MAX_SEARCH_RESULTS:-10}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s

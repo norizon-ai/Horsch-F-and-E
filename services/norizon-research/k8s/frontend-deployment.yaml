@@ -1,0 +1,100 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: norizon-research-frontend
+  namespace: norizon-research
+  labels:
+    app: norizon-research-frontend
+    tier: frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: norizon-research-frontend
+  template:
+    metadata:
+      labels:
+        app: norizon-research-frontend
+        tier: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: omarkh98/nora-frontend:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+          name: http
+        env:
+        - name: NODE_ENV
+          value: "production"
+        - name: VITE_DEEPRESEARCH_API_URL
+          value: "http://norizon-proxy-service:5002"
+        - name: DEEPRESEARCH_API_URL
+          value: "http://norizon-proxy-service:5002"
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: norizon-research-frontend-service
+  namespace: norizon-research
+  labels:
+    app: norizon-research-frontend
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 3000
+    protocol: TCP
+    name: http
+  selector:
+    app: norizon-research-frontend
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: norizon-research-ingress
+  namespace: norizon-research
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - research.norizon.ai
+    secretName: norizon-research-tls
+  rules:
+  - host: research.norizon.ai
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: norizon-research-frontend-service
+            port:
+              number: 80

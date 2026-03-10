@@ -1,0 +1,44 @@
+# Assumption Checker Prompts
+# Used to extract and validate user assumptions.
+
+extract_assumptions: |
+  Identify implicit assumptions in this question.
+
+  QUESTION: {query}
+
+  Look for assumptions about:
+  - System configuration or setup
+  - Software versions or compatibility
+  - User permissions or access
+  - Prior steps already taken
+  - Expected behavior
+
+  List each assumption on a separate line, prefixed with "- ".
+  Maximum {max_assumptions} assumptions.
+
+  If no assumptions are detected, respond with "NONE".
+
+  Assumptions:
+
+validate_assumption: |
+  Validate whether this assumption is correct based on the evidence.
+
+  ASSUMPTION: {assumption}
+
+  SOURCES:
+  {sources}
+
+  Respond with:
+  VALID: [TRUE/FALSE/UNKNOWN]
+  EVIDENCE: [Brief explanation of what evidence supports or contradicts the assumption]
+
+generate_clarifying_questions: |
+  Based on unvalidated assumptions, suggest clarifying questions.
+
+  QUESTION: {query}
+
+  UNVALIDATED ASSUMPTIONS:
+  {assumptions}
+
+  Suggest 1-3 questions that would help clarify these assumptions.
+  Format as a bulleted list.

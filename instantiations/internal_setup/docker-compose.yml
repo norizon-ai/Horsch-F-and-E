@@ -1,0 +1,180 @@
+# =============================================================================
+# Norizon Internal Dogfooding Setup
+# =============================================================================
+# Full stack: search + meeting documentation workflow with Teams import.
+#
+# Usage:
+#   cd instantiations/internal_setup
+#   docker compose up
+#
+# Or use the start script:
+#   ./start.sh
+#
+# Credentials:
+#   - atlassian.env        → Confluence URL, username, API token
+#   - deepsearch.env       → LLM key + config
+#   - workflow.env         → Workflow service + Microsoft Teams OAuth
+
+services:
+  # mcp-atlassian — bridges Confluence Cloud via MCP protocol
+  confluence-mcp:
+    build:
+      context: ../../services/confluence-mcp
+      dockerfile: Dockerfile
+    container_name: norizon_internal_confluence_mcp
+    ports:
+      - "8005:8005"
+    env_file:
+      - atlassian.env
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf --max-time 2 http://localhost:8005/sse | head -1 | grep -q event"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 20s
+    restart: unless-stopped
+    networks:
+      - norizon_internal
+
+  # Confluence Publisher — protocol markdown → Confluence page
+  confluence-publisher:
+    build:
+      context: ../../services/confluence-publisher
+      dockerfile: Dockerfile
+    container_name: norizon_internal_publisher
+    ports:
+      - "8003:8003"
+    environment:
+      - PUBLISHER_MCP_SERVER_URL=http://confluence-mcp:8005
+    depends_on:
+      confluence-mcp:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:8003/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    networks:
+      - norizon_internal
+
+  # DeepSearch — RAG supervisor with Confluence MCP agent
+  deepsearch:
+    build:
+      context: ../../services/custom-deepresearch
+      dockerfile: Dockerfile
+    container_name: norizon_internal_deepsearch
+    ports:
+      - "8000:8000"
+    env_file:
+      - deepsearch.env
+    environment:
+      # These override anything in deepsearch.env
+      - DR_PROMPTS_DIR=/app/prompts
+      - DR_LOG_FORMAT=text
+      - DR_ENABLE_TRACING=false
+      - CONFLUENCE_MCP_URL=http://confluence-mcp:8005
+    volumes:
+      - ../../services/custom-deepresearch/prompts:/app/prompts:ro
+      - ../../services/custom-deepresearch/agents.yaml:/app/agents.yaml:ro
+    depends_on:
+      confluence-mcp:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:8000/api/v1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+    restart: unless-stopped
+    networks:
+      - norizon_internal
+
+  # KStudio — transcription + ML pipeline
+  kstudio:
+    build:
+      context: ../../services/kstudio
+      dockerfile: Dockerfile
+    container_name: norizon_internal_kstudio
+    ports:
+      - "8002:8000"
+    environment:
+      - DEEPGRAM_API_KEY=${DEEPGRAM_API_KEY:-}
+    volumes:
+      - workflow_uploads:/app/data
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+    restart: unless-stopped
+    networks:
+      - norizon_internal
+
+  # Workflow Service — meeting documentation orchestration + Teams import
+  workflow-service:
+    build:
+      context: ../../services/workflow-service
+      dockerfile: Dockerfile
+    container_name: norizon_internal_workflow
+    ports:
+      - "8001:8001"
+    env_file:
+      - workflow.env
+    environment:
+      - WORKFLOW_CORS_ORIGINS=["http://localhost:5173","http://localhost:3000"]
+    volumes:
+      - workflow_uploads:/tmp/workflow-uploads
+    depends_on:
+      confluence-publisher:
+        condition: service_healthy
+      deepsearch:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:8001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+    networks:
+      - norizon_internal
+
+  # Frontend — SvelteKit UI (norizon-research)
+  frontend:
+    build:
+      context: ../../services/norizon-research/frontend
+      dockerfile: Dockerfile
+      args:
+        - VITE_WORKFLOW_API_URL=http://localhost:8001
+        - VITE_DEEPSEARCH_API_URL=http://localhost:8000
+    container_name: norizon_internal_frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - VITE_WORKFLOW_API_URL=http://localhost:8001
+      - VITE_DEEPSEARCH_API_URL=http://localhost:8000
+    depends_on:
+      workflow-service:
+        condition: service_healthy
+      deepsearch:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/', (r) => {if (r.statusCode !== 200) throw new Error(r.statusCode)})"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+    networks:
+      - norizon_internal
+
+volumes:
+  workflow_uploads:
+
+networks:
+  norizon_internal:
+    driver: bridge

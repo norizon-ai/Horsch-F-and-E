@@ -1,0 +1,29 @@
+{
+  "ticket_id": "TKT-2024-001",
+  "customer_name": "John Smith",
+  "customer_email": "john.smith@company.com",
+  "customer_phone": "+1-555-123-4567",
+  "customer_address": "123 Main Street, New York, NY 10001",
+  "issue_description": "Hello, I'm having trouble with my account. My username is jsmith and my account number is 1234-5678-9012-3456. Please contact me at john.smith@company.com or call me at +1-555-123-4567.",
+  "priority": "High",
+  "assigned_to": "Sarah Johnson",
+  "assigned_email": "sarah.johnson@support.com",
+  "created_date": "2024-01-15T10:30:00Z",
+  "conversations": [
+    {
+      "participant": "John Smith",
+      "message": "Hi, I need help with my account. My email is john.smith@company.com and my phone is +1-555-123-4567.",
+      "timestamp": "2024-01-15T10:30:00Z"
+    },
+    {
+      "participant": "Sarah Johnson",
+      "message": "Hello John, I'll help you. I can see your account details. Let me check your account number 1234-5678-9012-3456.",
+      "timestamp": "2024-01-15T10:35:00Z"
+    },
+    {
+      "participant": "John Smith",
+      "message": "Thanks Sarah. My address is 123 Main Street, New York, NY 10001 if you need to send anything.",
+      "timestamp": "2024-01-15T10:40:00Z"
+    }
+  ]
+} 

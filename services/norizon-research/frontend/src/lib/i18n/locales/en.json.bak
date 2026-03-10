@@ -1,0 +1,507 @@
+{
+	"common": {
+		"copy": "Copy",
+		"regenerate": "Regenerate",
+		"share": "Share",
+		"cancel": "Cancel",
+		"confirm": "Confirm",
+		"delete": "Delete",
+		"save": "Save",
+		"saving": "Saving...",
+		"close": "Close",
+		"send": "Send",
+		"back": "Back",
+		"next": "Next",
+		"loading": "Loading...",
+		"or": "or"
+	},
+	"search": {
+		"placeholder": "Ask a question...",
+		"thinking": "Analyzing request...",
+		"writing": "Writing response...",
+		"complete": "Research complete",
+		"analyzing": "Analyzing results...",
+		"starting": "Starting research...",
+		"source": "source",
+		"sources": "sources",
+		"documents": "Documents",
+		"documentsFound": "{count, plural, =0 {No documents found} =1 {1 document found} other {{count} documents found}}",
+		"searchingSources": "{count, plural, =1 {Searching 1 source...} other {Searching {count} sources...}}",
+		"gatheringSources": "Searching sources...",
+		"gatheredSources": "{count, plural, =0 {Documents found} =1 {1 document found} other {{count} documents found}}",
+		"searchedSources": "Searched {count} documents across {sources} sources",
+		"searching": "Searching...",
+		"processing": "Processing...",
+		"done": "Complete",
+		"noResults": "No results",
+		"waiting": "Pending...",
+		"readItems": "{count} {type} searched"
+	},
+	"chat": {
+		"new_chat": "New Chat",
+		"your_chats": "Your Chats",
+		"no_chats": "No conversations yet",
+		"no_chats_hint": "Start a new conversation",
+		"continue_session": "Continue Last Session",
+		"delete_confirm": "Are you sure you want to delete this session?",
+		"today": "Today",
+		"yesterday": "Yesterday",
+		"last_week": "Last 7 days",
+		"older": "Older",
+		"search_placeholder": "Search chats...",
+		"inputHint": {
+			"send": "to send",
+			"newLine": "for new line"
+		},
+		"context": {
+			"loaded": "Context Loaded",
+			"summary": "Summary",
+			"actionItems": "action items",
+			"tryAsking": "Try asking:"
+		}
+	},
+	"welcome": {
+		"title": "How can I help you?",
+		"subtitle": "Ask me a question and I'll search your connected sources for comprehensive answers.",
+		"disclaimer": "Nora searches connected sources. Verify citations for critical decisions."
+	},
+	"suggestions": {
+		"processes": {
+			"title": "Meeting Documentation",
+			"question": "Create documentation from meeting"
+		},
+		"documentation": {
+			"title": "Documentation",
+			"question": "Where can I find product documentation?"
+		},
+		"policies": {
+			"title": "Policies",
+			"question": "What are the home office policies?"
+		},
+		"contacts": {
+			"title": "Contacts",
+			"question": "Who is the contact for IT support?"
+		}
+	},
+	"sources": {
+		"title": "Sources",
+		"showAll": "Show all",
+		"showLess": "Show less",
+		"openSource": "Open source",
+		"types": {
+			"sharepoint": "Internal Documents",
+			"confluence": "Internal Documentation",
+			"wiki": "Internal Wiki",
+			"jira": "Tickets & Tasks",
+			"web": "External Sources",
+			"elasticsearch": "Knowledge Base",
+			"document": "documents"
+		}
+	},
+	"actions": {
+		"thumbs_up": "Helpful",
+		"thumbs_down": "Not helpful",
+		"export": "Export",
+		"export_pdf": "Export as PDF",
+		"export_word": "Export as Word",
+		"copied": "Copied!"
+	},
+	"errors": {
+		"searchFailed": "Sorry, an error occurred during the search. Please try again."
+	},
+	"workflow": {
+		"meeting": {
+			"title": "Meeting Documentation",
+			"badge": "Workflow",
+			"creating": "Creating workflow...",
+			"confluencePreview": "Confluence Preview",
+			"showPreview": "Show Preview",
+			"hidePreview": "Hide Preview",
+			"confirmExit": "Are you sure you want to exit the workflow? Your progress will be saved.",
+			"greeting": {
+				"upload": "I can transcribe and analyze your meeting. Upload the audio or video file below, and I'll extract the key decisions, action items, and create a structured protocol.",
+				"processing": "I'm analyzing your recording now. This includes transcribing the conversation and identifying who said what.",
+				"speakers": "I've identified the speakers below. Please confirm or correct their names so the protocol is accurate.",
+				"protocol": "Here's the protocol I've generated. Select a template and edit the content as needed.",
+				"export": "Your protocol is ready. Review the summary below and export to Confluence when ready.",
+				"success": "Your protocol has been saved successfully."
+			},
+			"error": {
+				"title": "Error",
+				"backToChat": "Back to Chat"
+			},
+			"welcome": {
+				"title": "Document Meeting",
+				"description": "Upload a recording of your meeting. Nora will transcribe the conversation, identify speakers, and automatically create a structured protocol.",
+				"startButton": "Upload Meeting"
+			},
+			"upload": {
+				"title": "Upload Recording",
+				"subtitle": "Upload the audio or video recording of your meeting",
+				"combinedSubtitle": "Upload your meeting recording. Processing will start only after your confirmation.",
+				"dragDrop": "Drag file here",
+				"dropHere": "Drop here",
+				"dropOrClick": "Drop file here or click to select",
+				"orClick": "or click to select",
+				"hint": "Maximum file size: {maxSize}",
+				"timeHint": "Takes about 5 minutes",
+				"errorType": "Invalid file format. Please upload an audio or video file (MP3, MP4, M4A, WAV, WebM).",
+				"errorSize": "File is too large. Maximum size: {maxSize}",
+				"uploadRequired": "Please upload an audio file first",
+				"bestPracticesTitle": "Tips for best results",
+				"bestPractices": {
+					"audio": {
+						"title": "Clear Audio",
+						"description": "Quiet room, minimal background noise."
+					},
+					"speakers": {
+						"title": "Introduce Speakers",
+						"description": "Have participants say their names."
+					},
+					"duration": {
+						"title": "Optimal Length",
+						"description": "Under 2 hours works best."
+					},
+					"recording": {
+						"title": "Enable Recording",
+						"description": "Click 'Record' in Teams/Zoom."
+					}
+				},
+				"tutorialTitle": "Where can I find my recording?",
+				"tutorial": {
+					"teams": {
+						"step1": "Open <strong>Microsoft Teams</strong> and go to <strong>Chat</strong> or <strong>Calendar</strong>",
+						"step2": "Find the meeting and click the <strong>three dots (...)</strong> next to the recording",
+						"step3": "Select <code>Open in OneDrive</code> or <code>Open in SharePoint</code>",
+						"step4": "Click <strong>Download</strong> and upload the MP4 file here"
+					},
+					"iphone": {
+						"step1": "Open the <strong>Voice Memos</strong> app on your iPhone",
+						"step2": "Tap the desired recording, then tap the <strong>three dots (...)</strong>",
+						"step3": "Select <strong>Share</strong> and then <strong>Save to Files</strong>",
+						"step4": "Open this page on your computer and upload the file from <strong>iCloud Drive</strong>"
+					}
+				}
+			},
+			"teams": {
+				"tabLabel": "Import from Teams",
+				"connect": "Connect Microsoft Teams",
+				"connectDescription": "Sign in to access your recent meeting recordings",
+				"connected": "Connected as {name}",
+				"disconnect": "Disconnect",
+				"loadingMeetings": "Loading your recent meetings...",
+				"noRecordings": "No meetings with recordings found in the last 30 days",
+				"import": "Import",
+				"importing": "Downloading recording...",
+				"attendees": "{count} attendees",
+				"error": "Failed to load meetings. Please try again.",
+				"popupBlocked": "Popup was blocked. Please allow popups for this site."
+			},
+			"confirm": {
+				"title": "Configure Analysis",
+				"subtitle": "Review settings before generating the protocol",
+				"changeFile": "Change File",
+				"replaceFile": "Replace",
+				"noFile": "No file selected",
+				"selectFile": "Select File",
+				"infoText": "Processing may take several minutes depending on the recording length. You can keep this browser window open during processing.",
+				"startProcessing": "Analyze & Generate Protocol",
+				"startButton": "Start Processing",
+				"timeEstimate": "Estimated time: ~{minutes} min",
+				"metadata": {
+					"title": "Meeting Details",
+					"optional": "Optional",
+					"meetingTitle": "Meeting Title",
+					"meetingTitlePlaceholder": "e.g., Q2 Budget Planning",
+					"meetingDate": "Date",
+					"projectClient": "Project / Client",
+					"projectClientPlaceholder": "e.g., Project Alpha",
+					"participants": "Expected Participants",
+					"participantsPlaceholder": "e.g., Max, Anna, Thomas"
+				},
+				"processingOptions": {
+					"title": "Processing Options",
+					"diarization": "Speaker Identification",
+					"sensitivity": "Sensitivity",
+					"standard": "Standard",
+					"confidential": "Confidential"
+				},
+				"language": {
+					"label": "Language",
+					"auto": "Auto-detect",
+					"de": "German",
+					"en": "English"
+				},
+				"template": {
+					"label": "Meeting Type",
+					"standard": "Standard Meeting",
+					"board": "Board Meeting",
+					"technical": "Technical Workshop",
+					"interview": "Interview / 1:1",
+					"sales": "Sales Call",
+					"legal": "Legal / Compliance"
+				},
+				"outputs": {
+					"label": "AI Extractions",
+					"actionItems": "Action Items",
+					"decisions": "Decision Log",
+					"sentiment": "Sentiment Analysis",
+					"keyTopics": "Key Topics"
+				},
+				"workspace": {
+					"label": "Save to",
+					"placeholder": "Select workspace...",
+					"default": "My Protocols",
+					"team": "Team Workspace",
+					"project": "Project Archive"
+				},
+				"visibility": {
+					"label": "Visibility",
+					"private": "Private",
+					"privateDesc": "Only you can access",
+					"team": "Team Visible",
+					"teamDesc": "Shared with your team"
+				},
+				"uploadedAt": "Uploaded {time}",
+				"duration": "{duration}",
+				"requestedBy": "Requested by",
+				"securityBadge": "Encrypted processing",
+				"securityHint": "No data is used for model training",
+				"sidebar": {
+					"securityTitle": "Enterprise Security",
+					"securityItems": {
+						"encrypted": "End-to-end encrypted",
+						"gdpr": "GDPR compliant",
+						"noTraining": "No model training",
+						"euServers": "EU data residency"
+					},
+					"tipsTitle": "Analysis Tips",
+					"tips": {
+						"names": "Speakers who state their names get better attribution",
+						"quality": "Clear audio produces more accurate transcripts",
+						"length": "Meetings under 2 hours process faster"
+					}
+				}
+			},
+			"processing": {
+				"title": "Analysing Recording",
+				"hubTitle": "Analysis Hub",
+				"initializing": "Initializing...",
+				"hint": "Please do not close this window during processing.",
+				"timeEstimate": "About {minutes} minutes remaining",
+				"trustBadge": "GDPR compliant",
+				"encryptedBadge": "Encrypted",
+				"jobDetails": "Job Details",
+				"pipelineTitle": "Processing Pipeline",
+				"liveActivity": "Live Activity",
+				"topicsDetected": "Topics Detected",
+				"duration": "Duration",
+				"template": "Analysis Template",
+				"stages": {
+					"uploading": "Securing upload",
+					"transcribing": "Transcribing",
+					"diarizing": "Diarizing",
+					"identifying": "Identifying Speakers",
+					"correcting": "Generating Speaker Samples"
+				},
+				"subStatus": {
+					"uploading": {
+						"encrypting": "Encrypting data stream...",
+						"verifying": "Verifying file integrity...",
+						"secured": "Transfer secured"
+					},
+					"transcribing": {
+						"detecting": "Converting audio to text...",
+						"processing": "Analyzing speech patterns...",
+						"refining": "Applying language model..."
+					},
+					"diarizing": {
+						"profiling": "Analyzing voice profiles...",
+						"clustering": "Grouping speaker segments...",
+						"labeling": "Assigning speaker labels..."
+					},
+					"identifying": {
+						"analyzing": "Analyzing transcript context...",
+						"detecting": "Detecting name introductions...",
+						"inferring": "Inferring speaker identities..."
+					},
+					"correcting": {
+						"loading": "Extracting audio samples...",
+						"applying": "Creating voice snippets...",
+						"validating": "Finalizing speaker data..."
+					}
+				},
+				"stageComplete": "Complete",
+				"complete": "Analysis Complete",
+				"elapsed": "Elapsed",
+				"remaining": "Remaining",
+				"cancel": "Cancel Processing",
+				"cancelDialog": {
+					"title": "Cancel Processing?",
+					"message": "The analysis will be stopped and your progress will be lost.",
+					"continue": "Continue Processing",
+					"confirm": "Yes, Cancel"
+				},
+				"backgroundMessage": "You can continue working while we process your recording.",
+				"backgroundHint": "You can continue working - we'll notify you when ready.",
+				"notificationEmail": "We'll notify you at {email} when ready.",
+				"continueBackground": "Continue in Background",
+				"backToChat": "Back to Chat",
+				"preview": "Preview",
+				"insights": {
+					"audioVerified": "Audio quality verified",
+					"voicesDetected": "{count} unique voice profiles detected",
+					"wordsTranscribed": "{count} words transcribed",
+					"actionsFound": "Action items identified: {count}",
+					"decisionsFound": "Key decisions found: {count}",
+					"topicsDetected": "Topics: {topics}"
+				}
+			},
+			"steps": {
+				"upload": "Upload",
+				"review": "Review",
+				"done": "Done",
+				"stepOf": "Step {current} of {total}"
+			},
+			"speakers": {
+				"title": "Confirm Speakers",
+				"subtitle": "Review and correct the detected speaker names",
+				"confirmed": "Confirmed",
+				"speakingTime": "speaking time",
+				"sampleAudio": "Voice sample",
+				"infoText": "Click on a name to edit it. Correct names will be used in the protocol and transcript.",
+				"confirmButton": "Confirm & Continue",
+				"confirmAll": "Confirm All",
+				"confirmAllDetected": "Accept all detected names",
+				"playbackSpeed": "Playback speed",
+				"identifiedSpeakers": "{count} speakers identified",
+				"speakersConfirmed": "{confirmed} of {total} speakers confirmed",
+				"unknownSpeaker": "Unknown Speaker",
+				"markExternal": "Mark as external",
+				"externalBadge": "External",
+				"quickMode": "Quick confirm",
+				"detailedMode": "Review individually",
+				"says": "Says:"
+			},
+			"protocol": {
+				"title": "Review Protocol",
+				"reviewTitle": "Edit Protocol",
+				"subtitle": "Review and edit the generated protocol",
+				"edit": "Edit",
+				"generating": "Generating protocol...",
+				"meetingTitle": "Meeting Title",
+				"date": "Date",
+				"attendees": "Attendees",
+				"summary": "Summary",
+				"actionItems": "Action Items",
+				"decisions": "Decisions",
+				"nextSteps": "Next Steps",
+				"addAction": "Add Action",
+				"transcript": "Full Transcript",
+				"saveToConfluence": "Save to Confluence",
+				"saveAndContinue": "Save & Continue",
+				"template": "Template",
+				"selectTemplate": "Select template...",
+				"suggested": "AI Suggested",
+				"recommended": "Recommended",
+				"previewMode": "Preview",
+				"editMode": "Edit",
+				"aiGenerated": "AI-generated",
+				"aiGeneratedTooltip": "This content was derived by AI. Please review for accuracy."
+			},
+			"export": {
+				"title": "Export to Confluence",
+				"subtitle": "Review your protocol before exporting",
+				"preview": "Protocol Preview",
+				"tasks": "tasks",
+				"actionItemsTitle": "Action Items",
+				"destinationInfo": "The protocol will be published to your team's Confluence workspace. You can edit it further in Confluence after publishing.",
+				"editProtocol": "Edit Protocol",
+				"exportToConfluence": "Confluence",
+				"exportToPdf": "PDF",
+				"exporting": "Exporting...",
+				"exportOptions": "Export",
+				"destination": "Destination",
+				"selectSpace": "Select Space...",
+				"saveToPersonalSpace": "Save to my personal space",
+				"selectParentPage": "Select Parent Page...",
+				"searchSpaces": "Search spaces...",
+				"searchPages": "Search pages...",
+				"noSpacesFound": "No spaces found",
+				"noPagesFound": "No pages found",
+				"selectDestinationHint": "Select a Space and Parent Page to enable export",
+				"noraActions": "Continue with Nora",
+				"nextStepsTitle": "Next Steps",
+				"adjustRetention": "Adjust retention",
+				"steps": {
+					"protocol": "Save Protocol",
+					"email": "Send Email",
+					"status": "Status Update"
+				},
+				"actions": {
+					"email": {
+						"label": "Draft Follow-up Email",
+						"description": "Prepare an email summary for attendees"
+					},
+					"status": {
+						"label": "Send Status Update",
+						"description": "Post update to Slack or Teams"
+					},
+					"chat": {
+						"label": "Chat about this Meeting",
+						"description": "Ask Nora questions with full context"
+					}
+				},
+				"securityNote": "This protocol is stored in accordance with your organization's data retention policies."
+			},
+			"success": {
+				"title": "Protocol Saved",
+				"subtitle": "The meeting protocol has been successfully saved to Confluence.",
+				"viewInConfluence": "Open in Confluence",
+				"nextSteps": "Next Steps",
+				"done": "Done",
+				"moreActions": "More actions",
+				"timeSaved": "Protocol created in {actual} min (Manual: ~{manual} min)",
+				"actions": {
+					"email": {
+						"label": "Send Email",
+						"description": "Send protocol summary to attendees"
+					},
+					"meeting": {
+						"label": "Create Follow-up",
+						"description": "Create invitation for next meeting"
+					},
+					"status": {
+						"label": "Post Status Update",
+						"description": "Share quick update on Slack/Teams"
+					},
+					"chat": {
+						"label": "Discuss with Nora",
+						"description": "Ask questions about the meeting"
+					}
+				}
+			},
+			"followUp": {
+				"subtitle": "Edit the prepared text as needed",
+				"preview": "Preview",
+				"placeholder": "Enter text...",
+				"email": {
+					"title": "Prepare Email",
+					"button": "Send Email"
+				},
+				"meeting": {
+					"title": "Prepare Follow-up",
+					"button": "Create Invitation"
+				},
+				"status": {
+					"title": "Prepare Status Update",
+					"button": "Post Update"
+				},
+				"chat": {
+					"title": "Prepare Chat",
+					"button": "Start Chat"
+				}
+			}
+		}
+	}
+}

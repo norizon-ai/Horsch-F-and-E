@@ -1,0 +1,10 @@
+build/*
+dist/*
+*.egg-info
+**/__pycache__
+**/.ipynb_checkpoints
+.vscode
+*.DS_Store
+models/
+# Ignore only the large model file in user_configs/models
+../model_service/models/ner/flair/ner-german-large/ner-german-large.pt

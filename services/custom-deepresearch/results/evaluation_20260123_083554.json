@@ -1,0 +1,945 @@
+{
+  "timestamp": "2026-01-23T07:35:54.283166+00:00",
+  "total": 78,
+  "passed": 0,
+  "pass_rate": 0.0,
+  "mean_score": 0.0,
+  "results": [
+    {
+      "question_id": "PS-001",
+      "question": "Was sind die technischen Spezifikationen der RC-3000 Serie?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "PS-002",
+      "question": "Welche Greifersysteme sind für die RC-5000 Heavy Duty verfügbar?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "PS-003",
+      "question": "Wie wird die Positioniergenauigkeit beim LTS-X gemessen?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "PS-004",
+      "question": "Welche Kamera-Spezifikationen hat das Vision System VS-Pro 3.0?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "PS-005",
+      "question": "Wie funktioniert die Temperaturkompensation bei DMS-Sensoren?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "PS-006",
+      "question": "Was sind die Lastberechnungen und statischen Anforderungen für die RC-5000?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "PS-007",
+      "question": "Wie ist das Rollenbahn-System RBS-2400 aufgebaut?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "PS-008",
+      "question": "Welche Beleuchtungskonzepte gibt es für verschiedene Materialien im Vision System?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "PS-009",
+      "question": "Was sind die CAD-Richtlinien für SolidWorks bei TechMech?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "PS-010",
+      "question": "Welche Festo Pneumatikkomponenten werden verwendet?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "PS-011",
+      "question": "Was sind die Werkstoffauswahl-Kriterien bei TechMech?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "PS-012",
+      "question": "Welche Anzugsmomente gelten für Verschraubungen?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "TS-001",
+      "question": "Was sind die häufigsten Ursachen für Vibrationen bei Roboterzellen?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "TS-002",
+      "question": "Die SPS startet nicht. Welche Schritte soll ich durchführen?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "TS-003",
+      "question": "Wie behebe ich einen Encoderfehler beim Servomotor?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "TS-004",
+      "question": "Wie finde ich eine Leckage im Pneumatiksystem?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "TS-005",
+      "question": "Welche Fehlercodes gibt es bei der RC-3000 und wie werden sie behoben?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "TS-006",
+      "question": "Was tun bei einer Motorüberlastung Fehlermeldung?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "TS-007",
+      "question": "Wie diagnostiziere ich Getriebegeräusche?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "TS-008",
+      "question": "Was tun wenn ein Ventil nicht schaltet?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "TS-009",
+      "question": "Wie behebe ich Signalstörungen bei langen Kabelwegen?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "TS-010",
+      "question": "Was sind die Wartungsintervalle für die RC-3000?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "TS-011",
+      "question": "Wie richte ich einen Fernwartungszugang ein?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "TS-012",
+      "question": "Welche Ersatzteile sollten immer auf Lager sein?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "CM-001",
+      "question": "Was sind die grundlegenden Anforderungen der Maschinenrichtlinie 2006/42/EG?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "CM-002",
+      "question": "Wie wird eine Risikobeurteilung nach ISO 12100 durchgeführt?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "CM-003",
+      "question": "Was sind die Unterschiede zwischen CE-Kennzeichnung und UL-Listung?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "CM-004",
+      "question": "Welche Performance Level gibt es nach ISO 13849 und wie werden sie berechnet?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "CM-005",
+      "question": "Was sind die EHEDG Hygienic Design Prinzipien?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "CM-006",
+      "question": "Welche EMV-Anforderungen gelten laut Richtlinie 2014/30/EU?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "CM-007",
+      "question": "Was ist bei der ATEX-Zertifizierung zu beachten?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "CM-008",
+      "question": "Welche SIL-Einstufungen gibt es nach IEC 61508?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "CM-009",
+      "question": "Was muss in der technischen Dokumentation für CE enthalten sein?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "CM-010",
+      "question": "Welche Sicherheitsabstände gelten nach ISO 13857?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "PJ-001",
+      "question": "Was sind die Projektanforderungen für die AutoTech AG Montageanlage?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "PJ-002",
+      "question": "Welche Lessons Learned gab es beim ElectroWerk Prüfstation Projekt?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "PJ-003",
+      "question": "Welche Reinraumanforderungen gelten für das MediPack Projekt?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "PJ-004",
+      "question": "Wie wurde das Vibrationsproblem bei der Sensor-Halterung gelöst?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "PJ-005",
+      "question": "Was sind die technischen Konzepte für das FoodProc Palettierroboter Projekt?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "PJ-006",
+      "question": "Welche Sonderlösungen wurden für die PlastTech Hochtemperatur-Umgebung entwickelt?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "PJ-007",
+      "question": "Wie ist das Template für eine Risikoanalyse aufgebaut?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "PJ-008",
+      "question": "Was steht im Abnahmeprotokoll-Template?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "PJ-009",
+      "question": "Welche Warum-Verloren Analysen gibt es im Angebotsarchiv?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "PJ-010",
+      "question": "Was sind die Temperaturanforderungen für das FoodProc Projekt?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "QM-001",
+      "question": "Wie läuft der 8D-Report Prozess bei Kundenreklamationen ab?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "QM-002",
+      "question": "Welche Arbeitsanweisungen gelten für die Wareneingangsprüfung?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "QM-003",
+      "question": "Wie ist der Kalibrierplan 2025 organisiert?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "QM-004",
+      "question": "Welche KVP-Vorschläge wurden 2025 umgesetzt?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "QM-005",
+      "question": "Wie ist das QM-Handbuch von TechMech aufgebaut?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "QM-006",
+      "question": "Welche Arbeitsanweisung gilt für den Schaltschrankaufbau?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "QM-007",
+      "question": "Wie wird die Funktionsprüfung vor Auslieferung durchgeführt?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "QM-008",
+      "question": "Welche Lieferantenbewertungskriterien gibt es?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "QM-009",
+      "question": "Was war das Problem beim 8D-2024-089 Sensor Ausfall?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "QM-010",
+      "question": "Wie wird eine Leckageprüfung bei Pneumatik durchgeführt?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "CD-001",
+      "question": "Vergleiche die Konstruktionsstandards für RC-3000 und RC-5000",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "CD-002",
+      "question": "Welche Compliance-Anforderungen gelten für Lebensmittelanlagen wie bei FoodProc?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "CD-003",
+      "question": "Wie werden neue Mitarbeiter in die Werkstattsicherheit eingewiesen?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "CD-004",
+      "question": "Welche Lieferanten sind für Pneumatikkomponenten zugelassen und wie werden sie bewertet?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "CD-005",
+      "question": "Wie hängen Projekt-Risikoanalyse und Compliance-Risikobeurteilung zusammen?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "CD-006",
+      "question": "Welche Schulungen braucht ein SPS-Programmierer bei TechMech?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "CD-007",
+      "question": "Wie wird ein Kundenaudit vorbereitet und dokumentiert?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "CD-008",
+      "question": "Welche technischen und sicherheitstechnischen Anforderungen gelten für kollaborierende Roboter?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "IT-001",
+      "question": "Welche Programmierrichtlinien gelten für Siemens TIA Portal?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "IT-002",
+      "question": "Wie ist das IP-Adressschema für Standardanlagen organisiert?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "IT-003",
+      "question": "Welche Security-Regeln gelten für die Anlagenvernetzung?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "IT-004",
+      "question": "Wie ist der Git Workflow für SPS-Code organisiert?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "IT-005",
+      "question": "Welche HMI Design Guidelines gibt es?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "IT-006",
+      "question": "Wie werden KUKA Roboter programmiert?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "IT-007",
+      "question": "Wie ist die VLAN Segmentierung zwischen Produktion und Office?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "IT-008",
+      "question": "Wie wird Beckhoff TwinCAT konfiguriert?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "HR-001",
+      "question": "Welche Schulungen sind für 2025 geplant?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "HR-002",
+      "question": "Wie ist der Einarbeitungsplan für neue Mitarbeiter strukturiert?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "HR-003",
+      "question": "Wie werden Reisekosten bei TechMech abgerechnet?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "HR-004",
+      "question": "Welche PSA-Anforderungen gelten in der Werkstatt?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "HR-005",
+      "question": "Wie werden Auslandsreisen genehmigt?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "HR-006",
+      "question": "Wer sind die Ersthelfer und wo ist die Erste-Hilfe Ausstattung?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "HR-007",
+      "question": "Wie werden Messgeräte ausgegeben und zurückgegeben?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    },
+    {
+      "question_id": "HR-008",
+      "question": "Was steht in den Arbeitssicherheitsausschuss Protokollen?",
+      "answer": "",
+      "sources": [],
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "Query failed: All connection attempts failed"
+      ],
+      "dimensions": {}
+    }
+  ]
+}

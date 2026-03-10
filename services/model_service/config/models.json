@@ -1,0 +1,62 @@
+{
+  "ner": {
+    "flair/ner-english-large": {
+      "description": "Flair NER model for English",
+      "hf_repo": "flair/ner-english-large",
+      "model_type": "flair",
+      "batch_size": 16,
+      "entity_mapping": {
+        "PER": "PERSON",
+        "LOC": "LOCATION",
+        "ORG": "ORGANIZATION"
+      },
+      "auto_load": false
+    },
+    "flair/ner-german-large": {
+      "description": "Flair NER model for German",
+      "hf_repo": "flair/ner-german-large",
+      "model_type": "flair",
+      "batch_size": 16,
+      "entity_mapping": {
+        "PER": "PERSON",
+        "LOC": "LOCATION",
+        "ORG": "ORGANIZATION"
+      },
+      "auto_load": true
+    },
+    "dslim/bert-base-NER": {
+      "description": "BERT-based NER model",
+      "hf_repo": "dslim/bert-base-NER",
+      "model_type": "transformers",
+      "batch_size": 16,
+      "entity_mapping": {
+        "B-PER": "PERSON",
+        "I-PER": "PERSON",
+        "B-LOC": "LOCATION",
+        "I-LOC": "LOCATION",
+        "B-ORG": "ORGANIZATION",
+        "I-ORG": "ORGANIZATION",
+        "B-MISC": "MISC",
+        "I-MISC": "MISC"
+      },
+      "auto_load": false
+    }
+  },
+  "vllm": {
+    "embedding": {
+      "default": "intfloat/multilingual-e5-base",
+      "models": {
+        "intfloat/multilingual-e5-base": {
+          "description": "Multilingual embedding model",
+          "hf_repo": "intfloat/multilingual-e5-base",
+          "model_type": "embedding",
+          "auto_load": false
+        }
+      }
+    },
+    "llm": {
+      "default": null,
+      "models": {}
+    }
+  }
+}

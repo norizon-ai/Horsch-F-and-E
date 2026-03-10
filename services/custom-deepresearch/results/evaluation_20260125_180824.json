@@ -1,0 +1,926 @@
+{
+  "timestamp": "2026-01-25T17:08:24.525805+00:00",
+  "search_completed": true,
+  "judge_completed": true,
+  "total": 15,
+  "passed": 9,
+  "pass_rate": 0.6,
+  "mean_score": 0.7466666666666666,
+  "results": [
+    {
+      "question_id": "PS-001",
+      "question": "Was sind die technischen Spezifikationen der RC-3000 Serie?",
+      "category": "product_spec",
+      "answer": "# Technische Spezifikationen der RC-3000 Serie\n\n## Zusammenfassung\nDie RC-3000 Serie ist eine fortschrittliche Produktlinie von Roboterzellen, die für die Automatisierung von Fertigungsprozessen entwickelt wurde. Sie bietet eine maximale Traglast von 150 kg und eine Reichweite von 1,5 m, ausgestattet mit einem 6-Achsen-Servomotorantriebssystem [1].\n\n## Wichtige Erkenntnisse\n- **Modell:** RC-3000\n- **Baugröße:** 1500 mm x 2000 mm x 2200 mm (L x B x H)\n- **Gewicht:** 800 kg\n- **Max. Traglast:** 150 kg\n- **Max. Reichweite:** 1,5 m\n- **Anzahl der Achsen:** 6\n- **Max. Geschwindigkeit:** 2 m/s\n- **Positioniergenauigkeit:** ± 0,02 mm\n- **Zertifizierung:** TÜV-zertifiziert nach ISO 10218\n\n## Details\nDie RC-3000 Serie ist mit einem Roboterarm aus hochfestem Aluminium ausgestattet, der hochpräzise Servomotoren verwendet. Die Steuerung erfolgt über eine Siemens S7 SPS, die über die TIA Portal Software integriert ist. Sicherheitsmerkmale umfassen Not-Aus-Schalter, Lichtschranken und Sicherheitszäune. Diese Roboterzellen finden Anwendung in der Montage von Automobilteilen, in automatisierten Verpackungsprozessen sowie in der Qualitätsprüfung mit eingebauten Kamerasystemen [1].\n\n## Empfehlungen\nFür Unternehmen, die eine Automatisierungslösung suchen, könnte die RC-3000 Serie eine geeignete Wahl sein, insbesondere in den Bereichen Automobilindustrie und Verpackung.\n\n## Quellen\n[1] techmech_docs - URL\n\n## Einschränkungen\nDie Quellen enthalten keine Informationen zu spezifischen Preisen oder Verfügbarkeiten der RC-3000 Serie.",
+      "confidence": 0.8,
+      "sources": [
+        "RC-3000 Technische Spezifikationen v4.2",
+        "RC-3000 Serie",
+        "RC-3000 Serie",
+        "RC-3000 Serie",
+        "RC-3000 Serie",
+        "RC-3000 Technische Spezifikationen v4.2"
+      ],
+      "context": "[Quelle: RC-3000 Technische Spezifikationen v4.2]\n# RC-3000 Technische Spezifikationen v4.2\n\n## 1. Einleitung\nDie RC-3000 Roboterzelle ist eine hochmoderne Automatisierungslösung, die für verschiedene industrielle Anwendungen konzipiert wurde. Mit ei\n\n---\n\n[Quelle: RC-3000 Serie]\n# RC-3000 Serie\n\n## Übersicht\n\nDie RC-3000 Serie ist eine fortschrittliche Produktlinie von Roboterzellen, die für die Automatisierung von Fertigungsprozessen in verschiedenen Branchen entwickelt wurd\n\n---\n\n[Quelle: RC-3000 Serie]\nung\n- **Sicherheitszertifizierung:** TÜV-zertifiziert nach ISO 10218\n\n## Fazit\n\nDie RC-3000 Serie von TechMech Solutions GmbH bietet eine leistungsstarke Lösung für die Automatisierung in verschiedene\n\n---\n\n[Quelle: RC-3000 Serie]\nrotokolle | EtherCAT, Profibus, TCP/IP     |\n\n## Komponenten der RC-3000 Serie\n\n### 1. Roboterarm\nDer Roboterarm der RC-3000 Serie ist aus hochfestem Aluminium gefertigt und bietet eine hervorragende \n\n---\n\n[Quelle: RC-3000 Serie]\nüber die TIA Portal Software, die eine benutzerfreundliche Oberfläche bietet.\n\n### 3. Sicherheitssystem\nDie RC-3000 Serie ist mit einem umfassenden Sicherheitssystem ausgestattet, das Not-Aus-Schalter\n\n---\n\n[Quelle: RC-3000 Technische Spezifikationen v4.2]\nassungen\nDie RC-3000 kann je nach Anforderungen des Kunden konfiguriert werden. Folgende Anpassungen sind möglich:\n- **Spezielle Greifer:** Anpassung der Greifmechanismen für unterschiedliche Teile\n- ",
+      "latency_ms": 47777.00400352478,
+      "iterations": 1,
+      "search_success": true,
+      "search_error": null,
+      "search_timestamp": "2026-01-25T17:09:12.736006+00:00",
+      "overall_pass": true,
+      "overall_score": 0.825,
+      "failure_reasons": [],
+      "dimensions": {
+        "language_match": {
+          "dimension": "language_match",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort ist vollständig in deutscher Sprache verfasst und enthält keine englischen Überschriften oder unpassende Elemente.",
+          "evidence": "{\"fragesprache\": \"Deutsch\", \"antwortsprache\": \"Deutsch\"}"
+        },
+        "direct_resolution": {
+          "dimension": "direct_resolution",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort enthält detaillierte technische Spezifikationen wie Modell, Baugröße, Gewicht, Traglast, Reichweite, Anzahl der Achsen, Geschwindigkeit und Positioniergenauigkeit der RC-3000 Serie.",
+          "evidence": "{\"user_braucht\": \"technische Spezifikationen der RC-3000 Serie\", \"antwort_enthaelt_info\": true}"
+        },
+        "factual_grounding": {
+          "dimension": "factual_grounding",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die meisten Behauptungen in der Antwort sind durch den Kontext gestützt, jedoch gibt es spezifische technische Details wie Gewicht, Baugröße, maximale Geschwindigkeit und Positioniergenauigkeit, die nicht im Kontext erwähnt werden. Daher ist die Antwort teilweise korrekt, aber nicht vollständig gestützt.",
+          "evidence": "{\"behauptungen\": [\"Die RC-3000 Serie ist eine fortschrittliche Produktlinie von Roboterzellen, die für die Automatisierung von Fertigungsprozessen entwickelt wurde.\", \"Sie bietet eine maximale Traglast von 150 kg und eine Reichweite von 1,5 m.\", \"Die RC-3000 Serie ist mit einem Roboterarm aus hochfestem Aluminium ausgestattet.\", \"Die Steuerung erfolgt über eine Siemens S7 SPS, die über die TIA Portal Software integriert ist.\", \"Sicherheitsmerkmale umfassen Not-Aus-Schalter, Lichtschranken und Sicherheitszäune.\", \"Diese Roboterzellen finden Anwendung in der Montage von Automobilteilen, in automatisierten Verpackungsprozessen sowie in der Qualitätsprüfung mit eingebauten Kamerasystemen.\"], \"gestuetzt\": [\"Die RC-3000 Serie ist eine fortschrittliche Produktlinie von Roboterzellen, die für die Automatisierung von Fertigungsprozessen entwickelt wurde.\", \"Sie bietet eine maximale Traglast von 150 kg und eine Reichweite von 1,5 m.\", \"Die RC-3000 Serie ist mit einem Roboterarm aus hochfestem Aluminium ausgestattet.\", \"Die Steuerung erfolgt über eine Siemens S7 SPS, die über die TIA Portal Software integriert ist.\", \"Sicherheitsmerkmale umfassen Not-Aus-Schalter, Lichtschranken und Sicherheitszäune.\"], \"nicht_gestuetzt\": [\"Die maximale Geschwindigkeit beträgt 2 m/s.\", \"Die Positioniergenauigkeit beträgt ± 0,02 mm.\", \"Das Gewicht beträgt 800 kg.\", \"Die Baugröße beträgt 1500 mm x 2000 mm x 2200 mm (L x B x H).\", \"Für Unternehmen, die eine Automatisierungslösung suchen, könnte die RC-3000 Serie eine geeignete Wahl sein, insbesondere in den Bereichen Automobilindustrie und Verpackung.\"]}"
+        },
+        "answer_completeness": {
+          "dimension": "answer_completeness",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort deckt umfassend die technischen Spezifikationen der RC-3000 Serie ab, einschließlich aller relevanten Maße, Leistungsdaten und Anwendungsbereiche. Lediglich Informationen zu Preisen und Verfügbarkeiten fehlen, was jedoch nicht als wesentlicher Aspekt der technischen Spezifikationen angesehen wird.",
+          "evidence": "{\"informationsbedarfe\": [], \"adressiert\": [\"Technische Spezifikationen der RC-3000 Serie\", \"Maximale Traglast\", \"Reichweite\", \"Anzahl der Achsen\", \"Maximale Geschwindigkeit\", \"Positioniergenauigkeit\", \"Zertifizierung\", \"Baugröße\", \"Gewicht\", \"Steuerungssystem\", \"Sicherheitsmerkmale\", \"Anwendungsbereiche\"], \"fehlend\": [\"Spezifische Preise\", \"Verfügbarkeiten\"]}"
+        },
+        "user_actionability": {
+          "dimension": "user_actionability",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort enthält umfassende technische Spezifikationen und Anwendungsbereiche, die dem Nutzer helfen, eine informierte Entscheidung zu treffen. Obwohl Preisinformationen fehlen, sind die bereitgestellten Details ausreichend, um mit der Suche nach einer Automatisierungslösung fortzufahren.",
+          "evidence": "{\"nutzer_kann_fortfahren\": true, \"was_nutzer_tun_kann\": \"Die Informationen über die technischen Spezifikationen der RC-3000 Serie nutzen, um eine Entscheidung über den Kauf oder die Implementierung der Roboterzelle zu treffen.\", \"was_noch_fehlt\": \"Preisinformationen und Verfügbarkeiten der RC-3000 Serie.\"}"
+        }
+      },
+      "judge_timestamp": "2026-01-25T17:11:48.751653+00:00"
+    },
+    {
+      "question_id": "PS-002",
+      "question": "Welche Greifersysteme sind für die RC-5000 Heavy Duty verfügbar?",
+      "category": "product_spec",
+      "answer": "# Verfügbare Greifersysteme für die RC-5000 Heavy Duty\n\n## Zusammenfassung\nDie RC-5000 Heavy Duty Greifersysteme bieten modulare, hochtragfähige Lösungen für verschiedene Anwendungen in der Automatisierungstechnik. Sie zeichnen sich durch eine maximale Tragfähigkeit von bis zu 50 kg und eine maximale Greifkraft von 500 N aus, was sie ideal für die Handhabung schwerer Teile macht [1].\n\n## Wichtige Erkenntnisse\n- **Modularer Aufbau**: Anpassbar an verschiedene Anwendungen.\n- **Maximale Tragfähigkeit**: Bis zu 50 kg.\n- **Maximale Greifkraft**: 500 N.\n- **Einsatzgebiete**: Automotive, Lebensmittelindustrie, pharmazeutische Industrie.\n\n## Details\nDie RC-5000 Greifersysteme sind speziell für die Automatisierung konzipiert und bieten eine hohe Flexibilität und Präzision. Sie sind in der Lage, schwere Teile zu transportieren und zu handhaben, was sie besonders geeignet für die Automobilindustrie macht, wo sie beispielsweise bei der Montage von Karosserieteilen eingesetzt werden. In der Lebensmittelindustrie kommen sie zur Verpackung und Sortierung von Lebensmitteln zum Einsatz, während sie in der pharmazeutischen Industrie für die präzise Handhabung von Medikamenten und empfindlichen Produkten verwendet werden. Die Greifer können schnell umgerüstet und konfiguriert werden, was die Effizienz in Produktionsprozessen steigert [1].\n\n## Empfehlungen\nFür spezifische Anwendungen in der Automobilproduktion könnte beispielsweise ein pneumatischer Greifer mit zwei Greifpunkten und einer maximalen Greifkraft von 500 N gewählt werden.\n\n## Quellen\n[1] techmech_docs - URL\n\n## Einschränkungen\nDie Quellen enthalten keine Informationen zu spezifischen Greifertypen oder weiteren technischen Details über die Greifersysteme.",
+      "confidence": 0.8500000000000001,
+      "sources": [
+        "RC-5000 Greifersysteme - Übersicht",
+        "RC-5000 Greifersysteme - Übersicht",
+        "RC-5000 Greifersysteme - Übersicht",
+        "RoboCell RC-5000 Serie (Heavy Duty)",
+        "RC-5000 Greifersysteme - Übersicht",
+        "RoboCell RC-5000 Serie (Heavy Duty)",
+        "RoboCell RC-5000 Serie (Heavy Duty)",
+        "RoboCell RC-5000 Serie (Heavy Duty)"
+      ],
+      "context": "[Quelle: RC-5000 Greifersysteme - Übersicht]\nikationen und Anwendungsbereiche der RC-5000 Greifersysteme.\n\n## Hauptmerkmale\n\n- **Modularer Aufbau**: Die Greifersysteme sind modular aufgebaut und können an verschiedene Anwendungen und Anforderung\n\n---\n\n[Quelle: RC-5000 Greifersysteme - Übersicht]\n# RC-5000 Greifersysteme - Übersicht\n\nDie RC-5000 Greifersysteme sind hochentwickelte Lösungen für die Automatisierung in verschiedenen Branchen. Diese Systeme zeichnen sich durch ihre Flexibilität, P\n\n---\n\n[Quelle: RC-5000 Greifersysteme - Übersicht]\nGreifkraft**: 500 N\n- **Einsatzgebiet**: Montage von Motorbauteilen\n\n## Fazit\n\nDie RC-5000 Greifersysteme bieten eine umfassende Lösung für die Herausforderungen der modernen Automatisierungstechnik. \n\n---\n\n[Quelle: RoboCell RC-5000 Serie (Heavy Duty)]\n# RoboCell RC-5000 Serie (Heavy Duty)\n\n## Einführung\n\nDie RoboCell RC-5000 Serie (Heavy Duty) ist eine hochmoderne Roboterzelle, die speziell für den Einsatz in anspruchsvollen Umgebungen und für schw\n\n---\n\n[Quelle: RC-5000 Greifersysteme - Übersicht]\n5000 Greifersysteme finden in verschiedenen Branchen Anwendung, unter anderem:\n\n- **Automotive**: Handhabung von Karosserieteilen, Montageprozesse und Qualitätskontrollen.\n- **Lebensmittelindustrie**:\n\n---\n\n[Quelle: RoboCell RC-5000 Serie (Heavy Duty)]\nTestlauf, um die Funktionalität und Sicherheit der Roboterzelle zu überprüfen.\n\n4. **Betrieb**: Die RoboCell RC-5000 arbeitet autonom mit minimalem menschlichen Eingriff, während sie kontinuierlich Da\n\n---\n\n[Quelle: RoboCell RC-5000 Serie (Heavy Duty)]\nerheitsstandard    | ISO 10218, EN 13849                   |\n\n## Hauptmerkmale\n\n- **Robustheit**: Die RC-5000 Serie ist für den Einsatz in extremen Bedingungen ausgelegt, einschließlich hoher Temperat\n\n---\n\n[Quelle: RoboCell RC-5000 Serie (Heavy Duty)]\naximale Effizienz bei der Produktion zu gewährleisten.\n\n## Prozessbeschreibung\n\nDie RoboCell RC-5000 Serie wird in einer typischen Produktionsumgebung wie folgt eingesetzt:\n\n1. **Vorbereitung**: Die R",
+      "latency_ms": 46719.23589706421,
+      "iterations": 1,
+      "search_success": true,
+      "search_error": null,
+      "search_timestamp": "2026-01-25T17:09:11.684561+00:00",
+      "overall_pass": false,
+      "overall_score": 0.65,
+      "failure_reasons": [
+        "Composite score 0.65 below threshold 0.7"
+      ],
+      "dimensions": {
+        "language_match": {
+          "dimension": "language_match",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort ist in deutscher Sprache verfasst und enthält keine englischen Überschriften oder unpassende Elemente. Sie beantwortet die Frage nach den verfügbaren Greifersystemen für die RC-5000 Heavy Duty umfassend und präzise.",
+          "evidence": "{\"fragesprache\": \"Deutsch\", \"antwortsprache\": \"Deutsch\"}"
+        },
+        "direct_resolution": {
+          "dimension": "direct_resolution",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort enthält spezifische Informationen über die Greifersysteme, einschließlich ihrer maximalen Tragfähigkeit, Greifkraft und Einsatzgebiete, was die Frage direkt beantwortet.",
+          "evidence": "{\"user_braucht\": \"Information über die verfügbaren Greifersysteme für die RC-5000 Heavy Duty\", \"antwort_enthaelt_info\": true}"
+        },
+        "factual_grounding": {
+          "dimension": "factual_grounding",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die Antwort enthält einige Informationen, die im Kontext nicht direkt erwähnt werden, wie die maximale Tragfähigkeit von 50 kg und spezifische Anwendungen in der pharmazeutischen Industrie. Die meisten anderen Behauptungen sind jedoch durch den Kontext gestützt.",
+          "evidence": "{\"behauptungen\": [\"Die RC-5000 Heavy Duty Greifersysteme bieten modulare, hochtragfähige Lösungen für verschiedene Anwendungen in der Automatisierungstechnik.\", \"Sie zeichnen sich durch eine maximale Tragfähigkeit von bis zu 50 kg und eine maximale Greifkraft von 500 N aus.\", \"Die Greifer können schnell umgerüstet und konfiguriert werden, was die Effizienz in Produktionsprozessen steigert.\"], \"gestuetzt\": [\"Die RC-5000 Greifersysteme sind modular aufgebaut und können an verschiedene Anwendungen angepasst werden.\", \"Die maximale Greifkraft beträgt 500 N.\", \"Einsatzgebiete sind unter anderem die Automobilindustrie und die Lebensmittelindustrie.\"], \"nicht_gestuetzt\": [\"Die maximale Tragfähigkeit von bis zu 50 kg wird im Kontext nicht erwähnt.\", \"Die spezifischen Anwendungen in der pharmazeutischen Industrie werden nicht im Kontext behandelt.\"]}"
+        },
+        "answer_completeness": {
+          "dimension": "answer_completeness",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die Antwort gibt einen guten Überblick über die allgemeinen Eigenschaften und Einsatzgebiete der Greifersysteme, jedoch fehlen spezifische Informationen zu den verschiedenen Greifertypen und deren technischen Details, die für eine vollständige Beantwortung der Frage wichtig wären.",
+          "evidence": "{\"informationsbedarfe\": [\"spezifische Greifertypen\", \"weitere technische Details zu den Greifersystemen\"], \"adressiert\": [\"maximale Tragfähigkeit\", \"maximale Greifkraft\", \"Einsatzgebiete\", \"modularer Aufbau\"], \"fehlend\": [\"konkrete Beispiele für Greifertypen\", \"technische Spezifikationen der einzelnen Greifer\"]}"
+        },
+        "user_actionability": {
+          "dimension": "user_actionability",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort bietet eine gute Übersicht über die Eigenschaften und Einsatzmöglichkeiten der Greifersysteme, sodass der Nutzer in der Lage ist, eine Entscheidung zu treffen und weiterzuarbeiten, auch wenn einige Details fehlen.",
+          "evidence": "{\"nutzer_kann_fortfahren\": true, \"was_nutzer_tun_kann\": \"Die Nutzer können basierend auf den bereitgestellten Informationen über die Greifersysteme für die RC-5000 Heavy Duty eine informierte Entscheidung treffen und das passende Greifersystem für ihre spezifischen Anwendungen auswählen.\", \"was_noch_fehlt\": \"Es fehlen spezifische Informationen zu den verschiedenen Greifertypen und deren technischen Details, die für eine genauere Auswahl hilfreich wären.\"}"
+        }
+      },
+      "judge_timestamp": "2026-01-25T17:11:54.465807+00:00"
+    },
+    {
+      "question_id": "PS-003",
+      "question": "Wie wird die Positioniergenauigkeit beim LTS-X gemessen?",
+      "category": "product_spec",
+      "answer": "# Positioniergenauigkeit beim LTS-X\n\n## Zusammenfassung\nDie Positioniergenauigkeit des LTS-X wird durch standardisierte Messprotokolle ermittelt, die eine reproduzierbare und vergleichbare Bewertung der Genauigkeit gewährleisten. Die Ergebnisse zeigen, dass die Systeme in den meisten Fällen innerhalb der festgelegten Toleranzen arbeiten, mit einer Ausnahme im vierten Zyklus, wo eine Abweichung von ±1,0 mm festgestellt wurde [1].\n\n## Wichtige Erkenntnisse\n- Die Messmethodik umfasst die Vorbereitung der Testumgebung und die Durchführung der Messungen unter kontrollierten Bedingungen [1].\n- Nur der vierte Zyklus überschritt die zulässige Abweichung von ±1,0 mm, was eine Ursachenanalyse nach sich zog [1].\n- Eine kontinuierliche Überwachung und regelmäßige Kalibrierung sind notwendig, um die Qualität und Effizienz langfristig zu gewährleisten [1].\n\n## Details\nDie Positioniergenauigkeit wird durch die Kalibrierung der Messinstrumente und die Festlegung von Referenzpunkten in einer vorbereiteten Testumgebung sichergestellt. Die Messungen selbst erfolgen unter kontrollierten Bedingungen, um die Genauigkeit zu maximieren. Die Auswertung der Messprotokolle zeigt, dass die LTS-X Systeme in den meisten Fällen die festgelegten Toleranzen einhalten, mit einer Ausnahme im vierten Zyklus, der eine Abweichung von ±1,0 mm aufwies. Dies führte zu einer eingehenden Ursachenanalyse, um die Gründe für diese Abweichung zu ermitteln. Die regelmäßige Kalibrierung und Überwachung sind entscheidend, um die langfristige Effizienz und Qualität der Systeme zu gewährleisten [1].\n\n## Empfehlungen\nEs wird empfohlen, regelmäßige Kalibrierungen und Überwachungen der LTS-X Systeme durchzuführen, um die Positioniergenauigkeit aufrechtzuerhalten und potenzielle Abweichungen frühzeitig zu erkennen.\n\n## Quellen\n[1] Positioniergenauigkeit LTS-X - Messprotokolle.",
+      "confidence": 0.65,
+      "sources": [
+        "Positioniergenauigkeit LTS-X - Messprotokolle",
+        "Positioniergenauigkeit LTS-X - Messprotokolle"
+      ],
+      "context": "[Quelle: Positioniergenauigkeit LTS-X - Messprotokolle]\n# Positioniergenauigkeit LTS-X - Messprotokolle\n\n## Einleitung\nDie Positioniergenauigkeit der LTS-X ist ein entscheidendes Kriterium für die Qualität und Effizienz in der Fördertechnik. Diese Seite do\n\n---\n\n[Quelle: Positioniergenauigkeit LTS-X - Messprotokolle]\n| 9999.9            | -0.1             | ±1.0           | Ja                 |\n\n## Auswertung\nDie Auswertungen der Messprotokolle zeigen, dass die LTS-X in den meisten Fällen innerhalb der festgelegte",
+      "latency_ms": 44986.97233200073,
+      "iterations": 1,
+      "search_success": true,
+      "search_error": null,
+      "search_timestamp": "2026-01-25T17:09:09.951374+00:00",
+      "overall_pass": true,
+      "overall_score": 0.825,
+      "failure_reasons": [],
+      "dimensions": {
+        "language_match": {
+          "dimension": "language_match",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort ist in deutscher Sprache verfasst und behandelt die Frage zur Positioniergenauigkeit des LTS-X umfassend und präzise.",
+          "evidence": "{\"fragesprache\": \"Deutsch\", \"antwortsprache\": \"Deutsch\"}"
+        },
+        "direct_resolution": {
+          "dimension": "direct_resolution",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort beschreibt die Messmethodik, die Durchführung der Messungen und die Ergebnisse, einschließlich spezifischer Abweichungen und der Notwendigkeit zur Kalibrierung, was die Frage direkt beantwortet.",
+          "evidence": "{\"user_braucht\": \"Information zur Messung der Positioniergenauigkeit beim LTS-X\", \"antwort_enthaelt_info\": true}"
+        },
+        "factual_grounding": {
+          "dimension": "factual_grounding",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die meisten Behauptungen in der Antwort sind durch den Kontext gestützt, insbesondere die Informationen über die Messprotokolle und die Abweichung im vierten Zyklus. Die Notwendigkeit einer kontinuierlichen Überwachung und Kalibrierung wird zwar impliziert, ist jedoch nicht explizit im Kontext erwähnt, was sie zu einer extrapolierten Aussage macht.",
+          "evidence": "{\"behauptungen\": [\"Die Positioniergenauigkeit des LTS-X wird durch standardisierte Messprotokolle ermittelt.\", \"Die Ergebnisse zeigen, dass die Systeme in den meisten Fällen innerhalb der festgelegten Toleranzen arbeiten.\", \"Nur der vierte Zyklus überschritt die zulässige Abweichung von ±1,0 mm.\", \"Eine kontinuierliche Überwachung und regelmäßige Kalibrierung sind notwendig, um die Qualität und Effizienz langfristig zu gewährleisten.\"], \"gestuetzt\": [\"Die Positioniergenauigkeit des LTS-X wird durch standardisierte Messprotokolle ermittelt.\", \"Die Ergebnisse zeigen, dass die Systeme in den meisten Fällen innerhalb der festgelegten Toleranzen arbeiten.\", \"Nur der vierte Zyklus überschritt die zulässige Abweichung von ±1,0 mm.\"], \"nicht_gestuetzt\": [\"Eine kontinuierliche Überwachung und regelmäßige Kalibrierung sind notwendig, um die Qualität und Effizienz langfristig zu gewährleisten.\"]}"
+        },
+        "answer_completeness": {
+          "dimension": "answer_completeness",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort behandelt alle relevanten Aspekte der Frage zur Messung der Positioniergenauigkeit beim LTS-X umfassend und detailliert. Es werden sowohl die Methodik als auch die Ergebnisse und Empfehlungen zur Aufrechterhaltung der Genauigkeit angesprochen.",
+          "evidence": "{\"informationsbedarfe\": [], \"adressiert\": [\"Messmethodik zur Ermittlung der Positioniergenauigkeit\", \"Ergebnisse der Messungen und Toleranzen\", \"Ursachenanalyse bei Abweichungen\", \"Notwendigkeit von Kalibrierung und Überwachung\"], \"fehlend\": []}"
+        },
+        "user_actionability": {
+          "dimension": "user_actionability",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort bietet klare Empfehlungen zur Aufrechterhaltung der Positioniergenauigkeit und beschreibt die Notwendigkeit von Kalibrierungen und Überwachungen, was den Nutzern ermöglicht, konkrete Maßnahmen zu ergreifen.",
+          "evidence": "{\"nutzer_kann_fortfahren\": true, \"was_nutzer_tun_kann\": \"Die Nutzer können regelmäßige Kalibrierungen und Überwachungen der LTS-X Systeme planen und durchführen, um die Positioniergenauigkeit zu gewährleisten.\", \"was_noch_fehlt\": \"Es könnte hilfreich sein, spezifische Anleitungen oder Protokolle für die Kalibrierung und Überwachung zu haben.\"}"
+        }
+      },
+      "judge_timestamp": "2026-01-25T17:12:01.410340+00:00"
+    },
+    {
+      "question_id": "PS-004",
+      "question": "Welche Kamera-Spezifikationen hat das Vision System VS-Pro 3.0?",
+      "category": "product_spec",
+      "answer": "# Kamera-Spezifikationen des Vision Systems VS-Pro 3.0\n\n## Zusammenfassung\nDas Vision System VS-Pro 3.0 verfügt über eine Schutzart von IP54, was es gegen Staub und Spritzwasser schützt. Es bietet Funktionen wie Objekterkennung, Fehlererkennung und präzise Messungen, die es für Qualitätsprüfungen in verschiedenen Branchen geeignet machen [1].\n\n## Wichtige Erkenntnisse\n- **Schutzart**: IP54 (Staub- und Spritzwasserschutz)\n- **Funktionen**:\n  - **Objekterkennung**: Identifikation von Produkten basierend auf Form, Größe und Farbe.\n  - **Fehlererkennung**: Detektion von Oberflächenfehlern wie Kratzer, Dellen oder Farbabweichungen.\n  - **Messung**: Präzise Vermessung von Abständen, Winkeln und Durchmessern.\n\n## Details\nDas Vision System VS-Pro 3.0 nutzt fortgeschrittene Algorithmen zur Bildverarbeitung und maschinelles Lernen, um verschiedene Prüfaufgaben in Echtzeit durchzuführen. Dies macht es besonders geeignet für Qualitätsprüfungen in den Branchen Automotive, Lebensmittel und Pharma [1].\n\n## Empfehlungen\nFür eine detaillierte Anwendung oder spezifische Einsatzmöglichkeiten könnte es sinnvoll sein, weitere technische Informationen oder Anwendungsbeispiele zu recherchieren.\n\n## Quellen\n[1] techmech_docs - URL\n\n## Einschränkungen\nDie Quellen enthalten keine Informationen zu weiteren technischen Spezifikationen oder spezifischen Modellen innerhalb der VS-Pro 3.0 Reihe.",
+      "confidence": 0.675,
+      "sources": [
+        "Vision System VS-Pro 3.0",
+        "Vision System VS-Pro 3.0",
+        "Kalibrierverfahren VS-Pro"
+      ],
+      "context": "[Quelle: Vision System VS-Pro 3.0]\n# Vision System VS-Pro 3.0\n\n## Einleitung\n\nDas Vision System VS-Pro 3.0 von TechMech Solutions GmbH ist eine hochentwickelte Bildverarbeitungssoftware, die speziell für Qualitätsprüfsysteme in der Aut\n\n---\n\n[Quelle: Vision System VS-Pro 3.0]\n|\n| Schutzart               | IP54                    |\n\n## Funktionsweise\n\nDas Vision System VS-Pro 3.0 verwendet eine Kombination aus fortgeschrittenen Algorithmen zur Bildverarbeitung und maschinel\n\n---\n\n[Quelle: Kalibrierverfahren VS-Pro]\n# Kalibrierverfahren VS-Pro\n\n## Einleitung\nDas Kalibrierverfahren VS-Pro ist ein entscheidender Bestandteil unserer Qualitätsprüfsysteme und gewährleistet die präzise Messung und Validierung von Autom",
+      "latency_ms": 35035.858154296875,
+      "iterations": 1,
+      "search_success": true,
+      "search_error": null,
+      "search_timestamp": "2026-01-25T17:09:44.988248+00:00",
+      "overall_pass": false,
+      "overall_score": 0.65,
+      "failure_reasons": [
+        "Composite score 0.65 below threshold 0.7"
+      ],
+      "dimensions": {
+        "language_match": {
+          "dimension": "language_match",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort ist in deutscher Sprache verfasst und enthält keine englischen Überschriften oder technische Fachbegriffe in einer anderen Sprache. Sie passt somit zur Fragesprache.",
+          "evidence": "{\"fragesprache\": \"Deutsch\", \"antwortsprache\": \"Deutsch\"}"
+        },
+        "direct_resolution": {
+          "dimension": "direct_resolution",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort enthält spezifische Informationen zu den Kamera-Spezifikationen, einschließlich der Schutzart IP54 und der Funktionen wie Objekterkennung, Fehlererkennung und präzise Messungen.",
+          "evidence": "{\"user_braucht\": \"Kamera-Spezifikationen des Vision Systems VS-Pro 3.0\", \"antwort_enthaelt_info\": true}"
+        },
+        "factual_grounding": {
+          "dimension": "factual_grounding",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die Schutzart IP54 und die Verwendung fortgeschrittener Algorithmen zur Bildverarbeitung sind im Kontext erwähnt und somit gestützt. Die spezifischen Funktionen wie Objekterkennung und Fehlererkennung sowie die Eignung für bestimmte Branchen sind jedoch nicht direkt im Kontext belegt und könnten als extrapoliert betrachtet werden.",
+          "evidence": "{\"behauptungen\": [\"Das Vision System VS-Pro 3.0 verfügt über eine Schutzart von IP54.\", \"Es bietet Funktionen wie Objekterkennung, Fehlererkennung und präzise Messungen.\", \"Das Vision System VS-Pro 3.0 nutzt fortgeschrittene Algorithmen zur Bildverarbeitung und maschinelles Lernen.\"], \"gestuetzt\": [\"Das Vision System VS-Pro 3.0 verfügt über eine Schutzart von IP54.\", \"Das Vision System VS-Pro 3.0 nutzt fortgeschrittene Algorithmen zur Bildverarbeitung.\"], \"nicht_gestuetzt\": [\"Es bietet Funktionen wie Objekterkennung, Fehlererkennung und präzise Messungen.\", \"Das Vision System VS-Pro 3.0 ist besonders geeignet für Qualitätsprüfungen in den Branchen Automotive, Lebensmittel und Pharma.\"]}"
+        },
+        "answer_completeness": {
+          "dimension": "answer_completeness",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die Antwort gibt einen Überblick über einige Funktionen und die Schutzart des Vision Systems VS-Pro 3.0, jedoch fehlen spezifische technische Details, die für eine vollständige Bewertung der Kamera-Spezifikationen notwendig wären.",
+          "evidence": "{\"informationsbedarfe\": [\"Weitere technische Spezifikationen wie Auflösung, Bildrate, Sensorgröße, Objektivtyp, Kommunikationsschnittstellen und unterstützte Bildformate.\"], \"adressiert\": [\"Schutzart IP54\", \"Funktionen wie Objekterkennung, Fehlererkennung und präzise Messungen\"], \"fehlend\": [\"Detaillierte technische Spezifikationen wie Auflösung, Bildrate, Sensorgröße, Objektivtyp, Kommunikationsschnittstellen und unterstützte Bildformate.\"]}"
+        },
+        "user_actionability": {
+          "dimension": "user_actionability",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort enthält relevante Informationen über die Schutzart und Funktionen des Vision Systems, die für die Entscheidungsfindung des Nutzers wichtig sind.",
+          "evidence": "{\"nutzer_kann_fortfahren\": true, \"was_nutzer_tun_kann\": \"Die bereitgestellten Informationen nutzen, um das Vision System VS-Pro 3.0 für Qualitätsprüfungen in der eigenen Branche zu evaluieren oder zu implementieren.\", \"was_noch_fehlt\": \"Weitere technische Spezifikationen oder spezifische Anwendungsbeispiele könnten hilfreich sein, um eine fundierte Entscheidung zu treffen.\"}"
+        }
+      },
+      "judge_timestamp": "2026-01-25T17:12:07.438744+00:00"
+    },
+    {
+      "question_id": "PS-005",
+      "question": "Wie funktioniert die Temperaturkompensation bei DMS-Sensoren?",
+      "category": "product_spec",
+      "answer": "# Temperaturkompensation bei DMS-Sensoren\n\n## Zusammenfassung\nDie Temperaturkompensation bei DMS-Sensoren (Dehnungsmessstreifen) ist entscheidend für die Genauigkeit der Messungen, da Temperaturdrift zu fehlerhaften Ergebnissen führen kann. Methoden wie Kalibrierung und die Integration von Temperatursensoren zur Echtzeitüberwachung werden eingesetzt, um die Auswirkungen der Temperaturdrift zu minimieren [1].\n\n## Wichtige Erkenntnisse\n- **Ursachen der Temperaturdrift**: Materialausdehnung, temperaturabhängiger Widerstand und Umgebungsbedingungen [1].\n- **Kompensationsmethoden**: Umfassende Kalibrierung bei verschiedenen Temperaturen und Integration von Hardware- und Softwarelösungen [1].\n- **Testphase**: Nach der Implementierung sind umfangreiche Tests notwendig, um die Genauigkeit der kompensierten Messwerte zu validieren [1].\n\n## Details\nDie Temperaturdrift bei DMS-Sensoren wird durch verschiedene Faktoren beeinflusst, darunter die unterschiedliche Ausdehnung von Materialien und die temperaturabhängige Veränderung des Widerstands. Um diese Drifts zu kompensieren, ist eine umfassende Kalibrierung der Sensoren bei unterschiedlichen Temperaturen notwendig. Dies ermöglicht es, die Messwerte an die tatsächlichen Bedingungen anzupassen. Zusätzlich sollten Temperatursensoren integriert werden, um die Temperatur in Echtzeit zu überwachen. Nach der Implementierung dieser Maßnahmen sind umfangreiche Tests erforderlich, um die Genauigkeit der Messwerte zu bestätigen [1].\n\n## Empfehlungen\nEs wird empfohlen, eine regelmäßige Kalibrierung und kontinuierliche Temperaturüberwachung durchzuführen, um die Messgenauigkeit langfristig zu sichern.\n\n## Quellen\n[1] Temperaturdrift bei DMS-Sensoren - Kompensation.",
+      "confidence": 0.75,
+      "sources": [
+        "Temperaturdrift bei DMS-Sensoren - Kompensation",
+        "Temperaturdrift bei DMS-Sensoren - Kompensation",
+        "Temperaturdrift bei DMS-Sensoren - Kompensation",
+        "Temperaturdrift bei DMS-Sensoren - Kompensation"
+      ],
+      "context": "[Quelle: Temperaturdrift bei DMS-Sensoren - Kompensation]\n# Temperaturdrift bei DMS-Sensoren - Kompensation\n\n## Einleitung\nDMS-Sensoren (Dehnungsmessstreifen) sind in der Automatisierungstechnik weit verbreitet, insbesondere in Qualitätsprüfsystemen zur Über\n\n---\n\n[Quelle: Temperaturdrift bei DMS-Sensoren - Kompensation]\nTemperaturdrift von DMS-Sensoren wird durch verschiedene Faktoren beeinflusst:\n\n1. **Materialausdehnung**: Die unterschiedlichen Ausdehnungskoeffizienten von DMS-Materialien und der Trägermaterialien \n\n---\n\n[Quelle: Temperaturdrift bei DMS-Sensoren - Kompensation]\nTemperatur wird dann in Echtzeit zur Anpassung der DMS-Messwerte herangezogen.\n\n## Implementierung\nDie Implementierung der Kompensationsmethoden erfolgt in mehreren Schritten:\n\n1. **Kalibrierung**: Zu\n\n---\n\n[Quelle: Temperaturdrift bei DMS-Sensoren - Kompensation]\nTests notwendig, um die Genauigkeit der kompensierten Messwerte zu validieren.\n\n## Fazit\nDie Temperaturdrift bei DMS-Sensoren kann die Genauigkeit von Messungen erheblich beeinträchtigen. Durch geeign",
+      "latency_ms": 41910.17484664917,
+      "iterations": 1,
+      "search_success": true,
+      "search_error": null,
+      "search_timestamp": "2026-01-25T17:09:53.594957+00:00",
+      "overall_pass": false,
+      "overall_score": 0.65,
+      "failure_reasons": [
+        "Composite score 0.65 below threshold 0.7"
+      ],
+      "dimensions": {
+        "language_match": {
+          "dimension": "language_match",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort ist in deutscher Sprache verfasst und behandelt die Frage zur Temperaturkompensation bei DMS-Sensoren umfassend und präzise. Es werden keine englischen Überschriften verwendet, und die technischen Begriffe sind angemessen.",
+          "evidence": "{\"fragesprache\": \"Deutsch\", \"antwortsprache\": \"Deutsch\"}"
+        },
+        "direct_resolution": {
+          "dimension": "direct_resolution",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort beschreibt die Ursachen der Temperaturdrift, die Methoden zur Kompensation und die Notwendigkeit von Tests, was die Funktionsweise der Temperaturkompensation direkt erklärt.",
+          "evidence": "{\"user_braucht\": \"Information über die Funktionsweise der Temperaturkompensation bei DMS-Sensoren\", \"antwort_enthaelt_info\": true}"
+        },
+        "factual_grounding": {
+          "dimension": "factual_grounding",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die Antwort stützt sich größtenteils auf den Kontext, jedoch sind einige Behauptungen wie die spezifische Erwähnung von 'temperaturabhängigem Widerstand' und 'Umgebungsbedingungen' nicht direkt im Kontext erwähnt, sondern extrapoliert. Daher ist die Antwort nicht vollständig pass.",
+          "evidence": "{\"behauptungen\": [\"Die Temperaturkompensation bei DMS-Sensoren ist entscheidend für die Genauigkeit der Messungen.\", \"Temperaturdrift kann zu fehlerhaften Ergebnissen führen.\", \"Methoden wie Kalibrierung und die Integration von Temperatursensoren zur Echtzeitüberwachung werden eingesetzt.\", \"Die Temperaturdrift wird durch Materialausdehnung, temperaturabhängigen Widerstand und Umgebungsbedingungen beeinflusst.\", \"Um diese Drifts zu kompensieren, ist eine umfassende Kalibrierung der Sensoren bei unterschiedlichen Temperaturen notwendig.\", \"Nach der Implementierung sind umfangreiche Tests notwendig, um die Genauigkeit der kompensierten Messwerte zu validieren.\"], \"gestuetzt\": [\"Die Temperaturkompensation bei DMS-Sensoren ist entscheidend für die Genauigkeit der Messungen.\", \"Temperaturdrift kann zu fehlerhaften Ergebnissen führen.\", \"Methoden wie Kalibrierung und die Integration von Temperatursensoren zur Echtzeitüberwachung werden eingesetzt.\", \"Die Temperaturdrift wird durch Materialausdehnung beeinflusst.\", \"Nach der Implementierung sind umfangreiche Tests notwendig, um die Genauigkeit der kompensierten Messwerte zu validieren.\"], \"nicht_gestuetzt\": [\"Die Temperaturdrift wird durch temperaturabhängigen Widerstand und Umgebungsbedingungen beeinflusst.\", \"Um diese Drifts zu kompensieren, ist eine umfassende Kalibrierung der Sensoren bei unterschiedlichen Temperaturen notwendig.\"]}"
+        },
+        "answer_completeness": {
+          "dimension": "answer_completeness",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die Antwort behandelt die grundlegenden Aspekte der Temperaturkompensation bei DMS-Sensoren, einschließlich der Ursachen der Temperaturdrift und der allgemeinen Kompensationsmethoden. Allerdings fehlen spezifische Beispiele und detaillierte Informationen zu den Methoden, was die Tiefe der Antwort einschränkt.",
+          "evidence": "{\"informationsbedarfe\": [\"Details zu spezifischen Kompensationsmethoden\", \"Beispiele für Hardware- und Softwarelösungen zur Temperaturkompensation\"], \"adressiert\": [\"Ursachen der Temperaturdrift\", \"Kompensationsmethoden\", \"Notwendigkeit von Tests nach Implementierung\"], \"fehlend\": [\"Konkrete Beispiele für die Implementierung der Temperaturkompensation\", \"Auswirkungen unzureichender Kompensation auf die Messgenauigkeit\"]}"
+        },
+        "user_actionability": {
+          "dimension": "user_actionability",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort bietet relevante Informationen zur Temperaturkompensation bei DMS-Sensoren und gibt dem Nutzer einen klaren Handlungsrahmen, um die Genauigkeit der Messungen zu verbessern.",
+          "evidence": "{\"nutzer_kann_fortfahren\": true, \"was_nutzer_tun_kann\": \"Die beschriebenen Methoden zur Temperaturkompensation implementieren, einschließlich Kalibrierung und Integration von Temperatursensoren.\", \"was_noch_fehlt\": \"Konkrete Anleitungen oder Beispiele zur praktischen Umsetzung der Kalibrierung und Integration.\"}"
+        }
+      },
+      "judge_timestamp": "2026-01-25T17:12:13.809398+00:00"
+    },
+    {
+      "question_id": "PS-006",
+      "question": "Was sind die Lastberechnungen und statischen Anforderungen für die RC-5000?",
+      "category": "product_spec",
+      "answer": "# Lastberechnungen und statische Anforderungen für die RC-5000\n\n## Zusammenfassung\nDie RC-5000 Roboterzelle von TechMech Solutions GmbH hat eine maximale Traglast von 500 kg und ein Eigengewicht von 1500 kg, was zu einer gesamten statischen Last von 2000 kg führt. Die statische Analyse erfolgt gemäß DIN EN 1993-1-1, um die Sicherheit zu gewährleisten [1].\n\n## Wichtige Erkenntnisse\n- **Maximale Traglast**: 500 kg\n- **Eigengewicht der Zelle**: 1500 kg\n- **Gesamte statische Last**: 2000 kg (Eigengewicht + Nutzlast)\n- **Dynamische Last**: 4000 N bei einer maximalen Beschleunigung von 2 m/s²\n- **Material**: Stahl S235JR\n- **Sicherheitsfaktor**: 1,5\n\n## Details\nDie statischen Lasten der RC-5000 setzen sich aus dem Eigengewicht von 1500 kg und der maximalen Nutzlast von 500 kg zusammen, was eine gesamte statische Last von 2000 kg ergibt. Bei dynamischen Lasten, unter Berücksichtigung einer maximalen Beschleunigung von 2 m/s², beträgt die dynamische Last 4000 N. Die statische Analyse wird gemäß den Normen der DIN EN 1993-1-1 durchgeführt, um die strukturelle Integrität und Sicherheit der Roboterzelle zu gewährleisten. Regelmäßige Wartungen sind empfohlen, um die Sicherheit über die gesamte Lebensdauer der Zelle sicherzustellen [1].\n\n## Empfehlungen\nEs wird empfohlen, regelmäßige Überprüfungen und Wartungen der RC-5000 durchzuführen, um die Sicherheit und Effizienz im Betrieb zu gewährleisten.\n\n## Quellen\n[1] RC-5000 Lastberechnungen und Statik - TechMech Solutions GmbH.",
+      "confidence": 0.8500000000000001,
+      "sources": [
+        "RC-5000 Lastberechnungen und Statik",
+        "RC-5000 Lastberechnungen und Statik",
+        "RC-5000 Lastberechnungen und Statik",
+        "RC-5000 Konstruktionszeichnungen",
+        "RC-5000 Lastberechnungen und Statik",
+        "RC-5000 Serie",
+        "RC-5000 Lastberechnungen und Statik",
+        "Ersatzteilkatalog RC-5000"
+      ],
+      "context": "[Quelle: RC-5000 Lastberechnungen und Statik]\n# RC-5000 Lastberechnungen und Statik\n\n## Einleitung\nDie RC-5000 Roboterzelle von TechMech Solutions GmbH ist für den Einsatz in vielfältigen industriellen Anwendungen konzipiert. Um die Sicherheit un\n\n---\n\n[Quelle: RC-5000 Lastberechnungen und Statik]\nen und statischen Anforderungen an die RC-5000.\n\n## Technische Spezifikationen\n\n| Spezifikation            | Wert                      |\n|--------------------------|---------------------------|\n| Max.\n\n---\n\n[Quelle: RC-5000 Lastberechnungen und Statik]\näß DIN EN 1993-1-1 geprüft, um die Sicherheit der Roboterzelle zu garantieren.\n\n## Fazit\nDie RC-5000 Roboterzelle erfüllt alle erforderlichen statischen und dynamischen Anforderungen, um einen sichere\n\n---\n\n[Quelle: RC-5000 Konstruktionszeichnungen]\n# RC-5000 Konstruktionszeichnungen\n\n## Überblick\n\nDie RC-5000 Roboterzelle von TechMech Solutions GmbH ist eine hochmoderne Automatisierungslösung, die für verschiedene Anwendungen in der Industrie en\n\n---\n\n[Quelle: RC-5000 Lastberechnungen und Statik]\ndes Betriebs auftreten, zusammen. Für die RC-5000 ergeben sich folgende Werte:\n\n1. **Eigengewicht**: 1500 kg\n2. **Max. Nutzlast**: 500 kg\n3. **Gesamte statische Last**: \n   - \\( F_{gesamt} = F_{eigen}\n\n---\n\n[Quelle: RC-5000 Serie]\n# RC-5000 Serie\n\n## Übersicht\n\nDie RC-5000 Serie von TechMech Solutions GmbH bietet hochmoderne Roboterzellen, die speziell für den Einsatz in der Automatisierungstechnik entwickelt wurden. Diese Syst\n\n---\n\n[Quelle: RC-5000 Lastberechnungen und Statik]\n\\text{kg}) \\cdot 2 \\, \\text{m/s}^2 = 4000 \\, \\text{N} \\)\n\n## Statische Analyse\n\n### Biege- und Scherkräfte\nZur Ermittlung der Biege- und Scherkräfte in der Struktur der RC-5000 werden die berechneten \n\n---\n\n[Quelle: Ersatzteilkatalog RC-5000]\nie gewünschte Menge an.\n4. Bestätigen Sie die Bestellung.\n\n## Wartungshinweise\n\nFür eine optimale Funktion der RC-5000 empfehlen wir regelmäßige Wartungsintervalle. Prüfen Sie insbesondere:\n\n- Die Sch",
+      "latency_ms": 49591.4568901062,
+      "iterations": 1,
+      "search_success": true,
+      "search_error": null,
+      "search_timestamp": "2026-01-25T17:10:02.327782+00:00",
+      "overall_pass": true,
+      "overall_score": 0.825,
+      "failure_reasons": [],
+      "dimensions": {
+        "language_match": {
+          "dimension": "language_match",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort ist in deutscher Sprache verfasst und behandelt die in der Frage gestellten Punkte zu Lastberechnungen und statischen Anforderungen der RC-5000. Es sind keine englischen Überschriften oder andere sprachliche Inkonsistenzen vorhanden.",
+          "evidence": "{\"fragesprache\": \"Deutsch\", \"antwortsprache\": \"Deutsch\"}"
+        },
+        "direct_resolution": {
+          "dimension": "direct_resolution",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort enthält spezifische Informationen zu den Lastberechnungen und statischen Anforderungen der RC-5000, einschließlich maximaler Traglast, Eigengewicht, gesamte statische Last, dynamische Last, Material und Sicherheitsfaktor.",
+          "evidence": "{\"user_braucht\": \"Lastberechnungen und statische Anforderungen für die RC-5000\", \"antwort_enthaelt_info\": true}"
+        },
+        "factual_grounding": {
+          "dimension": "factual_grounding",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die Antwort stützt sich auf Informationen aus dem Kontext, jedoch sind einige Details wie der Sicherheitsfaktor und das Material nicht im Kontext erwähnt. Die dynamische Last wird zwar berechnet, aber die genaue Formulierung könnte als extrapoliert angesehen werden. Daher ist die Antwort teilweise gestützt, aber nicht vollständig.",
+          "evidence": "{\"behauptungen\": [\"Die RC-5000 Roboterzelle hat eine maximale Traglast von 500 kg.\", \"Das Eigengewicht der Zelle beträgt 1500 kg.\", \"Die gesamte statische Last beträgt 2000 kg.\", \"Die dynamische Last beträgt 4000 N bei einer maximalen Beschleunigung von 2 m/s².\", \"Die statische Analyse erfolgt gemäß DIN EN 1993-1-1.\", \"Regelmäßige Wartungen sind empfohlen.\"], \"gestuetzt\": [\"Die RC-5000 Roboterzelle hat eine maximale Traglast von 500 kg.\", \"Das Eigengewicht der Zelle beträgt 1500 kg.\", \"Die gesamte statische Last beträgt 2000 kg.\", \"Die statische Analyse erfolgt gemäß DIN EN 1993-1-1.\"], \"nicht_gestuetzt\": [\"Die dynamische Last beträgt 4000 N bei einer maximalen Beschleunigung von 2 m/s².\", \"Material: Stahl S235JR.\", \"Sicherheitsfaktor: 1,5.\", \"Es wird empfohlen, regelmäßige Überprüfungen und Wartungen der RC-5000 durchzuführen.\"]}"
+        },
+        "answer_completeness": {
+          "dimension": "answer_completeness",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort behandelt alle relevanten Aspekte der Lastberechnungen und statischen Anforderungen für die RC-5000 umfassend und detailliert. Es werden sowohl die statischen als auch die dynamischen Lasten sowie die verwendeten Materialien und Sicherheitsfaktoren erwähnt.",
+          "evidence": "{\"informationsbedarfe\": [], \"adressiert\": [\"maximale Traglast\", \"Eigengewicht der Zelle\", \"gesamte statische Last\", \"dynamische Last\", \"Material\", \"Sicherheitsfaktor\", \"statische Analyse gemäß DIN EN 1993-1-1\"], \"fehlend\": []}"
+        },
+        "user_actionability": {
+          "dimension": "user_actionability",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort enthält alle notwendigen Informationen zu den statischen und dynamischen Lasten sowie den Sicherheitsanforderungen, die für die Nutzung der RC-5000 relevant sind.",
+          "evidence": "{\"nutzer_kann_fortfahren\": true, \"was_nutzer_tun_kann\": \"Die Nutzer können die bereitgestellten Lastberechnungen und statischen Anforderungen nutzen, um die RC-5000 in ihren Anwendungen zu planen und sicherzustellen, dass sie die Sicherheitsstandards einhalten.\", \"was_noch_fehlt\": \"Es könnten spezifische Anwendungsbeispiele oder detaillierte Berechnungen für verschiedene Szenarien fehlen.\"}"
+        }
+      },
+      "judge_timestamp": "2026-01-25T17:12:21.987340+00:00"
+    },
+    {
+      "question_id": "PS-007",
+      "question": "Wie ist das Rollenbahn-System RBS-2400 aufgebaut?",
+      "category": "product_spec",
+      "answer": "# Aufbau des Rollenbahn-Systems RBS-2400\n\n## Zusammenfassung\nDas Rollenbahn-System RBS-2400 von TechMech Solutions GmbH ist eine modulare Fördertechniklösung, die für industrielle Anwendungen entwickelt wurde. Es kann Lasten von bis zu 2400 kg transportieren und erreicht eine Fördergeschwindigkeit von bis zu 2 m/s [1].\n\n## Wichtige Erkenntnisse\n- **Modularer Aufbau**: Anpassungsfähig an unterschiedliche Produktionsanforderungen.\n- **Antriebskomponenten**:\n  - Motor: Drehstrom-Asynchronmotor mit 15 kW und 95 Nm.\n  - Getriebe: Planetengetriebe zur Drehzahl- und Drehmomentanpassung.\n- **Maximale Tragfähigkeit**: 2400 kg bei gleichmäßig verteilter Last.\n- **Betriebsdauer**: 24/7.\n- **Umgebungstemperatur**: 0°C bis 40°C.\n- **Sicherheitsmerkmale**: Not-Aus-Schalter, Sicherheitslichtschranken, Überlastschutzmechanismen [1].\n\n## Details\nDas RBS-2400 transportiert Materialien effizient über eine Rollenbahn und ist für den kontinuierlichen Betrieb ausgelegt. Die Fördergeschwindigkeit beträgt bis zu 2 m/s, und das System kann eine maximale Last von 2400 kg handhaben, was es ideal für verschiedene industrielle Anwendungen macht. Die modulare Bauweise ermöglicht eine flexible Integration in bestehende Produktionslinien, was die Anpassung an spezifische Anforderungen erleichtert. Zudem sind Sicherheitsmerkmale wie Not-Aus-Schalter und Überlastschutz integriert, um einen sicheren Betrieb zu gewährleisten [1].\n\n## Empfehlungen\nFür Unternehmen, die eine flexible und effiziente Fördertechnik benötigen, könnte das RBS-2400 eine geeignete Lösung sein. Eine detaillierte Analyse der spezifischen Anforderungen und eine Beratung durch TechMech Solutions GmbH könnten sinnvoll sein, um die optimale Konfiguration zu bestimmen.\n\n## Quellen\n[1] Rollenbahn-System RBS-2400 - TechMech Solutions GmbH.",
+      "confidence": 0.8,
+      "sources": [
+        "Rollenbahn-System RBS-2400",
+        "RBS-2400 Modulübersicht",
+        "Rollenbahn-System RBS-2400",
+        "Antriebsauslegung für RBS-2400",
+        "Antriebsauslegung für RBS-2400",
+        "Rollenbahn-System RBS-2400"
+      ],
+      "context": "[Quelle: Rollenbahn-System RBS-2400]\n# Rollenbahn-System RBS-2400\n\n## Einführung\nDas Rollenbahn-System RBS-2400 von TechMech Solutions GmbH ist eine hochmoderne Fördertechniklösung, die für die effiziente und sichere Handhabung von Mater\n\n---\n\n[Quelle: RBS-2400 Modulübersicht]\n# RBS-2400 Modulübersicht\n\n## 1. Einleitung\nDas RBS-2400 Modul ist eine innovative Lösung von TechMech Solutions GmbH, die speziell für die Automatisierung in der Fördertechnik entwickelt wurde. Es ko\n\n---\n\n[Quelle: Rollenbahn-System RBS-2400]\nst:** 3000 kg (bei gleichmäßig verteilter Last)\n- **Geschwindigkeit:** 1,2 m/s\n\n## Sicherheitsmerkmale\nDas RBS-2400 ist mit mehreren Sicherheitsfunktionen ausgestattet:\n- Not-Aus-Schalter an jedem End\n\n---\n\n[Quelle: Antriebsauslegung für RBS-2400]\nmobilindustrie, Lebensmittelverarbeitung, Pharmazeutik\n\n## Antriebskomponenten\n\n### 1. Motor\nFür die RBS-2400 wird ein Drehstrom-Asynchronmotor empfohlen. Die folgenden Spezifikationen sind zu berücks\n\n---\n\n[Quelle: Antriebsauslegung für RBS-2400]\n# Antriebsauslegung für RBS-2400\n\n## Einleitung\nDie RBS-2400 ist eine hochmoderne Roboterzelle, die speziell für den Einsatz in der Fördertechnik konzipiert wurde. Diese Seite beschreibt die Antriebsa\n\n---\n\n[Quelle: Rollenbahn-System RBS-2400]\n|\n| Temperaturbereich              | -10 bis +40 °C                      |\n\n## Anwendungsbereiche\nDas RBS-2400 eignet sich für folgende Anwendungen:\n- Transport von schweren Bauteilen in der Automobil",
+      "latency_ms": 32293.333768844604,
+      "iterations": 1,
+      "search_success": true,
+      "search_error": null,
+      "search_timestamp": "2026-01-25T17:10:17.282086+00:00",
+      "overall_pass": true,
+      "overall_score": 0.825,
+      "failure_reasons": [],
+      "dimensions": {
+        "language_match": {
+          "dimension": "language_match",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort ist in deutscher Sprache verfasst und behandelt die Frage zum Aufbau des Rollenbahn-Systems RBS-2400 detailliert und sachlich. Es werden keine englischen Überschriften verwendet, und die technischen Begriffe sind angemessen und im Kontext der Frage relevant.",
+          "evidence": "{\"fragesprache\": \"Deutsch\", \"antwortsprache\": \"Deutsch\"}"
+        },
+        "direct_resolution": {
+          "dimension": "direct_resolution",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort beschreibt detailliert den Aufbau des RBS-2400, einschließlich technischer Spezifikationen wie Tragfähigkeit, Antriebskomponenten und Sicherheitsmerkmale, ohne auf externe Quellen zu verweisen.",
+          "evidence": "{\"user_braucht\": \"Information über den Aufbau des Rollenbahn-Systems RBS-2400\", \"antwort_enthaelt_info\": true}"
+        },
+        "factual_grounding": {
+          "dimension": "factual_grounding",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die Antwort enthält einige Informationen, die nicht im Kontext erwähnt werden, wie die spezifischen Motor- und Getriebe-Spezifikationen sowie die Fördergeschwindigkeit von 2 m/s, die im Kontext nicht bestätigt wird. Daher ist die Antwort nicht vollständig gestützt.",
+          "evidence": "{\"behauptungen\": [\"Das Rollenbahn-System RBS-2400 ist eine modulare Fördertechniklösung, die für industrielle Anwendungen entwickelt wurde.\", \"Es kann Lasten von bis zu 2400 kg transportieren.\", \"Es erreicht eine Fördergeschwindigkeit von bis zu 2 m/s.\", \"Das RBS-2400 hat einen modularen Aufbau, der an unterschiedliche Produktionsanforderungen anpassbar ist.\", \"Der Motor ist ein Drehstrom-Asynchronmotor mit 15 kW und 95 Nm.\", \"Das Getriebe ist ein Planetengetriebe zur Drehzahl- und Drehmomentanpassung.\", \"Die maximale Tragfähigkeit beträgt 2400 kg bei gleichmäßig verteilter Last.\", \"Das System ist für den kontinuierlichen Betrieb 24/7 ausgelegt.\", \"Die Umgebungstemperatur beträgt 0°C bis 40°C.\", \"Das System verfügt über Sicherheitsmerkmale wie Not-Aus-Schalter, Sicherheitslichtschranken und Überlastschutzmechanismen.\"], \"gestuetzt\": [\"Das Rollenbahn-System RBS-2400 ist eine modulare Fördertechniklösung, die für industrielle Anwendungen entwickelt wurde.\", \"Es kann Lasten von bis zu 2400 kg transportieren.\", \"Die maximale Tragfähigkeit beträgt 2400 kg bei gleichmäßig verteilter Last.\", \"Das System ist für den kontinuierlichen Betrieb 24/7 ausgelegt.\", \"Die Umgebungstemperatur beträgt 0°C bis 40°C.\", \"Das System verfügt über Sicherheitsmerkmale wie Not-Aus-Schalter und Überlastschutzmechanismen.\"], \"nicht_gestuetzt\": [\"Es erreicht eine Fördergeschwindigkeit von bis zu 2 m/s.\", \"Der Motor ist ein Drehstrom-Asynchronmotor mit 15 kW und 95 Nm.\", \"Das Getriebe ist ein Planetengetriebe zur Drehzahl- und Drehmomentanpassung.\"]}"
+        },
+        "answer_completeness": {
+          "dimension": "answer_completeness",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort beschreibt umfassend den Aufbau des Rollenbahn-Systems RBS-2400, einschließlich seiner modularen Struktur, Antriebskomponenten, Tragfähigkeit, Betriebsbedingungen und Sicherheitsmerkmale. Alle relevanten Aspekte der Frage sind vollständig und detailliert behandelt.",
+          "evidence": "{\"informationsbedarfe\": [], \"adressiert\": [\"modularer Aufbau\", \"Antriebskomponenten\", \"maximale Tragfähigkeit\", \"Betriebsdauer\", \"Umgebungstemperatur\", \"Sicherheitsmerkmale\"], \"fehlend\": []}"
+        },
+        "user_actionability": {
+          "dimension": "user_actionability",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort bietet umfassende Informationen über das Rollenbahn-System RBS-2400, einschließlich seiner technischen Spezifikationen und Sicherheitsmerkmale, die dem Nutzer helfen, eine informierte Entscheidung zu treffen und weitere Schritte zu planen.",
+          "evidence": "{\"nutzer_kann_fortfahren\": true, \"was_nutzer_tun_kann\": \"Eine detaillierte Analyse der spezifischen Anforderungen durchführen und eine Beratung bei TechMech Solutions GmbH anfordern.\", \"was_noch_fehlt\": \"Konkrete Informationen zu den individuellen Anforderungen des Nutzers und eventuell technische Details zur Integration in bestehende Systeme.\"}"
+        }
+      },
+      "judge_timestamp": "2026-01-25T17:12:29.696301+00:00"
+    },
+    {
+      "question_id": "PS-008",
+      "question": "Welche Beleuchtungskonzepte gibt es für verschiedene Materialien im Vision System?",
+      "category": "product_spec",
+      "answer": "# Beleuchtungskonzepte für verschiedene Materialien im Vision System\n\n## Zusammenfassung\nIn Vision-Systemen werden unterschiedliche Beleuchtungstechniken eingesetzt, um die Qualität und Integrität von Materialien zu prüfen. Zu den wichtigsten Konzepten gehören diffuses Licht, Rückbeleuchtung und Punktlichtquellen, die jeweils spezifische Vorteile für verschiedene Materialien bieten [1].\n\n## Wichtige Erkenntnisse\n- **Diffuses Licht**: Ideal für glänzende Oberflächen wie Aluminium und Edelstahl, minimiert Reflexionen und sorgt für gleichmäßige Ausleuchtung (LED-Panels, 5000K) [1].\n- **Rückbeleuchtung**: Besonders geeignet für transparente Materialien wie Glas, um innere Defekte sichtbar zu machen (LED-Röhren, 6000K) [1].\n- **Punktlichtquelle**: Nützlich zur Erkennung von Texturen und Formen, z.B. bei Kunststoffoberflächen (Halogenlampen, 3000K) [1].\n\n## Details\n### 1. Diffuses Licht\n- **Einsatzgebiet**: Glänzende Oberflächen.\n- **Vorteile**: Minimiert Reflexionen, gleichmäßige Ausleuchtung.\n- **Anwendung**: Automobilindustrie, Oberflächeninspektion von Aluminium und Edelstahl.\n- **Lichtquelle**: LED-Panels mit 5000K.\n\n### 2. Rückbeleuchtung\n- **Einsatzgebiet**: Transparente oder durchsichtige Materialien.\n- **Vorteile**: Sichtbarmachung innerer Defekte wie Luftblasen.\n- **Anwendung**: Pharmaindustrie, Prüfung von Glasspritzen und Ampullen.\n- **Lichtquelle**: LED-Röhren mit 6000K.\n\n### 3. Punktlichtquelle\n- **Einsatzgebiet**: Erkennung von Texturen und Formen.\n- **Anwendung**: Prüfung von Kunststoffoberflächen.\n- **Lichtquelle**: Halogenlampen mit 3000K.\n\n### Material-spezifische Lichtkonfigurationen\n| Material     | Beleuchtungstechnik | Lichtquelle              | Farbtemperatur | Anwendungen                      |\n|--------------|---------------------|--------------------------|----------------|----------------------------------|\n| Aluminium    | Diffuses Licht      | LED-Panels               | 5000K          | Lackprüfung                      |\n| Glas         | Rückbeleuchtung     | LED-Röhren               | 6000K          | Innenprüfung von Behältern       |\n| Kunststoff   | Punktlichtquelle     | Halogenlampen            | 3000K          | Prüfung von Texturen und Formen  |\n| Edelstahl    | Diffuses Licht      | LED-Panels               | 5000K          | Oberflächeninspektion            |\n\n## Empfehlungen\nDie Wahl des richtigen Beleuchtungskonzepts sollte basierend auf den spezifischen Anforderungen des Materials und der Art der Qualitätsprüfung getroffen werden, um optimale Ergebnisse zu erzielen.\n\n## Quellen\n[1] techmech_docs - URL\n\n## Einschränkungen\nDie Quellen enthalten keine Informationen zu weiteren Beleuchtungstechniken oder spezifischen Anwendungen außerhalb der genannten Materialien.",
+      "confidence": 0.75,
+      "sources": [
+        "Beleuchtungskonzepte für verschiedene Materialien",
+        "Beleuchtungskonzepte für verschiedene Materialien",
+        "Beleuchtungskonzepte für verschiedene Materialien",
+        "Beleuchtungskonzepte für verschiedene Materialien"
+      ],
+      "context": "[Quelle: Beleuchtungskonzepte für verschiedene Materialien]\n# Beleuchtungskonzepte für verschiedene Materialien\n\n## Einleitung\nIn der modernen Qualitätsprüfung spielt die Beleuchtung eine entscheidende Rolle bei der Erkennung von Oberflächenfehlern und der gen\n\n---\n\n[Quelle: Beleuchtungskonzepte für verschiedene Materialien]\nteile**: Scharfe Schattenwirkung zur Erkennung von Vertiefungen und Erhebungen\n\n### 3. Rückbeleuchtung\nDie Rückbeleuchtung ist bei transparenten oder durchsichtigen Materialien von Bedeutung, um inner\n\n---\n\n[Quelle: Beleuchtungskonzepte für verschiedene Materialien]\nLED-Panels               | 5000K          | Oberflächeninspektion            |\n\n## Fazit\nDie Auswahl des geeigneten Beleuchtungskonzepts ist entscheidend für die Genauigkeit und Zuverlässigkeit von Qu\n\n---\n\n[Quelle: Beleuchtungskonzepte für verschiedene Materialien]\nigungen im Inneren des Materials\n\n## Material-spezifische Lichtkonfigurationen\n\n| Material     | Beleuchtungstechnik | Lichtquelle              | Farbtemperatur | Anwendungen                      |\n|-",
+      "latency_ms": 39237.33973503113,
+      "iterations": 1,
+      "search_success": true,
+      "search_error": null,
+      "search_timestamp": "2026-01-25T17:10:32.832384+00:00",
+      "overall_pass": true,
+      "overall_score": 1.0,
+      "failure_reasons": [],
+      "dimensions": {
+        "language_match": {
+          "dimension": "language_match",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort ist in deutscher Sprache verfasst und behandelt die Frage zu Beleuchtungskonzepten im Vision System entsprechend.",
+          "evidence": "{\"fragesprache\": \"Deutsch\", \"antwortsprache\": \"Deutsch\"}"
+        },
+        "direct_resolution": {
+          "dimension": "direct_resolution",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort bietet detaillierte Informationen zu verschiedenen Beleuchtungskonzepten, einschließlich spezifischer Techniken, Lichtquellen, Farbtemperaturen und Anwendungsgebieten für unterschiedliche Materialien.",
+          "evidence": "{\"user_braucht\": \"Beleuchtungskonzepte für verschiedene Materialien im Vision System\", \"antwort_enthaelt_info\": true}"
+        },
+        "factual_grounding": {
+          "dimension": "factual_grounding",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort basiert auf dem Kontext und stützt sich auf die genannten Beleuchtungstechniken und deren Anwendungen. Alle Behauptungen sind im Kontext verankert und korrekt wiedergegeben.",
+          "evidence": "{\"behauptungen\": [\"In Vision-Systemen werden unterschiedliche Beleuchtungstechniken eingesetzt, um die Qualität und Integrität von Materialien zu prüfen.\", \"Diffuses Licht ist ideal für glänzende Oberflächen wie Aluminium und Edelstahl.\", \"Rückbeleuchtung ist besonders geeignet für transparente Materialien wie Glas.\", \"Punktlichtquelle ist nützlich zur Erkennung von Texturen und Formen, z.B. bei Kunststoffoberflächen.\"], \"gestuetzt\": [\"Die Auswahl des geeigneten Beleuchtungskonzepts ist entscheidend für die Genauigkeit und Zuverlässigkeit von Qualitätsprüfungen.\", \"Diffuses Licht minimiert Reflexionen und sorgt für gleichmäßige Ausleuchtung.\", \"Rückbeleuchtung macht innere Defekte sichtbar.\", \"Die Wahl des richtigen Beleuchtungskonzepts sollte basierend auf den spezifischen Anforderungen des Materials getroffen werden.\"], \"nicht_gestuetzt\": []}"
+        },
+        "answer_completeness": {
+          "dimension": "answer_completeness",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort behandelt umfassend die verschiedenen Beleuchtungskonzepte für unterschiedliche Materialien im Vision System und bietet detaillierte Informationen zu jedem Konzept sowie spezifische Anwendungen. Es werden keine wesentlichen Aspekte ausgelassen.",
+          "evidence": "{\"informationsbedarfe\": [], \"adressiert\": [\"Beleuchtungskonzepte für verschiedene Materialien\", \"Diffuses Licht\", \"Rückbeleuchtung\", \"Punktlichtquelle\", \"Material-spezifische Lichtkonfigurationen\"], \"fehlend\": []}"
+        },
+        "user_actionability": {
+          "dimension": "user_actionability",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort bietet klare und handlungsrelevante Informationen zu verschiedenen Beleuchtungskonzepten, die der Nutzer direkt anwenden kann, um die Qualität von Materialien zu prüfen.",
+          "evidence": "{\"nutzer_kann_fortfahren\": true, \"was_nutzer_tun_kann\": \"Die Informationen nutzen, um das passende Beleuchtungskonzept für die spezifischen Materialien in ihrem Vision System auszuwählen.\", \"was_noch_fehlt\": \"Möglicherweise spezifische Anwendungsbeispiele oder zusätzliche Beleuchtungstechniken für andere Materialien.\"}"
+        }
+      },
+      "judge_timestamp": "2026-01-25T17:12:34.284325+00:00"
+    },
+    {
+      "question_id": "PS-009",
+      "question": "Was sind die CAD-Richtlinien für SolidWorks bei TechMech?",
+      "category": "product_spec",
+      "answer": "# CAD-Richtlinien für SolidWorks bei TechMech\n\n## Zusammenfassung\nDie CAD-Richtlinien für SolidWorks bei TechMech umfassen spezifische Anforderungen an Software, Dateiformate und Einheitensysteme sowie Namenskonventionen für Dateien. Diese Richtlinien sollen die Konsistenz und Verständlichkeit der technischen Zeichnungen und Modelle sicherstellen [1].\n\n## Wichtige Erkenntnisse\n- **Software**: Verwendung der aktuellen Version von AutoCAD und SolidWorks.\n- **Dateiformate**: \n  - 2D-Zeichnungen: .dwg\n  - 3D-Modelle: .sldprt\n- **Einheitensystem**: Maße sind in Millimetern (mm) anzugeben.\n- **Namenskonventionen**: Dateinamen müssen einzigartig, klar und konsistent sein [1], [2].\n\n## Details\nDie CAD-Richtlinien bei TechMech sind in zwei Hauptdokumenten zusammengefasst. Alle CAD-Modelle müssen mit der aktuellen Version von AutoCAD und SolidWorks erstellt werden. Die bevorzugten Dateiformate sind .dwg für 2D-Zeichnungen und .sldprt für 3D-Modelle. Zudem müssen alle Maße in den Zeichnungen in Millimetern angegeben werden. \n\nDie Namenskonventionen verlangen, dass jeder Dateiname einzigartig ist, um Verwechslungen zu vermeiden, und dass er den Inhalt und die Funktion des Modells klar widerspiegelt. Einheitliche Benennungsstrukturen sollen über alle Projekte hinweg angewendet werden, um die Konsistenz zu gewährleisten [1].\n\n## Empfehlungen\nEs wird empfohlen, die CAD-Richtlinien strikt zu befolgen, um die Qualität und Verständlichkeit der technischen Dokumentation zu sichern. Schulungen zur Anwendung dieser Richtlinien könnten hilfreich sein.\n\n## Quellen\n[1] techmech_docs - URL  \n[2] techmech_docs - URL\n\n## Einschränkungen\nDie Quellen enthalten keine Informationen zu spezifischen Schulungen oder zusätzlichen Ressourcen zur Umsetzung der CAD-Richtlinien.",
+      "confidence": 0.7,
+      "sources": [
+        "CAD-Richtlinien",
+        "SolidWorks Namenskonventionen"
+      ],
+      "context": "[Quelle: CAD-Richtlinien]\n# CAD-Richtlinien\n\n## Einleitung\nDie vorliegenden CAD-Richtlinien dienen als Leitfaden für die Erstellung, Bearbeitung und Verwaltung von CAD-Daten in der TechMech Solutions GmbH. Diese Richtlinien so\n\n---\n\n[Quelle: SolidWorks Namenskonventionen]\n# SolidWorks Namenskonventionen\n\n## Einleitung\nDie Einhaltung von Namenskonventionen in SolidWorks ist entscheidend für die Organisation und Nachvollziehbarkeit von CAD-Daten im Rahmen der Entwicklung",
+      "latency_ms": 28083.832025527954,
+      "iterations": 1,
+      "search_success": true,
+      "search_error": null,
+      "search_timestamp": "2026-01-25T17:10:30.411749+00:00",
+      "overall_pass": false,
+      "overall_score": 0.65,
+      "failure_reasons": [
+        "Composite score 0.65 below threshold 0.7"
+      ],
+      "dimensions": {
+        "language_match": {
+          "dimension": "language_match",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort ist in deutscher Sprache verfasst und entspricht somit der Sprache der Frage. Alle relevanten Informationen sind klar und verständlich dargestellt, ohne englische Überschriften oder Begriffe, die nicht akzeptabel wären.",
+          "evidence": "{\"fragesprache\": \"Deutsch\", \"antwortsprache\": \"Deutsch\"}"
+        },
+        "direct_resolution": {
+          "dimension": "direct_resolution",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort enthält spezifische Informationen zu den CAD-Richtlinien, einschließlich Softwareanforderungen, Dateiformaten, Einheitensystemen und Namenskonventionen, die direkt auf die Frage eingehen.",
+          "evidence": "{\"user_braucht\": \"CAD-Richtlinien für SolidWorks bei TechMech\", \"antwort_enthaelt_info\": true}"
+        },
+        "factual_grounding": {
+          "dimension": "factual_grounding",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die meisten Behauptungen in der Antwort sind durch den Kontext gestützt, insbesondere die Anforderungen an Software, Dateiformate, Maßeinheiten und Namenskonventionen. Einige spezifische Details, wie die Erwähnung von 'zwei Hauptdokumenten', sind jedoch nicht im Kontext enthalten und könnten als extrapoliert betrachtet werden. Daher ist die Antwort größtenteils, aber nicht vollständig, gestützt.",
+          "evidence": "{\"behauptungen\": [\"Die CAD-Richtlinien für SolidWorks bei TechMech umfassen spezifische Anforderungen an Software, Dateiformate und Einheitensysteme sowie Namenskonventionen für Dateien.\", \"Die CAD-Richtlinien bei TechMech sind in zwei Hauptdokumenten zusammengefasst.\", \"Alle CAD-Modelle müssen mit der aktuellen Version von AutoCAD und SolidWorks erstellt werden.\", \"Die bevorzugten Dateiformate sind .dwg für 2D-Zeichnungen und .sldprt für 3D-Modelle.\", \"Alle Maße in den Zeichnungen müssen in Millimetern angegeben werden.\", \"Die Namenskonventionen verlangen, dass jeder Dateiname einzigartig ist, um Verwechslungen zu vermeiden.\", \"Einheitliche Benennungsstrukturen sollen über alle Projekte hinweg angewendet werden.\"], \"gestuetzt\": [\"Die CAD-Richtlinien für SolidWorks bei TechMech umfassen spezifische Anforderungen an Software, Dateiformate und Einheitensysteme sowie Namenskonventionen für Dateien.\", \"Alle CAD-Modelle müssen mit der aktuellen Version von AutoCAD und SolidWorks erstellt werden.\", \"Die bevorzugten Dateiformate sind .dwg für 2D-Zeichnungen und .sldprt für 3D-Modelle.\", \"Alle Maße in den Zeichnungen müssen in Millimetern angegeben werden.\", \"Die Namenskonventionen verlangen, dass jeder Dateiname einzigartig ist, um Verwechslungen zu vermeiden.\"], \"nicht_gestuetzt\": [\"Die CAD-Richtlinien bei TechMech sind in zwei Hauptdokumenten zusammengefasst.\", \"Einheitliche Benennungsstrukturen sollen über alle Projekte hinweg angewendet werden.\"]}"
+        },
+        "answer_completeness": {
+          "dimension": "answer_completeness",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die Antwort behandelt die CAD-Richtlinien umfassend und geht auf alle relevanten Aspekte ein, jedoch fehlt eine detaillierte Information zu Schulungen oder Ressourcen, die für die Umsetzung der Richtlinien hilfreich sein könnten.",
+          "evidence": "{\"informationsbedarfe\": [], \"adressiert\": [\"CAD-Richtlinien für SolidWorks\", \"Softwareanforderungen\", \"Dateiformate\", \"Einheitensystem\", \"Namenskonventionen\"], \"fehlend\": [\"spezifische Schulungen oder zusätzliche Ressourcen zur Umsetzung der CAD-Richtlinien\"]}"
+        },
+        "user_actionability": {
+          "dimension": "user_actionability",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort bietet klare und handlungsrelevante Informationen zu den CAD-Richtlinien, die der Nutzer direkt anwenden kann, um seine Aufgaben zu erfüllen.",
+          "evidence": "{\"nutzer_kann_fortfahren\": true, \"was_nutzer_tun_kann\": \"Die CAD-Richtlinien für SolidWorks bei TechMech befolgen und sicherstellen, dass alle Modelle und Zeichnungen den Vorgaben entsprechen.\", \"was_noch_fehlt\": \"Informationen zu spezifischen Schulungen oder zusätzlichen Ressourcen zur Umsetzung der CAD-Richtlinien.\"}"
+        }
+      },
+      "judge_timestamp": "2026-01-25T17:12:44.634165+00:00"
+    },
+    {
+      "question_id": "PS-010",
+      "question": "Welche Festo Pneumatikkomponenten werden verwendet?",
+      "category": "product_spec",
+      "answer": "# Festo Pneumatikkomponenten\n\n## Zusammenfassung\nFesto bietet eine breite Palette von Pneumatikkomponenten an, die in Automatisierungsprojekten eingesetzt werden. Zu den Hauptkomponenten gehören Zylinder, Ventile, Druckluftaufbereitung, Sensoren und Zubehör. Diese Komponenten sind bekannt für ihre hohe Qualität und Zuverlässigkeit [1].\n\n## Wichtige Erkenntnisse\n- **Zylinder**: Verschiedene Typen für unterschiedliche Anwendungen.\n- **Ventile**: Steuerung des Luftstroms in Pneumatiksystemen.\n- **Druckluftaufbereitung**: Filter und Öler zur Reinigung und Trocknung der Druckluft.\n- **Sensoren**: Überwachung und Steuerung von Prozessen.\n- **Betriebstemperatur**: -10 °C bis +50 °C; max. Umgebungstemperatur: +60 °C (kurzzeitig).\n- **Medien**: Druckluft und nicht korrosive Gase; zulässige Luftfeuchtigkeit: max. 50% bei 20 °C [1].\n\n## Details\nFesto bietet eine Vielzahl von Pneumatikkomponenten, die in verschiedenen Industrien Anwendung finden. Die Zylinder sind in unterschiedlichen Größen und Kräften erhältlich, um den spezifischen Lastanforderungen gerecht zu werden. Ventile sind entscheidend für die Steuerung des Luftstroms und müssen je nach Anwendung ausgewählt werden. Die Druckluftaufbereitung ist wichtig, um eine saubere und trockene Druckluftversorgung sicherzustellen, was durch den Einsatz von Filtern und Ölern erreicht wird. Die Komponenten sind für Betriebstemperaturen von -10 °C bis +50 °C ausgelegt, wobei eine kurzfristige maximale Umgebungstemperatur von +60 °C zulässig ist. Sie sind für den Einsatz mit Druckluft und nicht korrosiven Gasen konzipiert und sollten bei einer maximalen Luftfeuchtigkeit von 50% bei 20 °C betrieben werden [1].\n\n## Empfehlungen\nFür spezifische Anwendungen sollten die Anforderungen an Last, Steuerung und Druckluftaufbereitung genau analysiert werden, um die geeigneten Komponenten auszuwählen.\n\n## Quellen\n[1] techmech_docs - URL\n\n## Einschränkungen\nDie Quellen enthalten keine Informationen zu spezifischen Produktmodellen oder Preisen.",
+      "confidence": 0.7250000000000001,
+      "sources": [
+        "Festo Pneumatikkomponenten",
+        "Festo Pneumatikkomponenten",
+        "Festo Pneumatikkomponenten"
+      ],
+      "context": "[Quelle: Festo Pneumatikkomponenten]\nfür die Effizienz der Pneumatiksysteme. Festo bietet folgende Komponenten an:\n\n- **Filter**: Entfernen von Feuchtigkeit und Verunreinigungen\n- **Öler**: Schmierung von Komponenten zur Reduzierung von \n\n---\n\n[Quelle: Festo Pneumatikkomponenten]\n# Festo Pneumatikkomponenten\n\n## Einleitung\n\nDie Festo AG & Co. KG ist ein führender Anbieter von Automatisierungstechnik und Pneumatikkomponenten. In dieser Dokumentation werden die wichtigsten Pneum\n\n---\n\n[Quelle: Festo Pneumatikkomponenten]\nBei der Planung von Projekten sollten folgende Aspekte berücksichtigt werden:\n\n- **Lastanforderungen**: Bestimmung der erforderlichen Zylindergröße und -kraft.\n- **Steuerung**: Auswahl der geeigneten ",
+      "latency_ms": 38573.5650062561,
+      "iterations": 1,
+      "search_success": true,
+      "search_error": null,
+      "search_timestamp": "2026-01-25T17:10:55.855872+00:00",
+      "overall_pass": true,
+      "overall_score": 0.825,
+      "failure_reasons": [],
+      "dimensions": {
+        "language_match": {
+          "dimension": "language_match",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort ist in deutscher Sprache verfasst und behandelt die Frage nach den Festo Pneumatikkomponenten umfassend und sachlich. Es werden keine englischen Überschriften verwendet, und die technischen Begriffe sind angemessen und relevant.",
+          "evidence": "{\"fragesprache\": \"Deutsch\", \"antwortsprache\": \"Deutsch\"}"
+        },
+        "direct_resolution": {
+          "dimension": "direct_resolution",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort listet verschiedene Festo Pneumatikkomponenten wie Zylinder, Ventile, Druckluftaufbereitung und Sensoren auf und gibt spezifische Details zu deren Funktionen und Einsatzbereichen.",
+          "evidence": "{\"user_braucht\": \"Information über Festo Pneumatikkomponenten\", \"antwort_enthaelt_info\": true}"
+        },
+        "factual_grounding": {
+          "dimension": "factual_grounding",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Alle Behauptungen in der Antwort sind direkt aus dem Kontext abgeleitet und werden durch die bereitgestellten Informationen unterstützt. Es gibt keine halluzinierten Informationen oder Widersprüche zum Kontext.",
+          "evidence": "{\"behauptungen\": [\"Festo bietet eine breite Palette von Pneumatikkomponenten an.\", \"Zu den Hauptkomponenten gehören Zylinder, Ventile, Druckluftaufbereitung, Sensoren und Zubehör.\", \"Die Zylinder sind in unterschiedlichen Größen und Kräften erhältlich.\", \"Ventile sind entscheidend für die Steuerung des Luftstroms.\", \"Die Druckluftaufbereitung ist wichtig, um eine saubere und trockene Druckluftversorgung sicherzustellen.\", \"Die Komponenten sind für Betriebstemperaturen von -10 °C bis +50 °C ausgelegt.\", \"Sie sind für den Einsatz mit Druckluft und nicht korrosiven Gasen konzipiert.\"], \"gestuetzt\": [\"Festo bietet eine breite Palette von Pneumatikkomponenten an.\", \"Zu den Hauptkomponenten gehören Zylinder, Ventile, Druckluftaufbereitung, Sensoren und Zubehör.\", \"Die Zylinder sind in unterschiedlichen Größen und Kräften erhältlich.\", \"Ventile sind entscheidend für die Steuerung des Luftstroms.\", \"Die Druckluftaufbereitung ist wichtig, um eine saubere und trockene Druckluftversorgung sicherzustellen.\", \"Die Komponenten sind für Betriebstemperaturen von -10 °C bis +50 °C ausgelegt.\", \"Sie sind für den Einsatz mit Druckluft und nicht korrosiven Gasen konzipiert.\"], \"nicht_gestuetzt\": []}"
+        },
+        "answer_completeness": {
+          "dimension": "answer_completeness",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die Antwort gibt einen umfassenden Überblick über die verschiedenen Arten von Festo Pneumatikkomponenten und deren Funktionen. Allerdings fehlen spezifische Produktmodelle und Preisinformationen, die für eine vollständige Beantwortung der Frage hilfreich wären.",
+          "evidence": "{\"informationsbedarfe\": [], \"adressiert\": [\"Zylinder\", \"Ventile\", \"Druckluftaufbereitung\", \"Sensoren\", \"Betriebstemperatur\", \"Medien\"], \"fehlend\": [\"spezifische Produktmodelle\", \"Preisinformationen\"]}"
+        },
+        "user_actionability": {
+          "dimension": "user_actionability",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort bietet eine umfassende Übersicht über die verschiedenen Festo Pneumatikkomponenten und deren Anwendungen, was dem Nutzer ermöglicht, informierte Entscheidungen zu treffen und die richtigen Komponenten auszuwählen.",
+          "evidence": "{\"nutzer_kann_fortfahren\": true, \"was_nutzer_tun_kann\": \"Die geeigneten Festo Pneumatikkomponenten für ihre spezifischen Anwendungen auswählen und bestellen.\", \"was_noch_fehlt\": \"Spezifische Produktmodelle und Preise.\"}"
+        }
+      },
+      "judge_timestamp": "2026-01-25T17:12:50.592505+00:00"
+    },
+    {
+      "question_id": "PS-011",
+      "question": "Was sind die Werkstoffauswahl-Kriterien bei TechMech?",
+      "category": "product_spec",
+      "answer": "# Werkstoffauswahl-Kriterien bei TechMech\n\n## Zusammenfassung\nDie Quellen enthalten keine spezifischen Informationen zu den Werkstoffauswahl-Kriterien bei TechMech, insbesondere in Bezug auf die RC-Serie, LTS-X, VS-Pro und DMS-Sensoren. Es scheint, dass diese Kriterien nicht ausreichend dokumentiert sind oder nicht in der Datenbank vorhanden sind [1].\n\n## Wichtige Erkenntnisse\n- Es wurden keine konkreten Fakten oder Zahlen zu den Werkstoffauswahl-Kriterien gefunden.\n- Die Informationen zu den genannten Produkten sind möglicherweise in anderen internen Quellen oder durch direkte Rücksprache mit Fachabteilungen zugänglich.\n\n## Details\nDie Recherche hat ergeben, dass es eine Lücke in den verfügbaren Informationen gibt, die eine umfassende Analyse der Werkstoffauswahl für die Produkte von TechMech erschwert. Es wurden keine spezifischen Dokumente oder Quellen gefunden, die die Kriterien detailliert beschreiben [1].\n\n## Empfehlungen\nEs wird empfohlen, direkt mit den Fachabteilungen von TechMech Kontakt aufzunehmen, um spezifische Informationen zu den Werkstoffauswahl-Kriterien zu erhalten.\n\n## Quellen\n[1] techmech_docs - interne Datenbank\n\n## Einschränkungen\nDie Quellen enthalten keine Informationen zu den Werkstoffauswahl-Kriterien bei TechMech.",
+      "confidence": 0.25,
+      "sources": [],
+      "context": "",
+      "latency_ms": 32123.372077941895,
+      "iterations": 2,
+      "search_success": true,
+      "search_error": null,
+      "search_timestamp": "2026-01-25T17:11:02.535252+00:00",
+      "overall_pass": false,
+      "overall_score": 0.0,
+      "failure_reasons": [
+        "HARD FAIL [direct_resolution]: Die Antwort enthält keine spezifischen Informationen zu den Werkstoffauswahl-Kriterien, sondern verweist darauf, dass keine Informationen verfügbar sind und empfiehlt, die Fachabteilungen zu kontaktieren."
+      ],
+      "dimensions": {
+        "language_match": {
+          "dimension": "language_match",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort ist in deutscher Sprache verfasst und behandelt die Frage nach den Werkstoffauswahl-Kriterien bei TechMech. Es werden keine englischen Überschriften verwendet, und die Antwort bleibt im Kontext der Frage.",
+          "evidence": "{\"fragesprache\": \"Deutsch\", \"antwortsprache\": \"Deutsch\"}"
+        },
+        "direct_resolution": {
+          "dimension": "direct_resolution",
+          "verdict": "fail",
+          "score": 0.0,
+          "reasoning": "Die Antwort enthält keine spezifischen Informationen zu den Werkstoffauswahl-Kriterien, sondern verweist darauf, dass keine Informationen verfügbar sind und empfiehlt, die Fachabteilungen zu kontaktieren.",
+          "evidence": "{\"user_braucht\": \"Werkstoffauswahl-Kriterien bei TechMech\", \"antwort_enthaelt_info\": false}"
+        },
+        "factual_grounding": {
+          "dimension": "factual_grounding",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort bezieht sich auf die fehlenden Informationen zu den Werkstoffauswahl-Kriterien bei TechMech und beschreibt die Lücken in den verfügbaren Daten, was mit dem Kontext übereinstimmt. Es gibt keine Widersprüche oder halluzinierten Informationen.",
+          "evidence": "{\"behauptungen\": [\"Es wurden keine konkreten Fakten oder Zahlen zu den Werkstoffauswahl-Kriterien gefunden.\", \"Die Informationen zu den genannten Produkten sind möglicherweise in anderen internen Quellen oder durch direkte Rücksprache mit Fachabteilungen zugänglich.\", \"Die Recherche hat ergeben, dass es eine Lücke in den verfügbaren Informationen gibt, die eine umfassende Analyse der Werkstoffauswahl für die Produkte von TechMech erschwert.\", \"Es wurden keine spezifischen Dokumente oder Quellen gefunden, die die Kriterien detailliert beschreiben.\"], \"gestuetzt\": [\"Die Quellen enthalten keine spezifischen Informationen zu den Werkstoffauswahl-Kriterien bei TechMech.\", \"Es scheint, dass diese Kriterien nicht ausreichend dokumentiert sind oder nicht in der Datenbank vorhanden sind.\"], \"nicht_gestuetzt\": []}"
+        },
+        "answer_completeness": {
+          "dimension": "answer_completeness",
+          "verdict": "fail",
+          "score": 0.0,
+          "reasoning": "Die Antwort erkennt an, dass es an spezifischen Informationen zu den Werkstoffauswahl-Kriterien mangelt und empfiehlt, sich an Fachabteilungen zu wenden. Allerdings werden keine konkreten Kriterien oder Details zu den Produkten gegeben, was die Frage nicht vollständig beantwortet.",
+          "evidence": "{\"informationsbedarfe\": [\"konkrete Werkstoffauswahl-Kriterien\", \"Details zu RC-Serie, LTS-X, VS-Pro und DMS-Sensoren\"], \"adressiert\": [\"Fehlen spezifischer Informationen\", \"Empfehlung zur Kontaktaufnahme mit Fachabteilungen\"], \"fehlend\": [\"Detaillierte Kriterien zur Werkstoffauswahl\", \"Beispiele oder Richtlinien für die Auswahl\"]}"
+        },
+        "user_actionability": {
+          "dimension": "user_actionability",
+          "verdict": "fail",
+          "score": 0.0,
+          "reasoning": "Die Antwort weist darauf hin, dass keine spezifischen Informationen zu den Werkstoffauswahl-Kriterien verfügbar sind und empfiehlt, sich an die Fachabteilungen zu wenden. Daher hat der Nutzer keinen klaren Weg vorwärts, ohne diese Informationen zu suchen.",
+          "evidence": "{\"nutzer_kann_fortfahren\": false, \"was_nutzer_tun_kann\": \"Direkt mit den Fachabteilungen von TechMech Kontakt aufnehmen, um spezifische Informationen zu den Werkstoffauswahl-Kriterien zu erhalten.\", \"was_noch_fehlt\": \"Konkrete Informationen oder Dokumente zu den Werkstoffauswahl-Kriterien bei TechMech.\"}"
+        }
+      },
+      "judge_timestamp": "2026-01-25T17:12:54.228000+00:00"
+    },
+    {
+      "question_id": "PS-012",
+      "question": "Welche Anzugsmomente gelten für Verschraubungen?",
+      "category": "product_spec",
+      "answer": "# Anzugsmomente für Verschraubungen\n\n## Zusammenfassung\nDie Anzugsmomente für Verschraubungen sind entscheidend für die Sicherheit und Zuverlässigkeit technischer Anwendungen. Für gängige Sechskantschrauben der Materialklasse 8.8 variieren die Anzugsmomente je nach Gewindegröße, z.B. M6 mit 9 Nm und M12 mit 70 Nm [1].\n\n## Wichtige Erkenntnisse\n- **Sechskantschraube M6**: Anzugsmoment 9 Nm, Materialklasse 8.8.\n- **Sechskantschraube M8**: Anzugsmoment 20 Nm, Materialklasse 8.8.\n- **Sechskantschraube M10**: Anzugsmoment 40 Nm, Materialklasse 8.8.\n- **Sechskantschraube M12**: Anzugsmoment 70 Nm, Materialklasse 8.8.\n- **Flanschschraube M10**: Anzugsmoment 50 Nm, Materialklasse 8.8.\n- Die richtige Vorspannung ist wichtig, um Stabilität zu gewährleisten und Materialschäden zu vermeiden [1].\n\n## Details\nDie angegebenen Anzugsmomente beziehen sich auf die Vorspannung der Schrauben. Eine unzureichende Vorspannung kann die Stabilität der Konstruktion beeinträchtigen, während eine Überdrehung das Risiko von Materialschäden erhöht. Es wird empfohlen, einen Drehmomentschlüssel zu verwenden, um die Anzugsmomente präzise einzuhalten. Regelmäßige Überprüfungen der Schraubverbindungen sind notwendig, insbesondere in Anwendungen mit hohen Vibrationen oder Temperaturwechseln [1].\n\n## Empfehlungen\nVerwenden Sie einen Drehmomentschlüssel zur genauen Einhaltung der Anzugsmomente und führen Sie regelmäßige Wartungsüberprüfungen durch, um die Sicherheit und Langlebigkeit der Verschraubungen zu gewährleisten.\n\n## Quellen\n[1] Verschraubungen - Anzugsmomente Tabelle.",
+      "confidence": 0.75,
+      "sources": [
+        "Verschraubungen - Anzugsmomente Tabelle",
+        "Verschraubungen - Anzugsmomente Tabelle",
+        "Verschraubungen - Anzugsmomente Tabelle",
+        "Verschraubungen - Anzugsmomente Tabelle",
+        "Beleuchtungskonzepte für verschiedene Materialien"
+      ],
+      "context": "[Quelle: Verschraubungen - Anzugsmomente Tabelle]\n# Verschraubungen - Anzugsmomente Tabelle\n\n## Einleitung\n\nDie ordnungsgemäße Ausführung von Verschraubungen ist entscheidend für die Sicherheit und Zuverlässigkeit von Maschinen und Anlagen. Diese Sei\n\n---\n\n[Quelle: Verschraubungen - Anzugsmomente Tabelle]\nVerunreinigungen sein. Dies gewährleistet eine gleichmäßige Kraftübertragung.\n\n2. **Vorspannung**: Die angegebenen Anzugsmomente beziehen sich auf die Vorspannung der Schrauben. Eine unzureichende Vor\n\n---\n\n[Quelle: Verschraubungen - Anzugsmomente Tabelle]\ngen, die hohen Vibrationen oder Temperaturwechseln ausgesetzt sind. \n\n## Fazit\n\nDie Einhaltung der empfohlenen Anzugsmomente trägt wesentlich zur Langlebigkeit und Sicherheit unserer Systeme bei. Bei \n\n---\n\n[Quelle: Verschraubungen - Anzugsmomente Tabelle]\nMaterialbeschaffenheit variieren.\n\n## Anzugsmomente für gängige Schraubentypen\n\n| Schraubentyp        | Gewindegröße | Anzugsmoment (Nm) | Materialklasse    | Bemerkungen                     |\n|------\n\n---\n\n[Quelle: Beleuchtungskonzepte für verschiedene Materialien]\nteile**: Scharfe Schattenwirkung zur Erkennung von Vertiefungen und Erhebungen\n\n### 3. Rückbeleuchtung\nDie Rückbeleuchtung ist bei transparenten oder durchsichtigen Materialien von Bedeutung, um inner",
+      "latency_ms": 33675.59885978699,
+      "iterations": 1,
+      "search_success": true,
+      "search_error": null,
+      "search_timestamp": "2026-01-25T17:11:06.508137+00:00",
+      "overall_pass": false,
+      "overall_score": 0.65,
+      "failure_reasons": [
+        "Composite score 0.65 below threshold 0.7"
+      ],
+      "dimensions": {
+        "language_match": {
+          "dimension": "language_match",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort ist in deutscher Sprache verfasst und behandelt das Thema der Anzugsmomente für Verschraubungen, was direkt auf die Frage eingeht. Es sind keine englischen Überschriften oder andere sprachliche Inkonsistenzen vorhanden.",
+          "evidence": "{\"fragesprache\": \"Deutsch\", \"antwortsprache\": \"Deutsch\"}"
+        },
+        "direct_resolution": {
+          "dimension": "direct_resolution",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort enthält spezifische Anzugsmomente für verschiedene Schraubentypen und -größen, was die Frage direkt beantwortet.",
+          "evidence": "{\"user_braucht\": \"Anzugsmomente für Verschraubungen\", \"antwort_enthaelt_info\": true}"
+        },
+        "factual_grounding": {
+          "dimension": "factual_grounding",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die Antwort enthält Informationen, die im Kontext erwähnt werden, jedoch sind einige spezifische Anzugsmomente für Schraubentypen (M8 und M10) nicht im Kontext enthalten und wurden extrapoliert. Daher ist die Antwort größtenteils, aber nicht vollständig gestützt.",
+          "evidence": "{\"behauptungen\": [\"Die Anzugsmomente für Verschraubungen sind entscheidend für die Sicherheit und Zuverlässigkeit technischer Anwendungen.\", \"Für gängige Sechskantschrauben der Materialklasse 8.8 variieren die Anzugsmomente je nach Gewindegröße, z.B. M6 mit 9 Nm und M12 mit 70 Nm.\", \"Die richtige Vorspannung ist wichtig, um Stabilität zu gewährleisten und Materialschäden zu vermeiden.\", \"Eine unzureichende Vorspannung kann die Stabilität der Konstruktion beeinträchtigen, während eine Überdrehung das Risiko von Materialschäden erhöht.\", \"Es wird empfohlen, einen Drehmomentschlüssel zu verwenden, um die Anzugsmomente präzise einzuhalten.\", \"Regelmäßige Überprüfungen der Schraubverbindungen sind notwendig, insbesondere in Anwendungen mit hohen Vibrationen oder Temperaturwechseln.\"], \"gestuetzt\": [\"Die Anzugsmomente für Verschraubungen sind entscheidend für die Sicherheit und Zuverlässigkeit technischer Anwendungen.\", \"Für gängige Sechskantschrauben der Materialklasse 8.8 variieren die Anzugsmomente je nach Gewindegröße, z.B. M6 mit 9 Nm und M12 mit 70 Nm.\", \"Die richtige Vorspannung ist wichtig, um Stabilität zu gewährleisten und Materialschäden zu vermeiden.\"], \"nicht_gestuetzt\": [\"Die Anzugsmomente für Sechskantschrauben M8 und M10 wurden nicht im Kontext erwähnt, sondern extrapoliert.\"]}"
+        },
+        "answer_completeness": {
+          "dimension": "answer_completeness",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die Antwort behandelt die Anzugsmomente für gängige Sechskantschrauben der Materialklasse 8.8 und betont die Bedeutung der richtigen Vorspannung sowie die Verwendung eines Drehmomentschlüssels. Allerdings fehlen Informationen zu anderen Schraubentypen oder Materialklassen sowie zu den Auswirkungen von Schmierung oder Umgebungsbedingungen, was die Vollständigkeit der Antwort beeinträchtigt.",
+          "evidence": "{\"informationsbedarfe\": [\"Anzugsmomente für andere Materialklassen oder Schraubentypen\", \"Einfluss von Schmierung oder Oberflächenbehandlung auf die Anzugsmomente\"], \"adressiert\": [\"Anzugsmomente für gängige Sechskantschrauben der Materialklasse 8.8\", \"Wichtigkeit der richtigen Vorspannung\", \"Verwendung eines Drehmomentschlüssels\", \"Notwendigkeit regelmäßiger Überprüfungen\"], \"fehlend\": [\"Spezifische Anzugsmomente für andere Schraubentypen oder Materialklassen\", \"Einfluss von Umgebungsbedingungen auf die Anzugsmomente\"]}"
+        },
+        "user_actionability": {
+          "dimension": "user_actionability",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort bietet klare und präzise Anzugsmomente für gängige Schraubentypen und betont die Wichtigkeit der richtigen Vorspannung, was dem Nutzer ermöglicht, die Informationen direkt in seiner Arbeit anzuwenden.",
+          "evidence": "{\"nutzer_kann_fortfahren\": true, \"was_nutzer_tun_kann\": \"Die Anzugsmomente für verschiedene Schraubentypen anwenden und sicherstellen, dass sie mit einem Drehmomentschlüssel korrekt angezogen werden.\", \"was_noch_fehlt\": \"Spezifische Anwendungsbeispiele oder zusätzliche Informationen zu anderen Materialklassen oder Schraubentypen könnten hilfreich sein.\"}"
+        }
+      },
+      "judge_timestamp": "2026-01-25T17:13:01.398088+00:00"
+    },
+    {
+      "question_id": "TS-001",
+      "question": "Was sind die häufigsten Ursachen für Vibrationen bei Roboterzellen?",
+      "category": "troubleshooting",
+      "answer": "# Häufigste Ursachen für Vibrationen bei Roboterzellen\n\n## Zusammenfassung\nDie häufigsten Ursachen für Vibrationen in Roboterzellen lassen sich in mechanische und elektronische Fehler unterteilen. Mechanische Probleme wie Ungleichgewicht der beweglichen Teile und Abnutzung von Lagern sind häufige Ursachen, während elektronische Störungen durch unzureichende Erdung und Fehlkonfiguration der Steuerungseinheit ebenfalls zu Vibrationen führen können [1].\n\n## Wichtige Erkenntnisse\n- **Mechanische Fehler**:\n  - Ungleichgewicht der beweglichen Teile durch unsachgemäße Montage oder Abnutzung.\n  - Abnutzung von Lagern oder Führungen führt zu erhöhten Vibrationen.\n  - Lockere Verbindungen oder Befestigungen können Vibrationen verursachen.\n  \n- **Elektronische Störungen**:\n  - Unzureichende Erdung kann Störungen verursachen.\n  - Interferenzen von benachbarten Maschinen können ebenfalls zu Vibrationen führen.\n  - Fehlkonfiguration der Steuerungseinheit kann die Bewegungen negativ beeinflussen.\n\n- **Technische Spezifikationen**:\n  - Maximale zulässige Vibration: 2 mm/s (RMS).\n  - Typische Frequenz für Roboterzellen: 10-100 Hz [1].\n\n## Details\nMechanische Fehler sind oft das Resultat von unsachgemäßer Montage oder Abnutzung, was zu einem Ungleichgewicht der beweglichen Teile führt. Dies kann durch regelmäßige Wartung und Überprüfung der mechanischen Komponenten minimiert werden. Elektronische Störungen, wie unzureichende Erdung oder Fehlkonfigurationen, können ebenfalls signifikante Vibrationen verursachen. Eine Überprüfung der elektrischen Verbindungen und Erdungen ist daher ebenfalls wichtig, um Vibrationen zu reduzieren [1].\n\n## Empfehlungen\nUm Vibrationen zu minimieren, sollten folgende Maßnahmen ergriffen werden:\n- Regelmäßige Wartung der mechanischen Komponenten.\n- Überprüfung der elektrischen Verbindungen und Erdungen.\n- Schulung des Personals im Umgang mit der Roboterzelle.\n\n## Quellen\n[1] Vibrationen Roboterzelle - Troubleshooting Guide - URL\n\n## Einschränkungen\nDie Quellen enthalten keine Informationen zu spezifischen Lösungen oder Technologien zur Reduzierung von Vibrationen in Roboterzellen.",
+      "confidence": 0.825,
+      "sources": [
+        "Vibrationen Roboterzelle - Troubleshooting Guide",
+        "Vibrationen Roboterzelle - Troubleshooting Guide",
+        "Vibrationen Roboterzelle - Troubleshooting Guide",
+        "Vibrationen Roboterzelle - Troubleshooting Guide",
+        "Roboterzellen",
+        "Roboterzellen",
+        "Roboterzellen"
+      ],
+      "context": "[Quelle: Vibrationen Roboterzelle - Troubleshooting Guide]\n# Vibrationen Roboterzelle - Troubleshooting Guide\n\n## Einleitung\nDieser Troubleshooting Guide dient dazu, häufige Probleme mit Vibrationen in Roboterzellen zu identifizieren und zu beheben. Vibration\n\n---\n\n[Quelle: Vibrationen Roboterzelle - Troubleshooting Guide]\nbindungen und Erdungen\n- Schulung des Personals im Umgang mit der Roboterzelle\n\n## Fazit\nDie frühzeitige Erkennung und Behebung von Vibrationen in Roboterzellen ist entscheidend für die langfristige F\n\n---\n\n[Quelle: Vibrationen Roboterzelle - Troubleshooting Guide]\nVibration:** 2 mm/s (RMS)\n- **Typische Frequenz für Roboterzellen:** 10-100 Hz\n\n### Messdaten Beispiel\n| Messpunkt | Vibration (mm/s RMS) | Frequenz (Hz) | Bemerkungen     |\n|-----------|-------------\n\n---\n\n[Quelle: Vibrationen Roboterzelle - Troubleshooting Guide]\ne Teile korrekt montiert sind. | Schraubenschlüssel, Drehmomentschlüssel |\n| 4. Überprüfung der Erdung | Stellen Sie sicher, dass die Roboterzelle korrekt geerdet ist. | Multimeter |\n| 5. Analyse der \n\n---\n\n[Quelle: Roboterzellen]\n# Roboterzellen\n\n## Einführung\nRoboterzellen von TechMech Solutions GmbH sind hochmoderne Automatisierungslösungen, die speziell für die Anforderungen verschiedener Branchen entwickelt wurden. Sie bie\n\n---\n\n[Quelle: Roboterzellen]\nHMI |\n| **Sicherheitsstandard**  | ISO 10218, CE-zertifiziert               |\n\n## Prozessbeschreibung\nDie Roboterzellen sind modular aufgebaut und können entsprechend den spezifischen Anforderungen de\n\n---\n\n[Quelle: Roboterzellen]\nsicherzustellen, dass alle Produkte den festgelegten Standards entsprechen.\n4. **Materialabfuhr**: Fertige Produkte werden über ein automatisches Fördersystem zur nächsten Produktionsstufe weitergelei",
+      "latency_ms": 33061.81216239929,
+      "iterations": 1,
+      "search_success": true,
+      "search_error": null,
+      "search_timestamp": "2026-01-25T17:11:28.917862+00:00",
+      "overall_pass": true,
+      "overall_score": 1.0,
+      "failure_reasons": [],
+      "dimensions": {
+        "language_match": {
+          "dimension": "language_match",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort ist in deutscher Sprache verfasst und behandelt die Frage zu den Ursachen von Vibrationen bei Roboterzellen umfassend und sachlich. Es sind keine englischen Überschriften oder Begriffe verwendet worden, die nicht akzeptabel wären.",
+          "evidence": "{\"fragesprache\": \"Deutsch\", \"antwortsprache\": \"Deutsch\"}"
+        },
+        "direct_resolution": {
+          "dimension": "direct_resolution",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort listet spezifische mechanische und elektronische Fehler auf, die Vibrationen verursachen, und gibt konkrete Beispiele sowie technische Spezifikationen an.",
+          "evidence": "{\"user_braucht\": \"Die häufigsten Ursachen für Vibrationen bei Roboterzellen\", \"antwort_enthaelt_info\": true}"
+        },
+        "factual_grounding": {
+          "dimension": "factual_grounding",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort basiert vollständig auf den Informationen aus dem Kontext und enthält keine halluzinierten oder nicht unterstützten Informationen. Alle genannten Ursachen und technischen Spezifikationen sind im Kontext vorhanden.",
+          "evidence": "{\"behauptungen\": [\"Die häufigsten Ursachen für Vibrationen in Roboterzellen lassen sich in mechanische und elektronische Fehler unterteilen.\", \"Mechanische Probleme wie Ungleichgewicht der beweglichen Teile und Abnutzung von Lagern sind häufige Ursachen.\", \"Elektronische Störungen durch unzureichende Erdung und Fehlkonfiguration der Steuerungseinheit führen ebenfalls zu Vibrationen.\", \"Maximale zulässige Vibration: 2 mm/s (RMS).\", \"Typische Frequenz für Roboterzellen: 10-100 Hz.\"], \"gestuetzt\": [\"Die häufigsten Ursachen für Vibrationen in Roboterzellen lassen sich in mechanische und elektronische Fehler unterteilen.\", \"Mechanische Probleme wie Ungleichgewicht der beweglichen Teile und Abnutzung von Lagern sind häufige Ursachen.\", \"Elektronische Störungen durch unzureichende Erdung und Fehlkonfiguration der Steuerungseinheit führen ebenfalls zu Vibrationen.\", \"Maximale zulässige Vibration: 2 mm/s (RMS).\", \"Typische Frequenz für Roboterzellen: 10-100 Hz.\"], \"nicht_gestuetzt\": []}"
+        },
+        "answer_completeness": {
+          "dimension": "answer_completeness",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort behandelt umfassend die häufigsten Ursachen für Vibrationen in Roboterzellen, indem sie sowohl mechanische als auch elektronische Fehler detailliert beschreibt. Zudem werden technische Spezifikationen und Empfehlungen zur Minimierung von Vibrationen gegeben. Es fehlen keine wesentlichen Aspekte der Frage.",
+          "evidence": "{\"informationsbedarfe\": [], \"adressiert\": [\"mechanische Fehler\", \"elektronische Störungen\", \"technische Spezifikationen\", \"Details zu Ursachen\", \"Empfehlungen zur Minimierung von Vibrationen\"], \"fehlend\": []}"
+        },
+        "user_actionability": {
+          "dimension": "user_actionability",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort bietet klare Empfehlungen zur Minimierung von Vibrationen und ermöglicht dem Nutzer, konkrete Maßnahmen zu ergreifen.",
+          "evidence": "{\"nutzer_kann_fortfahren\": true, \"was_nutzer_tun_kann\": \"Regelmäßige Wartung der mechanischen Komponenten durchführen, elektrische Verbindungen und Erdungen überprüfen sowie das Personal im Umgang mit der Roboterzelle schulen.\", \"was_noch_fehlt\": \"Spezifische Technologien oder Lösungen zur Reduzierung von Vibrationen in Roboterzellen.\"}"
+        }
+      },
+      "judge_timestamp": "2026-01-25T17:13:07.650837+00:00"
+    },
+    {
+      "question_id": "TS-002",
+      "question": "Die SPS startet nicht. Welche Schritte soll ich durchführen?",
+      "category": "troubleshooting",
+      "answer": "# SPS startet nicht – Fehlersuche\n\n## Zusammenfassung\nWenn die Speicherprogrammierbare Steuerung (SPS) nicht startet, sollten Sie zunächst die Stromversorgung überprüfen. Dies umfasst die Messung der Netzspannung an den Versorgungsklemmen sowie die Kontrolle der Sicherungen im Schaltschrank [1].\n\n## Wichtige Erkenntnisse\n- **Netzspannung**: Die erwartete Spannung beträgt in der Regel 24 V DC (oder gemäß Datenblatt).\n- **Sicherungen**: Überprüfen Sie die Sicherungen, die im Schaltschrank vorhanden sind, um sicherzustellen, dass sie nicht defekt sind.\n\n## Details\nUm sicherzustellen, dass die SPS ordnungsgemäß funktioniert, sind folgende Schritte wichtig:\n1. **Stromversorgung prüfen**:\n   - Messen Sie die Spannung an den Versorgungsklemmen der SPS, um sicherzustellen, dass die richtige Spannung anliegt.\n2. **Sicherungen überprüfen**:\n   - Überprüfen Sie die Sicherungen im Schaltschrank. Der Sicherungstyp kann T5A oder spezifisch laut Schaltplan sein. Defekte Sicherungen können den Betrieb der SPS verhindern.\n\nZusätzlich sollten auch die Verkabelung und die angeschlossenen Komponenten auf mögliche Fehlerquellen überprüft werden.\n\n## Empfehlungen\n- Messen Sie die Spannung an den Versorgungsklemmen.\n- Überprüfen Sie alle Sicherungen im Schaltschrank auf Defekte.\n- Untersuchen Sie die Verkabelung und die angeschlossenen Komponenten auf mögliche Probleme.\n\n## Quellen\n[1] techmech_docs - URL\n\n## Einschränkungen\nDie Quellen enthalten keine Informationen zu spezifischen Fehlermeldungen oder weiteren möglichen Ursachen für das Problem.",
+      "confidence": 0.675,
+      "sources": [
+        "SPS startet nicht - Checkliste"
+      ],
+      "context": "[Quelle: SPS startet nicht - Checkliste]\n# SPS startet nicht - Checkliste\n\n## Einleitung\nDiese Checkliste dient zur systematischen Fehlersuche, wenn eine speicherprogrammierbare Steuerung (SPS) nicht startet. Die nachfolgenden Schritte solle",
+      "latency_ms": 23818.14193725586,
+      "iterations": 1,
+      "search_success": true,
+      "search_error": null,
+      "search_timestamp": "2026-01-25T17:11:26.353595+00:00",
+      "overall_pass": true,
+      "overall_score": 0.825,
+      "failure_reasons": [],
+      "dimensions": {
+        "language_match": {
+          "dimension": "language_match",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Frage ist auf Deutsch formuliert und die Antwort ist ebenfalls auf Deutsch verfasst. Alle verwendeten Begriffe und die Struktur der Antwort sind konsistent mit der deutschen Sprache.",
+          "evidence": "{\"fragesprache\": \"Deutsch\", \"antwortsprache\": \"Deutsch\"}"
+        },
+        "direct_resolution": {
+          "dimension": "direct_resolution",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort enthält spezifische Schritte zur Fehlersuche, wie das Überprüfen der Stromversorgung und der Sicherungen, sowie die Messung der Spannung, was die Frage direkt beantwortet.",
+          "evidence": "{\"user_braucht\": \"Schritte zur Fehlersuche bei einer nicht startenden SPS\", \"antwort_enthaelt_info\": true}"
+        },
+        "factual_grounding": {
+          "dimension": "factual_grounding",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort enthält keine Informationen, die nicht im Kontext vorhanden sind, und alle genannten Punkte sind direkt aus der Checkliste abgeleitet.",
+          "evidence": "{\"behauptungen\": [\"Die SPS startet nicht, wenn die Stromversorgung nicht überprüft wird.\", \"Die Netzspannung beträgt in der Regel 24 V DC.\", \"Die Sicherungen im Schaltschrank müssen überprüft werden.\"], \"gestuetzt\": [\"Die SPS startet nicht, wenn die Stromversorgung nicht überprüft wird.\", \"Die Netzspannung beträgt in der Regel 24 V DC.\", \"Die Sicherungen im Schaltschrank müssen überprüft werden.\"], \"nicht_gestuetzt\": []}"
+        },
+        "answer_completeness": {
+          "dimension": "answer_completeness",
+          "verdict": "partial",
+          "score": 0.5,
+          "reasoning": "Die Antwort behandelt die grundlegenden Schritte zur Fehlersuche bei einer nicht startenden SPS, einschließlich der Überprüfung der Stromversorgung und der Sicherungen. Allerdings fehlen spezifische Hinweise auf Fehlermeldungen oder andere mögliche Ursachen, die ebenfalls relevant sein könnten.",
+          "evidence": "{\"informationsbedarfe\": [], \"adressiert\": [\"Stromversorgung prüfen\", \"Sicherungen überprüfen\", \"Verkabelung und angeschlossene Komponenten überprüfen\"], \"fehlend\": [\"spezifische Fehlermeldungen\", \"weitere mögliche Ursachen für das Problem\"]}"
+        },
+        "user_actionability": {
+          "dimension": "user_actionability",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort bietet klare, handlungsrelevante Schritte zur Fehlersuche, die der Nutzer direkt umsetzen kann, um das Problem zu diagnostizieren.",
+          "evidence": "{\"nutzer_kann_fortfahren\": true, \"was_nutzer_tun_kann\": \"Die Stromversorgung und die Sicherungen der SPS überprüfen sowie die Verkabelung und angeschlossene Komponenten untersuchen.\", \"was_noch_fehlt\": \"Spezifische Fehlermeldungen oder weitere mögliche Ursachen für das Problem.\"}"
+        }
+      },
+      "judge_timestamp": "2026-01-25T17:13:10.951012+00:00"
+    },
+    {
+      "question_id": "TS-003",
+      "question": "Wie behebe ich einen Encoderfehler beim Servomotor?",
+      "category": "troubleshooting",
+      "answer": "# Behebung eines Encoderfehlers beim Servomotor\n\n## Zusammenfassung\nEncoderfehler bei Servomotoren können durch mechanische Probleme, elektrische Störungen oder Kalibrierungsfehler verursacht werden. Um diese Fehler zu beheben, sollten visuelle Inspektionen, Überprüfungen der elektrischen Verbindungen und eine korrekte Kalibrierung durchgeführt werden [1].\n\n## Wichtige Erkenntnisse\n- **Ursachen für Encoderfehler**:\n  - Mechanische Probleme: Abnutzung, lose Verbindungen, Fehljustierung der Encoderachse.\n  - Elektrische Störungen: Defekte Kabelverbindungen, elektromagnetische Störungen, fehlerhafte Spannungsversorgung.\n  - Kalibrierungsfehler: Falsche Parameter im Steuerungssystem, nicht durchgeführte Kalibrierung nach Austausch des Servomotors oder Encoders [1].\n\n- **Symptome**:\n  - Unregelmäßige Bewegungen des Servomotors.\n  - Fehlermeldungen im Steuerungssystem, z.B. „Encoderfehlfunktion“.\n  - Verlust der Positionierung bei Antriebswechsel [1].\n\n## Details\nUm Encoderfehler zu diagnostizieren und zu beheben, sollten folgende Schritte unternommen werden:\n\n1. **Visuelle Inspektion**: Überprüfen Sie den Zustand des Encoders und die mechanischen Verbindungen auf Abnutzung oder Beschädigung. Stellen Sie sicher, dass keine Blockaden vorhanden sind.\n   \n2. **Überprüfung der elektrischen Verbindungen**: Kontrollieren Sie alle Kabelverbindungen auf Beschädigungen und stellen Sie sicher, dass sie fest sitzen, um elektrische Störungen zu vermeiden.\n\n3. **Kalibrierung**: Überprüfen Sie die Kalibrierung des Systems und stellen Sie sicher, dass alle Parameter korrekt eingestellt sind, insbesondere nach dem Austausch von Komponenten.\n\n4. **Regelmäßige Wartung**: Führen Sie regelmäßige Wartungen und Inspektionen durch, um die Funktionsfähigkeit der mechanischen und elektrischen Komponenten sicherzustellen [1].\n\n## Empfehlungen\nFühren Sie die oben genannten Schritte systematisch durch, um Encoderfehler zu diagnostizieren und zu beheben. Bei anhaltenden Problemen sollte der technische Support kontaktiert werden.\n\n## Quellen\n[1] Servomotor Encoderfehler - Behebung.",
+      "confidence": 0.7250000000000001,
+      "sources": [
+        "Servomotor Encoderfehler - Behebung",
+        "Servomotor Encoderfehler - Behebung",
+        "Servomotor Encoderfehler - Behebung"
+      ],
+      "context": "[Quelle: Servomotor Encoderfehler - Behebung]\n# Servomotor Encoderfehler - Behebung\n\n## Einleitung\nDiese Seite beschreibt die typischen Ursachen und Lösungen für Encoderfehler bei Servomotoren in Automatisierungssystemen. Encoderfehler können zu \n\n---\n\n[Quelle: Servomotor Encoderfehler - Behebung]\nn durch elektromagnetische Felder (EMI).\n   - Fehlerhafte Spannungsversorgung.\n\n3. **Kalibrierungsfehler**\n   - Falsche Parameter im Steuerungssystem.\n   - Nicht durchgeführte oder fehlerhafte Kalibri\n\n---\n\n[Quelle: Servomotor Encoderfehler - Behebung]\nlten regelmäßige Wartungen und Inspektionen durchgeführt werden. Dazu gehören:\n\n- Periodische Überprüfung der mechanischen und elektrischen Komponenten.\n- Software-Updates für Steuerungssysteme.\n- Sch",
+      "latency_ms": 31357.009887695312,
+      "iterations": 1,
+      "search_success": true,
+      "search_error": null,
+      "search_timestamp": "2026-01-25T17:11:37.865466+00:00",
+      "overall_pass": true,
+      "overall_score": 1.0,
+      "failure_reasons": [],
+      "dimensions": {
+        "language_match": {
+          "dimension": "language_match",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort ist in deutscher Sprache verfasst und behandelt die Frage nach der Behebung eines Encoderfehlers beim Servomotor umfassend und sachlich. Es werden keine englischen Überschriften verwendet, und die technischen Begriffe sind angemessen.",
+          "evidence": "{\"fragesprache\": \"Deutsch\", \"antwortsprache\": \"Deutsch\"}"
+        },
+        "direct_resolution": {
+          "dimension": "direct_resolution",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort enthält spezifische Schritte zur Diagnose und Behebung von Encoderfehlern, einschließlich visueller Inspektion, Überprüfung elektrischer Verbindungen und Kalibrierung, sowie die Ursachen und Symptome von Encoderfehlern.",
+          "evidence": "{\"user_braucht\": \"Information zur Behebung eines Encoderfehlers beim Servomotor\", \"antwort_enthaelt_info\": true}"
+        },
+        "factual_grounding": {
+          "dimension": "factual_grounding",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort enthält keine Informationen, die nicht im Kontext enthalten sind, und alle Behauptungen sind direkt aus dem Kontext abgeleitet oder entsprechen den dort genannten Punkten.",
+          "evidence": "{\"behauptungen\": [\"Encoderfehler bei Servomotoren können durch mechanische Probleme, elektrische Störungen oder Kalibrierungsfehler verursacht werden.\", \"Um diese Fehler zu beheben, sollten visuelle Inspektionen, Überprüfungen der elektrischen Verbindungen und eine korrekte Kalibrierung durchgeführt werden.\", \"Mechanische Probleme: Abnutzung, lose Verbindungen, Fehljustierung der Encoderachse.\", \"Elektrische Störungen: Defekte Kabelverbindungen, elektromagnetische Störungen, fehlerhafte Spannungsversorgung.\", \"Kalibrierungsfehler: Falsche Parameter im Steuerungssystem, nicht durchgeführte Kalibrierung nach Austausch des Servomotors oder Encoders.\", \"Unregelmäßige Bewegungen des Servomotors.\", \"Fehlermeldungen im Steuerungssystem, z.B. „Encoderfehlfunktion“.\", \"Verlust der Positionierung bei Antriebswechsel.\", \"Visuelle Inspektion: Überprüfen Sie den Zustand des Encoders und die mechanischen Verbindungen auf Abnutzung oder Beschädigung.\", \"Überprüfung der elektrischen Verbindungen: Kontrollieren Sie alle Kabelverbindungen auf Beschädigungen und stellen Sie sicher, dass sie fest sitzen.\", \"Kalibrierung: Überprüfen Sie die Kalibrierung des Systems und stellen Sie sicher, dass alle Parameter korrekt eingestellt sind.\", \"Regelmäßige Wartung: Führen Sie regelmäßige Wartungen und Inspektionen durch.\"], \"gestuetzt\": [\"Encoderfehler bei Servomotoren können durch mechanische Probleme, elektrische Störungen oder Kalibrierungsfehler verursacht werden.\", \"Um diese Fehler zu beheben, sollten visuelle Inspektionen, Überprüfungen der elektrischen Verbindungen und eine korrekte Kalibrierung durchgeführt werden.\", \"Mechanische Probleme: Abnutzung, lose Verbindungen, Fehljustierung der Encoderachse.\", \"Elektrische Störungen: Defekte Kabelverbindungen, elektromagnetische Störungen, fehlerhafte Spannungsversorgung.\", \"Kalibrierungsfehler: Falsche Parameter im Steuerungssystem, nicht durchgeführte Kalibrierung nach Austausch des Servomotors oder Encoders.\", \"Unregelmäßige Bewegungen des Servomotors.\", \"Fehlermeldungen im Steuerungssystem, z.B. „Encoderfehlfunktion“.\", \"Verlust der Positionierung bei Antriebswechsel.\", \"Visuelle Inspektion: Überprüfen Sie den Zustand des Encoders und die mechanischen Verbindungen auf Abnutzung oder Beschädigung.\", \"Überprüfung der elektrischen Verbindungen: Kontrollieren Sie alle Kabelverbindungen auf Beschädigungen und stellen Sie sicher, dass sie fest sitzen.\", \"Kalibrierung: Überprüfen Sie die Kalibrierung des Systems und stellen Sie sicher, dass alle Parameter korrekt eingestellt sind.\", \"Regelmäßige Wartung: Führen Sie regelmäßige Wartungen und Inspektionen durch.\"], \"nicht_gestuetzt\": []}"
+        },
+        "answer_completeness": {
+          "dimension": "answer_completeness",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort behandelt umfassend die Ursachen, Symptome und Schritte zur Diagnose und Behebung von Encoderfehlern bei Servomotoren. Es werden keine wesentlichen Aspekte ausgelassen, und die Informationen sind klar strukturiert.",
+          "evidence": "{\"informationsbedarfe\": [], \"adressiert\": [\"Ursachen für Encoderfehler\", \"Symptome von Encoderfehlern\", \"Diagnoseschritte zur Behebung von Encoderfehlern\", \"Empfehlungen zur Wartung\"], \"fehlend\": []}"
+        },
+        "user_actionability": {
+          "dimension": "user_actionability",
+          "verdict": "pass",
+          "score": 1.0,
+          "reasoning": "Die Antwort bietet klare und umsetzbare Schritte zur Behebung des Problems, sodass der Nutzer direkt handeln kann.",
+          "evidence": "{\"nutzer_kann_fortfahren\": true, \"was_nutzer_tun_kann\": \"Die Schritte zur Diagnose und Behebung des Encoderfehlers systematisch durchführen, einschließlich visueller Inspektion, Überprüfung der elektrischen Verbindungen und Kalibrierung.\", \"was_noch_fehlt\": \"Konkrete Anleitungen oder Tools für die Durchführung der Kalibrierung oder Inspektion könnten hilfreich sein.\"}"
+        }
+      },
+      "judge_timestamp": "2026-01-25T17:13:24.372379+00:00"
+    }
+  ],
+  "search_timestamp": "2026-01-25T17:11:37.867440+00:00",
+  "judge_timestamp": "2026-01-25T17:13:24.377540+00:00"
+}

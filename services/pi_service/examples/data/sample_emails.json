@@ -1,0 +1,28 @@
+{
+  "emails": [
+    {
+      "id": "email_001",
+      "subject": "Meeting with Dr. Michael Johnson",
+      "from": "alice.wilson@company.com",
+      "to": "bob.chen@company.com",
+      "body": "Hi Bob, I have a meeting scheduled with Dr. Michael Johnson on March 15th at 2 PM. His office is located at 456 Medical Center Drive, Los Angeles, CA 90210. You can reach him at (555) 987-6543 or email him at mjohnson@medical.com. Please prepare the quarterly report for our discussion.",
+      "date": "2024-03-10T09:00:00Z"
+    },
+    {
+      "id": "email_002", 
+      "subject": "Client Information - Maria Rodriguez",
+      "from": "david.kim@company.com",
+      "to": "team@company.com",
+      "body": "Team, I wanted to share information about our new client Maria Rodriguez. Her contact details are: Email: maria.rodriguez@clientcorp.com, Phone: +1-555-321-0987, Address: 789 Business Ave, Miami, FL 33101. She's interested in our premium package. Please reach out to her directly.",
+      "date": "2024-03-11T14:30:00Z"
+    },
+    {
+      "id": "email_003",
+      "subject": "Payment Processing - Account #1234-5678-9012-3456",
+      "from": "finance@company.com",
+      "to": "james.brown@company.com",
+      "body": "James, I need you to process a payment for account number 1234-5678-9012-3456. The account holder is James Brown, contact email: james.brown@company.com, phone: (555) 456-7890. The billing address is 321 Oak Street, Chicago, IL 60601. Please confirm the payment has been processed.",
+      "date": "2024-03-12T11:15:00Z"
+    }
+  ]
+} 

@@ -1,0 +1,18 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Install native dependencies required for some python packages (e.g., asyncpg compilation paths)
+RUN apt-get update && apt-get install -y --no-install-recommends gcc libpq-dev && rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt gunicorn alembic
+
+COPY . .
+
+# Setup and permissions for the boot shell script
+RUN chmod +x start.sh
+
+EXPOSE 8001
+
+CMD ["./start.sh"]

@@ -1,0 +1,59 @@
+# English translations for Nora frontend
+
+common:
+  copy: Copy
+  regenerate: Regenerate
+  share: Share
+  cancel: Cancel
+  confirm: Confirm
+  delete: Delete
+  save: Save
+  close: Close
+
+search:
+  placeholder: Ask a question...
+  thinking: Nora is thinking...
+  writing: Writing response...
+  complete: Search complete
+  documents_found: "{count} document(s) found"
+
+chat:
+  new_chat: New Chat
+  your_chats: Your Chats
+  no_chats: No chats yet. Start a conversation!
+  continue_session: Continue Last Session
+  delete_confirm: Are you sure you want to delete this session?
+  input_hint:
+    send: to send
+    new_line: for new line
+
+welcome:
+  title: How can I help you?
+  subtitle: Ask me a question and I'll search your connected sources for comprehensive answers.
+  disclaimer: Nora searches connected sources. Verify citations for critical decisions.
+
+sources:
+  title: Sources
+  sections: sections
+  show_sections: "Show {count} more section(s)"
+  hide_sections: "Hide {count} section(s)"
+  show_all: Show all
+  show_less: Show less
+  open_source: Open source
+  types:
+    sharepoint: SharePoint
+    confluence: Confluence
+    wiki: Internal Wiki
+    jira: Jira
+    web: Web
+    elasticsearch: Knowledge Base
+    document: Document
+
+actions:
+  thumbs_up: Helpful
+  thumbs_down: Not helpful
+  export_pdf: Export as PDF
+  export_word: Export as Word
+
+errors:
+  search_failed: Sorry, an error occurred during the search. Please try again.

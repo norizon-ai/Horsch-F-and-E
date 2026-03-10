@@ -1,0 +1,25 @@
+{
+  "name": "flair_only_pipeline",
+  "description": "Pipeline using only Flair model for entity detection",
+  "models": [],
+  "recognizers": [
+    {
+      "name": "flair_recognizer",
+      "config": {},
+      "config_path": "user_configs/models/flair_recognizer.json"
+    }
+  ],
+  "operators": [
+    {
+      "name": "entity_sanitizer",
+      "config_path": "user_configs/operators/entity_sanitizer.json"
+    },
+    {
+      "name": "presidio_operator",
+      "config": {
+        "anonymization_method": "replace",
+        "language": "en"
+      }
+    }
+  ]
+} 

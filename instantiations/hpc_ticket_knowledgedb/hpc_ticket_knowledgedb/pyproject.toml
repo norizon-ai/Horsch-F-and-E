@@ -1,0 +1,95 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hpc-cli"
+version = "0.1.0"
+description = "AI-powered HPC support and cluster monitoring CLI"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+    {name = "HPC Team", email = "hpc@example.com"}
+]
+license = {text = "MIT"}
+keywords = ["hpc", "slurm", "gpu", "cluster", "monitoring", "ai", "llm"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: System Administrators",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: System :: Monitoring",
+    "Topic :: Scientific/Engineering",
+]
+
+dependencies = [
+    # CLI Framework
+    "click>=8.1.0",
+
+    # TUI Framework (Claude Code-like interface)
+    "textual>=0.40.0",
+    "rich>=13.7.0",
+
+    # LLM & AI
+    "langchain-core>=0.1.0",
+    "langchain-openai>=0.0.2",
+    "openai>=1.0.0",
+
+    # HTTP & API
+    "httpx>=0.25.0",
+    "requests>=2.31.0",
+
+    # Data & Config
+    "pydantic>=2.0.0",
+    "toml>=0.10.2",
+    "python-dotenv>=1.0.0",
+
+    # Elasticsearch
+    "elasticsearch>=8.11.0",
+
+    # Security
+    "keyring>=24.0.0",
+
+    # Utilities
+    "python-dateutil>=2.8.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.5.0",
+]
+
+[project.scripts]
+hpc = "hpc_cli.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/yourusername/hpc-cli"
+Documentation = "https://github.com/yourusername/hpc-cli/blob/main/README.md"
+Repository = "https://github.com/yourusername/hpc-cli"
+Issues = "https://github.com/yourusername/hpc-cli/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["hpc_cli*"]
+exclude = ["tests*"]
+
+[tool.black]
+line-length = 100
+target-version = ['py310', 'py311']
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true

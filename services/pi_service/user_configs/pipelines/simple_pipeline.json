@@ -1,0 +1,40 @@
+{
+  "name": "simple_pipeline",
+  "description": "Simple pipeline for basic PII detection",
+  "models": [],
+  "recognizers": [
+    {
+      "name": "presidio_recognizer",
+      "config": {
+        "language": "en",
+        "entities": [
+          "PERSON",
+          "EMAIL",
+          "PHONE_NUMBER",
+          "LOCATION"
+        ],
+        "confidence_threshold": 0.3
+      },
+      "config_path": null
+    },
+    {
+      "name": "regex_phone_recognizer",
+      "config": {},
+      "config_path": null
+    }
+  ],
+  "operators": [
+    {
+      "name": "entity_sanitizer",
+      "config_path": "user_configs/operators/entity_sanitizer.json"
+    },
+    {
+      "name": "presidio_operator",
+      "config": {
+        "anonymization_method": "replace",
+        "language": "en"
+      },
+      "config_path": null
+    }
+  ]
+}

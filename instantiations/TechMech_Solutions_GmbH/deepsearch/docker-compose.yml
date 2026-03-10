@@ -1,0 +1,76 @@
+# Docker Compose for TechMech Solutions GmbH DeepSearch Deployment
+#
+# Usage:
+#   cd /path/to/TechMech_Solutions_GmbH/deepsearch
+#   docker-compose up -d
+#
+# Or from the main project:
+#   docker-compose -f products/TechMech_Solutions_GmbH/deepsearch/docker-compose.yml up -d
+
+version: '3.8'
+
+services:
+  deepsearch:
+    build:
+      context: ../../../services/custom-deepresearch
+      dockerfile: Dockerfile
+    container_name: deepsearch-techmech
+    ports:
+      - "${DR_API_PORT:-8000}:8000"
+    environment:
+      # LLM Configuration
+      - DR_LLM_PROVIDER=${DR_LLM_PROVIDER:-gpt-oss}
+      - DR_LLM_BASE_URL=${DR_LLM_BASE_URL:-http://host.docker.internal:30000/v1}
+      - DR_LLM_API_KEY=${DR_LLM_API_KEY:-dummy}
+      - DR_LLM_MODEL=${DR_LLM_MODEL:-openai/gpt-oss-120b}
+      - DR_LLM_TEMPERATURE=${DR_LLM_TEMPERATURE:-0.2}
+
+      # Supervisor Configuration
+      - DR_EXECUTION_STRATEGY=${DR_EXECUTION_STRATEGY:-iterative}
+      - DR_MAX_ITERATIONS=${DR_MAX_ITERATIONS:-3}
+      - DR_QUALITY_THRESHOLD=${DR_QUALITY_THRESHOLD:-0.7}
+
+      # Paths INSIDE the container (volumes mounted below)
+      - DR_PROMPTS_DIR=/app/config/prompts
+      - DR_AGENTS_CONFIG_PATH=/app/config/agents.yaml
+
+      # Observability
+      - DR_LOG_LEVEL=${DR_LOG_LEVEL:-INFO}
+      - DR_LOG_FORMAT=${DR_LOG_FORMAT:-json}
+      - DR_ENABLE_TRACING=${DR_ENABLE_TRACING:-false}
+      - DR_PHOENIX_ENDPOINT=${DR_PHOENIX_ENDPOINT:-http://phoenix:6006/v1/traces}
+    volumes:
+      # Mount customer-specific config (read-only)
+      - ./prompts:/app/config/prompts:ro
+      - ./agents.yaml:/app/config/agents.yaml:ro
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+    networks:
+      - deepsearch_net
+
+  # Optional: Phoenix tracing
+  phoenix:
+    image: arizephoenix/phoenix:latest
+    container_name: deepsearch_phoenix_techmech
+    ports:
+      - "6006:6006"
+    environment:
+      - PHOENIX_WORKING_DIR=/data
+    volumes:
+      - phoenix_data:/data
+    profiles:
+      - with-tracing
+    networks:
+      - deepsearch_net
+
+networks:
+  deepsearch_net:
+    driver: bridge
+
+volumes:
+  phoenix_data:

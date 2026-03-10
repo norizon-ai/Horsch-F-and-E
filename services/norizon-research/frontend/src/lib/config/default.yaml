@@ -1,0 +1,74 @@
+# Nora Frontend Configuration
+# This file contains customer-configurable settings
+
+# Assistant branding
+assistant:
+  name: Nora
+  logo: /favicon.png
+
+# Welcome screen settings
+welcome:
+  title: Wie kann ich Ihnen helfen?
+  subtitle: Stellen Sie mir eine Frage und ich durchsuche Ihre verbundenen Quellen nach umfassenden Antworten.
+  disclaimer: Nora durchsucht verbundene Quellen. Quellenangaben bei kritischen Entscheidungen prüfen.
+
+# Example questions shown on the welcome screen
+# These should be customized per customer deployment
+example_questions:
+  - id: processes
+    title: Prozesse
+    question: Wie funktioniert unser Onboarding-Prozess?
+    description: Wie funktioniert unser Onboarding-Prozess?
+
+  - id: documentation
+    title: Dokumentation
+    question: Wo finde ich die Dokumentation zu unseren Produkten?
+    description: Wo finde ich die Produktdokumentation?
+
+  - id: policies
+    title: Richtlinien
+    question: Was sind die aktuellen Richtlinien für Homeoffice?
+    description: Was sind die Homeoffice-Richtlinien?
+
+  - id: contacts
+    title: Kontakte
+    question: Wer ist der Ansprechpartner für IT-Support?
+    description: Wer ist Ansprechpartner für IT-Support?
+
+# Search status messages
+search_messages:
+  thinking: Nora denkt nach...
+  writing: Antwort wird erstellt...
+  complete: Suche abgeschlossen
+  documents_found: "{count} Dokument(e) gefunden"
+
+# Source type labels
+source_types:
+  sharepoint: SharePoint
+  confluence: Confluence
+  wiki: Internes Wiki
+  jira: Jira
+  web: Web
+  elasticsearch: Wissensdatenbank
+  document: Dokument
+
+# UI labels
+ui:
+  copy: Kopieren
+  regenerate: Neu generieren
+  share: Teilen
+  new_chat: Neuer Chat
+  your_chats: Ihre Chats
+  no_chats: Noch keine Chats. Starten Sie eine Unterhaltung!
+  continue_session: Letzte Sitzung fortsetzen
+  delete_confirm: Möchten Sie diese Sitzung wirklich löschen?
+  sources_title: Quellen
+  show_all: Alle anzeigen
+  show_less: Weniger anzeigen
+
+# Language settings
+language:
+  default: de
+  available:
+    - de
+    - en

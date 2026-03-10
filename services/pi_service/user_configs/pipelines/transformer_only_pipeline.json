@@ -1,0 +1,24 @@
+{
+  "name": "transformer_only_pipeline",
+  "description": "Pipeline with only transformers recognizer for English NER",
+  "models": [],
+  "recognizers": [
+    {
+      "name": "transformers_recognizer",
+      "config_path": "user_configs/models/transformers_recognizer.json"
+    }
+  ],
+  "operators": [
+    {
+      "name": "entity_sanitizer",
+      "config_path": "user_configs/operators/entity_sanitizer.json"
+    },
+    {
+      "name": "presidio_operator",
+      "config": {
+        "anonymization_method": "replace",
+        "language": "en"
+      }
+    }
+  ]
+} 
