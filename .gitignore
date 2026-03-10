@@ -131,3 +131,4 @@ services/connectors/website_connector/config.env
 services/connectors/confluence/confluence_export
 
 services/knowledge-studio/backend/data/
+*.zip
