@@ -1,12 +1,11 @@
 <script lang="ts">
 	import { cn } from "$lib/utils/cn.js";
-	let className = "";
-	export { className as class };
+	let { class: className = "", children, ...restProps } = $props();
 </script>
 
 <h3
 	class={cn("text-2xl font-semibold leading-none tracking-tight", className)}
-	{...$$restProps}
+	{...restProps}
 >
-	<slot />
+	{@render children?.()}
 </h3>

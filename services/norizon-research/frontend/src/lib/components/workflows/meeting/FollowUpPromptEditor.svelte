@@ -159,7 +159,7 @@ Wie kann ich Ihnen bei den nächsten Schritten helfen?`;
 
 <div class="follow-up-editor">
 	<div class="header">
-		<button class="back-btn" on:click={() => onBack?.()}>
+		<button class="back-btn" onclick={() => onBack?.()}>
 			<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 				<line x1="19" y1="12" x2="5" y2="12" />
 				<polyline points="12 19 5 12 12 5" />
@@ -199,7 +199,7 @@ Wie kann ich Ihnen bei den nächsten Schritten helfen?`;
 	<div class="editor-container">
 		<div class="editor-toolbar">
 			<span class="toolbar-label">{$t('workflow.meeting.followUp.preview')}</span>
-			<button class="copy-btn" on:click={copyToClipboard}>
+			<button class="copy-btn" onclick={copyToClipboard}>
 				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 					<rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
 					<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
@@ -215,10 +215,10 @@ Wie kann ich Ihnen bei den nächsten Schritten helfen?`;
 	</div>
 
 	<div class="actions">
-		<button class="btn-secondary" on:click={() => onBack?.()}>
+		<button class="btn-secondary" onclick={() => onBack?.()}>
 			{$t('common.cancel')}
 		</button>
-		<button class="btn-primary" on:click={handleSubmit}>
+		<button class="btn-primary" onclick={handleSubmit}>
 			{actionInfo.buttonLabel}
 			<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 				<line x1="22" y1="2" x2="11" y2="13" />

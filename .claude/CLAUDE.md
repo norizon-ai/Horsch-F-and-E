@@ -1,249 +1,159 @@
-# CLAUDE.md - Norizon Software Suite
+# CLAUDE.md — HORSCH F&E: Project Context & Implementation Brief
 
-## What is Norizon?
+> This document is the canonical briefing for Claude Code working on the HORSCH F&E workstream. Keep it up to date as the project evolves.
 
-Norizon is an AI-powered knowledge management platform for German mid-sized manufacturing and IT companies. The core problem we solve: 13 million German workers will retire by 2037, taking billions worth of undocumented expertise with them. Norizon captures, structures, and makes that knowledge accessible before it walks out the door.
+---
 
-## The Big Picture
+## Instructions for Claude Code
 
-Norizon is NOT just a chatbot. It's a platform with three layers:
+Before doing anything else in this project, read the following Confluence pages in full. They contain all the context you need — the user problem, the stakeholder needs, the technical architecture, and the implementation plan. Use the Atlassian MCP tool to fetch them by page ID:
 
+| Page | ID | What it contains |
+|------|----|-----------------|
+| F&E Bedarfsanalyse (Stakeholder Interview) | **27459585** | Detailed needs analysis — pain points, workflow, requirements from Matthias & Robert |
+| F&E Austausch – Wissensmanagement & KI | **27426817** | Second stakeholder interview write-up — same meeting, narrative format |
+| (Internal) HORSCH F&E Workstream Overview | **27623425** | Full onboarding doc — big picture, key people, open questions for Omar |
+| Implementation Proposal for F&E | **27983873** | Step-by-step technical spec — JiraAgent, attachment search, instantiation, Azure deployment |
+
+---
+
+## Who I Am & What I'm Working On
+
+I'm **Omar**, a developer at **Norizon**. I'm working on the **HORSCH F&E workstream** — building an AI-powered search tool for the engineering team at HORSCH Maschinen GmbH (a leading agricultural machinery manufacturer in Schwandorf, Germany).
+
+Norizon and HORSCH have a **9-month cooperation (Q3 2025 – Q2 2026)** covering AI-powered knowledge management. I joined in March 2026 and own the F&E workstream end-to-end.
+
+---
+
+## The Problem We're Solving
+
+HORSCH's R&D engineers (constructors) cannot find information in their Confluence/Jira systems. The built-in Confluence search is broken for their use case. This causes:
+
+- Engineers asking colleagues instead of searching ("Frag mal den, der weiß das schon")
+- Design guideline violations going undetected until PDM release — the very last step, costly and frustrating
+- A vicious cycle: nobody finds anything → nobody documents → data quality worsens
+- Contradictory information between Confluence pages and Jira comments with no version control
+
+**The core ROI:** Catching design errors at step 2 (research) instead of step 6 (release).
+
+---
+
+## What We're Building
+
+An AI-powered search tool running on the **Norizon Nora platform (DeepSearch)**. Engineers query Confluence and Jira in natural language and get answers with clickable source links.
+
+- **Platform:** Norizon Nora / DeepSearch
+- **Infrastructure:** Isolated backend on **Norizon's Azure** (same codebase as Service Q&A, different config/data/users)
+- **Test users:** Matthias (Construction/Setting Tech) and Robert (CAD Admin) — ~1h every 2 weeks
+
+### Must-Have Requirements (from stakeholder interviews)
+- Natural language queries — typo-tolerant, word order doesn't matter
+- Clickable source links back to Confluence pages / Jira tickets
+- Compact answers first, drill deeper on follow-up
+- Search PDFs and file attachments, not just Confluence page text
+- Confluence AND Jira searchable in one interface
+
+---
+
+## Current State
+
+A **live deployed version already exists** on Norizon's Azure. HORSCH's team has seen and demoed it. Based on that demo, they came back with two change requests.
+
+---
+
+## Progress Log
+
+### Frontend Modernisation + Svelte 5 Migration — DONE (March 2026)
+- **Svelte 5 migration complete** — all components use runes API (`$props()`, `$state()`, `$derived()`, `$effect()`, `untrack()`, `{@render}`, `onclick`)
+- **UI redesigned** to ChatGPT/Claude aesthetic — centered conversation rail, clean white backgrounds, inline sources
+- **Chat UI**: message bubbles, 17px base font, Nora avatar (favicon.png, transparent bg), greeting with user name
+- **Sidebar**: collapsible, session history with type icons (magnifying glass = search, document = meeting), context menus (rename/pin/delete), delete confirmation dialog
+- **Meeting documentation workflow**: full pipeline working (upload → processing → speaker verification → template review → export), all buttons functional with `$state()` reactivity fixes
+- **Confirmation dialogs**: consistent flat card design across all components (matching Sidebar style)
+- **Delete flow**: deleting current open chat navigates back to homepage
+- **Global zoom**: `body { zoom: 1.08 }` in app.css for comfortable sizing
+- **Docker Compose**: full local stack running (frontend, deepsearch, searxng, workflow-service, deepgram-service, postgres, redis, minio, confluence-mcp, confluence-publisher)
+- **Svelte 4 stores** (`writable`/`derived` in `svelte/store`) still used in store files — not yet migrated to `.svelte.ts` runes. Works fine, just not fully Svelte 5 idiomatic.
+
+### Auth0 → Azure Authentication — IN PROGRESS
+- Current auth: Auth0 SPA SDK (`@auth0/auth0-spa-js`) in frontend, Auth0 JWT verification in workflow-service backend
+- Next: Replace with MSAL.js (frontend) + Azure AD JWT verification (backend)
+
+---
+
+## Immediate Work (Do These First)
+
+These are prerequisites — get the platform into shape locally before redeploying.
+
+> ⚠️ **Work locally first using Docker.** Validate everything works end-to-end in the local Docker environment before redeploying to Azure. Do not touch the Azure deployment until local is confirmed working.
+
+### 1. Frontend Modernisation + Svelte 4 → 5 Migration — COMPLETE
+- ~~Redesign the UI to feel like a modern chat agent (think ChatGPT/Claude style)~~
+- ~~Migrate the frontend from **Svelte 4 to Svelte 5**~~
+- ~~Test locally via Docker Compose before any deployment~~
+
+### 2. Auth0 → Azure Authentication — NEXT
+- The current deployment uses **Auth0** (built by Omar originally)
+- Replace with **Azure-native auth** (Azure Entra ID / Azure AD)
+- Rationale: everything already runs on Azure; removes third-party auth dependency; cleaner for enterprise client
+- Implement and verify locally first, then redeploy
+
+---
+
+## Next Steps After Auth + Frontend
+
+From the Implementation Proposal (page 27983873 — read it in full):
+
+### Step 1 — Build JiraAgent
+Mirror the existing `ConfluenceMCPAgent` pattern. The `mcp-atlassian` package (already in Dockerfile) supports Jira via `jira_search` (JQL) and `jira_get_issue`.
+
+Key files to create:
+- `services/custom-deepresearch/deepsearch/agents/mcp_utils.py` — shared MCP helper (extract from confluence/tools.py)
+- `services/custom-deepresearch/deepsearch/agents/jira/tools.py` — JiraSearchTool + JiraGetIssueTool
+- `services/custom-deepresearch/deepsearch/agents/jira/agent.py` — JiraMCPAgent
+- `services/custom-deepresearch/deepsearch/agents/jira/__init__.py` — factory registration
+- `services/custom-deepresearch/prompts/jira_agent.yaml` — JQL strategies, bilingual DE/EN
+- Edit `main.py:35` — add jira import
+
+### Step 2 — Enable Jira in MCP Container
+Add Jira env vars to docker-compose. HORSCH uses **Server/Data Center** → use `JIRA_PERSONAL_TOKEN`, not email+API key.
+
+### Step 3 — Attachment Search (Quick Win)
+Add CQL strategies to Confluence agent prompt:
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                    APPLICATIONS LAYER                        │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────┐  │
-│  │    Tools    │  │  Workflows  │  │ Industry Modules    │  │
-│  │ (chat-based)│  │   (apps)    │  │ (domain-specific)   │  │
-│  └─────────────┘  └─────────────┘  └─────────────────────┘  │
-├─────────────────────────────────────────────────────────────┤
-│                    NORIZON PLATFORM                          │
-│  ┌─────────────────┐  ┌──────────────────────────────────┐  │
-│  │ Domain-specific │  │ Self-maintaining Knowledge Base  │  │
-│  │ AI Models       │  │ (Knowledge Graph + Vector DB)    │  │
-│  └─────────────────┘  └──────────────────────────────────┘  │
-├─────────────────────────────────────────────────────────────┤
-│                    INTEGRATIONS LAYER                        │
-│  SharePoint │ Confluence │ Jira │ SAP │ Slack │ Email │ ... │
-└─────────────────────────────────────────────────────────────┘
+type = attachment AND text ~ "keyword"
+type = attachment AND space = "FUE" AND text ~ "keyword"
+(type = page OR type = attachment) AND text ~ "keyword"
 ```
+Handle `type == "attachment"` in `ConfluenceSearchTool._page_to_search_result()` to include parent page metadata.
 
-## Product: "Nora" - The User-Facing Interface
+### Step 4 — HORSCH F&E Instantiation
+Create `instantiations/horsch_fue/` with:
+- `agents.yaml` — horsch_confluence + horsch_jira, web_search disabled
+- `.env.example` — CONFLUENCE_URL, CONFLUENCE_PERSONAL_TOKEN, JIRA_URL, JIRA_PERSONAL_TOKEN
+- `docker-compose.yml` — 3 services: atlassian-mcp, deepsearch, frontend
 
-Nora is the consumer-facing name for our knowledge assistant. It's what employees interact with daily.
+### Step 5 — Azure Deployment
+Only after local Docker validation. Adapt `instantiations/internal_setup/azure/` — reduce to 3 Container Apps, add Jira secrets to Key Vault.
 
-### Core Concepts
+---
 
-**Tools** = Chat-based, stateless interactions that start a new conversation
-- Knowledge Search (default) - searches across all connected sources
-- Quote Generator - creates quotes from pricing rules and product catalog
-- Product Troubleshooter - diagnoses issues using technical documentation
-- Policy Assistant - answers HR/compliance questions
-- More can be added per customer
+## Key People
 
-**Workflows** = Multi-step, stateful processes that open as dedicated apps
-- Employee Onboarding - guided new hire setup
-- Employee Offboarding / Knowledge Transfer - AI-interviewed documentation (Fraunhofer 10-step methodology)
-- Compliance Audit - checklist with evidence collection
-- More can be added per customer
+| Person | Org | Role |
+|--------|-----|------|
+| **Hans Neidl** | HORSCH | Project sponsor |
+| **Alex Kress** | HORSCH D-Lab | Technical lead, primary counterpart |
+| **Matthias** | HORSCH F&E | Constructor/Setting Tech — test user |
+| **Robert** | HORSCH F&E | Constructor/CAD Admin — test user |
+| **Christoph Wiesent** | HORSCH | Jira/Confluence admin — involve as needed |
+| **Lisa** | Norizon | Stakeholder interviews, consultant |
 
-**Auto-matching** = When a user types in the search box, Nora detects intent and selects the appropriate tool automatically. Users can override this.
+---
 
-## Repository Structure
+## Open Questions
 
-```
-rag-server/
-├── assets/                     # Brand assets (logo)
-├── docs/                       # Architecture diagrams, security strategy
-├── instantiations/             # Customer-specific deployments
-│   ├── horsch_confluence_assistant/
-│   ├── hpc_ticket_knowledgedb/
-│   └── TechMech_Solutions_GmbH/
-└── services/                   # Microservices (see below)
-```
-
-## Services Architecture
-
-### Core RAG & Search
-
-- **custom-deepresearch** (Port 8000) - Multi-agent RAG system with supervisor pattern. Orchestrates specialized research agents via function calling. SSE streaming. YAML-based agent configuration. Supports OpenAI, Anthropic, Ollama, GPT-OSS providers.
-- **norizon-research** (Port 5173/3000) - SvelteKit frontend. Chat interface with streaming, inline citations, session management, SearXNG metasearch integration.
-
-### Knowledge Management
-
-- **knowledge-studio** (Port 8092) - Full knowledge capture/documentation workflow. React/TypeScript frontend + Python backend. RabbitMQ for async. Transcription via AssemblyAI & Deepgram.
-- **kstudio** (Port 5173) - Lightweight alternative/preview. Python backend + frontend.
-- **workflow-service** (Port 8001) - Orchestrates Knowledge Transfer sessions. 10-step Fraunhofer methodology. Interview AI, content generation, approval workflows.
-
-### Transcription & Audio
-
-- **transcription-service** (Port 8002) - Speech-to-text. Streaming + batch. Speaker diarization, language detection (DE primary, EN secondary). FastAPI.
-- **deepgram-service** (Port 8002) - Deepgram Nova-2 transcription. Redis event streaming. FFmpeg audio processing.
-
-### Content Publishing
-
-- **confluence-publisher** (Port 8003) - Publishes generated content to Confluence. ADF support, template rendering (Q&A, Process Doc, Troubleshooting). OAuth2 + API token auth.
-
-### Data Integration & Connectors
-
-- **connectors** - Confluence, Jira, Intranet (web crawling), Website (domain crawling). Data extraction and indexing.
-- **confluence-mcp** (Port 8005) - MCP (Model Context Protocol) server for Confluence queries. Used by DeepSearch.
-
-### Ingestion & Processing
-
-- **ingestion_worker** - Document processing pipeline. Converts documents to embeddings.
-- **add-knowledge** (Port 8092) - UI for adding documents to knowledge base. File upload and processing.
-- **documentation-assistant** - Documentation workflow assistant. Backend + Frontend.
-
-### AI Models & Inference
-
-- **model_service** (Port 8000/8001) - Serves ML models via Ray + vLLM (OpenAI-compatible API). NER models. GPU support (NVIDIA CUDA, Apple Metal, CPU-only).
-- **pi_service** - PII detection and anonymization. Plugin-based architecture. Microsoft Presidio, spaCy, Flair.
-
-## Technical Stack
-
-### Backend
-- **Language:** Python (async-first)
-- **Framework:** FastAPI + Uvicorn + Pydantic
-- **LLM Providers:** OpenAI, Anthropic, Ollama, GPT-OSS
-- **Model Serving:** Ray, vLLM
-
-### Frontend
-- **Primary:** SvelteKit (norizon-research)
-- **Knowledge Studio:** React + TypeScript
-- **Build:** Vite
-
-### Data & Storage
-- **PostgreSQL** - Primary database (sessions, workflows, audit logs)
-- **Elasticsearch** - Search index and document indexing
-- **Redis** - Caching, sessions, job queues (Redis Streams)
-- **MinIO** - Object storage (S3-compatible)
-- **RabbitMQ** - Message queue (knowledge-studio)
-
-### Deployment
-- **Docker & Docker Compose** - Primary deployment mechanism
-- **Kubernetes** - K8s manifests available per service
-- **Terraform** - Infrastructure as code (OpenStack deployments)
-- **Target:** On-premise or EU-Cloud (Azure), GDPR-compliant
-
-### Observability
-- **OpenTelemetry** - Distributed tracing
-- **Phoenix** - Trace visualization
-
-### Key Libraries
-- Deepgram SDK, AssemblyAI - Transcription
-- Microsoft Presidio, spaCy, Flair - NLP / PII
-- FFmpeg - Audio processing
-- SearXNG - Privacy-respecting metasearch
-
-## Design System
-
-### Color Palette (MUST USE)
-```css
-/* Primary gradient - used for CTAs, logo, accents */
---gradient-warm: linear-gradient(135deg, #F97316 0%, #3B82F6 100%);
-
-/* Orange spectrum */
---orange-500: #F97316;
---orange-100: #FFEDD5;
---orange-50: #FFF7ED;
-
-/* Blue spectrum */
---blue-600: #2563EB;
---blue-500: #3B82F6;
---blue-100: #DBEAFE;
---blue-50: #EFF6FF;
-
-/* Slate (neutrals) */
---slate-900: #0F172A;
---slate-700: #334155;
---slate-500: #64748B;
---slate-400: #94A3B8;
---slate-200: #E2E8F0;
---slate-100: #F1F5F9;
---slate-50: #F8FAFC;
-
-/* Semantic colors */
---green-500: #22C55E;   /* success, approved */
---amber-500: #F59E0B;   /* warning, pending */
---purple-500: #A855F7;  /* workflows */
---red-500: #EF4444;     /* error, recording */
-```
-
-### Typography
-- **Display/Logo:** Fraunces (serif)
-- **Body:** DM Sans (sans-serif)
-- **No emojis in UI**
-
-### Design Principles
-1. **Clarity over decoration** - Users should immediately understand what Nora does
-2. **Sources matter** - Always show where information comes from (inline citations)
-3. **Tools vs Workflows distinction must be visible** - Different icons, badges, and actions
-4. **Progress transparency** - For workflows, always show where the user is in the process
-5. **Professional B2B aesthetic** - Not consumer-playful, not enterprise-boring
-
-## Key User Personas
-
-1. **Office Worker (primary)** - Searching for internal knowledge, doesn't know/care where info is stored
-2. **Departing Expert** - Senior employee documenting their knowledge before leaving
-3. **Manager** - Reviews and approves knowledge documentation
-4. **HR** - Initiates onboarding/offboarding workflows
-5. **IT Admin** - Manages integrations and connected sources
-
-## GDPR & Security
-
-- Soft delete with configurable retention; hard delete (Article 17)
-- Data portability exports (Article 20)
-- TLS 1.3 for all service communication
-- AES-256 encryption at rest (MinIO, PostgreSQL)
-- Audit logging for all data access
-- Role-based access control
-- Audio/video encrypted in storage, optional deletion after approval
-- PII anonymization pipeline (pi_service)
-
-## Current Development Focus
-
-### What Exists
-- Multi-agent RAG system (custom-deepresearch) with streaming
-- SvelteKit chat interface with inline citations (norizon-research)
-- Knowledge Studio for knowledge capture workflows
-- SharePoint/Confluence integrations and connectors
-- Confluence publisher with ADF template rendering
-- Model serving infrastructure (Ray + vLLM)
-- PII detection/anonymization pipeline
-- Transcription services (Deepgram, AssemblyAI)
-- Workflow orchestration service (Fraunhofer 10-step)
-- MCP server for Confluence
-
-### What's Being Built
-- Confluence agent integration into DeepSearch
-- Advanced transcription pipeline refinements
-- Knowledge Transfer workflow polish
-
-### Roadmap
-- Marketplace UI with Tools and Workflows
-- Auto-matching search
-- Usage Analytics & ROI dashboards
-- Behavioral Engagement Framework
-- Self-maintaining knowledge base
-- Multi-tenant SaaS architecture
-- SOC2 / BSI Grundschutz compliance
-
-## Important Context
-
-- **Target customers:** German mid-sized companies (50-500 employees) in Manufacturing (NACE C28) and IT Services (NACE J62)
-- **Language:** UI should support German, but designs can be in English
-- **White-labeling:** Nora can be renamed per customer, so avoid hardcoding the name where possible
-- **Pricing:** Per-user-per-month SaaS model
-- **Timeline:** SaaS launch November 2026, EXIST funding through June 2026
-
-## When Working on Norizon Code
-
-1. **Always use the established color palette** - The orange-to-blue gradient is our brand
-2. **SvelteKit for norizon-research, React for knowledge-studio** - Check which service you're working in
-3. **Inline citations** - Never use separate source panels that disconnect from content
-4. **Tools start chats, Workflows open apps** - This distinction is fundamental
-5. **German industrial context** - Think CNC machines, not Silicon Valley startups
-6. **No emojis, no sycophancy** - Professional tone throughout
-7. **Async-first Python** - All backend services use FastAPI with async/await
-8. **Docker Compose** - Each service has its own compose file for local dev
-9. **YAML configs** - Agent behavior is configured via YAML, not hardcoded
+- Which Confluence spaces are in scope for F&E indexing?
+- How do we surface contradictory data in search results to the user?
+- When to involve Christoph Wiesent for Jira/Confluence technical integration?
+- Which CAD system does HORSCH use? (Never named in interviews)

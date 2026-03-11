@@ -1,8 +1,6 @@
 <script lang="ts">
 	import { cn } from "$lib/utils/cn.js";
-	export let value = "";
-	let className = "";
-	export { className as class };
+	let { value = $bindable(""), class: className = "", ...restProps } = $props();
 </script>
 
 <textarea
@@ -11,5 +9,5 @@
 		className,
 	)}
 	bind:value
-	{...$$restProps}
+	{...restProps}
 ></textarea>

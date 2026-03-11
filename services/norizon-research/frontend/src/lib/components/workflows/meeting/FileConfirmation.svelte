@@ -4,10 +4,17 @@
 	import { formatFileSize, getFileTypeLabel } from "$lib/api/workflowApi";
 	import type { WorkflowFile } from "$lib/types";
 
-	export let file: WorkflowFile | null = null;
-	export let userName = "Current User";
-	export let onStart: (() => void) | undefined = undefined;
-	export let onBack: (() => void) | undefined = undefined;
+	let {
+		file = null,
+		userName = "Current User",
+		onStart = undefined,
+		onBack = undefined,
+	}: {
+		file?: WorkflowFile | null;
+		userName?: string;
+		onStart?: (() => void) | undefined;
+		onBack?: (() => void) | undefined;
+	} = $props();
 
 	// Configuration state
 	type LanguageOption = "auto" | "de" | "en";
@@ -21,16 +28,16 @@
 	type WorkspaceOption = "default" | "team" | "project";
 	type VisibilityOption = "private" | "team";
 
-	let selectedLanguage: LanguageOption = "auto";
-	let selectedTemplate: TemplateOption = "standard";
-	let selectedWorkspace: WorkspaceOption = "default";
-	let selectedVisibility: VisibilityOption = "private";
+	let selectedLanguage: LanguageOption = $state("auto");
+	let selectedTemplate: TemplateOption = $state("standard");
+	let selectedWorkspace: WorkspaceOption = $state("default");
+	let selectedVisibility: VisibilityOption = $state("private");
 
 	// Output toggles
-	let outputActionItems = true;
-	let outputDecisions = true;
-	let outputSentiment = false;
-	let outputKeyTopics = true;
+	let outputActionItems = $state(true);
+	let outputDecisions = $state(true);
+	let outputSentiment = $state(false);
+	let outputKeyTopics = $state(true);
 
 	const languageOptions: { value: LanguageOption; labelKey: string }[] = [
 		{ value: "auto", labelKey: "workflow.meeting.confirm.language.auto" },
@@ -68,7 +75,7 @@
 		},
 	];
 
-	let uploadedAt: Date = new Date();
+	let uploadedAt: Date = $state(new Date());
 	onMount(() => {
 		uploadedAt = new Date();
 	});
@@ -147,7 +154,7 @@
 								<span>Audio</span>
 							{/if}
 						</div>
-						<button class="replace-btn" on:click={() => onBack?.()}>
+						<button class="replace-btn" onclick={() => onBack?.()}>
 							<svg
 								viewBox="0 0 24 24"
 								fill="none"
@@ -354,7 +361,7 @@
 									class="visibility-option"
 									class:active={selectedVisibility ===
 										"private"}
-									on:click={() =>
+									onclick={() =>
 										(selectedVisibility = "private")}
 								>
 									<svg
@@ -380,7 +387,7 @@
 								<button
 									class="visibility-option"
 									class:active={selectedVisibility === "team"}
-									on:click={() =>
+									onclick={() =>
 										(selectedVisibility = "team")}
 								>
 									<svg
@@ -425,7 +432,7 @@
 				</div>
 
 				<!-- Primary Action -->
-				<button class="btn-primary" on:click={handleStart}>
+				<button class="btn-primary" onclick={handleStart}>
 					{$t("workflow.meeting.confirm.startProcessing")}
 					<svg
 						viewBox="0 0 24 24"
@@ -546,7 +553,7 @@
 	{:else}
 		<div class="no-file">
 			<p>{$t("workflow.meeting.confirm.noFile")}</p>
-			<button class="btn-secondary" on:click={() => onBack?.()}>
+			<button class="btn-secondary" onclick={() => onBack?.()}>
 				{$t("workflow.meeting.confirm.selectFile")}
 			</button>
 		</div>

@@ -1,17 +1,18 @@
 <script lang="ts">
 	import { onDestroy } from "svelte";
 
-	export let src: string | undefined = undefined;
-	export let compact = false;
+	let {
+		src = undefined as string | undefined,
+		compact = false,
+	}: { src?: string; compact?: boolean } = $props();
 
-	let audio: HTMLAudioElement;
-	let isPlaying = false;
-	let currentTime = 0;
-	let duration = 0;
+	let audio = $state<HTMLAudioElement | undefined>(undefined);
+	let isPlaying = $state(false);
+	let currentTime = $state(0);
+	let duration = $state(0);
 
 	function togglePlay() {
 		if (!audio) return;
-
 		if (isPlaying) {
 			audio.pause();
 		} else {
@@ -20,25 +21,16 @@
 	}
 
 	function handleTimeUpdate() {
-		currentTime = audio.currentTime;
+		if (audio) currentTime = audio.currentTime;
 	}
 
 	function handleLoadedMetadata() {
-		duration = audio.duration;
+		if (audio) duration = audio.duration;
 	}
 
-	function handlePlay() {
-		isPlaying = true;
-	}
-
-	function handlePause() {
-		isPlaying = false;
-	}
-
-	function handleEnded() {
-		isPlaying = false;
-		currentTime = 0;
-	}
+	function handlePlay() { isPlaying = true; }
+	function handlePause() { isPlaying = false; }
+	function handleEnded() { isPlaying = false; currentTime = 0; }
 
 	function formatTime(seconds: number): string {
 		const mins = Math.floor(seconds / 60);
@@ -50,7 +42,7 @@
 		const bar = e.currentTarget as HTMLDivElement;
 		const rect = bar.getBoundingClientRect();
 		const percent = (e.clientX - rect.left) / rect.width;
-		audio.currentTime = percent * duration;
+		if (audio) audio.currentTime = percent * duration;
 	}
 
 	onDestroy(() => {
@@ -65,18 +57,18 @@
 		<audio
 			bind:this={audio}
 			{src}
-			on:timeupdate={handleTimeUpdate}
-			on:loadedmetadata={handleLoadedMetadata}
-			on:play={handlePlay}
-			on:pause={handlePause}
-			on:ended={handleEnded}
+			ontimeupdate={handleTimeUpdate}
+			onloadedmetadata={handleLoadedMetadata}
+			onplay={handlePlay}
+			onpause={handlePause}
+			onended={handleEnded}
 		>
 			<track kind="captions" />
 		</audio>
 
 		<button
 			class="play-btn"
-			on:click={togglePlay}
+			onclick={togglePlay}
 			aria-label={isPlaying ? "Pause" : "Play"}
 		>
 			{#if isPlaying}
@@ -101,18 +93,16 @@
 					aria-valuemin={0}
 					aria-valuemax={duration}
 					aria-valuenow={currentTime}
-					on:click={handleSeek}
-					on:keydown={(e) => {
-						if (e.key === "ArrowRight") audio.currentTime += 5;
-						if (e.key === "ArrowLeft") audio.currentTime -= 5;
+					onclick={handleSeek}
+					onkeydown={(e) => {
+						if (e.key === "ArrowRight" && audio) audio.currentTime += 5;
+						if (e.key === "ArrowLeft" && audio) audio.currentTime -= 5;
 					}}
 				>
 					<div class="progress-track">
 						<div
 							class="progress-fill"
-							style="width: {duration > 0
-								? (currentTime / duration) * 100
-								: 0}%"
+							style="width: {duration > 0 ? (currentTime / duration) * 100 : 0}%"
 						></div>
 					</div>
 				</div>
@@ -143,7 +133,7 @@
 		align-items: center;
 		gap: 12px;
 		padding: 8px 12px;
-		background: var(--slate-50, #f8fafc);
+		background: #f8fafc;
 		border-radius: 8px;
 	}
 
@@ -163,7 +153,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		background: var(--blue-500, #3b82f6);
+		background: #3b82f6;
 		color: white;
 		border: none;
 		border-radius: 50%;
@@ -178,12 +168,12 @@
 	}
 
 	.play-btn:hover:not(:disabled) {
-		background: var(--blue-600, #2563eb);
+		background: #2563eb;
 		transform: scale(1.05);
 	}
 
 	.play-btn:disabled {
-		background: var(--slate-300, #cbd5e1);
+		background: #cbd5e1;
 		cursor: not-allowed;
 	}
 
@@ -211,14 +201,14 @@
 
 	.progress-track {
 		height: 4px;
-		background: var(--slate-200, #e2e8f0);
+		background: #e2e8f0;
 		border-radius: 2px;
 		overflow: hidden;
 	}
 
 	.progress-fill {
 		height: 100%;
-		background: var(--blue-500, #3b82f6);
+		background: #3b82f6;
 		border-radius: 2px;
 		transition: width 0.1s linear;
 	}
@@ -227,12 +217,12 @@
 		display: flex;
 		gap: 4px;
 		font-size: 11px;
-		color: var(--slate-500, #64748b);
+		color: #64748b;
 		font-variant-numeric: tabular-nums;
 	}
 
 	.no-audio {
 		font-size: 13px;
-		color: var(--slate-400, #94a3b8);
+		color: #94a3b8;
 	}
 </style>

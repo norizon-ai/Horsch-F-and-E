@@ -1,12 +1,8 @@
 <script lang="ts">
 	import { t } from "svelte-i18n";
 
-	export let currentStep = 1;
+	let { currentStep = 1 }: { currentStep?: number } = $props();
 
-	// 3-stage display mapping from internal 9 steps
-	// Upload: upload/configure/processing
-	// Review: speaker verification, protocol editing
-	// Done: export confirmation, success screen
 	const displaySteps = [
 		{
 			id: 1,
@@ -43,7 +39,7 @@
 		return "pending";
 	}
 
-	$: currentDisplayStep = getDisplayStep(currentStep);
+	let currentDisplayStep = $derived(getDisplayStep(currentStep));
 </script>
 
 <div class="step-indicator">
@@ -102,21 +98,21 @@
 	}
 
 	.step.pending .step-marker {
-		background: var(--slate-100, #f1f5f9);
-		color: var(--slate-400, #94a3b8);
-		border: 1px solid var(--slate-200, #e2e8f0);
+		background: #f1f5f9;
+		color: #94a3b8;
+		border: 1px solid #e2e8f0;
 	}
 
 	.step.current .step-marker {
-		background: var(--blue-500, #3b82f6);
+		background: #3b82f6;
 		color: white;
-		border: 1px solid var(--blue-500, #3b82f6);
+		border: 1px solid #3b82f6;
 	}
 
 	.step.completed .step-marker {
-		background: var(--slate-100, #f1f5f9);
-		color: var(--green-600, #16a34a);
-		border: 1px solid var(--slate-200, #e2e8f0);
+		background: #f1f5f9;
+		color: #16a34a;
+		border: 1px solid #e2e8f0;
 	}
 
 	.step.completed .step-marker svg {
@@ -135,39 +131,24 @@
 		transition: all 0.2s ease;
 	}
 
-	.step.pending .step-label {
-		color: var(--slate-400, #94a3b8);
-	}
-
-	.step.current .step-label {
-		color: var(--slate-900, #0f172a);
-		font-weight: 600;
-	}
-
-	.step.completed .step-label {
-		color: var(--slate-500, #64748b);
-	}
+	.step.pending .step-label { color: #94a3b8; }
+	.step.current .step-label { color: #0f172a; font-weight: 600; }
+	.step.completed .step-label { color: #64748b; }
 
 	.step-connector {
 		width: 24px;
 		height: 2px;
-		background: var(--slate-200, #e2e8f0);
+		background: #e2e8f0;
 		margin: 0 4px;
 		transition: background 0.2s ease;
 	}
 
 	.step-connector.completed {
-		background: var(--slate-300, #cbd5e1);
+		background: #cbd5e1;
 	}
 
-	/* Responsive: hide labels on small screens */
 	@media (max-width: 640px) {
-		.step-label {
-			display: none;
-		}
-
-		.step-connector {
-			width: 16px;
-		}
+		.step-label { display: none; }
+		.step-connector { width: 16px; }
 	}
 </style>

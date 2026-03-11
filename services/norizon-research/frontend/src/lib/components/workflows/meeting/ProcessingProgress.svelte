@@ -1,21 +1,32 @@
 <script lang="ts">
 	import { t } from "svelte-i18n";
 	import { scale, fly, fade } from "svelte/transition";
-	import { onMount, onDestroy, createEventDispatcher } from "svelte";
+	import { onMount, onDestroy } from "svelte";
 	import type { WorkflowProcessingProgress } from "$lib/types";
 
-	export let progress: WorkflowProcessingProgress | null = null;
-	export let demo = false;
-	export let connectionError: string | null = null;
-	export let fileName = "Recording";
-	export let totalEstimatedMinutes = 5;
-	export let processingComplete = false;
-	export let onExit: (() => void) | undefined = undefined;
-	export let onNext: (() => void) | undefined = undefined;
-	export let onCancel: (() => void) | undefined = undefined;
-	export let onRetry: (() => void) | undefined = undefined;
-
-	const dispatch = createEventDispatcher();
+	let {
+		progress = null,
+		demo = false,
+		connectionError = null,
+		fileName = "Recording",
+		totalEstimatedMinutes = 5,
+		processingComplete = false,
+		onExit = undefined,
+		onNext = undefined,
+		onCancel = undefined,
+		onRetry = undefined,
+	}: {
+		progress?: WorkflowProcessingProgress | null;
+		demo?: boolean;
+		connectionError?: string | null;
+		fileName?: string;
+		totalEstimatedMinutes?: number;
+		processingComplete?: boolean;
+		onExit?: (() => void) | undefined;
+		onNext?: (() => void) | undefined;
+		onCancel?: (() => void) | undefined;
+		onRetry?: (() => void) | undefined;
+	} = $props();
 
 	// Stage definitions with time estimates (as percentage of total)
 	const stages = [
@@ -71,19 +82,19 @@
 		},
 	];
 
-	let isComplete = false;
-	$: if (processingComplete) isComplete = true;
+	let isComplete = $state(false);
+	$effect(() => { if (processingComplete) isComplete = true; });
 
-	let showCancelDialog = false;
-	let currentSubStatusIndex = 0;
+	let showCancelDialog = $state(false);
+	let currentSubStatusIndex = $state(0);
 	let subStatusInterval: ReturnType<typeof setInterval> | null = null;
 	let demoInterval: ReturnType<typeof setInterval> | null = null;
 	let demoStarted = false;
-	let elapsedSeconds = 0;
+	let elapsedSeconds = $state(0);
 	let elapsedInterval: ReturnType<typeof setInterval> | null = null;
 
 	// Demo/simulated progress - start at 100% if already complete
-	let simulatedProgress: WorkflowProcessingProgress = processingComplete
+	let simulatedProgress: WorkflowProcessingProgress = $state(processingComplete
 		? {
 				stage: stages[stages.length - 1].id,
 				percent: 100,
@@ -93,12 +104,13 @@
 				stage: stages[0].id,
 				percent: 0,
 				message: "",
-			};
+			});
 
 	// Show "connecting" state when not in demo mode, no progress yet, no error, and not complete
-	$: isConnecting =
-		!demo && !progress && !connectionError && !processingComplete;
-	$: currentProgress = processingComplete
+	let isConnecting = $derived(
+		!demo && !progress && !connectionError && !processingComplete
+	);
+	let currentProgress = $derived(processingComplete
 		? {
 				stage: stages[stages.length - 1].id,
 				percent: 100,
@@ -106,13 +118,13 @@
 			}
 		: demo
 			? simulatedProgress
-			: progress;
-	$: overallPercent = currentProgress?.percent || 0;
+			: progress);
+	let overallPercent = $derived(currentProgress?.percent || 0);
 
-	$: remainingMinutes = Math.max(
+	let remainingMinutes = $derived(Math.max(
 		1,
 		Math.ceil(totalEstimatedMinutes * (1 - overallPercent / 100)),
-	);
+	));
 
 	function getStageStatus(
 		stageId: string,
@@ -148,17 +160,20 @@
 	}
 
 	let previousStage: string | undefined = undefined;
-	$: if (currentProgress?.stage && currentProgress.stage !== previousStage) {
-		previousStage = currentProgress.stage;
-		currentSubStatusIndex = 0;
-	}
+	$effect(() => {
+		if (currentProgress?.stage && currentProgress.stage !== previousStage) {
+			previousStage = currentProgress.stage;
+			currentSubStatusIndex = 0;
+		}
+	});
 
-	$: currentStage = getCurrentStage();
-	$: currentSubStatus =
-		currentStage?.subStatuses?.[currentSubStatusIndex] || "";
+	let currentStage = $derived(getCurrentStage());
+	let currentSubStatus = $derived(
+		currentStage?.subStatuses?.[currentSubStatusIndex] || ""
+	);
 
 	// Compute stage statuses reactively
-	$: stageStatuses = stages.map((stage) => {
+	let stageStatuses = $derived(stages.map((stage) => {
 		if (!currentProgress) return "pending";
 		const currentIndex = stages.findIndex(
 			(s) => s.id === currentProgress.stage,
@@ -167,14 +182,16 @@
 		if (stageIndex < currentIndex) return "completed";
 		if (stageIndex === currentIndex) return "current";
 		return "pending";
-	}) as Array<"completed" | "current" | "pending">;
+	}) as Array<"completed" | "current" | "pending">);
 
-	$: if (currentProgress?.percent === 100 && !isComplete) {
-		isComplete = true;
-		if (subStatusInterval) clearInterval(subStatusInterval);
-		if (demoInterval) clearInterval(demoInterval);
-		if (elapsedInterval) clearInterval(elapsedInterval);
-	}
+	$effect(() => {
+		if (currentProgress?.percent === 100 && !isComplete) {
+			isComplete = true;
+			if (subStatusInterval) clearInterval(subStatusInterval);
+			if (demoInterval) clearInterval(demoInterval);
+			if (elapsedInterval) clearInterval(elapsedInterval);
+		}
+	});
 
 	function startDemoSimulation() {
 		if (demoStarted || demoInterval) return;
@@ -213,7 +230,6 @@
 
 	function handleContinueInBackground() {
 		onExit?.();
-		dispatch("exit");
 	}
 
 	function handleCancelClick() {
@@ -223,7 +239,6 @@
 	function handleCancelConfirm() {
 		showCancelDialog = false;
 		onCancel?.();
-		dispatch("cancel");
 	}
 
 	function handleCancelDismiss() {
@@ -251,7 +266,6 @@
 
 	function handleRetry() {
 		onRetry?.();
-		dispatch("retry");
 	}
 </script>
 
@@ -274,7 +288,7 @@
 			<h3>{$t("workflow.meeting.processing.connectionError.title")}</h3>
 			<p class="error-message">{connectionError}</p>
 			<div class="error-actions">
-				<button class="btn-primary" on:click={handleRetry}>
+				<button class="btn-primary" onclick={handleRetry}>
 					<svg
 						viewBox="0 0 24 24"
 						fill="none"
@@ -288,10 +302,7 @@
 				</button>
 				<button
 					class="btn-secondary"
-					on:click={() => {
-						onCancel?.();
-						dispatch("cancel");
-					}}
+					onclick={() => onCancel?.()}
 				>
 					{$t("workflow.meeting.processing.cancel")}
 				</button>
@@ -504,10 +515,7 @@
 			<div></div>
 			<button
 				class="btn-primary"
-				on:click={() => {
-					onNext?.();
-					dispatch("next");
-				}}
+				onclick={() => onNext?.()}
 			>
 				{$t("common.next")}
 				<svg
@@ -523,7 +531,7 @@
 		</div>
 	{:else}
 		<div class="workflow-footer">
-			<button class="btn-secondary" on:click={handleCancelClick}>
+			<button class="btn-secondary" onclick={handleCancelClick}>
 				<svg
 					viewBox="0 0 24 24"
 					fill="none"
@@ -538,7 +546,7 @@
 			<div class="footer-right">
 				<button
 					class="btn-primary"
-					on:click={handleContinueInBackground}
+					onclick={handleContinueInBackground}
 				>
 					{$t("workflow.meeting.processing.continueBackground")}
 					<svg
@@ -562,9 +570,8 @@
 				{#if demo}
 					<button
 						class="btn-primary"
-						on:click={() => {
+						onclick={() => {
 							onNext?.();
-							dispatch("next");
 						}}
 					>
 						{$t("common.next")}
@@ -605,13 +612,13 @@
 			<div class="dialog-actions">
 				<button
 					class="dialog-btn secondary"
-					on:click={handleCancelDismiss}
+					onclick={handleCancelDismiss}
 				>
 					{$t("workflow.meeting.processing.cancelDialog.continue")}
 				</button>
 				<button
 					class="dialog-btn danger"
-					on:click={handleCancelConfirm}
+					onclick={handleCancelConfirm}
 				>
 					{$t("workflow.meeting.processing.cancelDialog.confirm")}
 				</button>

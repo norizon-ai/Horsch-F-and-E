@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount, createEventDispatcher } from "svelte";
+	import { onMount } from "svelte";
 	import { t } from "svelte-i18n";
 	import { workflowStore } from "$lib/stores/workflowStore";
 	import { WorkflowAPI } from "$lib/api/workflowApi";
@@ -9,34 +9,41 @@
 		TemplateSuggestion,
 	} from "$lib/types";
 
-	export let protocol: Protocol | null = null;
-	export let jobId = "";
-	export let onSaveAndContinue: (() => void) | undefined = undefined;
-	export let onBack: (() => void) | undefined = undefined;
-	export let onRegenerating: ((value: boolean) => void) | undefined =
-		undefined;
-
-	const dispatch = createEventDispatcher();
+	let {
+		protocol = $bindable(null),
+		jobId = "",
+		onSaveAndContinue = undefined,
+		onBack = undefined,
+		onRegenerating = undefined,
+	}: {
+		protocol?: Protocol | null;
+		jobId?: string;
+		onSaveAndContinue?: (() => void) | undefined;
+		onBack?: (() => void) | undefined;
+		onRegenerating?: ((value: boolean) => void) | undefined;
+	} = $props();
 
 	// Template state
-	let templates: MeetingTemplate[] = [];
-	let suggestion: TemplateSuggestion | null = null;
-	let selectedTemplateId: string = "";
-	let isLoadingTemplates = true;
+	let templates: MeetingTemplate[] = $state([]);
+	let suggestion: TemplateSuggestion | null = $state(null);
+	let selectedTemplateId: string = $state("");
+	let isLoadingTemplates = $state(true);
 
 	// Saving state
-	let isSaving = false;
+	let isSaving = $state(false);
 
 	// Regeneration state (when switching templates)
-	let isRegenerating = false;
+	let isRegenerating = $state(false);
 
 	// BUG 2 FIX: Back button confirmation dialog
-	let showBackConfirmDialog = false;
+	let showBackConfirmDialog = $state(false);
 
 	// Initialize selected template when protocol prop changes
-	$: if (protocol) {
-		selectedTemplateId = protocol.templateId || "";
-	}
+	$effect(() => {
+		if (protocol) {
+			selectedTemplateId = protocol.templateId || "";
+		}
+	});
 
 	// Load templates on mount
 	onMount(async () => {
@@ -129,7 +136,6 @@
 		selectedTemplateId = templateId;
 		isRegenerating = true;
 		onRegenerating?.(true);
-		dispatch("regenerating", true);
 
 		try {
 			// Call backend to regenerate protocol with template-specific content
@@ -147,7 +153,6 @@
 		} finally {
 			isRegenerating = false;
 			onRegenerating?.(false);
-			dispatch("regenerating", false);
 		}
 	}
 
@@ -160,7 +165,6 @@
 			workflowStore.setProtocolSaved(true);
 			await new Promise((resolve) => setTimeout(resolve, 300));
 			onSaveAndContinue?.();
-			dispatch("saveAndContinue", undefined);
 		} finally {
 			isSaving = false;
 		}
@@ -174,7 +178,6 @@
 	function confirmBackAction() {
 		showBackConfirmDialog = false;
 		onBack?.();
-		dispatch("back", undefined);
 	}
 
 	function cancelBackAction() {
@@ -182,7 +185,7 @@
 	}
 
 	// Get selected template
-	$: selectedTemplate = templates.find((t) => t.id === selectedTemplateId);
+	let selectedTemplate = $derived(templates.find((t) => t.id === selectedTemplateId));
 </script>
 
 <div class="template-review">
@@ -234,7 +237,7 @@
 								class:recommended={suggestion?.templateId ===
 									template.id &&
 									selectedTemplateId !== template.id}
-								on:click={() => applyTemplate(template.id)}
+								onclick={() => applyTemplate(template.id)}
 								disabled={isRegenerating}
 							>
 								{#if selectedTemplateId === template.id && isRegenerating}
@@ -296,7 +299,7 @@
 	{/if}
 
 	<div class="workflow-footer">
-		<button class="btn-secondary" on:click={handleBackClick}>
+		<button class="btn-secondary" onclick={handleBackClick}>
 			<svg
 				viewBox="0 0 24 24"
 				fill="none"
@@ -310,7 +313,7 @@
 		</button>
 		<button
 			class="btn-primary"
-			on:click={handleSaveAndContinue}
+			onclick={handleSaveAndContinue}
 			disabled={isSaving}
 		>
 			{#if isSaving}
@@ -334,34 +337,16 @@
 
 <!-- BUG 2 FIX: Back confirmation dialog -->
 {#if showBackConfirmDialog}
-	<div class="dialog-overlay" on:click={cancelBackAction}>
-		<div class="dialog" on:click={(e) => e.stopPropagation()}>
-			<div class="dialog-icon warning">
-				<svg
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2"
-				>
-					<circle cx="12" cy="12" r="10" />
-					<line x1="12" y1="8" x2="12" y2="12" />
-					<line x1="12" y1="16" x2="12.01" y2="16" />
-				</svg>
-			</div>
-			<h3>Are you sure you want to go back?</h3>
-			<p>
-				Your protocol changes will be saved, but you'll need to return
-				to this step to continue.
-			</p>
-			<div class="dialog-actions">
-				<button
-					class="dialog-btn secondary"
-					on:click={cancelBackAction}
-				>
-					Stay here
+	<div class="confirm-overlay" role="dialog" aria-modal="true">
+		<div class="confirm-dialog">
+			<h3 class="confirm-title">Go back?</h3>
+			<p class="confirm-desc">Your protocol changes will be saved, but you will return to speaker verification.</p>
+			<div class="confirm-actions">
+				<button class="confirm-btn confirm-cancel" onclick={cancelBackAction}>
+					Cancel
 				</button>
-				<button class="dialog-btn danger" on:click={confirmBackAction}>
-					Yes, go back
+				<button class="confirm-btn confirm-danger" onclick={confirmBackAction}>
+					Go back
 				</button>
 			</div>
 		</div>
@@ -505,13 +490,13 @@
 	}
 
 	.template-card-name {
-		font-size: 14px;
+		font-size: 15px;
 		font-weight: 600;
 		color: var(--slate-900, #0f172a);
 	}
 
 	.template-card-desc {
-		font-size: 12px;
+		font-size: 13px;
 		color: var(--slate-500, #64748b);
 		line-height: 1.4;
 	}
@@ -602,7 +587,7 @@
 
 	.instruction-box p {
 		margin: 0;
-		font-size: 14px;
+		font-size: 16px;
 		color: var(--blue-800, #1e40af);
 		line-height: 1.5;
 	}
@@ -655,8 +640,8 @@
 		align-items: center;
 		justify-content: center;
 		gap: 8px;
-		padding: 10px 20px;
-		font-size: 14px;
+		padding: 12px 24px;
+		font-size: 16px;
 		font-weight: 500;
 		border-radius: 8px;
 		cursor: pointer;
@@ -703,98 +688,72 @@
 		animation: spin 0.8s linear infinite;
 	}
 
-	/* BUG 2 FIX: Back confirmation dialog styles */
-	.dialog-overlay {
+	/* Back confirmation dialog */
+	.confirm-overlay {
 		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background: rgba(15, 23, 42, 0.5);
+		inset: 0;
+		background: rgba(0, 0, 0, 0.5);
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		z-index: 200;
-		padding: 20px;
 	}
 
-	.dialog {
-		background: white;
+	.confirm-dialog {
+		background: #ffffff;
 		border-radius: 16px;
 		padding: 24px;
-		max-width: 360px;
-		width: 100%;
-		text-align: center;
-		box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+		width: 340px;
+		box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
 	}
 
-	.dialog-icon {
-		width: 56px;
-		height: 56px;
-		border-radius: 50%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		margin: 0 auto 16px;
-	}
-
-	.dialog-icon.warning {
-		background: var(--amber-100, #fef3c7);
-	}
-
-	.dialog-icon.warning svg {
-		width: 28px;
-		height: 28px;
-		color: var(--amber-600, #d97706);
-	}
-
-	.dialog h3 {
-		font-size: 18px;
-		font-weight: 700;
-		color: var(--slate-900, #0f172a);
-		margin: 0 0 8px 0;
-	}
-
-	.dialog p {
-		font-size: 14px;
-		color: var(--slate-600, #475569);
-		line-height: 1.5;
-		margin: 0 0 20px 0;
-	}
-
-	.dialog-actions {
-		display: flex;
-		gap: 10px;
-	}
-
-	.dialog-btn {
-		flex: 1;
-		padding: 12px 16px;
-		font-size: 14px;
+	.confirm-title {
+		font-size: 16px;
 		font-weight: 600;
+		color: #111827;
+		margin: 0 0 8px;
+	}
+
+	.confirm-desc {
+		font-size: 14px;
+		color: #6b7280;
+		line-height: 1.5;
+		margin: 0 0 20px;
+	}
+
+	.confirm-actions {
+		display: flex;
+		gap: 8px;
+		justify-content: flex-end;
+	}
+
+	.confirm-btn {
+		padding: 8px 16px;
 		border-radius: 8px;
+		font-size: 14px;
+		font-weight: 500;
 		cursor: pointer;
-		transition: all 0.15s ease;
-	}
-
-	.dialog-btn.secondary {
-		background: var(--slate-100, #f1f5f9);
-		border: 1px solid var(--slate-200, #e2e8f0);
-		color: var(--slate-700, #334155);
-	}
-
-	.dialog-btn.secondary:hover {
-		background: var(--slate-200, #e2e8f0);
-	}
-
-	.dialog-btn.danger {
-		background: var(--red-500, #ef4444);
 		border: none;
-		color: white;
+		font-family: inherit;
+		transition: background 0.12s ease;
 	}
 
-	.dialog-btn.danger:hover {
-		background: var(--red-600, #dc2626);
+	.confirm-cancel {
+		background: #f3f4f6;
+		color: #374151;
+	}
+
+	.confirm-cancel:hover {
+		background: #e5e7eb;
+	}
+
+	.confirm-danger {
+		background: #ef4444;
+		color: #ffffff;
+	}
+
+	.confirm-danger:hover {
+		background: #dc2626;
 	}
 
 	/* Responsive */

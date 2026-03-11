@@ -1,8 +1,6 @@
 <script lang="ts">
 	import { cn } from "$lib/utils/cn.js";
-	export let orientation = "horizontal";
-	let className = "";
-	export { className as class };
+	let { orientation = "horizontal", class: className = "", ...restProps } = $props();
 </script>
 
 <div
@@ -12,5 +10,5 @@
 		orientation === "horizontal" ? "h-[1px] w-full" : "min-h-full w-[1px]",
 		className,
 	)}
-	{...$$restProps}
+	{...restProps}
 ></div>

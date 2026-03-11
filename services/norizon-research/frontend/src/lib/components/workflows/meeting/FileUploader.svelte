@@ -98,18 +98,18 @@
 		class:error={!!error}
 		role="button"
 		tabindex="0"
-		on:dragenter={handleDragEnter}
-		on:dragleave={handleDragLeave}
-		on:dragover={handleDragOver}
-		on:drop={handleDrop}
-		on:click={openFilePicker}
-		on:keypress={(e) => e.key === 'Enter' && openFilePicker()}
+		ondragenter={handleDragEnter}
+		ondragleave={handleDragLeave}
+		ondragover={handleDragOver}
+		ondrop={handleDrop}
+		onclick={openFilePicker}
+		onkeypress={(e) => e.key === 'Enter' && openFilePicker()}
 	>
 		<input
 			bind:this={fileInput}
 			type="file"
 			accept={ACCEPTED_TYPES}
-			on:change={handleFileInput}
+			onchange={handleFileInput}
 			hidden
 		/>
 
@@ -150,7 +150,7 @@
 		<button
 			class="help-trigger"
 			class:expanded={bestPracticesExpanded}
-			on:click={() => bestPracticesExpanded = !bestPracticesExpanded}
+			onclick={() => bestPracticesExpanded = !bestPracticesExpanded}
 		>
 			<svg class="help-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 				<path d="M12 2L2 7l10 5 10-5-10-5z" />
@@ -226,7 +226,7 @@
 		<button
 			class="help-trigger"
 			class:expanded={helpExpanded}
-			on:click={() => helpExpanded = !helpExpanded}
+			onclick={() => helpExpanded = !helpExpanded}
 		>
 			<svg class="help-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 				<circle cx="12" cy="12" r="10" />
@@ -245,7 +245,7 @@
 				<button
 					class="tutorial-tab"
 					class:active={activeTutorial === 'teams'}
-					on:click={() => activeTutorial = 'teams'}
+					onclick={() => activeTutorial = 'teams'}
 				>
 					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 						<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
@@ -258,7 +258,7 @@
 				<button
 					class="tutorial-tab"
 					class:active={activeTutorial === 'iphone'}
-					on:click={() => activeTutorial = 'iphone'}
+					onclick={() => activeTutorial = 'iphone'}
 				>
 					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 						<rect x="5" y="2" width="14" height="20" rx="2" ry="2" />

@@ -113,20 +113,21 @@ export const chatStore = {
 			return $sessions;
 		});
 
+		const sd = sessionData as ChatSession | null;
 
 		// Save to database when we have a complete exchange (user + assistant)
-		if (sessionData && message.role === 'assistant' && sessionData.messages.length >= 2) {
+		if (sd && message.role === 'assistant' && sd.messages.length >= 2) {
 			try {
 				// Check if this session has a DB ID (meaning it's already saved)
-				const hasDbId = (sessionData as any).dbId;
+				const hasDbId = (sd as any).dbId;
 
 				if (!hasDbId) {
 					// First save - create new history entry
 					console.log('💾 Creating new history entry for session:', sessionId);
 					const created = await createHistory(
-						sessionData.workflowType || 'Search',
-						sessionData.title,
-						{ messages: sessionData.messages }
+						sd.workflowType || 'Search',
+						sd.title,
+						{ messages: sd.messages }
 					);
 
 					// Store the DB ID so we can update it later
@@ -152,7 +153,7 @@ export const chatStore = {
 				} else {
 					// Update existing history entry
 					console.log('💾 Updating history entry:', hasDbId);
-					await updateHistoryPayload(hasDbId, { messages: sessionData.messages });
+					await updateHistoryPayload(hasDbId, { messages: sd.messages });
 					console.log('✅ History entry updated');
 				}
 			} catch (error) {
@@ -202,11 +203,12 @@ export const chatStore = {
 		});
 
 		// Save to database when transitioning from streaming to not streaming
-		if (sessionData && updates.isStreaming === false) {
-			const hasDbId = (sessionData as any).dbId;
+		const sd = sessionData as ChatSession | null;
+		if (sd && updates.isStreaming === false) {
+			const hasDbId = (sd as any).dbId;
 			if (hasDbId) {
 				console.log('💾 Updating history entry (streaming complete):', hasDbId);
-				updateHistoryPayload(hasDbId, { messages: sessionData.messages }).catch(error => {
+				updateHistoryPayload(hasDbId, { messages: sd.messages }).catch(error => {
 					console.error('❌ Failed to update history payload:', error);
 				});
 			}

@@ -1,40 +1,40 @@
 <script lang="ts">
-	import { createEventDispatcher } from "svelte";
 	import { browser } from "$app/environment";
 	import Sidebar from "./Sidebar.svelte";
 	import ChatHeader from "./ChatHeader.svelte";
-	import type { ChatSession } from "$lib/types";
+	import { authStore, currentUser } from "$lib/stores/authStore";
 
-	export let currentSessionId: string | null = null;
-	// Optional: force sidebar collapsed state from parent
-	export let forceCollapsed: boolean | null = null;
+	let {
+		currentSessionId = null as string | null,
+		onnewChat = undefined as (() => void) | undefined,
+		onselectSession = undefined as ((sessionId: string) => void) | undefined,
+		onshare = undefined as (() => void) | undefined,
+		onmenu = undefined as (() => void) | undefined,
+		children,
+		input = undefined,
+	} = $props();
 
-	const dispatch = createEventDispatcher<{
-		newChat: void;
-		selectSession: string;
-		share: void;
-		menu: void;
-	}>();
+	let sidebarOpen = $state(false);
+	let sidebarCollapsed = $state(
+		browser ? localStorage.getItem("sidebar-collapsed") === "true" : false,
+	);
 
-	let forceCollapsedOverride = false;
-	let sidebarOpen = false;
-	let userCollapsed = browser
-		? localStorage.getItem("sidebar-collapsed") === "true"
-		: false;
-
-	// Use forceCollapsed if set (and not overridden), otherwise use user preference
-	$: sidebarCollapsed =
-		forceCollapsed !== null && !forceCollapsedOverride
-			? forceCollapsed
-			: userCollapsed;
+	let userEmail = $derived($currentUser?.email ?? undefined);
+	let userInitial = $derived(
+		$currentUser?.name
+			? $currentUser.name.charAt(0).toUpperCase()
+			: $currentUser?.email
+				? $currentUser.email.charAt(0).toUpperCase()
+				: undefined,
+	);
 
 	function handleNewChat() {
-		dispatch("newChat");
+		onnewChat?.();
 		sidebarOpen = false;
 	}
 
-	function handleSelectSession(event: CustomEvent<string>) {
-		dispatch("selectSession", event.detail);
+	function handleSelectSession(sessionId: string) {
+		onselectSession?.(sessionId);
 		sidebarOpen = false;
 	}
 
@@ -43,69 +43,63 @@
 	}
 
 	function handleToggleCollapse() {
-		userCollapsed = !userCollapsed;
+		sidebarCollapsed = !sidebarCollapsed;
 		if (browser) {
-			localStorage.setItem("sidebar-collapsed", userCollapsed.toString());
+			localStorage.setItem("sidebar-collapsed", sidebarCollapsed.toString());
 		}
+	}
+
+	async function handleLogout() {
+		await authStore.logout();
 	}
 </script>
 
 <div class="app-container">
-	<!-- Mobile menu button -->
 	<button
 		class="mobile-menu-btn"
-		on:click={toggleSidebar}
+		onclick={toggleSidebar}
 		aria-label="Toggle menu"
 	>
-		<svg
-			viewBox="0 0 24 24"
-			fill="none"
-			stroke="currentColor"
-			stroke-width="2"
-		>
+		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 			<line x1="3" y1="12" x2="21" y2="12" />
 			<line x1="3" y1="6" x2="21" y2="6" />
 			<line x1="3" y1="18" x2="21" y2="18" />
 		</svg>
 	</button>
 
-	<!-- Sidebar overlay for mobile -->
 	{#if sidebarOpen}
 		<button
 			class="sidebar-overlay"
-			on:click={() => (sidebarOpen = false)}
+			onclick={() => (sidebarOpen = false)}
 			aria-label="Close menu"
 		></button>
 	{/if}
 
-	<!-- Sidebar -->
-	<div
-		class="sidebar-wrapper"
-		class:open={sidebarOpen}
-		class:collapsed={sidebarCollapsed}
-	>
+	<div class="sidebar-wrapper" class:open={sidebarOpen} class:collapsed={sidebarCollapsed}>
 		<Sidebar
 			{currentSessionId}
 			collapsed={sidebarCollapsed}
-			on:newChat={handleNewChat}
-			on:selectSession={handleSelectSession}
-			on:toggleCollapse={handleToggleCollapse}
+			{userEmail}
+			{userInitial}
+			onnewChat={handleNewChat}
+			onselectSession={handleSelectSession}
+			ontoggleCollapse={handleToggleCollapse}
+			onlogout={handleLogout}
 		/>
 	</div>
 
-	<!-- Main Content -->
 	<main class="main-content" class:sidebar-collapsed={sidebarCollapsed}>
-		<ChatHeader on:share on:menu />
+		<ChatHeader onshare={onshare} onmenu={onmenu} />
 
 		<div class="chat-messages">
 			<div class="messages-container">
-				<slot />
+				{@render children?.()}
 			</div>
 		</div>
 
 		<div class="chat-input-container">
 			<div class="chat-input-wrapper">
-				<slot name="input" />
+				{@render input?.()}
 			</div>
 		</div>
 	</main>
@@ -115,7 +109,7 @@
 	.app-container {
 		display: flex;
 		min-height: 100vh;
-		background: var(--slate-50, #f8fafc);
+		background: #ffffff;
 	}
 
 	.mobile-menu-btn {
@@ -126,10 +120,10 @@
 		z-index: 20;
 		width: 40px;
 		height: 40px;
-		border: 1px solid var(--slate-200, #e2e8f0);
+		border: 1px solid #e2e8f0;
 		border-radius: 8px;
-		background: var(--white, #ffffff);
-		color: var(--slate-600, #475569);
+		background: #ffffff;
+		color: #475569;
 		cursor: pointer;
 		align-items: center;
 		justify-content: center;
@@ -156,7 +150,7 @@
 
 	.main-content {
 		flex: 1;
-		margin-left: 280px;
+		margin-left: 320px;
 		display: flex;
 		flex-direction: column;
 		height: 100vh;
@@ -170,31 +164,27 @@
 	.chat-messages {
 		flex: 1;
 		overflow-y: auto;
-		padding: var(--space-6, 24px);
+		padding: 24px;
 	}
 
 	.messages-container {
-		max-width: 800px;
+		max-width: 760px;
 		margin: 0 auto;
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-6, 24px);
+		gap: 0;
 	}
 
 	.chat-input-container {
-		padding: var(--space-4, 16px) var(--space-6, 24px) var(--space-6, 24px);
-		background: rgba(255, 255, 255, 0.85);
-		backdrop-filter: blur(10px);
-		-webkit-backdrop-filter: blur(10px);
-		border-top: 1px solid var(--slate-200, #e2e8f0);
+		padding: 0 24px 24px;
+		background: transparent;
 	}
 
 	.chat-input-wrapper {
-		max-width: 800px;
+		max-width: 760px;
 		margin: 0 auto;
 	}
 
-	/* Responsive */
 	@media (max-width: 900px) {
 		.mobile-menu-btn {
 			display: flex;
@@ -221,7 +211,7 @@
 
 		.chat-messages {
 			padding: 16px;
-			padding-top: 60px; /* Space for mobile menu button */
+			padding-top: 60px;
 		}
 
 		.chat-input-container {

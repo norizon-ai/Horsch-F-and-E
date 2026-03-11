@@ -1,23 +1,25 @@
 <script lang="ts">
-	export let sourceName = "";
-	export let sourceUrl = "";
+	let {
+		sourceName = "",
+		sourceUrl = "",
+	}: { sourceName?: string; sourceUrl?: string } = $props();
 
-	$: domain = (() => {
+	let domain = $derived((() => {
 		try {
 			return new URL(sourceUrl).hostname.replace("www.", "");
 		} catch {
 			return sourceUrl;
 		}
-	})();
+	})());
 
-	$: faviconUrl = (() => {
+	let faviconUrl = $derived((() => {
 		try {
 			new URL(sourceUrl);
 			return `https://logo.clearbit.com/${domain}`;
 		} catch {
 			return "";
 		}
-	})();
+	})());
 
 	function handleFaviconError(event: Event) {
 		const img = event.target as HTMLImageElement;
@@ -30,20 +32,21 @@
 		<!-- Front -->
 		<div class="flip-card-face flip-card-front">
 			<div
-				class="w-16 h-16 rounded-xl overflow-hidden bg-gray-100 flex items-center justify-center border-2 border-norizon-blue shadow-lg"
+				class="w-16 h-16 rounded-xl overflow-hidden bg-gray-100 flex items-center justify-center border-2 border-blue-600 shadow-lg"
 			>
 				<img
 					src={faviconUrl}
 					alt={domain}
 					class="w-full h-full object-contain p-2"
-					on:error={handleFaviconError}
+					onerror={handleFaviconError}
 				/>
 			</div>
 		</div>
 		<!-- Back -->
 		<div class="flip-card-face flip-card-back">
 			<div
-				class="w-16 h-16 rounded-xl bg-gradient-to-br from-norizon-blue to-norizon-orange flex items-center justify-center shadow-lg"
+				class="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg"
+				style="background: #F97316"
 			>
 				<svg
 					class="w-8 h-8 text-white"
@@ -61,9 +64,7 @@
 			</div>
 		</div>
 	</div>
-	<p
-		class="text-xs text-center mt-2 text-gray-600 font-medium truncate max-w-[80px]"
-	>
+	<p class="text-xs text-center mt-2 text-gray-600 font-medium truncate max-w-[80px]">
 		{domain}
 	</p>
 </div>
@@ -100,14 +101,8 @@
 	}
 
 	@keyframes flip {
-		0% {
-			transform: rotateY(0deg);
-		}
-		50% {
-			transform: rotateY(180deg);
-		}
-		100% {
-			transform: rotateY(360deg);
-		}
+		0% { transform: rotateY(0deg); }
+		50% { transform: rotateY(180deg); }
+		100% { transform: rotateY(360deg); }
 	}
 </style>

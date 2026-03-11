@@ -3,20 +3,19 @@
 	import { groupSourcesByUrl } from "$lib/utils/sourceGrouping";
 	import { sanitizeSnippet } from "$lib/utils/sanitizeSnippet";
 	import { t } from "svelte-i18n";
-	import { Card, CardContent } from "$lib/components/ui/card";
-	import { Badge } from "$lib/components/ui/badge";
-	import { Button } from "$lib/components/ui/button";
 	import { slide } from "svelte/transition";
 
-	export let sources: Source[] = [];
-	export let messageId = "";
-	export let expanded = false;
+	let {
+		sources = [] as Source[],
+		messageId = "",
+		expanded = $bindable(false),
+	} = $props();
 
-	$: groupedSources = groupSourcesByUrl(sources);
-	$: uniqueCount = groupedSources.length;
-	$: totalSections = sources.length;
+	let groupedSources = $derived(groupSourcesByUrl(sources));
+	let uniqueCount = $derived(groupedSources.length);
+	let totalSections = $derived(sources.length);
 
-	let expandedSources = new Set<string>();
+	let expandedSources = $state(new Set<string>());
 
 	function toggleSource(id: string) {
 		const next = new Set(expandedSources);
@@ -28,60 +27,36 @@
 		expandedSources = next;
 	}
 
-	function toggleExpanded() {
-		expanded = !expanded;
-	}
-
 	function getSourceIconUrl(sourceType: string | undefined): string {
 		switch (sourceType) {
-			case "sharepoint":
-				return "/icons/sharepoint.svg";
-			case "confluence":
-				return "/icons/confluence.svg";
-			case "wiki":
-				return "/icons/intranet.svg";
-			case "jira":
-				return "/icons/jira.svg";
-			case "web":
-				return "/icons/web.svg";
-			case "elasticsearch":
-				return "/icons/elasticsearch.svg";
-			default:
-				return "/icons/elasticsearch.svg";
+			case "sharepoint": return "/icons/sharepoint.svg";
+			case "confluence": return "/icons/confluence.svg";
+			case "wiki": return "/icons/intranet.svg";
+			case "jira": return "/icons/jira.svg";
+			case "web": return "/icons/web.svg";
+			case "elasticsearch": return "/icons/elasticsearch.svg";
+			default: return "/icons/elasticsearch.svg";
 		}
 	}
 
 	function getSourceLabel(sourceType: string | undefined): string {
 		switch (sourceType) {
-			case "sharepoint":
-				return $t("sources.types.sharepoint");
-			case "confluence":
-				return $t("sources.types.confluence");
-			case "wiki":
-				return $t("sources.types.wiki");
-			case "web":
-				return $t("sources.types.web");
-			case "jira":
-				return $t("sources.types.jira");
-			case "elasticsearch":
-				return $t("sources.types.elasticsearch");
-			default:
-				return $t("sources.types.document");
+			case "sharepoint": return $t("sources.types.sharepoint");
+			case "confluence": return $t("sources.types.confluence");
+			case "wiki": return $t("sources.types.wiki");
+			case "web": return $t("sources.types.web");
+			case "jira": return $t("sources.types.jira");
+			case "elasticsearch": return $t("sources.types.elasticsearch");
+			default: return $t("sources.types.document");
 		}
 	}
 </script>
 
-<Card class="mt-4 shadow-none overflow-hidden">
-	<!-- Collapsible trigger -->
-	<button
-		class="flex items-center justify-between w-full px-3.5 py-2.5 bg-nora-slate-50 hover:bg-nora-slate-100 cursor-pointer border-none font-[inherit] text-left transition-colors duration-100"
-		on:click={toggleExpanded}
-	>
-		<div
-			class="text-xs font-semibold text-nora-slate-600 flex items-center gap-1.5"
-		>
+<details class="sources-details" bind:open={expanded}>
+	<summary class="sources-summary-trigger">
+		<div class="summary-left">
 			<svg
-				class="w-3.5 h-3.5"
+				class="summary-icon"
 				viewBox="0 0 24 24"
 				fill="none"
 				stroke="currentColor"
@@ -92,18 +67,18 @@
 				/>
 				<polyline points="14 2 14 8 20 8" />
 			</svg>
-			{uniqueCount}
-			{$t("sources.title")}
-			{#if totalSections > uniqueCount}
-				<span class="text-[11px] text-nora-slate-400 font-normal ml-1"
-					>({totalSections} {$t("sources.sections")})</span
-				>
-			{/if}
+			<span class="summary-label">
+				{uniqueCount}
+				{$t("sources.title")}
+				{#if totalSections > uniqueCount}
+					<span class="summary-sections"
+						>({totalSections} {$t("sources.sections")})</span
+					>
+				{/if}
+			</span>
 		</div>
 		<svg
-			class="w-3.5 h-3.5 text-nora-slate-400 transition-transform duration-200 {expanded
-				? ''
-				: '-rotate-90'}"
+			class="chevron-icon"
 			viewBox="0 0 24 24"
 			fill="none"
 			stroke="currentColor"
@@ -111,140 +86,295 @@
 		>
 			<polyline points="6 9 12 15 18 9" />
 		</svg>
-	</button>
+	</summary>
 
-	<!-- Collapsible content -->
-	{#if expanded}
-		<div transition:slide={{ duration: 200 }}>
-			<CardContent class="p-3 grid gap-2">
-				{#each groupedSources as source, index}
-					<Card
-						class="shadow-none hover:border-nora-blue-300 hover:bg-nora-blue-50 transition-all duration-150"
-						id="source-{messageId}-{index + 1}"
-					>
-						<CardContent class="p-3 flex flex-col gap-2">
-							<!-- Header -->
-							<div class="flex items-start gap-3">
-								<div
-									class="w-8 h-8 rounded-md flex items-center justify-center shrink-0 overflow-hidden"
-								>
-									<img
-										src={getSourceIconUrl(
-											source.sourceType,
-										)}
-										alt={getSourceLabel(source.sourceType)}
-										class="w-8 h-8 object-contain"
-									/>
-								</div>
-								<div
-									class="flex-1 min-w-0 flex flex-wrap items-center gap-2"
-								>
-									<a
-										href={source.url || "#"}
-										target="_blank"
-										rel="noopener noreferrer"
-										class="text-sm font-semibold text-nora-slate-900 leading-tight no-underline hover:underline {!source.url
-											? 'cursor-default hover:no-underline'
-											: ''}"
-									>
-										{source.title}
-									</a>
-									{#if source.sectionCount > 1}
-										<Badge
-											variant="outline"
-											class="bg-nora-orange-100 text-nora-orange-600 border-nora-orange-200 text-[10px] font-semibold px-1.5 py-0"
-											>{source.sectionCount}
-											{$t("sources.sections")}</Badge
-										>
-									{/if}
-								</div>
-							</div>
-
-							<!-- Primary snippet -->
-							{#if source.sections[0]?.snippet}
-								<div
-									class="source-snippet text-[13px] text-nora-slate-500 leading-normal line-clamp-3"
-								>
-									{@html sanitizeSnippet(
-										source.sections[0].snippet,
-									)}
-								</div>
+	<!-- Expanded content -->
+	<div class="sources-content" transition:slide={{ duration: 200 }}>
+		{#each groupedSources as source, index}
+			<div
+				class="source-item"
+				id="source-{messageId}-{index + 1}"
+			>
+				<!-- Source header -->
+				<div class="source-header">
+					<div class="source-icon-wrap">
+						<img
+							src={getSourceIconUrl(source.sourceType)}
+							alt={getSourceLabel(source.sourceType)}
+							class="source-type-icon"
+						/>
+					</div>
+					<div class="source-meta">
+						<a
+							href={source.url || "#"}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="source-title"
+							class:no-link={!source.url}
+						>
+							{source.title}
+						</a>
+						<div class="source-sub">
+							<span>{getSourceLabel(source.sourceType)}</span>
+							{#if source.lastUpdated}
+								<span>· {source.lastUpdated}</span>
 							{/if}
-
-							<!-- Meta -->
-							<div
-								class="text-[11px] text-nora-slate-400 flex items-center gap-2"
-							>
-								<span class="flex items-center gap-1"
-									>{getSourceLabel(source.sourceType)}</span
-								>
-								{#if source.lastUpdated}
-									<span>Updated {source.lastUpdated}</span>
-								{/if}
-							</div>
-
-							<!-- Expandable additional sections -->
 							{#if source.sectionCount > 1}
-								<Button
-									variant="outline"
-									size="sm"
-									class="w-full text-xs font-medium text-nora-slate-600 gap-1.5 [&_svg]:size-3.5"
-									on:click={() => toggleSource(source.id)}
+								<span class="section-badge"
+									>{source.sectionCount} {$t("sources.sections")}</span
 								>
-									{#if expandedSources.has(source.id)}
-										<svg
-											viewBox="0 0 24 24"
-											fill="none"
-											stroke="currentColor"
-											stroke-width="2"
-										>
-											<polyline
-												points="18 15 12 9 6 15"
-											/>
-										</svg>
-										{$t("sources.hide_sections", {
-											values: {
-												count: source.sectionCount - 1,
-											},
-										})}
-									{:else}
-										<svg
-											viewBox="0 0 24 24"
-											fill="none"
-											stroke="currentColor"
-											stroke-width="2"
-										>
-											<polyline points="6 9 12 15 18 9" />
-										</svg>
-										{$t("sources.show_sections", {
-											values: {
-												count: source.sectionCount - 1,
-											},
-										})}
-									{/if}
-								</Button>
-
-								{#if expandedSources.has(source.id)}
-									<div
-										class="mt-1 pt-2 border-t border-nora-slate-100 grid gap-2"
-										transition:slide={{ duration: 200 }}
-									>
-										{#each source.sections.slice(1) as section}
-											<div
-												class="source-snippet p-2.5 bg-nora-slate-50 rounded-md text-[13px] text-nora-slate-600 leading-normal"
-											>
-												{@html sanitizeSnippet(
-													section.snippet,
-												)}
-											</div>
-										{/each}
-									</div>
-								{/if}
 							{/if}
-						</CardContent>
-					</Card>
-				{/each}
-			</CardContent>
-		</div>
-	{/if}
-</Card>
+						</div>
+					</div>
+				</div>
+
+				<!-- Primary snippet -->
+				{#if source.sections[0]?.snippet}
+					<div class="source-snippet">
+						{@html sanitizeSnippet(source.sections[0].snippet)}
+					</div>
+				{/if}
+
+				<!-- Additional sections toggle -->
+				{#if source.sectionCount > 1}
+					<button
+						class="show-sections-btn"
+						onclick={() => toggleSource(source.id)}
+					>
+						{#if expandedSources.has(source.id)}
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<polyline points="18 15 12 9 6 15" />
+							</svg>
+							{$t("sources.hide_sections", { values: { count: source.sectionCount - 1 } })}
+						{:else}
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<polyline points="6 9 12 15 18 9" />
+							</svg>
+							{$t("sources.show_sections", { values: { count: source.sectionCount - 1 } })}
+						{/if}
+					</button>
+
+					{#if expandedSources.has(source.id)}
+						<div class="extra-sections" transition:slide={{ duration: 200 }}>
+							{#each source.sections.slice(1) as section}
+								<div class="extra-snippet">
+									{@html sanitizeSnippet(section.snippet)}
+								</div>
+							{/each}
+						</div>
+					{/if}
+				{/if}
+			</div>
+		{/each}
+	</div>
+</details>
+
+<style>
+	.sources-details {
+		margin-top: 16px;
+		border: 1px solid #e2e8f0;
+		border-radius: 10px;
+		overflow: hidden;
+	}
+
+	.sources-summary-trigger {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 10px 14px;
+		background: #f8fafc;
+		cursor: pointer;
+		list-style: none;
+		user-select: none;
+		transition: background 0.1s ease;
+	}
+
+	.sources-summary-trigger::-webkit-details-marker {
+		display: none;
+	}
+
+	.sources-summary-trigger:hover {
+		background: #f1f5f9;
+	}
+
+	.summary-left {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+	}
+
+	.summary-icon {
+		width: 14px;
+		height: 14px;
+		color: #64748b;
+		flex-shrink: 0;
+	}
+
+	.summary-label {
+		font-size: 12px;
+		font-weight: 600;
+		color: #475569;
+	}
+
+	.summary-sections {
+		font-size: 11px;
+		font-weight: 400;
+		color: #94a3b8;
+		margin-left: 4px;
+	}
+
+	.chevron-icon {
+		width: 14px;
+		height: 14px;
+		color: #94a3b8;
+		transition: transform 0.2s ease;
+	}
+
+	details[open] .chevron-icon {
+		transform: rotate(180deg);
+	}
+
+	.sources-content {
+		padding: 10px;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		border-top: 1px solid #e2e8f0;
+	}
+
+	.source-item {
+		padding: 12px;
+		border: 1px solid #f1f5f9;
+		border-radius: 8px;
+		background: #ffffff;
+		transition: border-color 0.15s ease;
+	}
+
+	.source-item:hover {
+		border-color: #bfdbfe;
+	}
+
+	.source-header {
+		display: flex;
+		align-items: flex-start;
+		gap: 10px;
+		margin-bottom: 8px;
+	}
+
+	.source-icon-wrap {
+		width: 28px;
+		height: 28px;
+		flex-shrink: 0;
+		border-radius: 6px;
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.source-type-icon {
+		width: 28px;
+		height: 28px;
+		object-fit: contain;
+	}
+
+	.source-meta {
+		flex: 1;
+		min-width: 0;
+	}
+
+	.source-title {
+		font-size: 13px;
+		font-weight: 600;
+		color: #0f172a;
+		text-decoration: none;
+		display: block;
+		line-height: 1.3;
+		margin-bottom: 3px;
+	}
+
+	.source-title:hover {
+		text-decoration: underline;
+	}
+
+	.source-title.no-link {
+		cursor: default;
+	}
+
+	.source-title.no-link:hover {
+		text-decoration: none;
+	}
+
+	.source-sub {
+		font-size: 11px;
+		color: #94a3b8;
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 4px;
+	}
+
+	.section-badge {
+		display: inline-block;
+		padding: 1px 6px;
+		background: #ffedd5;
+		color: #c2410c;
+		border-radius: 4px;
+		font-size: 10px;
+		font-weight: 600;
+	}
+
+	.source-snippet {
+		font-size: 12px;
+		color: #64748b;
+		line-height: 1.5;
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+
+	.show-sections-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 4px;
+		margin-top: 8px;
+		padding: 4px 8px;
+		background: none;
+		border: 1px solid #e2e8f0;
+		border-radius: 6px;
+		font-size: 12px;
+		color: #64748b;
+		cursor: pointer;
+		transition: all 0.15s ease;
+		font-family: inherit;
+	}
+
+	.show-sections-btn:hover {
+		background: #f1f5f9;
+		color: #334155;
+	}
+
+	.show-sections-btn svg {
+		width: 12px;
+		height: 12px;
+	}
+
+	.extra-sections {
+		margin-top: 8px;
+		padding-top: 8px;
+		border-top: 1px solid #f1f5f9;
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+	}
+
+	.extra-snippet {
+		padding: 8px;
+		background: #f8fafc;
+		border-radius: 6px;
+		font-size: 12px;
+		color: #64748b;
+		line-height: 1.5;
+	}
+</style>

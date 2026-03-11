@@ -1,37 +1,43 @@
 <script lang="ts">
-	import { onMount, createEventDispatcher } from "svelte";
+	import { onMount } from "svelte";
 	import { t } from "svelte-i18n";
 	import type { Protocol } from "$lib/types";
 
-	export let protocol: Protocol | null = null;
-	export let jobId = "";
-	export let isExporting = false;
-	export let editable = true; // Hide Edit button when false (historical mode)
-	export let onExport:
-		| ((data: { spaceId: string; parentPageId: string }) => void)
-		| undefined = undefined;
-	export let onExportPdf: (() => void) | undefined = undefined;
-	export let onBack: (() => void) | undefined = undefined;
-	export let onNoraAction:
-		| ((data: { type: "email" | "status" | "chat" }) => void)
-		| undefined = undefined;
-	export let onOpenRetentionSettings: (() => void) | undefined = undefined;
-
-	const dispatch = createEventDispatcher();
+	let {
+		protocol = $bindable(null),
+		jobId = "",
+		isExporting = false,
+		editable = true,
+		onExport = undefined,
+		onExportPdf = undefined,
+		onBack = undefined,
+		onNoraAction = undefined,
+		onOpenRetentionSettings = undefined,
+	}: {
+		protocol?: Protocol | null;
+		jobId?: string;
+		isExporting?: boolean;
+		editable?: boolean;
+		onExport?: ((data: { spaceId: string; parentPageId: string }) => void) | undefined;
+		onExportPdf?: (() => void) | undefined;
+		onBack?: (() => void) | undefined;
+		onNoraAction?: ((data: { type: "email" | "status" | "chat" }) => void) | undefined;
+		onOpenRetentionSettings?: (() => void) | undefined;
+	} = $props();
 
 	// Confluence destination state
-	let selectedSpace = "";
-	let selectedParentPage = "";
-	let spaceSearchQuery = "";
-	let parentPageSearchQuery = "";
-	let isSpaceDropdownOpen = false;
-	let isParentPageDropdownOpen = false;
+	let selectedSpace = $state("");
+	let selectedParentPage = $state("");
+	let spaceSearchQuery = $state("");
+	let parentPageSearchQuery = $state("");
+	let isSpaceDropdownOpen = $state(false);
+	let isParentPageDropdownOpen = $state(false);
 
 	// PDF export options
-	let pdfUseConfluenceStyle = true;
-	let pdfIncludeMetadata = true;
-	let pdfHighlightActions = true;
-	let pdfIncludeNorizonWatermark = true;
+	let pdfUseConfluenceStyle = $state(true);
+	let pdfIncludeMetadata = $state(true);
+	let pdfHighlightActions = $state(true);
+	let pdfIncludeNorizonWatermark = $state(true);
 
 	// API Data
 	let remoteSpaces: Array<{
@@ -39,17 +45,18 @@
 		key: string;
 		name: string;
 		icon: string;
-	}> = [];
+	}> = $state([]);
 	let remotePages: Array<{
 		id: string;
 		title: string;
 		hasChildren: boolean;
-	}> = [];
-	let isLoadingSpaces = false;
-	let isLoadingPages = false;
-	let loadError = "";
+	}> = $state([]);
+	let isLoadingSpaces = $state(false);
+	let isLoadingPages = $state(false);
+	let loadError = $state("");
 
 	import { WorkflowAPI } from "$lib/api/workflowApi";
+	import { workflowStore } from "$lib/stores/workflowStore";
 
 	// Load spaces on mount
 	onMount(() => {
@@ -71,9 +78,11 @@
 	});
 
 	// Load pages when space changes
-	$: if (selectedSpace) {
-		loadPagesForSpace(selectedSpace);
-	}
+	$effect(() => {
+		if (selectedSpace) {
+			loadPagesForSpace(selectedSpace);
+		}
+	});
 
 	async function loadPagesForSpace(spaceId: string) {
 		isLoadingPages = true;
@@ -91,24 +100,25 @@
 		}
 	}
 
-	$: filteredSpaces = remoteSpaces.filter((s) =>
+	let filteredSpaces = $derived(remoteSpaces.filter((s) =>
 		s.name.toLowerCase().includes(spaceSearchQuery.toLowerCase()),
-	);
+	));
 
-	$: filteredParentPages = remotePages.filter((p) =>
+	let filteredParentPages = $derived(remotePages.filter((p) =>
 		p.title.toLowerCase().includes(parentPageSearchQuery.toLowerCase()),
+	));
+
+	let selectedSpaceName = $derived(
+		remoteSpaces.find((s) => s.key === selectedSpace)?.name || "",
+	);
+	let selectedParentPageName = $derived(
+		remotePages.find((p) => p.id === selectedParentPage)?.title || "",
 	);
 
-	$: selectedSpaceName =
-		remoteSpaces.find((s) => s.key === selectedSpace)?.name || "";
-	$: selectedParentPageName =
-		remotePages.find((p) => p.id === selectedParentPage)?.title || "";
-
-	$: canExport = selectedSpace && selectedParentPage;
+	let canExport = $derived(selectedSpace && selectedParentPage);
 
 	function openRetentionSettings() {
 		onOpenRetentionSettings?.();
-		dispatch("openRetentionSettings", undefined);
 	}
 
 	function handleExport() {
@@ -117,15 +127,10 @@
 			spaceId: selectedSpace,
 			parentPageId: selectedParentPage,
 		});
-		dispatch("export", {
-			spaceId: selectedSpace,
-			parentPageId: selectedParentPage,
-		});
 	}
 
 	function handleNoraAction(type: "email" | "status" | "chat") {
 		onNoraAction?.({ type });
-		dispatch("noraAction", { type });
 	}
 
 	function handleExportPdf() {
@@ -141,7 +146,6 @@
 
 		console.log("PDF Export Options:", pdfOptions);
 		onExportPdf?.();
-		dispatch("exportPdf", undefined);
 	}
 
 	function selectSpace(spaceKey: string) {
@@ -179,7 +183,25 @@
 		}
 	}
 
-	$: actionItems = protocol?.actionItems?.filter((a) => a.text.trim()) || [];
+	let actionItems = $derived(protocol?.actionItems?.filter((a) => a.text.trim()) || []);
+
+	let showBackConfirmDialog = $state(false);
+
+	function removeActionItem(index: number) {
+		if (protocol?.actionItems) {
+			protocol.actionItems = protocol.actionItems.filter((_, i) => i !== index);
+			workflowStore.setProtocol(protocol);
+		}
+	}
+
+	function removeActionItemByRef(item: (typeof actionItems)[number]) {
+		if (protocol?.actionItems) {
+			const index = protocol.actionItems.indexOf(item);
+			if (index !== -1) {
+				removeActionItem(index);
+			}
+		}
+	}
 </script>
 
 <div class="export-confirmation">
@@ -191,7 +213,7 @@
 					>{$t("workflow.meeting.export.preview")}</span
 				>
 				{#if editable}
-					<button class="edit-link" on:click={() => onBack?.()}>
+					<button class="edit-link" onclick={() => showBackConfirmDialog = true}>
 						<svg
 							viewBox="0 0 24 24"
 							fill="none"
@@ -265,6 +287,16 @@
 											>{item.dueDate}</span
 										>
 									{/if}
+									<button
+										class="action-remove-btn"
+										onclick={() => removeActionItemByRef(item)}
+										title="Remove"
+									>
+										<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+											<polyline points="3 6 5 6 21 6"/>
+											<path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+										</svg>
+									</button>
 								</li>
 							{/each}
 						</ul>
@@ -291,7 +323,7 @@
 						<button
 							class="dropdown-trigger"
 							class:has-value={selectedSpace}
-							on:click={(e) => {
+							onclick={(e) => {
 								e.stopPropagation();
 								isSpaceDropdownOpen = !isSpaceDropdownOpen;
 								isParentPageDropdownOpen = false;
@@ -327,7 +359,7 @@
 									class="dropdown-search"
 									placeholder="Search spaces..."
 									bind:value={spaceSearchQuery}
-									on:click={(e) => e.stopPropagation()}
+									onclick={(e) => e.stopPropagation()}
 								/>
 								<div class="dropdown-options">
 									{#each filteredSpaces as space}
@@ -335,7 +367,7 @@
 											class="dropdown-option"
 											class:selected={selectedSpace ===
 												space.key}
-											on:click={(e) => {
+											onclick={(e) => {
 												e.stopPropagation();
 												selectSpace(space.key);
 											}}
@@ -369,7 +401,7 @@
 							class="dropdown-trigger"
 							class:has-value={selectedParentPage}
 							disabled={!selectedSpace}
-							on:click={(e) => {
+							onclick={(e) => {
 								e.stopPropagation();
 								if (selectedSpace) {
 									isParentPageDropdownOpen =
@@ -411,7 +443,7 @@
 									class="dropdown-search"
 									placeholder="Search pages..."
 									bind:value={parentPageSearchQuery}
-									on:click={(e) => e.stopPropagation()}
+									onclick={(e) => e.stopPropagation()}
 								/>
 								<div class="dropdown-options">
 									{#each filteredParentPages as page}
@@ -419,7 +451,7 @@
 											class="dropdown-option"
 											class:selected={selectedParentPage ===
 												page.id}
-											on:click={(e) => {
+											onclick={(e) => {
 												e.stopPropagation();
 												selectParentPage(page.id);
 											}}
@@ -489,7 +521,7 @@
 				<div class="export-buttons-grid">
 					<button
 						class="export-btn confluence primary"
-						on:click={handleExport}
+						onclick={handleExport}
 						disabled={isExporting || !canExport}
 					>
 						{#if isExporting}
@@ -506,7 +538,7 @@
 					</button>
 					<button
 						class="export-btn pdf secondary"
-						on:click={handleExportPdf}
+						onclick={handleExportPdf}
 						disabled={isExporting}
 					>
 						<svg
@@ -582,7 +614,7 @@
 				</svg>
 				<button
 					class="workflow-step optional"
-					on:click={() => handleNoraAction("email")}
+					onclick={() => handleNoraAction("email")}
 				>
 					<div class="step-icon">
 						<svg
@@ -612,7 +644,7 @@
 				</svg>
 				<button
 					class="workflow-step optional"
-					on:click={() => handleNoraAction("status")}
+					onclick={() => handleNoraAction("status")}
 				>
 					<div class="step-icon">
 						<svg
@@ -644,7 +676,7 @@
 				<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
 			</svg>
 			<span>{$t("workflow.meeting.export.securityNote")}</span>
-			<button class="retention-link" on:click={openRetentionSettings}>
+			<button class="retention-link" onclick={openRetentionSettings}>
 				{$t("workflow.meeting.export.adjustRetention")}
 				<svg
 					viewBox="0 0 24 24"
@@ -658,6 +690,23 @@
 		</div>
 	{/if}
 </div>
+
+{#if showBackConfirmDialog}
+	<div class="confirm-overlay" role="dialog" aria-modal="true">
+		<div class="confirm-dialog">
+			<h3 class="confirm-title">Go back to editing?</h3>
+			<p class="confirm-desc">You will return to the protocol editor. Your export settings will be reset.</p>
+			<div class="confirm-actions">
+				<button class="confirm-btn confirm-cancel" onclick={() => showBackConfirmDialog = false}>
+					Cancel
+				</button>
+				<button class="confirm-btn confirm-danger" onclick={() => { showBackConfirmDialog = false; onBack?.(); }}>
+					Go back
+				</button>
+			</div>
+		</div>
+	</div>
+{/if}
 
 <style>
 	.export-confirmation {
@@ -723,7 +772,7 @@
 	}
 
 	.protocol-title {
-		font-size: 18px;
+		font-size: 20px;
 		font-weight: 700;
 		color: var(--slate-900, #0f172a);
 		margin: 0 0 4px 0;
@@ -804,7 +853,7 @@
 	.action-item {
 		display: flex;
 		flex-wrap: wrap;
-		align-items: baseline;
+		align-items: center;
 		gap: 6px;
 		font-size: 13px;
 		padding: 8px 10px;
@@ -830,6 +879,36 @@
 		padding: 2px 6px;
 		background: white;
 		border-radius: 4px;
+	}
+
+	.action-remove-btn {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 4px;
+		background: transparent;
+		border: none;
+		cursor: pointer;
+		color: #d1d5db;
+		border-radius: 4px;
+		transition: all 0.15s ease;
+		flex-shrink: 0;
+		opacity: 0;
+		margin-left: auto;
+	}
+
+	.action-item:hover .action-remove-btn {
+		opacity: 1;
+	}
+
+	.action-remove-btn:hover {
+		color: #ef4444;
+		background: #fef2f2;
+	}
+
+	.action-remove-btn svg {
+		width: 14px;
+		height: 14px;
 	}
 
 	/* Export Steps */
@@ -871,7 +950,7 @@
 	}
 
 	.step-title {
-		font-size: 15px;
+		font-size: 17px;
 		font-weight: 600;
 		color: var(--slate-900, #0f172a);
 	}
@@ -1144,7 +1223,7 @@
 		justify-content: center;
 		gap: 10px;
 		padding: 14px 20px;
-		font-size: 15px;
+		font-size: 16px;
 		font-weight: 600;
 		border-radius: 10px;
 		cursor: pointer;
@@ -1415,5 +1494,73 @@
 		.step-content {
 			padding: 16px;
 		}
+	}
+
+	/* Back confirmation dialog */
+	.confirm-overlay {
+		position: fixed;
+		inset: 0;
+		background: rgba(0, 0, 0, 0.5);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 200;
+	}
+
+	.confirm-dialog {
+		background: #ffffff;
+		border-radius: 16px;
+		padding: 24px;
+		width: 340px;
+		box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+	}
+
+	.confirm-title {
+		font-size: 16px;
+		font-weight: 600;
+		color: #111827;
+		margin: 0 0 8px;
+	}
+
+	.confirm-desc {
+		font-size: 14px;
+		color: #6b7280;
+		line-height: 1.5;
+		margin: 0 0 20px;
+	}
+
+	.confirm-actions {
+		display: flex;
+		gap: 8px;
+		justify-content: flex-end;
+	}
+
+	.confirm-btn {
+		padding: 8px 16px;
+		border-radius: 8px;
+		font-size: 14px;
+		font-weight: 500;
+		cursor: pointer;
+		border: none;
+		font-family: inherit;
+		transition: background 0.12s ease;
+	}
+
+	.confirm-cancel {
+		background: #f3f4f6;
+		color: #374151;
+	}
+
+	.confirm-cancel:hover {
+		background: #e5e7eb;
+	}
+
+	.confirm-danger {
+		background: #ef4444;
+		color: #ffffff;
+	}
+
+	.confirm-danger:hover {
+		background: #dc2626;
 	}
 </style>

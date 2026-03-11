@@ -156,6 +156,7 @@ services:
       - "8001:8001"
     environment:
       - DATABASE_URL=postgresql+asyncpg://norizon:norizon@postgres:5432/workflows
+      - REDIS_URL=redis://redis:6379/1
       - WORKFLOW_USE_MOCKS=false
       - WORKFLOW_KSTUDIO_URL=http://deepgram-service:8002
       - WORKFLOW_DEEPSEARCH_URL=http://deepsearch:8000

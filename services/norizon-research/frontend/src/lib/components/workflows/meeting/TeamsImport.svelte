@@ -4,16 +4,19 @@
 	import { fade, slide } from "svelte/transition";
 	import { WorkflowAPI, type TeamsMeeting } from "$lib/api/workflowApi";
 
-	export let jobId = "";
-	export let onImported:
-		| ((data: {
-				fileName: string;
-				fileSize: number;
-				duration: number;
-				meetingTitle: string;
-				meetingDate: string;
-		  }) => void)
-		| undefined = undefined;
+	let {
+		jobId = "",
+		onImported = undefined,
+	}: {
+		jobId?: string;
+		onImported?: ((data: {
+			fileName: string;
+			fileSize: number;
+			duration: number;
+			meetingTitle: string;
+			meetingDate: string;
+		}) => void) | undefined;
+	} = $props();
 
 	type State =
 		| "checking"
@@ -25,11 +28,11 @@
 		| "importing"
 		| "error";
 
-	let connectionState: State = "checking";
-	let meetings: TeamsMeeting[] = [];
-	let userName = "";
-	let errorMessage = "";
-	let importingMeetingId = "";
+	let connectionState: State = $state("checking");
+	let meetings: TeamsMeeting[] = $state([]);
+	let userName = $state("");
+	let errorMessage = $state("");
+	let importingMeetingId = $state("");
 
 	onMount(async () => {
 		await checkAuthStatus();
@@ -202,7 +205,7 @@
 		</div>
 	{:else if connectionState === "disconnected"}
 		<div class="teams-connect" in:fade={{ duration: 150 }}>
-			<button class="connect-btn" on:click={startOAuth}>
+			<button class="connect-btn" onclick={startOAuth}>
 				<svg class="ms-icon" viewBox="0 0 24 24" fill="currentColor">
 					<path
 						d="M11.4 24H0V12.6h11.4V24zM24 24H12.6V12.6H24V24zM11.4 11.4H0V0h11.4v11.4zM24 11.4H12.6V0H24v11.4z"
@@ -226,7 +229,7 @@
 					values: { name: userName },
 				})}</span
 			>
-			<button class="disconnect-btn" on:click={disconnect}
+			<button class="disconnect-btn" onclick={disconnect}
 				>{$t("workflow.meeting.teams.disconnect")}</button
 			>
 		</div>
@@ -241,7 +244,7 @@
 					values: { name: userName },
 				})}</span
 			>
-			<button class="disconnect-btn" on:click={disconnect}
+			<button class="disconnect-btn" onclick={disconnect}
 				>{$t("workflow.meeting.teams.disconnect")}</button
 			>
 		</div>
@@ -311,7 +314,7 @@
 								<button
 									class="import-btn"
 									disabled={importingMeetingId !== ""}
-									on:click={() => importRecording(meeting)}
+									onclick={() => importRecording(meeting)}
 								>
 									{$t("workflow.meeting.teams.import")}
 								</button>
@@ -348,7 +351,7 @@
 				<line x1="12" y1="16" x2="12.01" y2="16" />
 			</svg>
 			<span>{errorMessage || $t("workflow.meeting.teams.error")}</span>
-			<button class="retry-btn" on:click={checkAuthStatus}>
+			<button class="retry-btn" onclick={checkAuthStatus}>
 				{$t("common.retry") ?? "Retry"}
 			</button>
 		</div>

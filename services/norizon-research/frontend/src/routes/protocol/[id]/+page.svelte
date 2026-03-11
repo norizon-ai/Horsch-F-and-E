@@ -10,29 +10,28 @@
 	import type { Protocol } from "$lib/types";
 	import { sessions } from "$lib/stores/chatStore";
 
-	let protocolId: string;
-	let protocol: Protocol | null = null;
-	let title = "Loading...";
-	let isLoading = true;
-	let error: string | null = null;
-	let recentSessions: any[] = [];
-	let isExporting = false;
+	let protocol: Protocol | null = $state(null);
+	let title = $state("Loading...");
+	let isLoading = $state(true);
+	let error: string | null = $state(null);
+	let recentSessions: any[] = $state([]);
+	let isExporting = $state(false);
 
-	$: protocolId = $page.params.id || "";
+	let protocolId = $derived($page.params.id || "");
 
 	// Get recent sessions for sidebar
-	$: {
+	$effect(() => {
 		recentSessions = Array.from($sessions.values())
 			.filter((session) => session.messages.length > 0)
 			.sort((a, b) => b.updatedAt - a.updatedAt)
 			.slice(0, 10);
-	}
+	});
 
-	$: {
+	$effect(() => {
 		if (protocolId) {
 			loadProtocol();
 		}
-	}
+	});
 
 	async function loadProtocol() {
 		try {
@@ -74,8 +73,8 @@
 		goto("/chat");
 	}
 
-	function handleSelectSession(event: CustomEvent<string>) {
-		goto(`/chat/${event.detail}`);
+	function handleSelectSession(sessionId: string) {
+		goto(`/chat/${sessionId}`);
 	}
 
 	function handleBackToEdit() {
@@ -85,9 +84,9 @@
 	}
 
 	async function handleExportToConfluence(
-		event: CustomEvent<{ spaceId: string; parentPageId: string }>,
+		data: { spaceId: string; parentPageId: string },
 	) {
-		const { spaceId, parentPageId } = event.detail;
+		const { spaceId, parentPageId } = data;
 		isExporting = true;
 		try {
 			const { WorkflowAPI } = await import("$lib/api/workflowApi");
@@ -105,9 +104,9 @@
 	}
 
 	function handleNoraAction(
-		event: CustomEvent<{ type: "email" | "status" | "chat" }>,
+		data: { type: "email" | "status" | "chat" },
 	) {
-		const actionType = event.detail.type;
+		const actionType = data.type;
 		goto(
 			`/chat?context=meeting-protocol&jobId=${protocolId}&action=${actionType}`,
 		);
@@ -161,9 +160,8 @@
 
 <NoraLayout
 	currentSessionId={protocolId}
-	forceCollapsed={true}
-	on:newChat={handleNewChat}
-	on:selectSession={handleSelectSession}
+	onnewChat={handleNewChat}
+	onselectSession={handleSelectSession}
 >
 	<div class="workflow-content with-preview">
 		{#if error}
@@ -179,7 +177,7 @@
 					<line x1="12" y1="16" x2="12.01" y2="16" />
 				</svg>
 				<span>{error}</span>
-				<button class="btn-primary" on:click={() => goto("/")}
+				<button class="btn-primary" onclick={() => goto("/")}
 					>Go Back</button
 				>
 			</div>
@@ -196,11 +194,7 @@
 			<div class="action-card">
 				<div class="message-header">
 					<div class="message-avatar">
-						<svg viewBox="0 0 24 24" fill="currentColor">
-							<path
-								d="M6 4v16h2.5v-9.5L15 18.5V20h2.5V4H15v9.5L8.5 5.5V4H6z"
-							/>
-						</svg>
+						<img src="/favicon.png" alt="Nora" class="avatar-img" />
 					</div>
 					<span class="message-name">Nora</span>
 				</div>
@@ -214,10 +208,10 @@
 						{protocol}
 						{isExporting}
 						editable={false}
-						on:export={handleExportToConfluence}
-						on:exportPdf={handleExportPdf}
-						on:back={handleBackToEdit}
-						on:noraAction={handleNoraAction}
+						onExport={handleExportToConfluence}
+						onExportPdf={handleExportPdf}
+						onBack={handleBackToEdit}
+						onNoraAction={handleNoraAction}
 					/>
 				</div>
 			</div>
@@ -279,41 +273,37 @@
 
 	.action-card {
 		background: var(--white, #ffffff);
-		border: 1px solid var(--slate-200, #e2e8f0);
-		border-radius: 12px;
 		padding: 20px 24px;
-		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 	}
 
 	.message-header {
 		display: flex;
 		align-items: center;
-		gap: 8px;
-		padding-bottom: 12px;
+		gap: 10px;
 		margin-bottom: 16px;
-		border-bottom: 1px solid var(--slate-100, #f1f5f9);
 	}
 
 	.message-avatar {
 		width: 28px;
 		height: 28px;
 		border-radius: 50%;
-		background: var(--deep-blue, #1e3a5f);
-		color: white;
+		background: transparent;
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		flex-shrink: 0;
 	}
 
-	.message-avatar svg {
-		width: 14px;
-		height: 14px;
+	.avatar-img {
+		width: 28px;
+		height: 28px;
+		object-fit: contain;
 	}
 
 	.message-name {
-		font-size: 13px;
+		font-size: 14px;
 		font-weight: 600;
-		color: var(--slate-900, #0f172a);
+		color: #111827;
 	}
 
 	.nora-greeting {

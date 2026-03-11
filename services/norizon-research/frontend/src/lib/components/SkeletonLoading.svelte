@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let showSources = true;
+	let { showSources = true }: { showSources?: boolean } = $props();
 </script>
 
 <div class="skeleton-wrapper">

@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { createEventDispatcher } from "svelte";
 	import { t } from "svelte-i18n";
 	import { get } from "svelte/store";
 	import {
@@ -9,24 +8,31 @@
 	import { formatDuration, WorkflowAPI } from "$lib/api/workflowApi";
 	import type { Speaker, WorkflowFile, UserSuggestion } from "$lib/types";
 
-	export let speakers: Speaker[] = [];
-	export let file: WorkflowFile | null = null;
-
-	const dispatch = createEventDispatcher<{ confirmed: void; back: void }>();
+	let {
+		speakers = [],
+		file = null,
+		onconfirmed = undefined,
+		onback = undefined,
+	}: {
+		speakers?: Speaker[];
+		file?: WorkflowFile | null;
+		onconfirmed?: (() => void) | undefined;
+		onback?: (() => void) | undefined;
+	} = $props();
 
 	// Local state for editing
-	let editingSpeaker: string | null = null;
-	let editValue = "";
+	let editingSpeaker: string | null = $state(null);
+	let editValue = $state("");
 
 	// Task 14 & 15: Track confirmed speakers
-	let confirmedSpeakers = new Set<string>();
-	let showValidationError = false;
+	let confirmedSpeakers = $state(new Set<string>());
+	let showValidationError = $state(false);
 
 	// Task 16: Back button confirmation dialog
-	let showBackConfirmation = false;
+	let showBackConfirmation = $state(false);
 
 	// ISSUE 3: Delete speaker confirmation dialog
-	let showDeleteDialog: string | null = null;
+	let showDeleteDialog: string | null = $state(null);
 
 	function handleBackClick() {
 		showBackConfirmation = true;
@@ -34,7 +40,7 @@
 
 	function confirmBack() {
 		showBackConfirmation = false;
-		dispatch("back");
+		onback?.();
 	}
 
 	function cancelBack() {
@@ -42,13 +48,13 @@
 	}
 
 	// Audio playback state
-	let playingSpeakerId: string | null = null;
-	let audioElement: HTMLAudioElement;
+	let playingSpeakerId: string | null = $state(null);
+	let audioElement: HTMLAudioElement = $state(undefined as unknown as HTMLAudioElement);
 
 	// Autocomplete state
-	let userSuggestions: UserSuggestion[] = [];
-	let isLoadingSuggestions = false;
-	let showSuggestions = false;
+	let userSuggestions: UserSuggestion[] = $state([]);
+	let isLoadingSuggestions = $state(false);
+	let showSuggestions = $state(false);
 	let searchDebounceTimer: ReturnType<typeof setTimeout> | null = null;
 
 	// Confidence threshold - only show AI-proposed name if above this
@@ -59,7 +65,7 @@
 		playingSpeakerId = null;
 	}
 
-	function toggleAudio(speakerId: string, audioUrl: string) {
+	function toggleAudio(speakerId: string, audioUrl?: string) {
 		if (!audioElement) return;
 
 		if (playingSpeakerId === speakerId) {
@@ -71,8 +77,10 @@
 
 			playingSpeakerId = speakerId;
 
+			if (!audioUrl) return;
+
 			// Resolve relative URLs to the backend API where the /data mount is hosted
-			let finalUrl = audioUrl;
+			let finalUrl: string = audioUrl;
 			if (audioUrl.startsWith("/data")) {
 				const baseUrl =
 					import.meta.env.VITE_WORKFLOW_API_URL ||
@@ -259,11 +267,12 @@
 			}
 		}
 
-		dispatch("confirmed");
+		onconfirmed?.();
 	}
 
 	// ISSUE 3: Confirm deletion of speaker
-	function confirmDeleteSpeaker(speakerId: string) {
+	function confirmDeleteSpeaker(speakerId: string | null) {
+		if (!speakerId) return;
 		speakers = speakers.filter((s) => s.id !== speakerId);
 		workflowStore.setSpeakers(speakers);
 		confirmedSpeakers = new Set(
@@ -285,15 +294,17 @@
 	}
 
 	// Calculate total duration from file or speakers
-	$: totalDuration =
+	let totalDuration = $derived(
 		file?.duration ||
-		speakers.reduce((sum, s) => sum + (s.speakingTime || 0), 0);
-	$: confirmedCount = speakers.filter(
+		speakers.reduce((sum, s) => sum + (s.speakingTime || 0), 0)
+	);
+	let confirmedCount = $derived(speakers.filter(
 		(s) => s.confirmedName && s.confirmedName.trim() !== "",
-	).length;
-	$: meetingTitle =
+	).length);
+	let meetingTitle = $derived(
 		file?.name?.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " ") ||
-		"Meeting Recording";
+		"Meeting Recording"
+	);
 </script>
 
 <div class="speaker-verification">
@@ -357,15 +368,15 @@
 									type="text"
 									class="name-input"
 									bind:value={editValue}
-									on:keydown={(e) =>
+									onkeydown={(e) =>
 										handleKeydown(e, speaker.id)}
-									on:blur={() => {
+									onblur={() => {
 										setTimeout(
 											() => saveEdit(speaker.id),
 											150,
 										);
 									}}
-									on:input={handleNameInput}
+									oninput={handleNameInput}
 									autofocus
 								/>
 								{#if showSuggestions && userSuggestions.length > 0}
@@ -373,11 +384,13 @@
 										{#each userSuggestions as suggestion}
 											<button
 												class="suggestion-item"
-												on:mousedown|preventDefault={() =>
+												onmousedown={(e) => {
+													e.preventDefault();
 													selectUserSuggestion(
 														speaker.id,
 														suggestion,
-													)}
+													);
+												}}
 											>
 												<svg
 													viewBox="0 0 24 24"
@@ -419,7 +432,7 @@
 						{:else}
 							<button
 								class="name-display"
-								on:click={() => startEdit(speaker)}
+								onclick={() => startEdit(speaker)}
 							>
 								<span class="name"
 									>{getDisplayName(speaker)}</span
@@ -472,7 +485,7 @@
 								class:confirmed={confirmedSpeakers.has(
 									speaker.id,
 								)}
-								on:click={() =>
+								onclick={() =>
 									toggleSpeakerConfirmation(speaker.id)}
 							>
 								{#if confirmedSpeakers.has(speaker.id)}
@@ -492,7 +505,7 @@
 							<!-- ISSUE 3 FIX: Add delete button (bin icon) to each speaker card -->
 							<button
 								class="delete-speaker-btn"
-								on:click={() => (showDeleteDialog = speaker.id)}
+								onclick={() => (showDeleteDialog = speaker.id)}
 								title={$t("common.delete")}
 							>
 								<svg
@@ -515,7 +528,7 @@
 						<button
 							class="external-toggle"
 							class:active={speaker.isExternal}
-							on:click={() => toggleExternal(speaker.id)}
+							onclick={() => toggleExternal(speaker.id)}
 						>
 							<svg
 								viewBox="0 0 24 24"
@@ -547,7 +560,7 @@
 							<button
 								class="play-btn"
 								class:playing={playingSpeakerId === speaker.id}
-								on:click={() =>
+								onclick={() =>
 									toggleAudio(
 										speaker.id,
 										speaker.sampleAudioUrl,
@@ -609,13 +622,13 @@
 	<!-- Hidden audio element for playback -->
 	<audio
 		bind:this={audioElement}
-		on:ended={handleAudioEnded}
+		onended={handleAudioEnded}
 		style="display: none;"
 	></audio>
 
 	<!-- Footer Actions -->
 	<div class="workflow-footer">
-		<button class="btn-secondary" on:click={handleBackClick}>
+		<button class="btn-secondary" onclick={handleBackClick}>
 			<svg
 				viewBox="0 0 24 24"
 				fill="none"
@@ -627,7 +640,7 @@
 			</svg>
 			{$t("common.back")}
 		</button>
-		<button class="btn-primary" on:click={handleConfirm}>
+		<button class="btn-primary" onclick={handleConfirm}>
 			{$t("workflow.meeting.speakers.confirmButton")}
 			<svg
 				viewBox="0 0 24 24"
@@ -644,31 +657,16 @@
 
 <!-- Task 16: Back confirmation dialog -->
 {#if showBackConfirmation}
-	<div class="dialog-overlay" on:click={cancelBack}>
-		<div class="dialog" on:click|stopPropagation>
-			<div class="dialog-icon warning">
-				<svg
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2"
-				>
-					<circle cx="12" cy="12" r="10" />
-					<line x1="12" y1="8" x2="12" y2="12" />
-					<line x1="12" y1="16" x2="12.01" y2="16" />
-				</svg>
-			</div>
-			<h3>Are you sure you want to cancel?</h3>
-			<p>
-				The verification process will be aborted and you'll need to
-				start over.
-			</p>
-			<div class="dialog-actions">
-				<button class="dialog-btn secondary" on:click={cancelBack}>
-					Continue verifying
+	<div class="confirm-overlay" role="dialog" aria-modal="true">
+		<div class="confirm-dialog">
+			<h3 class="confirm-title">Go back?</h3>
+			<p class="confirm-desc">Speaker verification progress will be lost and you will need to start over.</p>
+			<div class="confirm-actions">
+				<button class="confirm-btn confirm-cancel" onclick={cancelBack}>
+					Cancel
 				</button>
-				<button class="dialog-btn danger" on:click={confirmBack}>
-					Yes, cancel
+				<button class="confirm-btn confirm-danger" onclick={confirmBack}>
+					Go back
 				</button>
 			</div>
 		</div>
@@ -677,40 +675,16 @@
 
 <!-- ISSUE 3: Delete speaker confirmation dialog -->
 {#if showDeleteDialog}
-	<div class="dialog-overlay" on:click={cancelDeleteSpeaker}>
-		<div class="dialog" on:click|stopPropagation>
-			<div class="dialog-icon danger">
-				<svg
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2"
-				>
-					<polyline points="3 6 5 6 21 6" />
-					<path
-						d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
-					/>
-					<line x1="10" y1="11" x2="10" y2="17" />
-					<line x1="14" y1="11" x2="14" y2="17" />
-				</svg>
-			</div>
-			<h3>Remove this speaker?</h3>
-			<p>
-				This will remove the speaker from the list. This action cannot
-				be undone.
-			</p>
-			<div class="dialog-actions">
-				<button
-					class="dialog-btn secondary"
-					on:click={cancelDeleteSpeaker}
-				>
-					{$t("common.cancel")}
+	<div class="confirm-overlay" role="dialog" aria-modal="true">
+		<div class="confirm-dialog">
+			<h3 class="confirm-title">Remove speaker?</h3>
+			<p class="confirm-desc">This speaker will be removed from the list. This action cannot be undone.</p>
+			<div class="confirm-actions">
+				<button class="confirm-btn confirm-cancel" onclick={cancelDeleteSpeaker}>
+					Cancel
 				</button>
-				<button
-					class="dialog-btn danger"
-					on:click={() => confirmDeleteSpeaker(showDeleteDialog)}
-				>
-					Remove Speaker
+				<button class="confirm-btn confirm-danger" onclick={() => confirmDeleteSpeaker(showDeleteDialog)}>
+					Remove
 				</button>
 			</div>
 		</div>
@@ -742,7 +716,7 @@
 		display: flex;
 		align-items: center;
 		gap: 8px;
-		font-size: 13px;
+		font-size: 15px;
 		color: var(--slate-600, #475569);
 	}
 
@@ -782,7 +756,7 @@
 	}
 
 	.speaker-count {
-		font-size: 13px;
+		font-size: 15px;
 		font-weight: 500;
 		color: var(--slate-600, #475569);
 	}
@@ -917,7 +891,7 @@
 	}
 
 	.name-display .name {
-		font-size: 14px;
+		font-size: 16px;
 		font-weight: 600;
 		color: var(--slate-900, #0f172a);
 	}
@@ -934,7 +908,7 @@
 	}
 
 	.name-input {
-		font-size: 14px;
+		font-size: 16px;
 		font-weight: 600;
 		color: var(--slate-900, #0f172a);
 		border: 1px solid var(--blue-400, #60a5fa);
@@ -1116,7 +1090,7 @@
 
 	/* Transcript snippet - compact */
 	.transcript-snippet {
-		font-size: 12px;
+		font-size: 14px;
 		color: var(--slate-500, #64748b);
 		line-height: 1.4;
 		margin: 0;
@@ -1221,8 +1195,8 @@
 		align-items: center;
 		justify-content: center;
 		gap: 8px;
-		padding: 10px 20px;
-		font-size: 14px;
+		padding: 12px 24px;
+		font-size: 16px;
 		font-weight: 500;
 		border-radius: 8px;
 		cursor: pointer;
@@ -1260,11 +1234,11 @@
 		display: flex;
 		align-items: center;
 		gap: 4px;
-		padding: 4px 10px;
+		padding: 6px 12px;
 		background: white;
 		border: 1px solid var(--slate-300, #cbd5e1);
 		border-radius: 6px;
-		font-size: 12px;
+		font-size: 14px;
 		font-weight: 500;
 		color: var(--slate-600, #475569);
 		cursor: pointer;
@@ -1326,109 +1300,72 @@
 		margin-left: auto;
 	}
 
-	/* Task 16: Back confirmation dialog */
-	.dialog-overlay {
+	/* Confirmation dialogs */
+	.confirm-overlay {
 		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background: rgba(15, 23, 42, 0.5);
+		inset: 0;
+		background: rgba(0, 0, 0, 0.5);
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		z-index: 200;
-		padding: 20px;
 	}
 
-	.dialog {
-		background: white;
+	.confirm-dialog {
+		background: #ffffff;
 		border-radius: 16px;
 		padding: 24px;
-		max-width: 360px;
-		width: 100%;
-		text-align: center;
-		box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+		width: 340px;
+		box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
 	}
 
-	.dialog-icon {
-		width: 56px;
-		height: 56px;
-		border-radius: 50%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		margin: 0 auto 16px;
-	}
-
-	.dialog-icon.warning {
-		background: var(--amber-100, #fef3c7);
-	}
-
-	.dialog-icon.warning svg {
-		width: 28px;
-		height: 28px;
-		color: var(--amber-600, #d97706);
-	}
-
-	/* ISSUE 3: Danger icon style for delete dialog */
-	.dialog-icon.danger {
-		background: var(--red-100, #fee2e2);
-	}
-
-	.dialog-icon.danger svg {
-		width: 28px;
-		height: 28px;
-		color: var(--red-600, #dc2626);
-	}
-
-	.dialog h3 {
-		font-size: 18px;
-		font-weight: 700;
-		color: var(--slate-900, #0f172a);
-		margin: 0 0 8px 0;
-	}
-
-	.dialog p {
-		font-size: 14px;
-		color: var(--slate-600, #475569);
-		line-height: 1.5;
-		margin: 0 0 20px 0;
-	}
-
-	.dialog-actions {
-		display: flex;
-		gap: 10px;
-	}
-
-	.dialog-btn {
-		flex: 1;
-		padding: 12px 16px;
-		font-size: 14px;
+	.confirm-title {
+		font-size: 16px;
 		font-weight: 600;
+		color: #111827;
+		margin: 0 0 8px;
+	}
+
+	.confirm-desc {
+		font-size: 14px;
+		color: #6b7280;
+		line-height: 1.5;
+		margin: 0 0 20px;
+	}
+
+	.confirm-actions {
+		display: flex;
+		gap: 8px;
+		justify-content: flex-end;
+	}
+
+	.confirm-btn {
+		padding: 8px 16px;
 		border-radius: 8px;
+		font-size: 14px;
+		font-weight: 500;
 		cursor: pointer;
-		transition: all 0.15s ease;
-	}
-
-	.dialog-btn.secondary {
-		background: var(--slate-100, #f1f5f9);
-		border: 1px solid var(--slate-200, #e2e8f0);
-		color: var(--slate-700, #334155);
-	}
-
-	.dialog-btn.secondary:hover {
-		background: var(--slate-200, #e2e8f0);
-	}
-
-	.dialog-btn.danger {
-		background: var(--red-500, #ef4444);
 		border: none;
-		color: white;
+		font-family: inherit;
+		transition: background 0.12s ease;
 	}
 
-	.dialog-btn.danger:hover {
-		background: var(--red-600, #dc2626);
+	.confirm-cancel {
+		background: #f3f4f6;
+		color: #374151;
+	}
+
+	.confirm-cancel:hover {
+		background: #e5e7eb;
+	}
+
+	.confirm-danger {
+		background: #ef4444;
+		color: #ffffff;
+	}
+
+	.confirm-danger:hover {
+		background: #dc2626;
 	}
 
 	@media (max-width: 600px) {

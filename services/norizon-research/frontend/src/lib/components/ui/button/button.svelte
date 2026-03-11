@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import type {
 		HTMLAnchorAttributes,
 		HTMLButtonAttributes,
@@ -40,36 +40,31 @@
 <script lang="ts">
 	import { cn } from "$lib/utils/cn.js";
 
-	let className: string | undefined | null = undefined;
-	export { className as class };
-	export let variant: ButtonVariant = "default";
-	export let size: ButtonSize = "default";
-	export let href: string | undefined = undefined;
-	export let type: HTMLButtonAttributes["type"] = "button";
-
-	// We use standard forwardProps in Svelte 4 usually, but here we'll just use $$restProps
+	let {
+		class: className = undefined,
+		variant = "default" as ButtonVariant,
+		size = "default" as ButtonSize,
+		href = undefined as string | undefined,
+		type = "button" as HTMLButtonAttributes["type"],
+		children,
+		...restProps
+	} = $props();
 </script>
 
 {#if href}
 	<a
 		class={cn(buttonVariants({ variant, size }), className)}
 		{href}
-		on:click
-		{...$$restProps}
+		{...restProps}
 	>
-		<slot />
+		{@render children?.()}
 	</a>
 {:else}
 	<button
 		class={cn(buttonVariants({ variant, size }), className)}
 		{type}
-		on:click
-		on:submit
-		on:keydown
-		on:mouseenter
-		on:mouseleave
-		{...$$restProps}
+		{...restProps}
 	>
-		<slot />
+		{@render children?.()}
 	</button>
 {/if}

@@ -1,5 +1,5 @@
 <script lang="ts">
-	// Simple Svelte 4 wrapper components replacing bits-ui tooltip
+	let { children } = $props();
 </script>
 
-<slot />
+{@render children?.()}

@@ -6,12 +6,21 @@
 	import { Card, CardContent } from "$lib/components/ui/card";
 	import { Separator } from "$lib/components/ui/separator";
 
-	export let context: ChatContext;
-	export let onDismiss: (() => void) | undefined = undefined;
-	export let onSelectPrompt: ((prompt: string) => void) | undefined =
-		undefined;
+	let {
+		context,
+		onDismiss = undefined as (() => void) | undefined,
+		onSelectPrompt = undefined as ((prompt: string) => void) | undefined,
+		ondismiss = undefined as (() => void) | undefined,
+		onselectPrompt = undefined as ((prompt: string) => void) | undefined,
+	}: {
+		context: ChatContext;
+		onDismiss?: (() => void) | undefined;
+		onSelectPrompt?: ((prompt: string) => void) | undefined;
+		ondismiss?: (() => void) | undefined;
+		onselectPrompt?: ((prompt: string) => void) | undefined;
+	} = $props();
 
-	let expanded = false;
+	let expanded = $state(false);
 
 	function getSuggestedPrompts(
 		action: ChatContextAction,
@@ -64,9 +73,9 @@
 		return prompts[action] || prompts.chat;
 	}
 
-	$: suggestedPrompts = getSuggestedPrompts(context.action);
-	$: actionItemCount = context.protocol?.actionItems?.length || 0;
-	$: truncatedSummary = (() => {
+	let suggestedPrompts = $derived(getSuggestedPrompts(context.action));
+	let actionItemCount = $derived(context.protocol?.actionItems?.length || 0);
+	let truncatedSummary = $derived((() => {
 		if (context.protocol?.executiveSummary) {
 			return (
 				context.protocol.executiveSummary.slice(0, 150) +
@@ -74,21 +83,21 @@
 			);
 		}
 		return "";
-	})();
+	})());
 </script>
 
 <Card
-	class="mb-5 bg-gradient-to-br from-nora-blue-50 to-nora-orange-50 border-nora-blue-200"
+	class="mb-5 bg-gradient-to-br from-blue-50 to-orange-50 border-blue-200"
 >
 	<CardContent class="p-4">
 		<!-- Header -->
 		<div class="flex items-center justify-between gap-3">
 			<div class="flex items-center gap-3 flex-1 min-w-0">
 				<div
-					class="w-9 h-9 bg-nora-blue-100 rounded-lg flex items-center justify-center shrink-0"
+					class="w-9 h-9 bg-blue-100 rounded-lg flex items-center justify-center shrink-0"
 				>
 					<svg
-						class="w-5 h-5 text-nora-blue-600"
+						class="w-5 h-5 text-blue-600"
 						viewBox="0 0 24 24"
 						fill="none"
 						stroke="currentColor"
@@ -104,12 +113,10 @@
 					</svg>
 				</div>
 				<div class="flex flex-col min-w-0">
-					<span
-						class="text-[11px] font-medium text-nora-blue-600 uppercase tracking-wide"
+					<span class="text-[11px] font-medium text-blue-600 uppercase tracking-wide"
 						>{$t("chat.context.loaded")}</span
 					>
-					<span
-						class="text-sm font-semibold text-nora-slate-900 truncate"
+					<span class="text-sm font-semibold text-slate-900 truncate"
 						>{context.protocol?.title || "Meeting Protocol"}</span
 					>
 				</div>
@@ -118,8 +125,8 @@
 				<Button
 					variant="ghost"
 					size="icon"
-					class="h-7 w-7 text-nora-slate-500 hover:bg-white hover:text-nora-slate-700 [&_svg]:size-4"
-					on:click={() => (expanded = !expanded)}
+					class="h-7 w-7 text-slate-500 hover:bg-white hover:text-slate-700 [&_svg]:size-4"
+					onclick={() => (expanded = !expanded)}
 					aria-expanded={expanded}
 				>
 					<svg
@@ -127,9 +134,7 @@
 						fill="none"
 						stroke="currentColor"
 						stroke-width="2"
-						class="transition-transform duration-200 {expanded
-							? 'rotate-180'
-							: ''}"
+						class="transition-transform duration-200 {expanded ? 'rotate-180' : ''}"
 					>
 						<polyline points="6,9 12,15 18,9" />
 					</svg>
@@ -137,8 +142,8 @@
 				<Button
 					variant="ghost"
 					size="icon"
-					class="h-7 w-7 text-nora-slate-500 hover:bg-white hover:text-nora-slate-700 [&_svg]:size-4"
-					on:click={() => onDismiss?.()}
+					class="h-7 w-7 text-slate-500 hover:bg-white hover:text-slate-700 [&_svg]:size-4"
+					onclick={() => { onDismiss?.(); ondismiss?.(); }}
 					aria-label="Dismiss"
 				>
 					<svg
@@ -156,13 +161,13 @@
 
 		<!-- Expanded details -->
 		{#if expanded && context.protocol}
-			<Separator class="my-3 bg-nora-blue-200" />
+			<Separator class="my-3 bg-blue-200" />
 			<div class="mb-2">
 				<span
-					class="block text-[11px] font-medium text-nora-slate-500 uppercase tracking-wide mb-1"
+					class="block text-[11px] font-medium text-slate-500 uppercase tracking-wide mb-1"
 					>{$t("chat.context.summary")}</span
 				>
-				<p class="text-[13px] text-nora-slate-700 leading-normal m-0">
+				<p class="text-[13px] text-slate-700 leading-normal m-0">
 					{truncatedSummary}
 				</p>
 			</div>
@@ -170,14 +175,14 @@
 				<div class="flex gap-2 flex-wrap">
 					<Badge
 						variant="outline"
-						class="text-xs text-nora-slate-600 bg-white rounded-full border-nora-slate-200 px-2.5 py-1"
+						class="text-xs text-slate-600 bg-white rounded-full border-slate-200 px-2.5 py-1"
 						>{actionItemCount}
 						{$t("chat.context.actionItems")}</Badge
 					>
 					{#if context.protocol.attendees?.length > 0}
 						<Badge
 							variant="outline"
-							class="text-xs text-nora-slate-600 bg-white rounded-full border-nora-slate-200 px-2.5 py-1"
+							class="text-xs text-slate-600 bg-white rounded-full border-slate-200 px-2.5 py-1"
 							>{context.protocol.attendees.length} attendees</Badge
 						>
 					{/if}
@@ -186,9 +191,9 @@
 		{/if}
 
 		<!-- Suggested prompts -->
-		<Separator class="my-3 bg-nora-blue-200" />
+		<Separator class="my-3 bg-blue-200" />
 		<div>
-			<span class="block text-xs text-nora-slate-500 mb-2"
+			<span class="block text-xs text-slate-500 mb-2"
 				>{$t("chat.context.tryAsking")}</span
 			>
 			<div class="flex gap-2 flex-wrap">
@@ -196,8 +201,8 @@
 					<Button
 						variant="outline"
 						size="sm"
-						class="rounded-full text-[13px] text-nora-blue-700 bg-white border-nora-blue-200 hover:bg-nora-blue-50 hover:border-nora-blue-300"
-						on:click={() => onSelectPrompt?.(prompt)}
+						class="rounded-full text-[13px] text-blue-700 bg-white border-blue-200 hover:bg-blue-50 hover:border-blue-300"
+						onclick={() => { onSelectPrompt?.(prompt); onselectPrompt?.(prompt); }}
 					>
 						{label}
 					</Button>

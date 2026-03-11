@@ -84,14 +84,14 @@
 				<p><strong>✅ Authenticated</strong></p>
 				<p>User: {$currentUser?.email || 'Unknown'}</p>
 				<p>Name: {$currentUser?.name || 'Unknown'}</p>
-				<button on:click={() => authStore.logout()} class="btn-secondary">
+				<button onclick={() => authStore.logout()} class="btn-secondary">
 					Logout
 				</button>
 			</div>
 		{:else}
 			<div class="warning-box">
 				<p>❌ Not authenticated</p>
-				<button on:click={() => authStore.login()} class="btn-primary">
+				<button onclick={() => authStore.login()} class="btn-primary">
 					Login with Auth0
 				</button>
 			</div>
@@ -101,7 +101,7 @@
 	{#if $isAuthenticated}
 		<div class="section">
 			<h2>Token Management</h2>
-			<button on:click={getToken} class="btn-secondary">
+			<button onclick={getToken} class="btn-secondary">
 				View Access Token
 			</button>
 		</div>
@@ -109,13 +109,13 @@
 		<div class="section">
 			<h2>Backend API Tests</h2>
 			<div class="button-group">
-				<button on:click={testBackendAuth} disabled={loading} class="btn-primary">
+				<button onclick={testBackendAuth} disabled={loading} class="btn-primary">
 					Test Auth Endpoint
 				</button>
-				<button on:click={fetchCurrentUser} disabled={loading} class="btn-primary">
+				<button onclick={fetchCurrentUser} disabled={loading} class="btn-primary">
 					Get Current User
 				</button>
-				<button on:click={fetchHistory} disabled={loading} class="btn-primary">
+				<button onclick={fetchHistory} disabled={loading} class="btn-primary">
 					Fetch History
 				</button>
 			</div>

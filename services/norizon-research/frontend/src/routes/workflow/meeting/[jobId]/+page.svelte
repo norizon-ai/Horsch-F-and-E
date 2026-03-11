@@ -27,31 +27,32 @@
 	import FollowUpPromptEditor from "$lib/components/workflows/meeting/FollowUpPromptEditor.svelte";
 	import ConfluencePreview from "$lib/components/workflows/meeting/ConfluencePreview.svelte";
 
-	let isExporting = false;
-	let isRegenerating = false;
-	let regenerationMessage = "Loading template...";
-	let messageInterval: ReturnType<typeof setInterval> | null = null;
-	let showSplitView = false;
+	let isExporting = $state(false);
+	let isRegenerating = $state(false);
+	let regenerationMessage = $state("Loading template...");
+	let messageInterval: ReturnType<typeof setInterval> | null = $state(null);
+	let showSplitView = $state(false);
 
-	let jobId: string;
-	let isInitialized = false;
-	let error: string | null = null;
-	let recentSessions: any[] = [];
+	let isInitialized = $state(false);
+	let error: string | null = $state(null);
+	let recentSessions: any[] = $state([]);
 
-	$: jobId = $page.params.jobId;
+	let jobId = $derived($page.params.jobId ?? '');
 
 	// Initialize workflow state when jobId changes
-	$: if (jobId && !isInitialized) {
-		initializeWorkflow();
-	}
+	$effect(() => {
+		if (jobId && !isInitialized) {
+			initializeWorkflow();
+		}
+	});
 
 	// Get recent sessions for sidebar
-	$: {
+	$effect(() => {
 		recentSessions = Array.from($sessions.values())
 			.filter((session) => session.messages.length > 0)
 			.sort((a, b) => b.updatedAt - a.updatedAt)
 			.slice(0, 10);
-	}
+	});
 
 	async function initializeWorkflow() {
 		// Try to load existing state from localStorage
@@ -116,8 +117,7 @@
 	let selectedFileObj: File | null = null;
 
 	// Handle file upload
-	async function handleFileSelected(event: CustomEvent<File>) {
-		const file = event.detail;
+	async function handleFileSelected(file: File) {
 		selectedFileObj = file;
 		workflowStore.setFile({
 			name: file.name,
@@ -161,10 +161,10 @@
 			if (selectedFileObj) {
 				fileToUpload = selectedFileObj;
 			} else {
-				const response = await fetch(state.file.url!);
+				const response = await fetch(state!.file!.url!);
 				const blob = await response.blob();
-				fileToUpload = new File([blob], state.file!.name, {
-					type: state.file!.type,
+				fileToUpload = new File([blob], state!.file!.name, {
+					type: state!.file!.type,
 				});
 			}
 
@@ -346,9 +346,9 @@
 
 	// Handle actual export to Confluence
 	async function handleExportToConfluence(
-		event: CustomEvent<{ spaceId: string; parentPageId: string }>,
+		data: { spaceId: string; parentPageId: string },
 	) {
-		const { spaceId, parentPageId } = event.detail;
+		const { spaceId, parentPageId } = data;
 		isExporting = true;
 		try {
 			const state = $currentWorkflow;
@@ -397,9 +397,9 @@
 
 	// Handle Nora action - navigate to chat with protocol loaded as context
 	function handleNoraAction(
-		event: CustomEvent<{ type: "email" | "status" | "chat" }>,
+		data: { type: "email" | "status" | "chat" },
 	) {
-		const actionType = event.detail.type;
+		const actionType = data.type;
 		workflowStore.setPostAction(actionType as any);
 		goto(
 			`/chat?context=meeting-protocol&jobId=${jobId}&action=${actionType}`,
@@ -407,8 +407,8 @@
 	}
 
 	// Handle post-action selection
-	function handlePostActionSelected(event: CustomEvent<string>) {
-		workflowStore.setPostAction(event.detail as any);
+	function handlePostActionSelected(action: string) {
+		workflowStore.setPostAction(action as any);
 		workflowStore.setStep(9);
 	}
 
@@ -422,13 +422,13 @@
 		goto("/chat");
 	}
 
-	function handleSelectSession(event: CustomEvent<string>) {
-		goto(`/chat/${event.detail}`);
+	function handleSelectSession(sessionId: string) {
+		goto(`/chat/${sessionId}`);
 	}
 
 	// Handle regenerating state from TemplateReview
-	function handleRegenerating(event: CustomEvent<boolean>) {
-		isRegenerating = event.detail;
+	function handleRegenerating(value: boolean) {
+		isRegenerating = value;
 
 		if (isRegenerating) {
 			// Start progressive message cycle
@@ -459,11 +459,9 @@
 </svelte:head>
 
 <NoraLayout
-	sessions={recentSessions}
 	currentSessionId={null}
-	forceCollapsed={$currentWorkflow?.currentStep === 7 ? true : null}
-	on:newChat={handleNewChat}
-	on:selectSession={handleSelectSession}
+	onnewChat={handleNewChat}
+	onselectSession={handleSelectSession}
 >
 	<!-- Workflow Content - matching chat container width -->
 	<div
@@ -486,7 +484,7 @@
 					<line x1="12" y1="16" x2="12.01" y2="16" />
 				</svg>
 				<span>{error}</span>
-				<button on:click={() => (error = null)}>
+				<button onclick={() => (error = null)}>
 					<svg
 						viewBox="0 0 24 24"
 						fill="none"
@@ -507,11 +505,7 @@
 				<!-- Message header with avatar -->
 				<div class="message-header">
 					<div class="message-avatar">
-						<svg viewBox="0 0 24 24" fill="currentColor">
-							<path
-								d="M6 4v16h2.5v-9.5L15 18.5V20h2.5V4H15v9.5L8.5 5.5V4H6z"
-							/>
-						</svg>
+						<img src="/favicon.png" alt="Nora" class="avatar-img" />
 					</div>
 					<span class="message-name">Nora</span>
 					{#if step < 9}
@@ -531,8 +525,9 @@
 						<UploadAndConfigure
 							file={$currentWorkflow.file}
 							{jobId}
-							on:fileSelected={handleFileSelected}
-							on:start={handleStartProcessing}
+							onFileSelected={handleFileSelected}
+							onStart={handleStartProcessing}
+							onBack={() => goto('/chat')}
 						/>
 
 						<!-- Step 5: Processing -->
@@ -542,8 +537,8 @@
 							demo={!useStreamingApi}
 							processingComplete={$currentWorkflow.processingComplete ||
 								false}
-							on:exit={handleProcessingExit}
-							on:next={handleProcessingNext}
+							onExit={handleProcessingExit}
+							onNext={handleProcessingNext}
 						/>
 
 						<!-- Step 6: Speaker Verification -->
@@ -551,8 +546,8 @@
 						<SpeakerVerification
 							speakers={$currentWorkflow.speakers}
 							file={$currentWorkflow.file}
-							on:confirmed={handleSpeakersConfirmed}
-							on:back={() => workflowStore.setStep(5)}
+							onconfirmed={handleSpeakersConfirmed}
+							onback={() => workflowStore.setStep(5)}
 						/>
 
 						<!-- Step 7: Protocol Review with Template Selection -->
@@ -560,9 +555,9 @@
 						<TemplateReview
 							protocol={$currentWorkflow.protocol}
 							{jobId}
-							on:saveAndContinue={handleProtocolSaveAndContinue}
-							on:back={() => workflowStore.setStep(6)}
-							on:regenerating={handleRegenerating}
+							onSaveAndContinue={handleProtocolSaveAndContinue}
+							onBack={() => workflowStore.setStep(6)}
+							onRegenerating={handleRegenerating}
 						/>
 
 						<!-- Step 8: Export Confirmation -->
@@ -570,18 +565,18 @@
 						<ExportConfirmation
 							protocol={$currentWorkflow.protocol}
 							{isExporting}
-							on:export={handleExportToConfluence}
-							on:exportPdf={handleExportPdf}
-							on:back={handleBackToEdit}
-							on:noraAction={handleNoraAction}
+							onExport={handleExportToConfluence}
+							onExportPdf={handleExportPdf}
+							onBack={handleBackToEdit}
+							onNoraAction={handleNoraAction}
 						/>
 
 						<!-- Step 9: Success -->
 					{:else if step === 9}
 						<SuccessScreen
 							confluenceUrl={$currentWorkflow.confluenceUrl}
-							on:actionSelected={handlePostActionSelected}
-							on:complete={handleComplete}
+							onActionSelected={handlePostActionSelected}
+							onComplete={handleComplete}
 						/>
 					{/if}
 				</div>
@@ -704,45 +699,41 @@
 		height: 16px;
 	}
 
-	/* Action card - exact match to answer-card from chat */
+	/* Action card - clean, borderless like chat messages */
 	.action-card {
-		background: var(--white, #ffffff);
-		border: 1px solid var(--slate-200, #e2e8f0);
-		border-radius: 12px;
+		background: transparent;
 		padding: 20px 24px;
-		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 	}
 
 	/* Message header with avatar */
 	.message-header {
 		display: flex;
 		align-items: center;
-		gap: 8px;
-		padding-bottom: 12px;
+		gap: 10px;
 		margin-bottom: 16px;
-		border-bottom: 1px solid var(--slate-100, #f1f5f9);
 	}
 
 	.message-avatar {
 		width: 28px;
 		height: 28px;
 		border-radius: 50%;
-		background: var(--deep-blue, #1e3a5f);
-		color: white;
+		background: transparent;
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		flex-shrink: 0;
 	}
 
-	.message-avatar svg {
-		width: 14px;
-		height: 14px;
+	.avatar-img {
+		width: 28px;
+		height: 28px;
+		object-fit: contain;
 	}
 
 	.message-name {
-		font-size: 13px;
+		font-size: 17px;
 		font-weight: 600;
-		color: var(--slate-900, #0f172a);
+		color: #111827;
 	}
 
 	/* Header progress indicator - positioned on the right */
@@ -752,7 +743,7 @@
 
 	/* Nora's greeting message */
 	.nora-greeting {
-		font-size: 15px;
+		font-size: 17px;
 		color: var(--slate-700, #334155);
 		line-height: 1.6;
 		margin: 0 0 20px 0;

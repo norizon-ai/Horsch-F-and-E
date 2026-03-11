@@ -1,13 +1,20 @@
 <script lang="ts">
 	import type { Message } from "$types";
 	import { marked } from "marked";
-	import { filterMarkdownSections } from "$utils";
 
-	export let message: Message;
-	export let showExportOptions = false;
-	export let onExportPDF: (() => void) | undefined = undefined;
-	export let onExportWord: (() => void) | undefined = undefined;
-	export let onExportSharepoint: (() => void) | undefined = undefined;
+	let {
+		message,
+		showExportOptions = false,
+		onExportPDF = undefined,
+		onExportWord = undefined,
+		onExportSharepoint = undefined,
+	}: {
+		message: Message;
+		showExportOptions?: boolean;
+		onExportPDF?: (() => void) | undefined;
+		onExportWord?: (() => void) | undefined;
+		onExportSharepoint?: (() => void) | undefined;
+	} = $props();
 
 	// Configure marked for safe rendering
 	marked.setOptions({
@@ -15,10 +22,8 @@
 		gfm: true,
 	});
 
-	// Filter out unwanted sections before rendering
-	$: filteredContent = filterMarkdownSections(message.content || "");
-	$: renderedContent = marked(filteredContent);
-	$: isUser = message.role === "user";
+	let renderedContent = $derived(marked(message.content || ""));
+	let isUser = $derived(message.role === "user");
 </script>
 
 <div class="chat-message w-full py-6 px-4">
@@ -157,14 +162,14 @@
 				{#if !isUser && !message.isStreaming && showExportOptions}
 					<div class="mt-4 pl-2">
 						<div
-							class="flex flex-wrap items-center gap-3 p-4 bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl border border-gray-200"
+							class="flex flex-wrap items-center gap-3 p-4 bg-gray-50 rounded-xl border border-gray-200"
 						>
 							<span class="text-sm font-medium text-gray-700"
 								>Share it with your colleagues:</span
 							>
 							<div class="flex gap-2">
 								<button
-									on:click={() => onExportPDF?.()}
+									onclick={() => onExportPDF?.()}
 									class="flex items-center gap-2 px-3 py-2 bg-white hover:bg-norizon-blue hover:text-white rounded-lg transition-all text-sm font-medium text-gray-700 border border-gray-200 hover:border-norizon-blue shadow-sm"
 								>
 									<svg
@@ -183,7 +188,7 @@
 									PDF
 								</button>
 								<button
-									on:click={() => onExportWord?.()}
+									onclick={() => onExportWord?.()}
 									class="flex items-center gap-2 px-3 py-2 bg-white hover:bg-norizon-orange hover:text-white rounded-lg transition-all text-sm font-medium text-gray-700 border border-gray-200 hover:border-norizon-orange shadow-sm"
 								>
 									<svg
@@ -202,7 +207,7 @@
 									Word
 								</button>
 								<button
-									on:click={() => onExportSharepoint?.()}
+									onclick={() => onExportSharepoint?.()}
 									class="flex items-center gap-2 px-3 py-2 bg-white hover:bg-green-600 hover:text-white rounded-lg transition-all text-sm font-medium text-gray-700 border border-gray-200 hover:border-green-600 shadow-sm"
 								>
 									<svg

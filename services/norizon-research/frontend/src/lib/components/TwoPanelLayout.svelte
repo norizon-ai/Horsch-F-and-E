@@ -3,14 +3,18 @@
 	import { onMount } from "svelte";
 	import { showSources } from "$stores/chatStore";
 
-	export let leftPanelTitle = "Sources";
-	export let appTitle = "Nora";
+	let {
+		leftPanelTitle = "Sources",
+		appTitle = "Nora",
+		children,
+		navCenter,
+		navActions,
+		leftPanel,
+	} = $props();
 
-	// Mobile drawer state
-	let leftDrawerOpen = false;
-	let isMobile = false;
+	let leftDrawerOpen = $state(false);
+	let isMobile = $state(false);
 
-	// Detect mobile viewport
 	onMount(() => {
 		const checkMobile = () => {
 			isMobile = window.innerWidth < 768;
@@ -20,23 +24,19 @@
 		return () => window.removeEventListener("resize", checkMobile);
 	});
 
-	// Close drawer
 	function closeDrawer() {
 		leftDrawerOpen = false;
 	}
 
-	// Navigate to home
 	function handleHomeClick() {
 		goto("/");
 	}
 
-	// Toggle sources panel (desktop)
 	function toggleSources() {
 		showSources.update((v) => !v);
 	}
 
-	// Prevent body scroll when drawer is open
-	$: {
+	$effect(() => {
 		if (typeof document !== "undefined") {
 			if (leftDrawerOpen) {
 				document.body.style.overflow = "hidden";
@@ -44,17 +44,17 @@
 				document.body.style.overflow = "";
 			}
 		}
-	}
+	});
 </script>
 
 <!-- Animated Background -->
 <div
-	class="fixed inset-0 -z-10 overflow-hidden bg-gradient-to-br from-white via-norizon-gray-50 to-norizon-blue/5"
+	class="fixed inset-0 -z-10 overflow-hidden bg-gradient-to-br from-white via-slate-50 to-blue-50/30"
 >
 	<div class="absolute inset-0 opacity-30">
 		{#each Array(50) as _, i}
 			<div
-				class="absolute w-1 h-1 bg-norizon-blue rounded-full animate-float"
+				class="absolute w-1 h-1 bg-blue-600 rounded-full animate-float"
 				style="
 					left: {Math.random() * 100}%;
 					top: {Math.random() * 100}%;
@@ -72,10 +72,9 @@
 		class="bg-white/80 backdrop-blur-md border-b border-gray-200/50 px-4 md:px-6 py-3 md:py-4 flex items-center justify-between shadow-sm"
 	>
 		<div class="flex items-center space-x-2 md:space-x-4">
-			<!-- Desktop: Toggle Sources (moved to left) -->
 			{#if !isMobile}
 				<button
-					on:click={toggleSources}
+					onclick={toggleSources}
 					class="p-2 hover:bg-gray-100 rounded-lg transition-colors"
 					title="Toggle Sources"
 				>
@@ -95,7 +94,7 @@
 				</button>
 			{/if}
 			<button
-				on:click={handleHomeClick}
+				onclick={handleHomeClick}
 				class="flex items-center space-x-3 md:space-x-4 hover:opacity-80 transition-opacity"
 			>
 				<img
@@ -103,39 +102,31 @@
 					alt="Nora Logo"
 					class="h-6 md:h-8 w-6 md:w-8 object-contain"
 				/>
-				<span
-					class="text-xl md:text-2xl font-bold"
-					style="color: #1e3a8a;">{appTitle}</span
+				<span class="text-xl md:text-2xl font-bold" style="color: #1e3a8a;"
+					>{appTitle}</span
 				>
 			</button>
 		</div>
 
-		<!-- Center -->
-		<div
-			class="flex items-center space-x-2 md:space-x-4 text-sm md:text-base"
-		>
-			<slot name="navCenter" />
+		<div class="flex items-center space-x-2 md:space-x-4 text-sm md:text-base">
+			{@render navCenter?.()}
 		</div>
 
-		<!-- Actions -->
 		<div class="flex items-center space-x-2 md:space-x-3">
-			<slot name="navActions" />
+			{@render navActions?.()}
 		</div>
 	</nav>
 
 	<!-- 2-Panel Layout -->
 	<div class="flex-1 flex overflow-hidden relative">
-		<!-- Left Panel: Sources (Desktop/Tablet) -->
 		{#if $showSources}
 			<aside
 				class="hidden md:block md:w-80 lg:w-96 bg-white border-r border-gray-200 overflow-y-auto"
 			>
 				<div class="p-4 md:p-6">
-					<h2
-						class="text-lg font-semibold text-gray-900 mb-4 flex items-center"
-					>
+					<h2 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
 						<svg
-							class="w-5 h-5 mr-2 text-norizon-orange"
+							class="w-5 h-5 mr-2 text-orange-500"
 							fill="none"
 							stroke="currentColor"
 							viewBox="0 0 24 24"
@@ -149,35 +140,29 @@
 						</svg>
 						{leftPanelTitle}
 					</h2>
-					<slot name="leftPanel" />
+					{@render leftPanel?.()}
 				</div>
 			</aside>
 
-			<!-- Left Panel: Mobile Drawer -->
 			{#if leftDrawerOpen}
 				<div class="md:hidden fixed inset-0 z-50">
-					<!-- Backdrop -->
 					<div
 						class="absolute inset-0 bg-black/50 backdrop-blur-sm"
-						on:click={closeDrawer}
-						on:keydown={(e) => e.key === "Escape" && closeDrawer()}
+						onclick={closeDrawer}
+						onkeydown={(e) => e.key === "Escape" && closeDrawer()}
 						role="button"
 						tabindex="-1"
 						aria-label="Close drawer"
 					></div>
 
-					<!-- Drawer -->
 					<aside
 						class="absolute left-0 top-0 bottom-0 w-full bg-white shadow-2xl overflow-y-auto transform transition-transform duration-300 ease-in-out"
 					>
 						<div class="p-4">
-							<!-- Close button -->
 							<div class="flex items-center justify-between mb-4">
-								<h2
-									class="text-lg font-semibold text-gray-900 flex items-center"
-								>
+								<h2 class="text-lg font-semibold text-gray-900 flex items-center">
 									<svg
-										class="w-5 h-5 mr-2 text-norizon-orange"
+										class="w-5 h-5 mr-2 text-orange-500"
 										fill="none"
 										stroke="currentColor"
 										viewBox="0 0 24 24"
@@ -192,7 +177,7 @@
 									{leftPanelTitle}
 								</h2>
 								<button
-									on:click={closeDrawer}
+									onclick={closeDrawer}
 									class="p-2 hover:bg-gray-100 rounded-lg transition-colors"
 									aria-label="Close drawer"
 								>
@@ -211,30 +196,29 @@
 									</svg>
 								</button>
 							</div>
-							<slot name="leftPanel" />
+							{@render leftPanel?.()}
 						</div>
 					</aside>
 				</div>
 			{/if}
 		{/if}
 
-		<!-- Right Panel: Main Chat -->
+		<!-- Main Content -->
 		<main class="flex-1 overflow-hidden bg-transparent">
-			<slot />
+			{@render children?.()}
 		</main>
 	</div>
 
 	<!-- Mobile Bottom Navigation -->
 	{#if isMobile}
 		<nav
-			class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-40 safe-area-inset-bottom"
+			class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-40"
 		>
 			<div class="flex justify-around items-center h-16">
-				<!-- Sources Button -->
 				<button
-					on:click={() => (leftDrawerOpen = !leftDrawerOpen)}
-					class="flex flex-col items-center justify-center flex-1 h-full hover:bg-gray-50 active:bg-gray-100 transition-colors"
-					class:text-norizon-orange={leftDrawerOpen}
+					onclick={() => (leftDrawerOpen = !leftDrawerOpen)}
+					class="flex flex-col items-center justify-center flex-1 h-full hover:bg-gray-50 transition-colors"
+					class:text-orange-500={leftDrawerOpen}
 					class:text-gray-600={!leftDrawerOpen}
 				>
 					<svg
@@ -253,10 +237,9 @@
 					<span class="text-xs font-medium">{leftPanelTitle}</span>
 				</button>
 
-				<!-- Home Button -->
 				<button
-					on:click={handleHomeClick}
-					class="flex flex-col items-center justify-center flex-1 h-full hover:bg-gray-50 active:bg-gray-100 transition-colors text-gray-600"
+					onclick={handleHomeClick}
+					class="flex flex-col items-center justify-center flex-1 h-full hover:bg-gray-50 transition-colors text-gray-600"
 				>
 					<svg
 						class="w-6 h-6 mb-1"
@@ -274,10 +257,9 @@
 					<span class="text-xs font-medium">Home</span>
 				</button>
 
-				<!-- New Chat Button -->
 				<button
-					on:click={() => goto("/chat")}
-					class="flex flex-col items-center justify-center flex-1 h-full hover:bg-gray-50 active:bg-gray-100 transition-colors text-norizon-blue"
+					onclick={() => goto("/chat")}
+					class="flex flex-col items-center justify-center flex-1 h-full hover:bg-gray-50 transition-colors text-blue-600"
 				>
 					<svg
 						class="w-6 h-6 mb-1"
@@ -305,8 +287,7 @@
 	}
 
 	@keyframes float {
-		0%,
-		100% {
+		0%, 100% {
 			transform: translateY(0px) translateX(0px);
 			opacity: 0.3;
 		}

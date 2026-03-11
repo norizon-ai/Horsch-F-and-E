@@ -42,7 +42,7 @@
 			</div>
 			<h2>{$t('workflow.meeting.error.title')}</h2>
 			<p>{error}</p>
-			<button class="btn-primary" on:click={() => goto('/chat')}>
+			<button class="btn-primary" onclick={() => goto('/chat')}>
 				{$t('workflow.meeting.error.backToChat')}
 			</button>
 		</div>
@@ -60,7 +60,7 @@
 		align-items: center;
 		justify-content: center;
 		min-height: 100vh;
-		background: var(--slate-50, #f8fafc);
+		background: #ffffff;
 	}
 
 	.spinner-container {

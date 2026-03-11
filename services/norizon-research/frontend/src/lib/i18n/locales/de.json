@@ -37,13 +37,20 @@
 		"waiting": "Ausstehend...",
 		"readItems": "{count} {type} durchsucht"
 	},
+	"auth": {
+		"logout": "Abmelden"
+	},
 	"chat": {
 		"new_chat": "Neuer Chat",
+		"search": "Suche",
+		"no_results": "Keine Ergebnisse",
 		"your_chats": "Ihre Chats",
 		"no_chats": "Noch keine Unterhaltungen",
 		"no_chats_hint": "Starten Sie eine neue Unterhaltung",
 		"continue_session": "Letzte Sitzung fortsetzen",
 		"delete_confirm": "Möchten Sie diese Sitzung wirklich löschen?",
+		"delete_confirm_title": "Chat löschen?",
+		"delete_confirm_desc": "Der Chat wird aus Ihrem Verlauf gelöscht. Diese Aktion kann nicht rückgängig gemacht werden.",
 		"today": "Heute",
 		"yesterday": "Gestern",
 		"last_week": "Letzte 7 Tage",
@@ -53,6 +60,10 @@
 			"send": "Zum Senden",
 			"newLine": "Für neue Zeile"
 		},
+		"rename": "Umbenennen",
+		"pin": "Anheften",
+		"unpin": "Lösen",
+		"pinned": "Angeheftet",
 		"context": {
 			"loaded": "Kontext geladen",
 			"summary": "Zusammenfassung",
@@ -61,6 +72,7 @@
 		}
 	},
 	"welcome": {
+		"greeting": "Hallo, {name}!",
 		"title": "Wie kann ich Ihnen helfen?",
 		"subtitle": "Stellen Sie mir eine Frage und ich durchsuche Ihre verbundenen Quellen nach umfassenden Antworten.",
 		"disclaimer": "Nora durchsucht verbundene Quellen. Quellenangaben bei kritischen Entscheidungen prüfen."

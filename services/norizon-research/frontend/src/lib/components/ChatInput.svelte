@@ -1,24 +1,23 @@
 <script lang="ts">
 	import { t } from "svelte-i18n";
-	import { createEventDispatcher } from "svelte";
-	import { Button } from "$lib/components/ui/button";
 
-	const dispatch = createEventDispatcher();
+	let {
+		disabled = false,
+		onSubmit = undefined as ((query: string) => void) | undefined,
+		onsubmit: onsubmitProp = undefined as ((query: string) => void) | undefined,
+	} = $props();
 
-	export let disabled = false;
-	export let onSubmit: ((query: string) => void) | undefined = undefined;
+	let input = $state("");
+	let textarea: HTMLTextAreaElement | undefined = $state(undefined);
 
-	let input = "";
-	let textarea: HTMLTextAreaElement;
-
-	$: placeholder = $t("search.placeholder");
-	$: hasContent = input.trim().length > 0;
+	let placeholder = $derived($t("search.placeholder") || "Frag Nora...");
+	let hasContent = $derived(input.trim().length > 0);
 
 	function handleSubmit() {
 		const trimmed = input.trim();
 		if (trimmed && !disabled) {
 			onSubmit?.(trimmed);
-			dispatch("submit", trimmed);
+			onsubmitProp?.(trimmed);
 			input = "";
 			if (textarea) {
 				textarea.style.height = "auto";
@@ -36,45 +35,129 @@
 	function autoResize() {
 		if (textarea) {
 			textarea.style.height = "auto";
-			textarea.style.height = Math.min(textarea.scrollHeight, 120) + "px";
+			textarea.style.height = Math.min(textarea.scrollHeight, 200) + "px";
 		}
 	}
 </script>
 
 <div
-	class="flex items-end gap-3 p-3 px-4 bg-white border border-gray-300 rounded-2xl shadow-md transition-[border-color,box-shadow] duration-150 focus-within:border-nora-orange-500 focus-within:ring-2 focus-within:ring-nora-orange-500/20 {disabled
-		? 'opacity-70'
-		: ''}"
+	class="input-wrapper"
+	class:disabled
 >
 	<textarea
 		bind:this={textarea}
 		bind:value={input}
-		on:input={autoResize}
-		on:keydown={handleKeydown}
+		oninput={autoResize}
+		onkeydown={handleKeydown}
 		{placeholder}
 		{disabled}
 		rows="1"
-		class="flex-1 border-0 bg-transparent text-[15px] font-[inherit] resize-none outline-none min-h-[24px] max-h-[120px] leading-normal text-nora-slate-900 placeholder:text-nora-slate-400 disabled:cursor-not-allowed"
+		class="input-field"
 	></textarea>
-	<Button
+	<button
 		type="button"
-		size="icon"
-		on:click={handleSubmit}
+		onclick={handleSubmit}
 		disabled={!hasContent || disabled}
-		class="shrink-0 h-9 w-9 rounded-[10px] {hasContent && !disabled
-			? 'bg-[#1e3a5f] text-white hover:bg-[#162d4a]'
-			: 'bg-slate-100 text-slate-400'}"
-		title={$t("common.send") || "Send"}
+		class="send-btn"
+		class:active={hasContent && !disabled}
+		title={$t("common.send") || "Senden"}
+		aria-label="Send"
 	>
 		<svg
-			class="h-[18px] w-[18px]"
 			viewBox="0 0 24 24"
 			fill="none"
 			stroke="currentColor"
-			stroke-width="2"
+			stroke-width="2.5"
+			stroke-linecap="round"
+			stroke-linejoin="round"
 		>
-			<line x1="22" y1="2" x2="11" y2="13" />
-			<polygon points="22 2 15 22 11 13 2 9 22 2" />
+			<line x1="12" y1="19" x2="12" y2="5" />
+			<polyline points="5 12 12 5 19 12" />
 		</svg>
-	</Button>
+	</button>
 </div>
+
+<style>
+	.input-wrapper {
+		display: flex;
+		align-items: center;
+		min-height: 52px;
+		padding: 8px 8px 8px 16px;
+		background: #ffffff;
+		border: 1.5px solid #e5e7eb;
+		border-radius: 24px;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+		transition:
+			border-color 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	.input-wrapper:focus-within {
+		border-color: #d1d5db;
+		box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+	}
+
+	.input-wrapper.disabled {
+		opacity: 0.65;
+	}
+
+	.input-field {
+		flex: 1;
+		border: none;
+		background: transparent;
+		font-size: 17px;
+		font-family: inherit;
+		resize: none;
+		outline: none;
+		min-height: 24px;
+		max-height: 200px;
+		line-height: 1.6;
+		color: #0f172a;
+		padding: 0;
+		overflow-y: auto;
+	}
+
+	.input-field::placeholder {
+		color: #9ca3af;
+	}
+
+	.input-field:disabled {
+		cursor: not-allowed;
+	}
+
+	.send-btn {
+		flex-shrink: 0;
+		width: 36px;
+		height: 36px;
+		border-radius: 50%;
+		border: none;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition:
+			background-color 0.15s ease,
+			color 0.15s ease;
+		margin-left: 8px;
+		background: #e5e7eb;
+		color: #9ca3af;
+	}
+
+	.send-btn.active {
+		background: #0f172a;
+		color: #ffffff;
+	}
+
+	.send-btn.active:hover {
+		background: #1e293b;
+	}
+
+	.send-btn:disabled {
+		cursor: not-allowed;
+	}
+
+	.send-btn svg {
+		width: 16px;
+		height: 16px;
+	}
+</style>

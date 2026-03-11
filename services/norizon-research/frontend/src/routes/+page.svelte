@@ -8,19 +8,21 @@
 	import { chatStore, currentSessionId } from "$stores/chatStore";
 	import { onMount } from "svelte";
 
-	let checkingAuth = true;
+	let checkingAuth = $state(true);
+
+	const exampleQueries = [
+		"Biegeradius Hydraulikrohr",
+		"Konstruktionsrichtlinien Spuranzeiger",
+		"Fertigungsverfahren Änderungen",
+		"Sicherheitsvorschriften Druckbehälter",
+	];
 
 	onMount(async () => {
-		// Wait for auth initialization to complete directly via Promise
 		await authStore.initialize();
-
-		// Check if user is already authenticated
 		const isAuth = await authStore.checkAuth();
-
 		checkingAuth = false;
 
 		if (isAuth) {
-			// Redirect authenticated users to chat
 			const sessionId = chatStore.createSession();
 			currentSessionId.set(sessionId);
 			goto(`/chat/${sessionId}`);
@@ -28,6 +30,10 @@
 	});
 
 	function handleGetStarted() {
+		authStore.login();
+	}
+
+	function handleQueryChip(query: string) {
 		authStore.login();
 	}
 </script>
@@ -38,18 +44,19 @@
 
 <div class="landing-container">
 	<div class="landing-content">
+		<!-- Logo -->
 		<div class="logo-section">
 			<img src="/norizon-logo.png" alt="Norizon" class="landing-logo" />
 		</div>
 
+		<!-- Hero -->
 		<div class="hero-section">
 			<h1 class="hero-title">
-				Ihr KI-gestützter<br />Wissensassistent
+				Frag Nora —<br />sie findet die Antwort.
 			</h1>
 			<p class="hero-description">
-				Greifen Sie sofort auf das Wissen Ihres Unternehmens zu – mit
-				intelligenter Suche,<br />
-				automatisierter Dokumentation und Workflow-Automatisierung.
+				Ihr KI-Assistent für das Unternehmenswissen. Durchsucht alle
+				verbundenen Quellen – SharePoint, Confluence, Jira und mehr.
 			</p>
 
 			{#if $authLoading || checkingAuth}
@@ -58,7 +65,7 @@
 					<p>Wird geladen...</p>
 				</div>
 			{:else}
-				<button on:click={handleGetStarted} class="cta-button">
+				<button onclick={handleGetStarted} class="cta-button">
 					Jetzt starten
 					<svg
 						width="20"
@@ -76,12 +83,27 @@
 						/>
 					</svg>
 				</button>
+
+				<!-- Example query chips -->
+				<div class="query-chips">
+					<p class="chips-label">Zum Beispiel:</p>
+					<div class="chips-row">
+						{#each exampleQueries as query}
+							<button
+								class="query-chip"
+								onclick={() => handleQueryChip(query)}
+							>
+								{query}
+							</button>
+						{/each}
+					</div>
+				</div>
 			{/if}
 		</div>
 	</div>
 
 	<div class="landing-footer">
-		<p>Powered by Norizon • Sicher • Enterprise-Ready</p>
+		<p>Powered by Norizon · Sicher · Enterprise-Ready · DSGVO-konform</p>
 	</div>
 </div>
 
@@ -90,9 +112,22 @@
 		min-height: 100vh;
 		display: flex;
 		flex-direction: column;
-		background: white;
+		background: #ffffff;
 		position: relative;
 		overflow: hidden;
+	}
+
+	/* Subtle background orb */
+	.landing-container::before {
+		content: "";
+		position: absolute;
+		top: -200px;
+		right: -200px;
+		width: 600px;
+		height: 600px;
+		background: radial-gradient(circle, rgba(249, 115, 22, 0.04) 0%, transparent 70%);
+		border-radius: 50%;
+		pointer-events: none;
 	}
 
 	.landing-content {
@@ -107,57 +142,62 @@
 	}
 
 	.logo-section {
-		margin-bottom: 48px;
+		margin-bottom: 56px;
 	}
 
 	.landing-logo {
-		height: 48px;
+		height: 52px;
 		width: auto;
 	}
 
 	.hero-section {
 		text-align: center;
-		max-width: 800px;
+		max-width: 680px;
 	}
 
 	.hero-title {
-		font-size: 56px;
-		font-weight: 700;
-		color: var(--deep-blue);
-		margin-bottom: 24px;
+		font-size: 44px;
+		font-weight: 600;
+		color: #111827;
+		margin-bottom: 16px;
 		line-height: 1.2;
+		letter-spacing: -0.025em;
 	}
 
 	.hero-description {
-		font-size: 18px;
-		color: var(--slate-600);
-		line-height: 1.7;
-		margin-bottom: 40px;
+		font-size: 16px;
+		color: #6b7280;
+		line-height: 1.6;
+		margin-bottom: 36px;
+		max-width: 480px;
+		margin-left: auto;
+		margin-right: auto;
 	}
 
 	.cta-button {
 		display: inline-flex;
 		align-items: center;
 		gap: 8px;
-		background: linear-gradient(
-			135deg,
-			var(--orange-500) 0%,
-			var(--orange-400) 100%
-		);
+		background: #0f172a;
 		color: white;
 		border: none;
-		padding: 16px 32px;
-		border-radius: var(--radius-md);
-		font-size: 16px;
+		padding: 14px 28px;
+		border-radius: 24px;
+		font-size: 15px;
 		font-weight: 600;
 		cursor: pointer;
-		transition: all 0.3s ease;
-		box-shadow: 0 4px 20px rgba(249, 115, 22, 0.3);
+		transition: all 0.2s ease;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+		margin-bottom: 36px;
 	}
 
 	.cta-button:hover {
-		transform: translateY(-2px);
-		box-shadow: 0 8px 30px rgba(249, 115, 22, 0.4);
+		background: #1e293b;
+		box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+	}
+
+	.cta-button:active {
+		transform: scale(0.98);
 	}
 
 	.loading-state {
@@ -165,14 +205,15 @@
 		flex-direction: column;
 		align-items: center;
 		gap: 16px;
-		color: var(--slate-600);
+		color: #64748b;
+		margin-bottom: 40px;
 	}
 
 	.spinner {
-		width: 40px;
-		height: 40px;
-		border: 3px solid var(--slate-200);
-		border-top-color: var(--orange-500);
+		width: 36px;
+		height: 36px;
+		border: 2px solid #e2e8f0;
+		border-top-color: #f97316;
 		border-radius: 50%;
 		animation: spin 0.8s linear infinite;
 	}
@@ -183,23 +224,62 @@
 		}
 	}
 
+	.query-chips {
+		text-align: center;
+	}
+
+	.chips-label {
+		font-size: 13px;
+		color: #94a3b8;
+		margin-bottom: 12px;
+	}
+
+	.chips-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		justify-content: center;
+	}
+
+	.query-chip {
+		display: inline-block;
+		padding: 10px 18px;
+		background: #f9fafb;
+		border: 1px solid #e5e7eb;
+		border-radius: 20px;
+		font-size: 13px;
+		color: #374151;
+		cursor: pointer;
+		transition: all 0.15s ease;
+		font-family: inherit;
+	}
+
+	.query-chip:hover {
+		background: #f3f4f6;
+		border-color: #d1d5db;
+		color: #111827;
+	}
+
 	.landing-footer {
 		padding: 24px;
 		text-align: center;
-		color: var(--slate-500);
-		font-size: 14px;
+		color: #9ca3af;
+		font-size: 12px;
 		position: relative;
 		z-index: 1;
 	}
 
-	/* Responsive */
-	@media (max-width: 768px) {
+	@media (max-width: 640px) {
 		.hero-title {
-			font-size: 36px;
+			font-size: 34px;
 		}
 
 		.hero-description {
-			font-size: 16px;
+			font-size: 15px;
+		}
+
+		.chips-row {
+			gap: 6px;
 		}
 	}
 </style>

@@ -1,17 +1,20 @@
 <script lang="ts">
-	import { onMount, createEventDispatcher } from "svelte";
+	import { onMount } from "svelte";
 	import { t } from "svelte-i18n";
 	import type { PostAction } from "$lib/types";
 
-	export let confluenceUrl: string | undefined = undefined;
-	export let onActionSelected: ((action: PostAction) => void) | undefined =
-		undefined;
-	export let onComplete: (() => void) | undefined = undefined;
+	let {
+		confluenceUrl = undefined,
+		onActionSelected = undefined,
+		onComplete = undefined,
+	}: {
+		confluenceUrl?: string | undefined;
+		onActionSelected?: ((action: PostAction) => void) | undefined;
+		onComplete?: (() => void) | undefined;
+	} = $props();
 
-	const dispatch = createEventDispatcher();
-
-	let showContent = false;
-	let showMoreActions = false;
+	let showContent = $state(false);
+	let showMoreActions = $state(false);
 
 	onMount(() => {
 		// Animate content appearance after checkmark
@@ -64,7 +67,6 @@
 
 	function selectAction(actionId: PostAction) {
 		onActionSelected?.(actionId);
-		dispatch("actionSelected", actionId);
 	}
 </script>
 
@@ -137,7 +139,7 @@
 			{#each primaryActions as action}
 				<button
 					class="action-card"
-					on:click={() => selectAction(action.id)}
+					onclick={() => selectAction(action.id)}
 				>
 					<div class="action-icon">
 						{#if action.icon === "mail"}
@@ -186,7 +188,7 @@
 		<!-- Expandable secondary actions -->
 		<button
 			class="more-actions-toggle"
-			on:click={() => (showMoreActions = !showMoreActions)}
+			onclick={() => (showMoreActions = !showMoreActions)}
 		>
 			<span>{$t("workflow.meeting.success.moreActions")}</span>
 			<svg
@@ -205,7 +207,7 @@
 				{#each secondaryActions as action}
 					<button
 						class="action-card secondary"
-						on:click={() => selectAction(action.id)}
+						onclick={() => selectAction(action.id)}
 					>
 						<div class="action-icon">
 							{#if action.icon === "calendar"}
@@ -265,9 +267,8 @@
 
 		<button
 			class="done-btn"
-			on:click={() => {
+			onclick={() => {
 				onComplete?.();
-				dispatch("complete");
 			}}
 		>
 			{$t("workflow.meeting.success.done")}

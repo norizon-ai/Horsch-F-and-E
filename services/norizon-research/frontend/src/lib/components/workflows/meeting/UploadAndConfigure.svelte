@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount, createEventDispatcher } from "svelte";
+	import { onMount } from "svelte";
 	import { t } from "svelte-i18n";
 	import { fly, slide, fade } from "svelte/transition";
 	import {
@@ -14,30 +14,37 @@
 	import type { WorkflowFile } from "$lib/types";
 	import TeamsImport from "./TeamsImport.svelte";
 
-	export let file: WorkflowFile | null = null;
-	export let userName = "Current User";
-	export let jobId = "";
-	export let onFileSelected: ((file: File) => void) | undefined = undefined;
-	export let onStart: (() => void) | undefined = undefined;
-	export let onBack: (() => void) | undefined = undefined;
-
-	const dispatch = createEventDispatcher();
+	let {
+		file = null,
+		userName = "Current User",
+		jobId = "",
+		onFileSelected = undefined,
+		onStart = undefined,
+		onBack = undefined,
+	}: {
+		file?: WorkflowFile | null;
+		userName?: string;
+		jobId?: string;
+		onFileSelected?: ((file: File) => void) | undefined;
+		onStart?: (() => void) | undefined;
+		onBack?: (() => void) | undefined;
+	} = $props();
 
 	// Source selection
 	type SourceTab = "upload" | "teams";
-	let sourceTab: SourceTab = "upload";
+	let sourceTab: SourceTab = $state("upload");
 
 	// Upload state
-	let isDragging = false;
-	let uploadError: string | null = null;
-	let fileInput: HTMLInputElement = null as unknown as HTMLInputElement;
-	let activeTutorial: "teams" | "iphone" = "teams";
-	let bestPracticesExpanded = false;
-	let helpExpanded = false;
-	let showUploadTooltip = false;
+	let isDragging = $state(false);
+	let uploadError: string | null = $state(null);
+	let fileInput: HTMLInputElement = $state(null as unknown as HTMLInputElement);
+	let activeTutorial: "teams" | "iphone" = $state("teams");
+	let bestPracticesExpanded = $state(false);
+	let helpExpanded = $state(false);
+	let showUploadTooltip = $state(false);
 
 	// Issue 2 Fix: Back button confirmation dialog
-	let showBackConfirmDialog = false;
+	let showBackConfirmDialog = $state(false);
 
 	function handleDisabledAdvance() {
 		showUploadTooltip = true;
@@ -54,7 +61,6 @@
 	function confirmBackAction() {
 		showBackConfirmDialog = false;
 		onBack?.();
-		dispatch("back", undefined);
 	}
 
 	function cancelBackAction() {
@@ -62,41 +68,42 @@
 	}
 
 	// Metadata fields (pre-flight context for AI)
-	let meetingTitle = "";
-	let meetingDate = new Date().toISOString().split("T")[0];
+	let meetingTitle = $state("");
+	let meetingDate = $state(new Date().toISOString().split("T")[0]);
 
 	// Auto-populate meeting title and date from file
-	$: if (file && !meetingTitle) {
-		// Extract title from filename, remove extension and clean up
-		meetingTitle = file.name
-			.replace(/\.[^/.]+$/, "")
-			.replace(/[-_]/g, " ")
-			.replace(/\b\w/g, (c) => c.toUpperCase());
-	}
-
-	$: if (file && file.lastModified) {
-		// Set date from file's last modified
-		const fileDate = new Date(file.lastModified);
-		meetingDate = fileDate.toISOString().split("T")[0];
-	}
+	$effect(() => {
+		if (file && !meetingTitle) {
+			// Extract title from filename, remove extension and clean up
+			meetingTitle = file.name
+				.replace(/\.[^/.]+$/, "")
+				.replace(/[-_]/g, " ")
+				.replace(/\b\w/g, (c) => c.toUpperCase());
+		}
+		if (file && file.lastModified) {
+			// Set date from file's last modified
+			const fileDate = new Date(file.lastModified);
+			meetingDate = fileDate.toISOString().split("T")[0];
+		}
+	});
 
 	// Processing options
 	type LanguageOption = "auto" | "de" | "en";
-	let selectedLanguage: LanguageOption = "auto";
+	let selectedLanguage: LanguageOption = $state("auto");
 
 	// Destination selection (moved from ExportConfirmation)
-	let selectedSpace = "";
-	let selectedParentPage = "";
-	let spaceSearchQuery = "";
-	let parentPageSearchQuery = "";
-	let isSpaceDropdownOpen = false;
-	let isParentPageDropdownOpen = false;
+	let selectedSpace = $state("");
+	let selectedParentPage = $state("");
+	let spaceSearchQuery = $state("");
+	let parentPageSearchQuery = $state("");
+	let isSpaceDropdownOpen = $state(false);
+	let isParentPageDropdownOpen = $state(false);
 
 	// Confluence data from API
-	let confluenceSpaces: ConfluenceSpace[] = [];
-	let availableParentPages: ConfluencePage[] = [];
-	let isLoadingSpaces = true;
-	let isLoadingPages = false;
+	let confluenceSpaces: ConfluenceSpace[] = $state([]);
+	let availableParentPages: ConfluencePage[] = $state([]);
+	let isLoadingSpaces = $state(true);
+	let isLoadingPages = $state(false);
 
 	// Load Confluence spaces on mount
 	onMount(async () => {
@@ -124,19 +131,20 @@
 		}
 	}
 
-	$: filteredSpaces = confluenceSpaces.filter((s) =>
+	let filteredSpaces = $derived(confluenceSpaces.filter((s) =>
 		s.name.toLowerCase().includes(spaceSearchQuery.toLowerCase()),
-	);
+	));
 
-	$: filteredParentPages = availableParentPages.filter((p) =>
+	let filteredParentPages = $derived(availableParentPages.filter((p) =>
 		p.title.toLowerCase().includes(parentPageSearchQuery.toLowerCase()),
-	);
+	));
 
-	$: selectedSpaceName =
-		confluenceSpaces.find((s) => s.id === selectedSpace)?.name || "";
-	$: selectedParentPageName =
-		availableParentPages.find((p) => p.id === selectedParentPage)?.title ||
-		"";
+	let selectedSpaceName = $derived(
+		confluenceSpaces.find((s) => s.id === selectedSpace)?.name || ""
+	);
+	let selectedParentPageName = $derived(
+		availableParentPages.find((p) => p.id === selectedParentPage)?.title || ""
+	);
 
 	function selectSpace(space: ConfluenceSpace) {
 		selectedSpace = space.id;
@@ -172,14 +180,16 @@
 	const MAX_FILE_SIZE = 500 * 1024 * 1024; // 500MB
 
 	// Estimate processing time based on file size (rough: 1 min per 10MB)
-	$: estimatedMinutes = file
+	let estimatedMinutes = $derived(file
 		? Math.max(2, Math.ceil(file.size / (10 * 1024 * 1024)))
-		: 3;
+		: 3);
 
 	let uploadedAt: Date | null = null;
-	$: if (file && !uploadedAt) {
-		uploadedAt = new Date();
-	}
+	$effect(() => {
+		if (file && !uploadedAt) {
+			uploadedAt = new Date();
+		}
+	});
 
 	// Drag and drop handlers
 	function handleDragEnter(e: DragEvent) {
@@ -234,7 +244,6 @@
 		helpExpanded = false;
 
 		onFileSelected?.(selectedFile);
-		dispatch("fileSelected", selectedFile);
 	}
 
 	function openFilePicker() {
@@ -245,7 +254,6 @@
 		uploadedAt = null;
 		// Parent will handle clearing the file
 		onFileSelected?.(null as unknown as File);
-		dispatch("fileSelected", null as unknown as File);
 	}
 
 	function handleTeamsImported(data: {
@@ -264,7 +272,6 @@
 		if (data.meetingTitle) meetingTitle = data.meetingTitle;
 		if (data.meetingDate) meetingDate = data.meetingDate;
 		onFileSelected?.(syntheticFile);
-		dispatch("fileSelected", syntheticFile);
 	}
 
 	function formatUploadTime(date: Date | null): string {
@@ -289,7 +296,6 @@
 
 	function handleStart() {
 		onStart?.();
-		dispatch("start", undefined);
 	}
 </script>
 
@@ -328,7 +334,7 @@
 			<button
 				class="source-tab"
 				class:active={sourceTab === "teams"}
-				on:click={() => (sourceTab = "teams")}
+				onclick={() => (sourceTab = "teams")}
 			>
 				<!-- Task 3: Microsoft Teams logo -->
 				<svg
@@ -382,7 +388,7 @@
 			<button
 				class="source-tab"
 				class:active={sourceTab === "upload"}
-				on:click={() => (sourceTab = "upload")}
+				onclick={() => (sourceTab = "upload")}
 			>
 				<svg
 					viewBox="0 0 24 24"
@@ -409,19 +415,19 @@
 				class:error={!!uploadError}
 				role="button"
 				tabindex="0"
-				on:dragenter={handleDragEnter}
-				on:dragleave={handleDragLeave}
-				on:dragover={handleDragOver}
-				on:drop={handleDrop}
-				on:click={openFilePicker}
-				on:keypress={(e) => e.key === "Enter" && openFilePicker()}
+				ondragenter={handleDragEnter}
+				ondragleave={handleDragLeave}
+				ondragover={handleDragOver}
+				ondrop={handleDrop}
+				onclick={openFilePicker}
+				onkeypress={(e) => e.key === "Enter" && openFilePicker()}
 				in:fade={{ duration: 200 }}
 			>
 				<input
 					bind:this={fileInput}
 					type="file"
 					accept={ACCEPTED_TYPES}
-					on:change={handleFileInput}
+					onchange={handleFileInput}
 					hidden
 				/>
 
@@ -492,7 +498,7 @@
 						<span>Audio</span>
 					{/if}
 				</div>
-				<button class="replace-btn" on:click={openFilePicker}>
+				<button class="replace-btn" onclick={openFilePicker}>
 					<svg
 						viewBox="0 0 24 24"
 						fill="none"
@@ -509,7 +515,7 @@
 					bind:this={fileInput}
 					type="file"
 					accept={ACCEPTED_TYPES}
-					on:change={handleFileInput}
+					onchange={handleFileInput}
 					hidden
 				/>
 			</div>
@@ -657,7 +663,7 @@
 			<!-- Task 9: Moved "Save to my personal space" below shared space options -->
 			<div
 				class="destination-section"
-				on:click={handleDestinationClickOutside}
+				onclick={handleDestinationClickOutside}
 			>
 				<div class="section-header">
 					<svg
@@ -680,7 +686,7 @@
 						<button
 							class="dest-dropdown-trigger"
 							class:has-value={selectedSpace}
-							on:click={(e) => {
+							onclick={(e) => {
 								e.stopPropagation();
 								isSpaceDropdownOpen = !isSpaceDropdownOpen;
 								isParentPageDropdownOpen = false;
@@ -719,7 +725,7 @@
 										"workflow.meeting.export.searchSpaces",
 									)}
 									bind:value={spaceSearchQuery}
-									on:click={(e) => e.stopPropagation()}
+									onclick={(e) => e.stopPropagation()}
 								/>
 								<div class="dest-dropdown-options">
 									{#each filteredSpaces as space}
@@ -727,7 +733,7 @@
 											class="dest-dropdown-option"
 											class:selected={selectedSpace ===
 												space.id}
-											on:click={(e) => {
+											onclick={(e) => {
 												e.stopPropagation();
 												selectSpace(space);
 											}}
@@ -754,7 +760,7 @@
 							class:has-value={selectedParentPage}
 							class:disabled={!selectedSpace}
 							disabled={!selectedSpace}
-							on:click={(e) => {
+							onclick={(e) => {
 								e.stopPropagation();
 								if (selectedSpace) {
 									isParentPageDropdownOpen =
@@ -800,7 +806,7 @@
 										"workflow.meeting.export.searchPages",
 									)}
 									bind:value={parentPageSearchQuery}
-									on:click={(e) => e.stopPropagation()}
+									onclick={(e) => e.stopPropagation()}
 								/>
 								<div class="dest-dropdown-options">
 									{#each filteredParentPages as page}
@@ -808,7 +814,7 @@
 											class="dest-dropdown-option"
 											class:selected={selectedParentPage ===
 												page.id}
-											on:click={(e) => {
+											onclick={(e) => {
 												e.stopPropagation();
 												selectParentPage(page.id);
 											}}
@@ -859,7 +865,7 @@
 				<button
 					class="personal-space-btn"
 					class:selected={selectedSpace === "PERSONAL"}
-					on:click={() => {
+					onclick={() => {
 						selectedSpace = "PERSONAL";
 						selectedParentPage = "meetings";
 						saveDestination();
@@ -880,7 +886,7 @@
 
 			<!-- Footer Actions -->
 			<div class="workflow-footer">
-				<button class="btn-secondary" on:click={handleBackClick}>
+				<button class="btn-secondary" onclick={handleBackClick}>
 					<svg
 						viewBox="0 0 24 24"
 						fill="none"
@@ -907,7 +913,7 @@
 							values: { minutes: estimatedMinutes },
 						})}
 					</span>
-					<button class="btn-primary" on:click={handleStart}>
+					<button class="btn-primary" onclick={handleStart}>
 						{$t("workflow.meeting.confirm.startButton")}
 						<svg
 							viewBox="0 0 24 24"
@@ -929,7 +935,7 @@
 			<button
 				class="help-trigger"
 				class:expanded={bestPracticesExpanded}
-				on:click={() =>
+				onclick={() =>
 					(bestPracticesExpanded = !bestPracticesExpanded)}
 			>
 				<svg
@@ -1082,7 +1088,7 @@
 			<button
 				class="help-trigger"
 				class:expanded={helpExpanded}
-				on:click={() => (helpExpanded = !helpExpanded)}
+				onclick={() => (helpExpanded = !helpExpanded)}
 			>
 				<svg
 					class="help-icon"
@@ -1114,7 +1120,7 @@
 						<button
 							class="tutorial-tab"
 							class:active={activeTutorial === "teams"}
-							on:click={() => (activeTutorial = "teams")}
+							onclick={() => (activeTutorial = "teams")}
 						>
 							<!-- Microsoft Teams logo -->
 							<svg
@@ -1148,7 +1154,7 @@
 						<button
 							class="tutorial-tab"
 							class:active={activeTutorial === "iphone"}
-							on:click={() => (activeTutorial = "iphone")}
+							onclick={() => (activeTutorial = "iphone")}
 						>
 							<svg
 								viewBox="0 0 24 24"
@@ -1249,7 +1255,7 @@
 
 		<!-- Footer with disabled advance button -->
 		<div class="workflow-footer">
-			<button class="btn-secondary" on:click={handleBackClick}>
+			<button class="btn-secondary" onclick={handleBackClick}>
 				<svg
 					viewBox="0 0 24 24"
 					fill="none"
@@ -1272,7 +1278,7 @@
 				{/if}
 				<button
 					class="btn-primary disabled"
-					on:click={handleDisabledAdvance}
+					onclick={handleDisabledAdvance}
 				>
 					{$t("common.next")}
 					<svg
@@ -1292,40 +1298,15 @@
 
 <!-- Issue 2 Fix: Back confirmation dialog -->
 {#if showBackConfirmDialog}
-	<div
-		class="dialog-overlay"
-		on:click={cancelBackAction}
-		role="dialog"
-		aria-modal="true"
-		on:keydown={(e) => e.key === "Escape" && cancelBackAction()}
-	>
-		<div
-			class="dialog"
-			on:click={(e) => e.stopPropagation()}
-			role="document"
-		>
-			<div class="dialog-icon warning">
-				<svg
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2"
-				>
-					<circle cx="12" cy="12" r="10" />
-					<line x1="12" y1="8" x2="12" y2="12" />
-					<line x1="12" y1="16" x2="12.01" y2="16" />
-				</svg>
-			</div>
-			<h3>{$t("workflow.meeting.upload.backConfirm.title")}</h3>
-			<p>{$t("workflow.meeting.upload.backConfirm.message")}</p>
-			<div class="dialog-actions">
-				<button
-					class="dialog-btn secondary"
-					on:click={cancelBackAction}
-				>
+	<div class="confirm-overlay" role="dialog" aria-modal="true">
+		<div class="confirm-dialog">
+			<h3 class="confirm-title">{$t("workflow.meeting.upload.backConfirm.title")}</h3>
+			<p class="confirm-desc">{$t("workflow.meeting.upload.backConfirm.message")}</p>
+			<div class="confirm-actions">
+				<button class="confirm-btn confirm-cancel" onclick={cancelBackAction}>
 					{$t("workflow.meeting.upload.backConfirm.continue")}
 				</button>
-				<button class="dialog-btn danger" on:click={confirmBackAction}>
+				<button class="confirm-btn confirm-danger" onclick={confirmBackAction}>
 					{$t("workflow.meeting.upload.backConfirm.confirm")}
 				</button>
 			</div>
@@ -2109,8 +2090,8 @@
 		align-items: center;
 		justify-content: center;
 		gap: 8px;
-		padding: 10px 20px;
-		font-size: 14px;
+		padding: 12px 24px;
+		font-size: 16px;
 		font-weight: 500;
 		color: white;
 		background: var(--blue-500, #3b82f6);
@@ -2414,98 +2395,72 @@
 		}
 	}
 
-	/* Issue 2 Fix: Back confirmation dialog styles */
-	.dialog-overlay {
+	/* Back confirmation dialog */
+	.confirm-overlay {
 		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background: rgba(15, 23, 42, 0.5);
+		inset: 0;
+		background: rgba(0, 0, 0, 0.5);
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		z-index: 200;
-		padding: 20px;
 	}
 
-	.dialog {
-		background: white;
+	.confirm-dialog {
+		background: #ffffff;
 		border-radius: 16px;
 		padding: 24px;
-		max-width: 360px;
-		width: 100%;
-		text-align: center;
-		box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+		width: 340px;
+		box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
 	}
 
-	.dialog-icon {
-		width: 56px;
-		height: 56px;
-		border-radius: 50%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		margin: 0 auto 16px;
-	}
-
-	.dialog-icon.warning {
-		background: var(--amber-100, #fef3c7);
-	}
-
-	.dialog-icon.warning svg {
-		width: 28px;
-		height: 28px;
-		color: var(--amber-600, #d97706);
-	}
-
-	.dialog h3 {
-		font-size: 18px;
-		font-weight: 700;
-		color: var(--slate-900, #0f172a);
-		margin: 0 0 8px 0;
-	}
-
-	.dialog p {
-		font-size: 14px;
-		color: var(--slate-600, #475569);
-		line-height: 1.5;
-		margin: 0 0 20px 0;
-	}
-
-	.dialog-actions {
-		display: flex;
-		gap: 10px;
-	}
-
-	.dialog-btn {
-		flex: 1;
-		padding: 12px 16px;
-		font-size: 14px;
+	.confirm-title {
+		font-size: 16px;
 		font-weight: 600;
+		color: #111827;
+		margin: 0 0 8px;
+	}
+
+	.confirm-desc {
+		font-size: 14px;
+		color: #6b7280;
+		line-height: 1.5;
+		margin: 0 0 20px;
+	}
+
+	.confirm-actions {
+		display: flex;
+		gap: 8px;
+		justify-content: flex-end;
+	}
+
+	.confirm-btn {
+		padding: 8px 16px;
 		border-radius: 8px;
+		font-size: 14px;
+		font-weight: 500;
 		cursor: pointer;
-		transition: all 0.15s ease;
-	}
-
-	.dialog-btn.secondary {
-		background: var(--slate-100, #f1f5f9);
-		border: 1px solid var(--slate-200, #e2e8f0);
-		color: var(--slate-700, #334155);
-	}
-
-	.dialog-btn.secondary:hover {
-		background: var(--slate-200, #e2e8f0);
-	}
-
-	.dialog-btn.danger {
-		background: var(--red-500, #ef4444);
 		border: none;
-		color: white;
+		font-family: inherit;
+		transition: background 0.12s ease;
 	}
 
-	.dialog-btn.danger:hover {
-		background: var(--red-600, #dc2626);
+	.confirm-cancel {
+		background: #f3f4f6;
+		color: #374151;
+	}
+
+	.confirm-cancel:hover {
+		background: #e5e7eb;
+	}
+
+	.confirm-danger {
+		background: #ef4444;
+		color: #ffffff;
+	}
+
+	.confirm-danger:hover {
+		background: #dc2626;
 	}
 
 	@media (max-width: 480px) {

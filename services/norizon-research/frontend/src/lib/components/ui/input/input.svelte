@@ -1,9 +1,6 @@
 <script lang="ts">
 	import { cn } from "$lib/utils/cn.js";
-	export let value = "";
-	export let type = "text";
-	let className = "";
-	export { className as class };
+	let { value = $bindable(""), type = "text", class: className = "", ...restProps } = $props();
 </script>
 
 <input
@@ -13,5 +10,5 @@
 	)}
 	{type}
 	bind:value
-	{...$$restProps}
+	{...restProps}
 />

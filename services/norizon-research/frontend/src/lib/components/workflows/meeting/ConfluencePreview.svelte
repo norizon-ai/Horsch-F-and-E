@@ -3,8 +3,13 @@
 	import { workflowStore } from "$lib/stores/workflowStore";
 	import type { Protocol, ActionItem, CustomSection } from "$lib/types";
 
-	export let protocol: Protocol | null = null;
-	export let editable = true;
+	let {
+		protocol = null,
+		editable = true,
+	}: {
+		protocol?: Protocol | null;
+		editable?: boolean;
+	} = $props();
 
 	// Format date for display
 	function formatDate(dateStr: string): string {
@@ -319,7 +324,7 @@
 	}
 
 	// Transcript
-	let isEditingTranscript = false;
+	let isEditingTranscript = $state(false);
 
 	function handleTranscriptChange(e: Event) {
 		if (!protocol) return;
@@ -335,8 +340,8 @@
 	}
 
 	// Hover edit state
-	let hoveredSectionId: string | null = null;
-	let editingSectionId: string | null = null;
+	let hoveredSectionId: string | null = $state(null);
+	let editingSectionId: string | null = $state(null);
 
 	function handleSectionHover(sectionId: string | null) {
 		if (!editable) return;
@@ -389,8 +394,8 @@
 								type="text"
 								class="page-title-input"
 								value={protocol.title || ""}
-								on:blur={handleTitleChange}
-								on:change={handleTitleChange}
+								onblur={handleTitleChange}
+								onchange={handleTitleChange}
 								placeholder="Meeting title..."
 							/>
 						{:else}
@@ -411,8 +416,8 @@
 							type="date"
 							class="metadata-date-input"
 							value={protocol.date || ""}
-							on:blur={handleDateChange}
-							on:change={handleDateChange}
+							onblur={handleDateChange}
+							onchange={handleDateChange}
 						/>
 					{:else}
 						<div class="metadata-value">
@@ -433,15 +438,15 @@
 										type="text"
 										class="attendee-input"
 										value={attendee}
-										on:blur={(e) =>
+										onblur={(e) =>
 											handleAttendeeBlur(e, idx)}
-										on:keydown={(e) =>
+										onkeydown={(e) =>
 											handleAttendeeKeydown(e, idx)}
 										placeholder="Name..."
 									/>
 									<button
 										class="chip-remove"
-										on:click={() => removeAttendee(idx)}
+										onclick={() => removeAttendee(idx)}
 										title="Remove"
 									>
 										<svg
@@ -466,7 +471,7 @@
 									</button>
 								</span>
 							{/each}
-							<button class="add-chip" on:click={addAttendee}>
+							<button class="add-chip" onclick={addAttendee}>
 								<svg
 									viewBox="0 0 24 24"
 									fill="none"
@@ -511,8 +516,8 @@
 					<textarea
 						class="summary-textarea"
 						value={protocol.executiveSummary || ""}
-						on:input={autoGrow}
-						on:blur={handleSummaryChange}
+						oninput={autoGrow}
+						onblur={handleSummaryChange}
 						placeholder="Summarize the key points..."
 					></textarea>
 				{:else}
@@ -543,7 +548,7 @@
 						AI
 					</span>
 					{#if editable}
-						<button class="add-action-btn" on:click={addActionItem}>
+						<button class="add-action-btn" onclick={addActionItem}>
 							<svg
 								viewBox="0 0 24 24"
 								fill="none"
@@ -566,7 +571,7 @@
 							>
 								<button
 									class="task-checkbox"
-									on:click={() => toggleActionItem(idx)}
+									onclick={() => toggleActionItem(idx)}
 								>
 									{#if item.completed}
 										<svg
@@ -585,7 +590,7 @@
 											type="text"
 											class="action-text-input"
 											value={item.text || ""}
-											on:blur={(e) =>
+											onblur={(e) =>
 												handleActionItemTextBlur(
 													e,
 													idx,
@@ -613,7 +618,7 @@
 													type="text"
 													class="meta-input"
 													value={item.assignee || ""}
-													on:blur={(e) =>
+													onblur={(e) =>
 														handleActionItemAssigneeBlur(
 															e,
 															idx,
@@ -659,7 +664,7 @@
 													type="date"
 													class="meta-input"
 													value={item.dueDate || ""}
-													on:blur={(e) =>
+													onblur={(e) =>
 														handleActionItemDueDateBlur(
 															e,
 															idx,
@@ -726,7 +731,7 @@
 								{#if editable}
 									<button
 										class="remove-btn"
-										on:click={() => removeActionItem(idx)}
+										onclick={() => removeActionItem(idx)}
 										title="Remove"
 									>
 										<svg
@@ -758,7 +763,7 @@
 						<p>No action items yet</p>
 						<button
 							class="add-first-action"
-							on:click={addActionItem}
+							onclick={addActionItem}
 						>
 							<svg
 								viewBox="0 0 24 24"
@@ -798,7 +803,7 @@
 						AI
 					</span>
 					{#if editable}
-						<button class="add-action-btn" on:click={addDecision}>
+						<button class="add-action-btn" onclick={addDecision}>
 							<svg
 								viewBox="0 0 24 24"
 								fill="none"
@@ -821,15 +826,15 @@
 										type="text"
 										class="decision-input bullet-input"
 										value={decision}
-										on:blur={(e) =>
+										onblur={(e) =>
 											handleDecisionBlur(e, idx)}
-										on:keydown={(e) =>
+										onkeydown={(e) =>
 											handleDecisionKeydown(e, idx)}
 										placeholder="Decision..."
 									/>
 									<button
 										class="remove-btn"
-										on:click={() => removeDecision(idx)}
+										onclick={() => removeDecision(idx)}
 										title="Remove"
 									>
 										<svg
@@ -861,7 +866,7 @@
 				{:else if editable}
 					<div class="empty-list">
 						<p>No decisions yet</p>
-						<button class="add-first-btn" on:click={addDecision}>
+						<button class="add-first-btn" onclick={addDecision}>
 							<svg
 								viewBox="0 0 24 24"
 								fill="none"
@@ -900,7 +905,7 @@
 						AI
 					</span>
 					{#if editable}
-						<button class="add-action-btn" on:click={addNextStep}>
+						<button class="add-action-btn" onclick={addNextStep}>
 							<svg
 								viewBox="0 0 24 24"
 								fill="none"
@@ -923,15 +928,15 @@
 										type="text"
 										class="next-step-input bullet-input"
 										value={nextStep}
-										on:blur={(e) =>
+										onblur={(e) =>
 											handleNextStepBlur(e, idx)}
-										on:keydown={(e) =>
+										onkeydown={(e) =>
 											handleNextStepKeydown(e, idx)}
 										placeholder="Next step..."
 									/>
 									<button
 										class="remove-btn"
-										on:click={() => removeNextStep(idx)}
+										onclick={() => removeNextStep(idx)}
 										title="Remove"
 									>
 										<svg
@@ -963,7 +968,7 @@
 				{:else if editable}
 					<div class="empty-list">
 						<p>No next steps yet</p>
-						<button class="add-first-btn" on:click={addNextStep}>
+						<button class="add-first-btn" onclick={addNextStep}>
 							<svg
 								viewBox="0 0 24 24"
 								fill="none"
@@ -1005,7 +1010,7 @@
 							{#if editable && section.type === "list"}
 								<button
 									class="add-action-btn"
-									on:click={() =>
+									onclick={() =>
 										addCustomSectionListItem(sectionIdx)}
 								>
 									<svg
@@ -1030,8 +1035,8 @@
 									value={typeof section.content === "string"
 										? section.content
 										: ""}
-									on:input={autoGrow}
-									on:blur={(e) =>
+									oninput={autoGrow}
+									onblur={(e) =>
 										handleCustomSectionTextBlur(
 											e,
 											sectionIdx,
@@ -1056,13 +1061,13 @@
 													type="text"
 													class="custom-list-input bullet-input"
 													value={item}
-													on:blur={(e) =>
+													onblur={(e) =>
 														handleCustomSectionListBlur(
 															e,
 															sectionIdx,
 															itemIdx,
 														)}
-													on:keydown={(e) =>
+													onkeydown={(e) =>
 														handleCustomSectionKeydown(
 															e,
 															sectionIdx,
@@ -1072,7 +1077,7 @@
 												/>
 												<button
 													class="remove-btn"
-													on:click={() =>
+													onclick={() =>
 														removeCustomSectionListItem(
 															sectionIdx,
 															itemIdx,
@@ -1112,7 +1117,7 @@
 									<p>No items yet</p>
 									<button
 										class="add-first-btn"
-										on:click={() =>
+										onclick={() =>
 											addCustomSectionListItem(
 												sectionIdx,
 											)}
@@ -1153,7 +1158,7 @@
 					<h2 class="section-heading">Full Transcript</h2>
 					<button
 						class="toggle-edit-btn"
-						on:click={() =>
+						onclick={() =>
 							(isEditingTranscript = !isEditingTranscript)}
 					>
 						{isEditingTranscript ? "View Formatted" : "Edit Raw"}
@@ -1164,8 +1169,8 @@
 					<textarea
 						class="transcript-edit-area"
 						value={protocol.fullTranscript || ""}
-						on:input={autoGrow}
-						on:blur={handleTranscriptChange}
+						oninput={autoGrow}
+						onblur={handleTranscriptChange}
 						placeholder="Raw transcript content..."
 					></textarea>
 				{:else}

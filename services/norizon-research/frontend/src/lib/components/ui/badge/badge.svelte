@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import { type VariantProps, tv } from "tailwind-variants";
 
 	export const badgeVariants = tv({
@@ -25,17 +25,20 @@
 <script lang="ts">
 	import { cn } from "$lib/utils/cn.js";
 
-	export let href: string | undefined = undefined;
-	let className: string | undefined | null = undefined;
-	export { className as class };
-	export let variant: BadgeVariant = "default";
+	let {
+		href = undefined as string | undefined,
+		class: className = undefined,
+		variant = "default" as BadgeVariant,
+		children,
+		...restProps
+	} = $props();
 </script>
 
 <svelte:element
 	this={href ? "a" : "span"}
 	{href}
 	class={cn(badgeVariants({ variant }), className)}
-	{...$$restProps}
+	{...restProps}
 >
-	<slot />
+	{@render children?.()}
 </svelte:element>

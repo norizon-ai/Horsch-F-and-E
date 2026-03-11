@@ -5,6 +5,8 @@
 	import "$lib/i18n";
 	import { isLoading as i18nLoading } from "svelte-i18n";
 
+	let { children } = $props();
+
 	onMount(() => {
 		authStore.initialize();
 	});
@@ -15,7 +17,7 @@
 		<div class="spinner"></div>
 	</div>
 {:else}
-	<slot />
+	{@render children()}
 {/if}
 
 <style>
