@@ -50,6 +50,25 @@ agents:
       mcp_server_url: "${CONFLUENCE_MCP_URL}"
 
   # ---------------------------------------------------------------------------
+  # Jira Live Agent (MCP)
+  # ---------------------------------------------------------------------------
+  # Searches Jira in real-time via the mcp-atlassian MCP server.
+  # Queries Jira Server/DC directly using JQL.
+  jira_live:
+    type: jira_mcp
+    enabled: true
+    display_name: "Jira"
+    icon_url: "/icons/jira.svg"
+    source_type: "jira"
+    description: "Search Jira issues, bugs, and tasks for project-specific information"
+    searching_label: "Durchsuche Jira..."
+    item_label: "Issues"
+    max_iterations: 3
+    backend:
+      # Set JIRA_MCP_URL env var; defaults to http://jira-mcp:8006 in docker-compose
+      mcp_server_url: "${JIRA_MCP_URL}"
+
+  # ---------------------------------------------------------------------------
   # Elasticsearch Agent (Demo Confluence - legacy, disabled)
   # ---------------------------------------------------------------------------
   # Kept for reference. Replaced by confluence_live above.

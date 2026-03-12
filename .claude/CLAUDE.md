@@ -135,24 +135,32 @@ Write a **setup playbook** in Confluence covering the full end-to-end deployment
 
 > ⚠️ **Work locally first using Docker.** Validate everything end-to-end locally before touching Azure.
 
-### Step 1 — Create HORSCH Azure Resource Group (Decouple from Norizon)
-- Create a dedicated Azure Resource Group for HORSCH F&E — fully isolated from the internal Norizon deployment
-- Provision: Container Apps environment, PostgreSQL instance, Key Vault (store CONFLUENCE_PERSONAL_TOKEN, JIRA_PERSONAL_TOKEN)
-- Networking: ensure MCP containers and DB are not publicly exposed
-- Region: Azure EU
+### ~~Step 1 — Create HORSCH Azure Resource Group~~ — DONE (March 2026)
+Dedicated Azure Resource Group `rg-horsch-fue-prod` — fully isolated from Norizon internal deployment.
 
-### Step 2 — Build JiraAgent + Separate jira-mcp Container
-Mirror the existing `ConfluenceMCPAgent` pattern. Separate container from confluence-mcp.
+**Region:** Sweden Central (Germany West Central + West Europe blocked by B-series quota)
 
-Key files to create:
-- `services/jira-mcp/` — new container, mirrors confluence-mcp with Jira env vars
-- `services/custom-deepresearch/deepsearch/agents/mcp_utils.py` — extract shared `_call_mcp_tool()` + `_extract_text()` from confluence/tools.py
-- `services/custom-deepresearch/deepsearch/agents/jira/tools.py` — JiraSearchTool + JiraGetIssueTool
-- `services/custom-deepresearch/deepsearch/agents/jira/agent.py` — JiraMCPAgent
-- `services/custom-deepresearch/deepsearch/agents/jira/__init__.py` — factory registration
-- `services/custom-deepresearch/prompts/jira_agent.yaml` — JQL strategies, bilingual DE/EN
-- Edit `main.py:35` — add jira import
-- Add `jira-mcp` service to docker-compose with `JIRA_URL` + `JIRA_PERSONAL_TOKEN`
+**Resources provisioned:**
+- **`vnet-horsch-prod`** — VNet with two subnets: `snet-containerapps` (Container Apps) + `default` (PostgreSQL delegated)
+- **`psql-horsch-fue-prod`** — PostgreSQL Flexible Server, Burstable B1ms, 128GiB, ~$32/month, VNet-injected, zero public IP, Private DNS Zone wired
+- **`cae-horsch-prod`** — Container Apps Environment linked to `snet-containerapps`
+- **`kv-horsch-fue-prod-02`** — Key Vault, RBAC (Omar + Lisa as Secrets Officer), placeholder secrets: `CONFLUENCE-PERSONAL-TOKEN` + `JIRA-PERSONAL-TOKEN`
+
+### ~~Step 2 — Build JiraAgent + Separate jira-mcp Container~~ — DONE (March 2026)
+Mirrored the `ConfluenceMCPAgent` pattern. Separate container from confluence-mcp.
+
+**Files created:**
+- `services/jira-mcp/Dockerfile` — mirrors confluence-mcp on port 8006
+- `deepsearch/agents/jira/agent.py` — JiraMCPAgent (BaseAgent + ReasoningAgentMixin)
+- `deepsearch/agents/jira/tools.py` — JiraSearchTool + JiraGetIssueTool (JQL auto-wrapping, comment extraction)
+- `deepsearch/agents/jira/__init__.py` — factory registration (`jira_mcp`)
+- `prompts/jira_agent.yaml` — JQL strategies, bilingual DE/EN
+
+**Files modified:**
+- `deepsearch/main.py` — added jira import for factory registration
+- `agents.yaml` — added `jira_live` agent config (type: `jira_mcp`, port 8006)
+- `.env` — added `JIRA_MCP_URL=http://jira-mcp:8006`
+- `docker-compose.dev.yml` — added `jira-mcp` service with `JIRA_URL` + `JIRA_PERSONAL_TOKEN`
 
 ### Step 3 — HORSCH F&E Instantiation (Local Docker first)
 Create `instantiations/horsch_fue/` with:

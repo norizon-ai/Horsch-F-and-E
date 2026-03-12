@@ -33,6 +33,7 @@ from deepsearch.agents.factory import AgentFactory
 import deepsearch.agents.websearch  # noqa: F401
 import deepsearch.agents.elasticsearch  # noqa: F401
 import deepsearch.agents.confluence  # noqa: F401
+import deepsearch.agents.jira  # noqa: F401
 
 logger = get_logger(__name__)
 

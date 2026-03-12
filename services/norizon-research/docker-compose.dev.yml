@@ -395,6 +395,21 @@ services:
       - nora-network
     restart: unless-stopped
 
+  # Jira MCP - MCP server for Jira Server/DC
+  jira-mcp:
+    build:
+      context: ../jira-mcp
+      dockerfile: Dockerfile
+    container_name: nora-jira-mcp-dev
+    ports:
+      - "8006:8006"
+    environment:
+      - JIRA_URL=${JIRA_URL}
+      - JIRA_PERSONAL_TOKEN=${JIRA_PERSONAL_TOKEN}
+    networks:
+      - nora-network
+    restart: unless-stopped
+
   # Confluence Publisher - Confluence/PDF export
   confluence-publisher:
     build:
