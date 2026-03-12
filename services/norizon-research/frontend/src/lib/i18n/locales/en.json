@@ -213,7 +213,8 @@
 				"importing": "Downloading recording...",
 				"attendees": "{count} attendees",
 				"error": "Failed to load meetings. Please try again.",
-				"popupBlocked": "Popup was blocked. Please allow popups for this site."
+				"popupBlocked": "Popup was blocked. Please allow popups for this site.",
+				"tryAnother": "Try another recording"
 			},
 			"confirm": {
 				"title": "Configure Analysis",

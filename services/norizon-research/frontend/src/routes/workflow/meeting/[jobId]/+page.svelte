@@ -115,15 +115,30 @@
 	}
 
 	let selectedFileObj: File | null = null;
+	let isTeamsImport = $state(false);
 
-	// Handle file upload
+	// Handle file upload (regular upload)
 	async function handleFileSelected(file: File) {
 		selectedFileObj = file;
+		isTeamsImport = false;
 		workflowStore.setFile({
 			name: file.name,
 			size: file.size,
 			type: file.type,
 			url: URL.createObjectURL(file),
+		});
+		workflowStore.setStep(4);
+	}
+
+	// Handle Teams import (file already on server)
+	function handleTeamsImported(data: { fileName: string; fileSize: number; duration: number; meetingTitle: string; meetingDate: string }) {
+		selectedFileObj = null;
+		isTeamsImport = true;
+		workflowStore.setFile({
+			name: data.fileName,
+			size: data.fileSize,
+			type: "video/mp4",
+			duration: data.duration,
 		});
 		workflowStore.setStep(4);
 	}
@@ -139,48 +154,62 @@
 			return;
 		}
 
-		// Emit initial progress to immediately transition from "connecting" to processing stages
-		workflowStore.setProgress({
-			stage: "uploading",
-			percent: 0,
-			message: "Datei wird hochgeladen...",
-		});
-
-		// Upload the file first
-		try {
-			const state = $currentWorkflow;
-			if (!state?.file?.url && !selectedFileObj) {
-				console.error("No file selected for upload");
-				error = "No file selected. Please select a file first.";
+		if (isTeamsImport) {
+			// Teams import: file is already on the server, trigger processing without re-uploading
+			workflowStore.setProgress({
+				stage: "transcribing",
+				percent: 0,
+				message: "Meeting-Transkription wird gestartet...",
+			});
+			try {
+				await WorkflowAPI.triggerProcessing(jobId);
+			} catch (e) {
+				console.error("Failed to trigger processing:", e);
+				error = e instanceof Error ? e.message : "Failed to start processing";
 				workflowStore.setStep(4);
 				return;
 			}
+		} else {
+			// Regular upload: send the file to the backend first
+			workflowStore.setProgress({
+				stage: "uploading",
+				percent: 0,
+				message: "Datei wird hochgeladen...",
+			});
 
-			// Get the File object (use the raw memory file, or fallback to fetching the blob)
-			let fileToUpload: File;
-			if (selectedFileObj) {
-				fileToUpload = selectedFileObj;
-			} else {
-				const response = await fetch(state!.file!.url!);
-				const blob = await response.blob();
-				fileToUpload = new File([blob], state!.file!.name, {
-					type: state!.file!.type,
-				});
+			try {
+				const state = $currentWorkflow;
+				if (!state?.file?.url && !selectedFileObj) {
+					console.error("No file selected for upload");
+					error = "No file selected. Please select a file first.";
+					workflowStore.setStep(4);
+					return;
+				}
+
+				let fileToUpload: File;
+				if (selectedFileObj) {
+					fileToUpload = selectedFileObj;
+				} else {
+					const response = await fetch(state!.file!.url!);
+					const blob = await response.blob();
+					fileToUpload = new File([blob], state!.file!.name, {
+						type: state!.file!.type,
+					});
+				}
+
+				console.log(
+					`Uploading file: ${fileToUpload.name} (${fileToUpload.size} bytes)`,
+				);
+				await WorkflowAPI.uploadFile(jobId, fileToUpload);
+				console.log(
+					"File uploaded successfully, starting transcription stream...",
+				);
+			} catch (e) {
+				console.error("Failed to upload file:", e);
+				error = e instanceof Error ? e.message : "Failed to upload file";
+				workflowStore.setStep(4);
+				return;
 			}
-
-			// Upload the file to the backend
-			console.log(
-				`Uploading file: ${fileToUpload.name} (${fileToUpload.size} bytes)`,
-			);
-			await WorkflowAPI.uploadFile(jobId, fileToUpload);
-			console.log(
-				"File uploaded successfully, starting transcription stream...",
-			);
-		} catch (e) {
-			console.error("Failed to upload file:", e);
-			error = e instanceof Error ? e.message : "Failed to upload file";
-			workflowStore.setStep(4);
-			return;
 		}
 
 		// Start the SSE stream
@@ -526,6 +555,7 @@
 							file={$currentWorkflow.file}
 							{jobId}
 							onFileSelected={handleFileSelected}
+							onTeamsImported={handleTeamsImported}
 							onStart={handleStartProcessing}
 							onBack={() => goto('/chat')}
 						/>
@@ -539,6 +569,8 @@
 								false}
 							onExit={handleProcessingExit}
 							onNext={handleProcessingNext}
+							onCancel={() => goto('/chat')}
+							onRetry={handleStartProcessing}
 						/>
 
 						<!-- Step 6: Speaker Verification -->

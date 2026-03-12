@@ -1,7 +1,7 @@
 /**
  * Authenticated Workflow API Client
  *
- * Wraps WorkflowAPI calls with Auth0 bearer token authentication.
+ * Wraps WorkflowAPI calls with Azure AD bearer token authentication.
  */
 
 import { authStore } from '$lib/stores/authStore';

@@ -19,6 +19,7 @@
 		userName = "Current User",
 		jobId = "",
 		onFileSelected = undefined,
+		onTeamsImported = undefined,
 		onStart = undefined,
 		onBack = undefined,
 	}: {
@@ -26,6 +27,7 @@
 		userName?: string;
 		jobId?: string;
 		onFileSelected?: ((file: File) => void) | undefined;
+		onTeamsImported?: ((data: { fileName: string; fileSize: number; duration: number; meetingTitle: string; meetingDate: string }) => void) | undefined;
 		onStart?: (() => void) | undefined;
 		onBack?: (() => void) | undefined;
 	} = $props();
@@ -263,15 +265,10 @@
 		meetingTitle: string;
 		meetingDate: string;
 	}) {
-		// Create a synthetic WorkflowFile-like object and dispatch fileSelected
-		// The parent component handles this the same way as a manual upload
-		const syntheticFile = new File([], data.fileName, {
-			type: "video/mp4",
-		});
 		// Auto-populate metadata from Teams
 		if (data.meetingTitle) meetingTitle = data.meetingTitle;
 		if (data.meetingDate) meetingDate = data.meetingDate;
-		onFileSelected?.(syntheticFile);
+		onTeamsImported?.(data);
 	}
 
 	function formatUploadTime(date: Date | null): string {
@@ -406,7 +403,7 @@
 
 		{#if sourceTab === "teams"}
 			<!-- Teams Import Mode -->
-			<TeamsImport {jobId} onImported={handleTeamsImported} />
+			<TeamsImport {jobId} onImported={handleTeamsImported} onCancel={onBack} />
 		{:else}
 			<!-- Upload Mode -->
 			<div

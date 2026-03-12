@@ -516,7 +516,8 @@
 		flex-direction: column;
 		flex-shrink: 0;
 		position: fixed;
-		height: 100vh;
+		top: 0;
+		bottom: 0;
 		z-index: 10;
 		overflow: hidden;
 		transition: width 0.2s ease;

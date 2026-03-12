@@ -84,7 +84,10 @@ RULES:
 5. EXHAUSTIVE. You MUST return one JSON entry for every Speaker ID in the requested list.
    Omitting a speaker is an error.
 6. CONFIDENCE. Only set confidence > 0.7 if the evidence is unambiguous.
-7. LANGUAGE MATCHING. All text in your response (names, reasoning) must be in the SAME LANGUAGE
+7. UNIQUE NAMES. Never assign the same name to two different speakers. If the same name appears
+   to match multiple speakers, only assign it to the one with the strongest evidence. Set the
+   others to "Unknown".
+8. LANGUAGE MATCHING. All text in your response (names, reasoning) must be in the SAME LANGUAGE
    as the transcript. If the transcript is in German, respond in German. If English, respond in English.
 
 JSON OUTPUT FORMAT (return ONLY this, no extra text):

@@ -43,7 +43,7 @@ HORSCH's R&D engineers (constructors) cannot find information in their Confluenc
 An AI-powered search tool running on the **Norizon Nora platform (DeepSearch)**. Engineers query Confluence and Jira in natural language and get answers with clickable source links.
 
 - **Platform:** Norizon Nora / DeepSearch
-- **Infrastructure:** Isolated backend on **Norizon's Azure** (same codebase as Service Q&A, different config/data/users)
+- **Infrastructure:** Isolated per-client deployment on **Norizon's Azure** — one resource group per customer (see Multi-Tenancy below)
 - **Test users:** Matthias (Construction/Setting Tech) and Robert (CAD Admin) — ~1h every 2 weeks
 
 ### Must-Have Requirements (from stakeholder interviews)
@@ -55,9 +55,52 @@ An AI-powered search tool running on the **Norizon Nora platform (DeepSearch)**.
 
 ---
 
-## Current State
+## Architecture Decisions (from Lisa & Omar call, March 2026)
 
-A **live deployed version already exists** on Norizon's Azure. HORSCH's team has seen and demoed it. Based on that demo, they came back with two change requests.
+### Multi-Tenancy — One Resource Group Per Client
+Each client (e.g. HORSCH) gets its own dedicated Azure Resource Group containing all its own resources: Container Apps (frontend, deepsearch, confluence-mcp, jira-mcp), PostgreSQL database, Key Vault (for Confluence/Jira personal tokens), and networking. No shared infrastructure between clients or with the internal Norizon deployment.
+
+### MCP Container Split — Confluence and Jira Separated
+`confluence-mcp` and `jira-mcp` run as **separate containers**, not combined. This makes each easier to manage, debug, and scale independently. Both use the same `mcp-atlassian` base image but with different env vars and responsibilities.
+
+### Attachment Search Strategy
+The current `ConfluenceMCPAgent` uses CQL live queries — known to have limitations in indexing accuracy, especially for attachments on Server/DC. Agreed approach:
+1. **Now:** Try CQL attachment strategies first (`type = attachment AND text ~ "keyword"`) — simple, no extra infra
+2. **If CQL is insufficient on HORSCH's Server/DC instance:** Hybrid approach — keep the live Confluence connection (no local data loading), layer Elasticsearch indexing on top to improve retrieval, then use `ConfluenceGetPageTool` to extract full page content for the results. This avoids storing data locally while gaining ES search quality.
+3. **Decision point:** Evaluate after first connection to HORSCH's Confluence. Involve Christoph Wiesent to check if Office Connector plugin is installed.
+
+### Repo Strategy — Work in Norizon Repo, HORSCH in instantiations/
+All shared platform code (frontend, deepsearch, MCP services) lives in the main **Norizon repo**. HORSCH F&E is an instantiation inside `instantiations/horsch_fue/`. Changes made for HORSCH that improve the platform flow back into the shared codebase naturally. **Not** using git submodules.
+
+### shadcn/ui
+The redesigned Svelte 5 frontend uses **shadcn/ui** — the component library behind the modern aesthetic seen in Claude, ChatGPT, Linear etc. Confirm with Claude Code whether it was included in the Svelte 5 migration.
+
+---
+
+## Security Requirements
+
+- **No open endpoints on the internet** — internal services (MCP containers, databases) must not be publicly accessible. Everything sits behind Azure networking / private endpoints.
+- **EU data residency** — all infrastructure deployed on Azure EU regions (DSGVO/GDPR compliant). Data never leaves EU.
+- **Atlassian Data Center compatible** — all Confluence/Jira integrations must support Server/DC auth (personal access tokens, not cloud API keys).
+
+---
+
+## Quality Requirements
+
+- **Search accuracy** — the ConfluenceMCPAgent CQL approach has known accuracy limitations. Must be evaluated on HORSCH's actual Confluence and improved if insufficient (see Attachment Search Strategy).
+- **Conflicting information handling** — the system must handle contradictory information between Confluence and Jira. How conflicts are surfaced to the user is an open design question — needs explicit solution before handoff to test users.
+
+---
+
+## To-Do: Playbook / Documentation (Planned)
+
+Write a **setup playbook** in Confluence covering the full end-to-end deployment story:
+
+- **Part 1 — Multi-Tenancy Model & Resource Group Setup:** How we structure Azure per client (one resource group per client), what gets provisioned (Container Apps, PostgreSQL, Key Vault, networking), and how to replicate it for a new client onboarding
+- **Part 2 — Azure Entra External ID (CIAM) Setup:** How CIAM was configured end-to-end, app registration per client, the MSAL.js integration, backend JWT verification, and gotchas (e.g. v4 cache regression, Safari ITP on localhost)
+- **Part 3 — Full Deployment Reference:** Container Apps config, Key Vault secret seeding, env vars per service, networking rules (no public endpoints on MCP/DB)
+
+> ⏳ Planned — to be written during or after the HORSCH F&E Azure deployment (Step 5), when the full process is fresh.
 
 ---
 
@@ -66,75 +109,73 @@ A **live deployed version already exists** on Norizon's Azure. HORSCH's team has
 ### Frontend Modernisation + Svelte 5 Migration — DONE (March 2026)
 - **Svelte 5 migration complete** — all components use runes API (`$props()`, `$state()`, `$derived()`, `$effect()`, `untrack()`, `{@render}`, `onclick`)
 - **UI redesigned** to ChatGPT/Claude aesthetic — centered conversation rail, clean white backgrounds, inline sources
-- **Chat UI**: message bubbles, 17px base font, Nora avatar (favicon.png, transparent bg), greeting with user name
-- **Sidebar**: collapsible, session history with type icons (magnifying glass = search, document = meeting), context menus (rename/pin/delete), delete confirmation dialog
-- **Meeting documentation workflow**: full pipeline working (upload → processing → speaker verification → template review → export), all buttons functional with `$state()` reactivity fixes
-- **Confirmation dialogs**: consistent flat card design across all components (matching Sidebar style)
+- **Meeting documentation workflow**: full pipeline working (upload → processing → speaker verification → template review → export)
 - **Delete flow**: deleting current open chat navigates back to homepage
-- **Global zoom**: `body { zoom: 1.08 }` in app.css for comfortable sizing
 - **Docker Compose**: full local stack running (frontend, deepsearch, searxng, workflow-service, deepgram-service, postgres, redis, minio, confluence-mcp, confluence-publisher)
-- **Svelte 4 stores** (`writable`/`derived` in `svelte/store`) still used in store files — not yet migrated to `.svelte.ts` runes. Works fine, just not fully Svelte 5 idiomatic.
+- **Svelte 4 stores** (`writable`/`derived` in `svelte/store`) still used in store files — not yet migrated to `.svelte.ts` runes. Works fine, not fully Svelte 5 idiomatic yet.
 
-### Auth0 → Azure Authentication — IN PROGRESS
-- Current auth: Auth0 SPA SDK (`@auth0/auth0-spa-js`) in frontend, Auth0 JWT verification in workflow-service backend
-- Next: Replace with MSAL.js (frontend) + Azure AD JWT verification (backend)
+### Auth0 → Azure Entra External ID (CIAM) — DONE (March 2026)
+- **Fully replaced Auth0** with Microsoft Entra External ID (CIAM) — any email can sign up via OTP, all auth traffic stays within Azure Europe (DSGVO compliant)
+- **CIAM Tenant:** `norizonauth.onmicrosoft.com` | **Authority:** `https://norizonauth.ciamlogin.com/`
+- **Client ID:** `2a4c4497-8b2e-4059-a215-0ef905fa7ead` | **Tenant ID:** `4e355899-bcbf-44b5-b879-a67c2e8b3716`
+- **Frontend:** `@auth0/auth0-spa-js` → `@azure/msal-browser@3.30.0` (v3 chosen over v4 due to known v4 cache regression — GitHub issues #7551, #7533)
+- **authStore.ts** fully rewritten with MSAL.js — same store interface preserved
+- **ID token** sent to backend (CIAM returns opaque access tokens with OIDC scopes)
+- **Backend JWT verification** via OIDC discovery from `norizonauth.ciamlogin.com` — auto-discovers JWKS URI and issuer
+- **Database migration**: `auth0_subject` → `external_subject` column rename (Alembic migration `002`)
+- **Docker Compose env vars** updated for both frontend and workflow-service
+- **Session persistence**: Works on Chrome; Safari localhost limited by ITP (will work on production with real domain)
+- **Known:** Debug logging in `workflow-service/app/auth/jwt.py` — remove after production confirmation
 
----
-
-## Immediate Work (Do These First)
-
-These are prerequisites — get the platform into shape locally before redeploying.
-
-> ⚠️ **Work locally first using Docker.** Validate everything works end-to-end in the local Docker environment before redeploying to Azure. Do not touch the Azure deployment until local is confirmed working.
-
-### 1. Frontend Modernisation + Svelte 4 → 5 Migration — COMPLETE
-- ~~Redesign the UI to feel like a modern chat agent (think ChatGPT/Claude style)~~
-- ~~Migrate the frontend from **Svelte 4 to Svelte 5**~~
-- ~~Test locally via Docker Compose before any deployment~~
-
-### 2. Auth0 → Azure Authentication — NEXT
-- The current deployment uses **Auth0** (built by Omar originally)
-- Replace with **Azure-native auth** (Azure Entra ID / Azure AD)
-- Rationale: everything already runs on Azure; removes third-party auth dependency; cleaner for enterprise client
-- Implement and verify locally first, then redeploy
+### Teams Recording Import Fixes — DONE (March 2026)
 
 ---
 
-## Next Steps After Auth + Frontend
+## Immediate Next Steps
 
-From the Implementation Proposal (page 27983873 — read it in full):
+> ⚠️ **Work locally first using Docker.** Validate everything end-to-end locally before touching Azure.
 
-### Step 1 — Build JiraAgent
-Mirror the existing `ConfluenceMCPAgent` pattern. The `mcp-atlassian` package (already in Dockerfile) supports Jira via `jira_search` (JQL) and `jira_get_issue`.
+### Step 1 — Create HORSCH Azure Resource Group (Decouple from Norizon)
+- Create a dedicated Azure Resource Group for HORSCH F&E — fully isolated from the internal Norizon deployment
+- Provision: Container Apps environment, PostgreSQL instance, Key Vault (store CONFLUENCE_PERSONAL_TOKEN, JIRA_PERSONAL_TOKEN)
+- Networking: ensure MCP containers and DB are not publicly exposed
+- Region: Azure EU
+
+### Step 2 — Build JiraAgent + Separate jira-mcp Container
+Mirror the existing `ConfluenceMCPAgent` pattern. Separate container from confluence-mcp.
 
 Key files to create:
-- `services/custom-deepresearch/deepsearch/agents/mcp_utils.py` — shared MCP helper (extract from confluence/tools.py)
+- `services/jira-mcp/` — new container, mirrors confluence-mcp with Jira env vars
+- `services/custom-deepresearch/deepsearch/agents/mcp_utils.py` — extract shared `_call_mcp_tool()` + `_extract_text()` from confluence/tools.py
 - `services/custom-deepresearch/deepsearch/agents/jira/tools.py` — JiraSearchTool + JiraGetIssueTool
 - `services/custom-deepresearch/deepsearch/agents/jira/agent.py` — JiraMCPAgent
 - `services/custom-deepresearch/deepsearch/agents/jira/__init__.py` — factory registration
 - `services/custom-deepresearch/prompts/jira_agent.yaml` — JQL strategies, bilingual DE/EN
 - Edit `main.py:35` — add jira import
+- Add `jira-mcp` service to docker-compose with `JIRA_URL` + `JIRA_PERSONAL_TOKEN`
 
-### Step 2 — Enable Jira in MCP Container
-Add Jira env vars to docker-compose. HORSCH uses **Server/Data Center** → use `JIRA_PERSONAL_TOKEN`, not email+API key.
-
-### Step 3 — Attachment Search (Quick Win)
-Add CQL strategies to Confluence agent prompt:
-```
-type = attachment AND text ~ "keyword"
-type = attachment AND space = "FUE" AND text ~ "keyword"
-(type = page OR type = attachment) AND text ~ "keyword"
-```
-Handle `type == "attachment"` in `ConfluenceSearchTool._page_to_search_result()` to include parent page metadata.
-
-### Step 4 — HORSCH F&E Instantiation
+### Step 3 — HORSCH F&E Instantiation (Local Docker first)
 Create `instantiations/horsch_fue/` with:
-- `agents.yaml` — horsch_confluence + horsch_jira, web_search disabled
+- `agents.yaml` — horsch_confluence + horsch_jira agents, web_search disabled
 - `.env.example` — CONFLUENCE_URL, CONFLUENCE_PERSONAL_TOKEN, JIRA_URL, JIRA_PERSONAL_TOKEN
-- `docker-compose.yml` — 3 services: atlassian-mcp, deepsearch, frontend
+- `docker-compose.yml` — 4 services: confluence-mcp, jira-mcp, deepsearch, frontend
+- Test locally against real HORSCH credentials (coordinate with Alex/Christoph)
 
-### Step 5 — Azure Deployment
-Only after local Docker validation. Adapt `instantiations/internal_setup/azure/` — reduce to 3 Container Apps, add Jira secrets to Key Vault.
+### Step 4 — Evaluate Attachment Search on HORSCH's Server/DC
+- Connect to HORSCH Confluence, run CQL attachment queries
+- Check with Christoph Wiesent whether Office Connector plugin is installed
+- If CQL works: done. If not: plan hybrid ES approach.
+
+### Step 5 — Azure Deployment (HORSCH Resource Group)
+- Adapt `instantiations/internal_setup/azure/` Bicep + scripts for HORSCH
+- Deploy 4 Container Apps: confluence-mcp, jira-mcp, deepsearch, frontend
+- Seed Key Vault with HORSCH credentials
+- Confirm no public endpoints on MCP containers or DB
+
+### Step 6 — Write Setup Playbook in Confluence
+- Document Azure Entra External ID (CIAM) setup end-to-end
+- Document full Azure deployment architecture (resource group, Container Apps, Key Vault, networking)
+- Add to Confluence under HORSCH F&E space
 
 ---
 
@@ -146,14 +187,15 @@ Only after local Docker validation. Adapt `instantiations/internal_setup/azure/`
 | **Alex Kress** | HORSCH D-Lab | Technical lead, primary counterpart |
 | **Matthias** | HORSCH F&E | Constructor/Setting Tech — test user |
 | **Robert** | HORSCH F&E | Constructor/CAD Admin — test user |
-| **Christoph Wiesent** | HORSCH | Jira/Confluence admin — involve as needed |
-| **Lisa** | Norizon | Stakeholder interviews, consultant |
+| **Christoph Wiesent** | HORSCH | Jira/Confluence admin — involve for attachment search + integration |
+| **Lisa** | Norizon | Co-founder, architecture & strategy |
 
 ---
 
 ## Open Questions
 
 - Which Confluence spaces are in scope for F&E indexing?
-- How do we surface contradictory data in search results to the user?
-- When to involve Christoph Wiesent for Jira/Confluence technical integration?
+- How do we surface contradictory information between Confluence and Jira to the user?
+- Does HORSCH's Confluence Server/DC have the Office Connector plugin installed? (Determines attachment search path)
+- When to formally involve Christoph Wiesent?
 - Which CAD system does HORSCH use? (Never named in interviews)

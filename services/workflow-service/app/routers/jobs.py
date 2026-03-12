@@ -178,6 +178,38 @@ async def upload_file(job_id: str, file: UploadFile = File(...), request: Reques
     )
 
 
+@router.post("/jobs/{job_id}/process")
+async def trigger_processing(job_id: str, request: Request):
+    """Trigger transcription processing for an already-uploaded file (e.g. Teams import)."""
+    job = JobManager.get_job(job_id)
+    if job is None:
+        raise HTTPException(status_code=404, detail=f"Job {job_id} not found")
+
+    file_path = getattr(job, "file_path", None)
+    if not file_path or not os.path.exists(file_path):
+        raise HTTPException(status_code=400, detail="No file found for this job. Upload a file first.")
+
+    settings = get_settings()
+    if not settings.use_mocks:
+        import httpx
+        language = request.headers.get("X-Language", "de") if request else "de"
+        try:
+            async with httpx.AsyncClient() as client:
+                await client.post(
+                    f"{settings.kstudio_url}/internal/transcribe/{job_id}/process",
+                    json={
+                        "file_path": file_path,
+                        "glossary": [],
+                        "language": language,
+                    },
+                    timeout=30.0,
+                )
+        except Exception as e:
+            print(f"Warning: Failed to trigger processing: {e}")
+
+    return {"success": True, "job_id": job_id}
+
+
 @router.get("/jobs/{job_id}/speakers", response_model=SpeakersResponse)
 async def get_speakers(job_id: str):
     """Get detected speakers for a job."""

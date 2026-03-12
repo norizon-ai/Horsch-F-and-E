@@ -14,9 +14,8 @@ services:
       - VITE_API_BASE_URL=http://localhost:8000/api/v1
       - VITE_SSR_API_BASE_URL=http://deepsearch:8000/api/v1
       - VITE_WORKFLOW_API_URL=http://localhost:8001
-      - PUBLIC_AUTH0_DOMAIN=${PUBLIC_AUTH0_DOMAIN}
-      - PUBLIC_AUTH0_CLIENT_ID=${PUBLIC_AUTH0_CLIENT_ID}
-      - PUBLIC_AUTH0_AUDIENCE=${PUBLIC_AUTH0_AUDIENCE}
+      - PUBLIC_AZURE_CLIENT_ID=${PUBLIC_AZURE_CLIENT_ID:-2a4c4497-8b2e-4059-a215-0ef905fa7ead}
+      - PUBLIC_AZURE_AUTHORITY=${PUBLIC_AZURE_AUTHORITY:-https://norizonauth.ciamlogin.com/}
     volumes:
       - ./frontend:/app
       - /app/node_modules
@@ -166,8 +165,10 @@ services:
       - WORKFLOW_MS_CLIENT_ID=${WORKFLOW_MS_CLIENT_ID}
       - WORKFLOW_MS_CLIENT_SECRET=${WORKFLOW_MS_CLIENT_SECRET}
       - OPENAI_API_KEY=${OPENAI_API_KEY}
-      - AUTH0_DOMAIN=${PUBLIC_AUTH0_DOMAIN}
-      - AUTH0_AUDIENCE=${PUBLIC_AUTH0_AUDIENCE}
+      - AZURE_AD_ENABLED=true
+      - AZURE_CIAM_DOMAIN=${AZURE_CIAM_DOMAIN:-norizonauth.ciamlogin.com}
+      - AZURE_TENANT_ID=${AZURE_TENANT_ID:-4e355899-bcbf-44b5-b879-a67c2e8b3716}
+      - AZURE_CLIENT_ID=${AZURE_CLIENT_ID:-2a4c4497-8b2e-4059-a215-0ef905fa7ead}
     volumes:
       - ../workflow-service/app:/app/app:ro
       - ../workflow-service/alembic:/app/alembic:ro

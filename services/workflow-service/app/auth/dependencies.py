@@ -1,5 +1,6 @@
 """
 FastAPI dependencies for authentication and user management.
+Uses Azure Entra External ID (CIAM) for JWT verification.
 """
 
 import logging
@@ -29,54 +30,34 @@ async def get_current_user(
 
     This dependency:
     1. Extracts the Bearer token from the Authorization header
-    2. Verifies the JWT token with Auth0
-    3. Extracts user info (sub, email, name) from token payload
+    2. Verifies the JWT token with Azure AD CIAM
+    3. Extracts user info (oid, email, name) from token payload
     4. Performs JIT (Just-In-Time) user provisioning:
        - If user exists: Updates last_login and returns user
        - If user doesn't exist: Creates new user and returns it
-
-    Usage:
-        @app.get("/protected")
-        async def protected_route(user: User = Depends(get_current_user)):
-            return {"user_id": user.id, "email": user.email}
-
-    Args:
-        credentials: HTTP Bearer token from Authorization header
-        db: Database session
-
-    Returns:
-        User object (from database)
-
-    Raises:
-        HTTPException: 401 if token is invalid, 403 if auth is disabled
     """
     settings = get_settings()
 
-    # Check if Auth0 is enabled
-    if not settings.auth0_enabled:
-        logger.warning("⚠️  Auth0 is DISABLED - Skipping authentication")
+    if not settings.azure_ad_enabled:
+        logger.warning("Azure AD is DISABLED - Skipping authentication")
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="Authentication is disabled on this server"
         )
 
-    # Extract token from credentials
     token = credentials.credentials
-
-    # Verify token with Auth0
     payload = await verify_token(token)
 
-    # Extract user info from token payload
-    # Auth0 Actions add custom claims with namespace to avoid conflicts
-    namespace = "https://nora-platform.com"
+    # Azure AD CIAM standard claims
+    # oid = Object ID (stable user identifier across apps in the tenant)
+    # preferred_username / email = user's email
+    # name = display name
+    external_subject = payload.get("oid") or payload.get("sub")
+    email = payload.get("email") or payload.get("preferred_username") or payload.get("emails", [None])[0]
+    name = payload.get("name")
 
-    # Try namespaced claims first (from Auth0 Action), then fall back to standard claims
-    auth0_subject = payload.get(f"{namespace}/sub") or payload.get("sub")
-    email = payload.get(f"{namespace}/email") or payload.get("email")
-    name = payload.get(f"{namespace}/name") or payload.get("name")
-
-    if not auth0_subject or not email:
-        logger.error(f"❌ Token missing required fields: sub or email. Payload keys: {list(payload.keys())}")
+    if not external_subject or not email:
+        logger.error(f"Token missing required fields: oid/sub or email. Payload keys: {list(payload.keys())}")
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid token: missing user information",
@@ -86,12 +67,12 @@ async def get_current_user(
     # JIT user provisioning
     user_repo = UserRepository(db)
     user = await user_repo.upsert_user(
-        auth0_subject=auth0_subject,
+        external_subject=external_subject,
         email=email,
         name=name
     )
 
-    logger.info(f"✅ User authenticated: {user.email} (ID: {user.id})")
+    logger.info(f"User authenticated: {user.email} (ID: {user.id})")
     return user
 
 
@@ -104,14 +85,6 @@ async def get_current_user_optional(
 
     Returns the authenticated user if a valid token is provided,
     otherwise returns None (allowing anonymous access).
-
-    Usage:
-        @app.get("/optional-auth")
-        async def optional_route(user: User | None = Depends(get_current_user_optional)):
-            if user:
-                return {"message": f"Hello {user.email}"}
-            else:
-                return {"message": "Hello anonymous user"}
     """
     if credentials is None:
         return None

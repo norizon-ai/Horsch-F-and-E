@@ -85,6 +85,7 @@ export interface ConfluenceSpacesResponse {
 // Microsoft Teams Integration
 export interface TeamsMeeting {
 	id: string;
+	meetingId?: string | null;
 	subject: string;
 	startDateTime: string;
 	endDateTime: string;
@@ -92,6 +93,7 @@ export interface TeamsMeeting {
 	hasRecording: boolean;
 	recordingId?: string;
 	organizerName?: string;
+	isDirectFile?: boolean;
 }
 
 export interface TeamsMeetingsResponse {
@@ -109,6 +111,7 @@ export interface TeamsAuthStatusResponse {
 export interface TeamsImportResponse {
 	success: boolean;
 	file_id: string;
+	file_size: number;
 	duration_seconds: number;
 }
 
@@ -167,6 +170,21 @@ export class WorkflowAPI {
 		}
 
 		return response.json();
+	}
+
+	/**
+	 * Trigger processing for an already-uploaded file (e.g. Teams import)
+	 */
+	static async triggerProcessing(jobId: string): Promise<void> {
+		const response = await fetch(`${getBaseUrl()}/jobs/${jobId}/process`, {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+		});
+
+		if (!response.ok) {
+			const data = await response.json().catch(() => null);
+			throw new Error(data?.detail || `Failed to start processing: ${response.status}`);
+		}
 	}
 
 	/**
@@ -449,7 +467,7 @@ export class WorkflowAPI {
 	 */
 	static async importTeamsRecording(
 		jobId: string,
-		meetingId: string,
+		meetingId: string | null,
 		recordingId: string,
 		meetingSubject?: string,
 		meetingStart?: string
@@ -459,7 +477,7 @@ export class WorkflowAPI {
 			headers: { 'Content-Type': 'application/json' },
 			credentials: 'include',
 			body: JSON.stringify({
-				meeting_id: meetingId,
+				meeting_id: meetingId || '',
 				recording_id: recordingId,
 				meeting_subject: meetingSubject || '',
 				meeting_start: meetingStart || ''
@@ -467,7 +485,9 @@ export class WorkflowAPI {
 		});
 
 		if (!response.ok) {
-			throw new Error(`Failed to import recording: ${response.status}`);
+			const data = await response.json().catch(() => null);
+			const detail = data?.detail || `Import failed (${response.status})`;
+			throw new Error(detail);
 		}
 
 		return response.json();

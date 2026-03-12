@@ -449,24 +449,9 @@
 										onclick={() => removeAttendee(idx)}
 										title="Remove"
 									>
-										<svg
-											viewBox="0 0 24 24"
-											fill="none"
-											stroke="currentColor"
-											stroke-width="2"
-										>
-											<line
-												x1="18"
-												y1="6"
-												x2="6"
-												y2="18"
-											/>
-											<line
-												x1="6"
-												y1="6"
-												x2="18"
-												y2="18"
-											/>
+										<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+											<polyline points="3 6 5 6 21 6" />
+											<path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
 										</svg>
 									</button>
 								</span>
@@ -734,24 +719,9 @@
 										onclick={() => removeActionItem(idx)}
 										title="Remove"
 									>
-										<svg
-											viewBox="0 0 24 24"
-											fill="none"
-											stroke="currentColor"
-											stroke-width="2"
-										>
-											<line
-												x1="18"
-												y1="6"
-												x2="6"
-												y2="18"
-											/>
-											<line
-												x1="6"
-												y1="6"
-												x2="18"
-												y2="18"
-											/>
+										<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+											<polyline points="3 6 5 6 21 6" />
+											<path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
 										</svg>
 									</button>
 								{/if}
@@ -837,24 +807,9 @@
 										onclick={() => removeDecision(idx)}
 										title="Remove"
 									>
-										<svg
-											viewBox="0 0 24 24"
-											fill="none"
-											stroke="currentColor"
-											stroke-width="2"
-										>
-											<line
-												x1="18"
-												y1="6"
-												x2="6"
-												y2="18"
-											/>
-											<line
-												x1="6"
-												y1="6"
-												x2="18"
-												y2="18"
-											/>
+										<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+											<polyline points="3 6 5 6 21 6" />
+											<path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
 										</svg>
 									</button>
 								{:else}
@@ -939,24 +894,9 @@
 										onclick={() => removeNextStep(idx)}
 										title="Remove"
 									>
-										<svg
-											viewBox="0 0 24 24"
-											fill="none"
-											stroke="currentColor"
-											stroke-width="2"
-										>
-											<line
-												x1="18"
-												y1="6"
-												x2="6"
-												y2="18"
-											/>
-											<line
-												x1="6"
-												y1="6"
-												x2="18"
-												y2="18"
-											/>
+										<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+											<polyline points="3 6 5 6 21 6" />
+											<path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
 										</svg>
 									</button>
 								{:else}
@@ -1685,17 +1625,25 @@
 		background: transparent;
 		color: var(--slate-300, #cbd5e1);
 		cursor: pointer;
-		opacity: 0;
+		opacity: 0.5;
 		transition: all 0.2s;
+		flex-shrink: 0;
 	}
 
-	.task-item:hover .remove-btn {
+	.remove-btn svg {
+		width: 15px;
+		height: 15px;
+	}
+
+	.task-item:hover .remove-btn,
+	.bullet-item:hover .remove-btn {
 		opacity: 1;
 	}
 
 	.remove-btn:hover {
 		background: var(--red-50, #fef2f2);
 		color: var(--red-500, #ef4444);
+		opacity: 1;
 	}
 
 	.add-action-btn {

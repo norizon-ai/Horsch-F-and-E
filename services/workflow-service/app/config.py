@@ -21,10 +21,11 @@ class Settings(BaseSettings):
         validation_alias="DATABASE_URL"
     )
 
-    # Auth0 Configuration (reads from AUTH0_*, not WORKFLOW_AUTH0_*)
-    auth0_enabled: bool = Field(default=True, validation_alias="AUTH0_ENABLED")
-    auth0_domain: str = Field(default="", validation_alias="AUTH0_DOMAIN")
-    auth0_audience: str = Field(default="", validation_alias="AUTH0_AUDIENCE")
+    # Azure AD / Entra External ID (CIAM) Configuration
+    azure_ad_enabled: bool = Field(default=True, validation_alias="AZURE_AD_ENABLED")
+    azure_ciam_domain: str = Field(default="", validation_alias="AZURE_CIAM_DOMAIN")
+    azure_tenant_id: str = Field(default="", validation_alias="AZURE_TENANT_ID")
+    azure_client_id: str = Field(default="", validation_alias="AZURE_CLIENT_ID")
 
     # Internal service URLs
     kstudio_url: str = "http://localhost:8002"  # KStudio ML Pipeline

@@ -356,14 +356,46 @@ class MicrosoftTeamsService:
             return result["value"][0]
         return None
 
+    async def _find_recording_in_onedrive(self, session_id: str, meeting_subject: str) -> Optional[str]:
+        """Search OneDrive for a Teams recording matching the meeting subject.
+
+        Teams saves recordings to the organizer's OneDrive. Only returns a match
+        if the filename clearly matches the meeting subject (no guessing).
+        """
+        if not meeting_subject:
+            return None
+
+        # Search for .mp4 files — Teams recordings are always mp4
+        result = await self._graph_get(
+            session_id,
+            "/me/drive/root/search(q='.mp4')",
+        )
+        if not result or "value" not in result:
+            return None
+
+        # Only match if the meeting subject appears in the filename
+        # Teams names recordings like "Meeting Subject-20240214_100000-Recording.mp4"
+        for file in result["value"]:
+            name = file.get("name", "")
+            if meeting_subject.lower() in name.lower():
+                logger.info(f"Found OneDrive recording match: {name}")
+                return file["id"]
+
+        logger.info(f"No OneDrive recording found matching subject: {meeting_subject}")
+        return None
+
     async def download_recording(
         self,
         session_id: str,
         meeting_id: str,
         recording_id: str,
         dest_path: str,
+        meeting_subject: str = "",
     ) -> bool:
         """Download a meeting recording to a local file.
+
+        Tries the onlineMeetings recordings API first, falls back to
+        OneDrive download if that returns 403 (common with delegated permissions).
 
         Returns True on success.
         """
@@ -371,13 +403,27 @@ class MicrosoftTeamsService:
         if not access_token:
             return False
 
-        if meeting_id:
-            # Traditional Online Meeting Recording
-            url = f"{GRAPH_BASE}/me/onlineMeetings/{meeting_id}/recordings/{recording_id}/content"
-        else:
+        if not meeting_id:
             # Direct OneDrive File (recording_id is the driveItem id)
             url = f"{GRAPH_BASE}/me/drive/items/{recording_id}/content"
+            return await self._stream_download(access_token, url, dest_path)
 
+        # Try the recordings API first
+        url = f"{GRAPH_BASE}/me/onlineMeetings/{meeting_id}/recordings/{recording_id}/content"
+        success = await self._stream_download(access_token, url, dest_path)
+
+        if not success:
+            # Fallback: download from OneDrive where Teams saves recordings
+            logger.info("Recordings API failed, trying OneDrive fallback...")
+            drive_item_id = await self._find_recording_in_onedrive(session_id, meeting_subject)
+            if drive_item_id:
+                url = f"{GRAPH_BASE}/me/drive/items/{drive_item_id}/content"
+                success = await self._stream_download(access_token, url, dest_path)
+
+        return success
+
+    async def _stream_download(self, access_token: str, url: str, dest_path: str) -> bool:
+        """Stream-download a file from a URL with Bearer auth."""
         async with httpx.AsyncClient() as client:
             async with client.stream(
                 "GET",
@@ -387,7 +433,11 @@ class MicrosoftTeamsService:
                 follow_redirects=True,
             ) as resp:
                 if resp.status_code != 200:
-                    logger.error(f"Download failed with status {resp.status_code} for {url}")
+                    error_body = await resp.aread()
+                    logger.error(
+                        f"Download failed ({resp.status_code}) for {url}: "
+                        f"{error_body.decode('utf-8', errors='replace')[:1000]}"
+                    )
                     return False
                 with open(dest_path, "wb") as f:
                     async for chunk in resp.aiter_bytes(chunk_size=131072):

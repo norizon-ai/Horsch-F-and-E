@@ -213,7 +213,8 @@
 				"importing": "Aufnahme wird heruntergeladen...",
 				"attendees": "{count} Teilnehmer",
 				"error": "Meetings konnten nicht geladen werden. Bitte versuchen Sie es erneut.",
-				"popupBlocked": "Das Popup wurde blockiert. Bitte erlauben Sie Popups für diese Seite."
+				"popupBlocked": "Das Popup wurde blockiert. Bitte erlauben Sie Popups für diese Seite.",
+				"tryAnother": "Andere Aufnahme versuchen"
 			},
 			"confirm": {
 				"title": "Analyse konfigurieren",

@@ -149,16 +149,18 @@
 	}
 
 	.main-content {
-		flex: 1;
-		margin-left: 320px;
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: 320px;
+		right: 0;
 		display: flex;
 		flex-direction: column;
-		height: 100vh;
-		transition: margin-left 0.2s ease;
+		transition: left 0.2s ease;
 	}
 
 	.main-content.sidebar-collapsed {
-		margin-left: 72px;
+		left: 72px;
 	}
 
 	.chat-messages {
@@ -206,7 +208,7 @@
 		}
 
 		.main-content {
-			margin-left: 0;
+			left: 0;
 		}
 
 		.chat-messages {

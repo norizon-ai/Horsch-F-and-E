@@ -73,10 +73,10 @@
 </script>
 
 <div class="container">
-	<h1>Auth0 Authentication Test</h1>
+	<h1>Azure AD Authentication Test</h1>
 
 	<div class="section">
-		<h2>Auth0 Client Status</h2>
+		<h2>Azure AD Client Status</h2>
 		{#if $authLoading}
 			<p class="loading">Loading authentication state...</p>
 		{:else if $isAuthenticated}
@@ -92,7 +92,7 @@
 			<div class="warning-box">
 				<p>❌ Not authenticated</p>
 				<button onclick={() => authStore.login()} class="btn-primary">
-					Login with Auth0
+					Login with Azure AD
 				</button>
 			</div>
 		{/if}

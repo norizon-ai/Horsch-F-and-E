@@ -180,10 +180,14 @@ async def import_teams_recording(job_id: str, body: ImportRecordingRequest, requ
         meeting_id=body.meeting_id,
         recording_id=body.recording_id,
         dest_path=file_path,
+        meeting_subject=body.meeting_subject,
     )
 
     if not success:
-        raise HTTPException(status_code=502, detail="Failed to download recording from Microsoft Teams")
+        raise HTTPException(
+            status_code=403,
+            detail="Sorry, recording download denied. Only the meeting organizer can download recordings. Ask the organizer to export and share the file.",
+        )
 
     file_size = os.path.getsize(file_path)
     file_name = f"{body.meeting_subject or 'Teams Recording'}.mp4"
@@ -210,28 +214,12 @@ async def import_teams_recording(job_id: str, body: ImportRecordingRequest, requ
         teams_attendees=body.attendees,
     )
 
-    # Trigger KStudio processing (same logic as upload endpoint)
-    if not settings.use_mocks:
-        import httpx
-
-        language = request.headers.get("X-Language", "de")
-        try:
-            async with httpx.AsyncClient() as client:
-                await client.post(
-                    f"{settings.kstudio_url}/internal/transcribe/{job_id}/process",
-                    json={
-                        "file_path": file_path,
-                        "glossary": [],
-                        "language": language,
-                    },
-                    timeout=30.0,
-                )
-        except Exception as e:
-            print(f"Warning: Failed to trigger KStudio processing: {e}")
+    # Processing is triggered separately by the user clicking "Start Processing"
 
     return {
         "success": True,
         "file_id": f"file-{job_id}",
+        "file_size": file_size,
         "duration_seconds": duration_seconds,
         "skip_speaker_verification": True,  # Teams provides speaker identities
         "recording_date": recording_date,

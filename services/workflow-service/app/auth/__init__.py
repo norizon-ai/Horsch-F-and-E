@@ -1,1 +1,1 @@
-"""Authentication module for Auth0 JWT verification."""
+"""Authentication module for Azure AD CIAM JWT verification."""

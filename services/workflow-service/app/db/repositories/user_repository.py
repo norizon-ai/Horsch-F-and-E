@@ -15,24 +15,24 @@ class UserRepository:
     def __init__(self, db: AsyncSession):
         self.db = db
 
-    async def get_by_auth0_subject(self, auth0_subject: str) -> User | None:
+    async def get_by_external_subject(self, external_subject: str) -> User | None:
         """
-        Get user by Auth0 subject (user ID).
+        Get user by external subject (identity provider user ID).
 
         Args:
-            auth0_subject: Auth0 user ID (e.g., "auth0|abc123")
+            external_subject: Identity provider user ID (Azure AD oid, etc.)
 
         Returns:
             User object if found, None otherwise
         """
         result = await self.db.execute(
-            select(User).where(User.auth0_subject == auth0_subject)
+            select(User).where(User.external_subject == external_subject)
         )
         return result.scalars().first()
 
     async def create_user(
         self,
-        auth0_subject: str,
+        external_subject: str,
         email: str,
         name: str | None = None
     ) -> User:
@@ -40,7 +40,7 @@ class UserRepository:
         Create a new user.
 
         Args:
-            auth0_subject: Auth0 user ID
+            external_subject: Identity provider user ID
             email: User email address
             name: User's full name (optional)
 
@@ -48,7 +48,7 @@ class UserRepository:
             Created User object
         """
         user = User(
-            auth0_subject=auth0_subject,
+            external_subject=external_subject,
             email=email,
             name=name,
             last_login=datetime.utcnow()
@@ -75,7 +75,7 @@ class UserRepository:
 
     async def upsert_user(
         self,
-        auth0_subject: str,
+        external_subject: str,
         email: str,
         name: str | None = None
     ) -> User:
@@ -86,30 +86,25 @@ class UserRepository:
         If user doesn't exist: Create new user and return it.
 
         Args:
-            auth0_subject: Auth0 user ID
+            external_subject: Identity provider user ID
             email: User email address
             name: User's full name (optional)
 
         Returns:
             User object (existing or newly created)
         """
-        # Check if user exists
-        user = await self.get_by_auth0_subject(auth0_subject)
+        user = await self.get_by_external_subject(external_subject)
 
         if user:
-            # User exists - update last_login
             return await self.update_last_login(user)
         else:
-            # User doesn't exist - create new user
             try:
-                return await self.create_user(auth0_subject, email, name)
+                return await self.create_user(external_subject, email, name)
             except IntegrityError:
                 # Race condition: user was created between check and insert
-                # Rollback and fetch the existing user
                 await self.db.rollback()
-                user = await self.get_by_auth0_subject(auth0_subject)
+                user = await self.get_by_external_subject(external_subject)
                 if user:
                     return await self.update_last_login(user)
                 else:
-                    # This shouldn't happen, but raise if it does
                     raise

@@ -1,25 +1,30 @@
 /**
- * Auth0 Authentication Store
+ * Azure Entra External ID (CIAM) Authentication Store
  *
- * Manages user authentication state using Auth0 SPA SDK.
+ * Manages user authentication state using MSAL.js.
  * Provides login, logout, token management, and user info.
+ * Uses Email OTP flow via Entra External ID.
  */
 
 import { writable, derived } from 'svelte/store';
 import { browser } from '$app/environment';
 import {
-	PUBLIC_AUTH0_DOMAIN,
-	PUBLIC_AUTH0_CLIENT_ID,
-	PUBLIC_AUTH0_AUDIENCE
+	PUBLIC_AZURE_CLIENT_ID,
+	PUBLIC_AZURE_AUTHORITY
 } from '$env/static/public';
 
-// Type imports only (won't be bundled during SSR)
-import type { Auth0Client, User } from '@auth0/auth0-spa-js';
+import type { PublicClientApplication, AccountInfo, AuthenticationResult } from '@azure/msal-browser';
+
+interface AuthUser {
+	email: string;
+	name: string;
+	sub: string;
+}
 
 interface AuthState {
 	isAuthenticated: boolean;
 	isLoading: boolean;
-	user: User | null;
+	user: AuthUser | null;
 	error: string | null;
 }
 
@@ -30,30 +35,22 @@ const initialState: AuthState = {
 	error: null
 };
 
-// Create the auth store
+// Default scopes for CIAM — openid/profile/email are added automatically by MSAL
+const loginScopes = ['openid', 'profile', 'email', 'offline_access'];
+
 function createAuthStore() {
-	const { subscribe, set, update } = writable<AuthState>(initialState);
-	let auth0Client: Auth0Client | null = null;
+	const { subscribe, update } = writable<AuthState>(initialState);
+	let msalInstance: PublicClientApplication | null = null;
 	let initPromise: Promise<void> | null = null;
 
-	// Auth0 configuration from environment variables
-	const auth0Config = {
-		domain: PUBLIC_AUTH0_DOMAIN || '',
-		clientId: PUBLIC_AUTH0_CLIENT_ID || '',
-		authorizationParams: {
-			redirect_uri: browser ? window.location.origin + '/callback' : '',
-			audience: PUBLIC_AUTH0_AUDIENCE || ''
-		},
-		// Use localStorage to persist tokens across page reloads
-		// Without this, tokens are stored in memory and lost on reload
-		cacheLocation: 'localstorage' as const,
-		// Use refresh tokens to maintain sessions
-		useRefreshTokens: true
-	};
+	function accountToUser(account: AccountInfo): AuthUser {
+		return {
+			email: account.username || '',
+			name: account.name || '',
+			sub: account.localAccountId || account.homeAccountId || ''
+		};
+	}
 
-	/**
-	 * Initialize Auth0 client and check authentication status
-	 */
 	function initialize(): Promise<void> {
 		if (!browser) return Promise.resolve();
 
@@ -63,59 +60,49 @@ function createAuthStore() {
 
 		initPromise = (async () => {
 			try {
-				console.log('📍 authStore.initialize() starting');
-				console.log('📍 Auth0 config:', {
-					domain: auth0Config.domain,
-					clientId: auth0Config.clientId?.substring(0, 10) + '...',
-					audience: auth0Config.authorizationParams.audience
-				});
-
 				update(state => ({ ...state, isLoading: true, error: null }));
 
-				// Dynamically import Auth0 client (browser-only)
-				const { createAuth0Client } = await import('@auth0/auth0-spa-js');
+				const { PublicClientApplication: MSAL } = await import('@azure/msal-browser');
 
-				// Create Auth0 client
-				auth0Client = await createAuth0Client(auth0Config);
-				console.log('✅ Auth0 client created');
-
-				// Check if we're returning from Auth0 callback
-				const query = window.location.search;
-				console.log('📍 URL query:', query);
-
-				if (query.includes('code=') && query.includes('state=')) {
-					console.log('📍 Handling Auth0 callback...');
-					try {
-						const result = await auth0Client.handleRedirectCallback();
-						console.log('✅ Callback handled successfully:', result);
-						// Clean up URL
-						window.history.replaceState({}, document.title, window.location.pathname);
-					} catch (error) {
-						console.error('❌ Error handling redirect callback:', error);
-						update(state => ({
-							...state,
-							error: 'Authentication failed. Please try again.',
-							isLoading: false
-						}));
-						return;
+				msalInstance = new MSAL({
+					auth: {
+						clientId: PUBLIC_AZURE_CLIENT_ID || '',
+						authority: PUBLIC_AZURE_AUTHORITY || '',
+						redirectUri: window.location.origin + '/callback',
+						postLogoutRedirectUri: window.location.origin,
+						knownAuthorities: ['norizonauth.ciamlogin.com']
+					},
+					cache: {
+						cacheLocation: 'localStorage'
 					}
+				});
+
+				await msalInstance.initialize();
+
+				// Handle redirect response (returns null if not coming from a redirect)
+				let response: AuthenticationResult | null = null;
+				try {
+					response = await msalInstance.handleRedirectPromise();
+					if (response) {
+						console.log('Redirect response handled, account:', response.account?.username);
+					}
+				} catch (error) {
+					// Stale interaction state — not a real failure.
+					// Fall through to check cached accounts.
+					console.warn('handleRedirectPromise error:', (error as any)?.errorCode);
 				}
 
-				// Check authentication status
-				const isAuthenticated = await auth0Client.isAuthenticated();
-				console.log('📍 isAuthenticated:', isAuthenticated);
-
-				if (isAuthenticated) {
-					const user = await auth0Client.getUser();
-					console.log('✅ User authenticated:', user?.email);
+				const accounts = msalInstance.getAllAccounts();
+				if (accounts.length > 0) {
+					const account = response?.account || accounts[0];
+					msalInstance.setActiveAccount(account);
 					update(state => ({
 						...state,
 						isAuthenticated: true,
-						user: user || null,
+						user: accountToUser(account),
 						isLoading: false
 					}));
 				} else {
-					console.log('❌ User not authenticated');
 					update(state => ({
 						...state,
 						isAuthenticated: false,
@@ -124,7 +111,7 @@ function createAuthStore() {
 					}));
 				}
 			} catch (error) {
-				console.error('❌ Auth initialization error:', error);
+				console.error('Auth initialization error:', error);
 				update(state => ({
 					...state,
 					error: error instanceof Error ? error.message : 'Authentication initialization failed',
@@ -135,35 +122,24 @@ function createAuthStore() {
 		return initPromise;
 	}
 
-	/**
-	 * Login with Auth0 (redirect to Auth0 login page)
-	 */
 	async function login() {
-		// Check if Auth0 is configured
-		if (!auth0Config.domain || !auth0Config.clientId) {
-			console.error('❌ Auth0 not configured. Domain:', auth0Config.domain, 'ClientId:', auth0Config.clientId);
-			console.error('❌ Environment variables:', {
-				domain: PUBLIC_AUTH0_DOMAIN,
-				clientId: PUBLIC_AUTH0_CLIENT_ID,
-				audience: PUBLIC_AUTH0_AUDIENCE
-			});
-			alert('Authentication is not configured. Domain: ' + auth0Config.domain + ', Client ID: ' + auth0Config.clientId);
+		if (!PUBLIC_AZURE_CLIENT_ID || !PUBLIC_AZURE_AUTHORITY) {
+			console.error('Azure AD not configured. ClientId:', PUBLIC_AZURE_CLIENT_ID, 'Authority:', PUBLIC_AZURE_AUTHORITY);
+			alert('Authentication is not configured.');
 			return;
 		}
 
-		if (!auth0Client) {
-			console.error('❌ Auth0 client not initialized');
+		if (!msalInstance) {
+			console.error('MSAL client not initialized');
 			return;
 		}
 
 		try {
-			await auth0Client.loginWithRedirect({
-				authorizationParams: {
-					redirect_uri: window.location.origin + '/callback'
-				}
+			await msalInstance.loginRedirect({
+				scopes: loginScopes
 			});
 		} catch (error) {
-			console.error('❌ Login error:', error);
+			console.error('Login error:', error);
 			update(state => ({
 				...state,
 				error: error instanceof Error ? error.message : 'Login failed'
@@ -171,30 +147,24 @@ function createAuthStore() {
 		}
 	}
 
-	/**
-	 * Logout from Auth0
-	 */
 	async function logout() {
-		if (!auth0Client) {
-			console.error('❌ Auth0 client not initialized');
+		if (!msalInstance) {
+			console.error('MSAL client not initialized');
 			return;
 		}
 
 		try {
-			// Update store state immediately to avoid UI flicker
 			update(state => ({
 				...state,
 				isAuthenticated: false,
 				user: null
 			}));
 
-			await auth0Client.logout({
-				logoutParams: {
-					returnTo: window.location.origin
-				}
+			await msalInstance.logoutRedirect({
+				postLogoutRedirectUri: window.location.origin
 			});
 		} catch (error) {
-			console.error('❌ Logout error:', error);
+			console.error('Logout error:', error);
 			update(state => ({
 				...state,
 				error: error instanceof Error ? error.message : 'Logout failed'
@@ -202,36 +172,55 @@ function createAuthStore() {
 		}
 	}
 
-	/**
-	 * Get access token for API calls
-	 */
 	async function getAccessToken(): Promise<string | null> {
-		if (!auth0Client) {
-			console.error('❌ Auth0 client not initialized');
+		if (!msalInstance) {
+			console.error('MSAL client not initialized');
+			return null;
+		}
+
+		const account = msalInstance.getActiveAccount() || msalInstance.getAllAccounts()[0];
+		if (!account) {
+			console.error('No active account');
 			return null;
 		}
 
 		try {
-			const token = await auth0Client.getTokenSilently();
-			return token;
+			// First try without forceRefresh (uses cached token if still valid)
+			const result = await msalInstance.acquireTokenSilent({
+				scopes: loginScopes,
+				account
+			});
+			// CIAM with OIDC scopes returns an opaque access token.
+			// Use the ID token (a proper JWT) for backend verification.
+			return result.idToken;
 		} catch (error) {
-			console.error('❌ Error getting access token:', error);
-			return null;
+			console.warn('Silent token acquisition failed, attempting refresh...', (error as any)?.errorCode);
+			try {
+				// Force a token refresh using the refresh token
+				const result = await msalInstance.acquireTokenSilent({
+					scopes: loginScopes,
+					account,
+					forceRefresh: true
+				});
+				return result.idToken;
+			} catch (refreshError) {
+				console.error('Token refresh failed, redirecting to login:', (refreshError as any)?.errorCode);
+				try {
+					await msalInstance.acquireTokenRedirect({
+						scopes: loginScopes,
+						account
+					});
+				} catch (redirectError) {
+					console.error('Token redirect error:', redirectError);
+				}
+				return null;
+			}
 		}
 	}
 
-	/**
-	 * Check if user is authenticated (async version)
-	 */
 	async function checkAuth(): Promise<boolean> {
-		if (!auth0Client) return false;
-
-		try {
-			return await auth0Client.isAuthenticated();
-		} catch (error) {
-			console.error('❌ Error checking auth:', error);
-			return false;
-		}
+		if (!msalInstance) return false;
+		return msalInstance.getAllAccounts().length > 0;
 	}
 
 	return {
@@ -246,7 +235,7 @@ function createAuthStore() {
 
 export const authStore = createAuthStore();
 
-// Derived store for easy access to auth state
+// Derived stores — same interface as before
 export const isAuthenticated = derived(authStore, $auth => $auth.isAuthenticated);
 export const currentUser = derived(authStore, $auth => $auth.user);
 export const authLoading = derived(authStore, $auth => $auth.isLoading);

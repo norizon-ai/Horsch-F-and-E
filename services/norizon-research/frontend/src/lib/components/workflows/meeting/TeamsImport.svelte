@@ -7,6 +7,7 @@
 	let {
 		jobId = "",
 		onImported = undefined,
+		onCancel = undefined,
 	}: {
 		jobId?: string;
 		onImported?: ((data: {
@@ -16,6 +17,7 @@
 			meetingTitle: string;
 			meetingDate: string;
 		}) => void) | undefined;
+		onCancel?: (() => void) | undefined;
 	} = $props();
 
 	type State =
@@ -127,7 +129,7 @@
 		try {
 			const result = await WorkflowAPI.importTeamsRecording(
 				jobId,
-				meeting.id,
+				meeting.meetingId || null,
 				meeting.recordingId,
 				meeting.subject,
 				meeting.startDateTime,
@@ -142,7 +144,7 @@
 
 				onImported?.({
 					fileName: `${meeting.subject || "Teams Recording"}.mp4`,
-					fileSize: 0,
+					fileSize: result.file_size || 0,
 					duration: result.duration_seconds,
 					meetingTitle: meeting.subject || "",
 					meetingDate,
@@ -339,21 +341,23 @@
 			<span>{$t("workflow.meeting.teams.importing")}</span>
 		</div>
 	{:else if connectionState === "error"}
-		<div class="teams-error" in:fade={{ duration: 150 }}>
-			<svg
-				viewBox="0 0 24 24"
-				fill="none"
-				stroke="currentColor"
-				stroke-width="2"
-			>
-				<circle cx="12" cy="12" r="10" />
-				<line x1="12" y1="8" x2="12" y2="12" />
-				<line x1="12" y1="16" x2="12.01" y2="16" />
-			</svg>
-			<span>{errorMessage || $t("workflow.meeting.teams.error")}</span>
-			<button class="retry-btn" onclick={checkAuthStatus}>
-				{$t("common.retry") ?? "Retry"}
-			</button>
+		<div class="teams-error-card" in:fade={{ duration: 150 }}>
+			<div class="error-icon">
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<circle cx="12" cy="12" r="10" />
+					<line x1="12" y1="8" x2="12" y2="12" />
+					<line x1="12" y1="16" x2="12.01" y2="16" />
+				</svg>
+			</div>
+			<p class="error-text">{errorMessage || $t("workflow.meeting.teams.error")}</p>
+			<div class="error-actions">
+				<button class="error-btn secondary" onclick={() => onCancel?.()}>
+					{$t("common.cancel") ?? "Cancel"}
+				</button>
+				<button class="error-btn primary" onclick={() => { connectionState = "ready"; errorMessage = ""; }}>
+					{$t("workflow.meeting.teams.tryAnother") ?? "Try another recording"}
+				</button>
+			</div>
 		</div>
 	{/if}
 </div>
@@ -583,39 +587,70 @@
 	}
 
 	/* Error state */
-	.teams-error {
+	.teams-error-card {
 		display: flex;
+		flex-direction: column;
 		align-items: center;
-		gap: 8px;
-		padding: 12px 16px;
+		gap: 12px;
+		padding: 24px;
 		background: var(--red-50, #fef2f2);
 		border: 1px solid var(--red-200, #fecaca);
-		border-radius: 8px;
-		color: var(--red-700, #b91c1c);
+		border-radius: 12px;
+		text-align: center;
+	}
+
+	.error-icon {
+		width: 40px;
+		height: 40px;
+		color: var(--red-500, #ef4444);
+	}
+
+	.error-icon svg {
+		width: 100%;
+		height: 100%;
+	}
+
+	.error-text {
 		font-size: 14px;
-	}
-
-	.teams-error svg {
-		width: 18px;
-		height: 18px;
-		flex-shrink: 0;
-	}
-
-	.retry-btn {
-		margin-left: auto;
-		padding: 4px 12px;
-		font-size: 12px;
-		font-weight: 500;
+		line-height: 1.5;
 		color: var(--red-700, #b91c1c);
-		background: white;
-		border: 1px solid var(--red-200, #fecaca);
-		border-radius: 4px;
-		cursor: pointer;
-		flex-shrink: 0;
+		margin: 0;
+		max-width: 380px;
 	}
 
-	.retry-btn:hover {
-		background: var(--red-50, #fef2f2);
+	.error-actions {
+		display: flex;
+		gap: 10px;
+		margin-top: 4px;
+	}
+
+	.error-btn {
+		padding: 8px 18px;
+		font-size: 13px;
+		font-weight: 500;
+		border-radius: 8px;
+		cursor: pointer;
+		transition: background 0.15s, border-color 0.15s;
+	}
+
+	.error-btn.secondary {
+		color: var(--slate-600, #475569);
+		background: white;
+		border: 1px solid var(--slate-200, #e2e8f0);
+	}
+
+	.error-btn.secondary:hover {
+		background: var(--slate-50, #f8fafc);
+	}
+
+	.error-btn.primary {
+		color: white;
+		background: var(--deep-blue, #1E3A5F);
+		border: 1px solid var(--deep-blue, #1E3A5F);
+	}
+
+	.error-btn.primary:hover {
+		background: var(--deep-blue-hover, #162d4a);
 	}
 
 	/* Notice state */

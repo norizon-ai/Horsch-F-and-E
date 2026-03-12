@@ -553,6 +553,30 @@
 					<div class="centered-input">
 						<ChatInput onSubmit={handleSubmit} disabled={$isLoading} />
 						<p class="input-hint">{$t('welcome.disclaimer')}</p>
+						<div class="source-logos">
+							<div class="source-logo" title="Confluence">
+								<svg viewBox="0 0 256 246" width="24" height="24">
+									<defs><linearGradient id="conf-a" x1="99.14%" y1="112.05%" x2="33.86%" y2="69.22%"><stop offset="0%" stop-color="#0052CC"/><stop offset="92.3%" stop-color="#2684FF"/></linearGradient><linearGradient id="conf-b" x1=".86%" y1="-12.31%" x2="66.14%" y2="30.54%"><stop offset="0%" stop-color="#0052CC"/><stop offset="92.3%" stop-color="#2684FF"/></linearGradient></defs>
+									<path d="M9.26 187.38c-3.6 5.98-7.74 13-10.7 18.1a8.58 8.58 0 0 0 3.2 11.72l56.16 33.68a8.58 8.58 0 0 0 11.88-2.98c2.58-4.42 5.88-10.14 9.52-16.46 25.64-44.56 51.34-39.2 98.18-17.94l55.66 25.08a8.58 8.58 0 0 0 11.24-4.5l25.2-58.28a8.58 8.58 0 0 0-4.32-11.1c-16.78-7.66-50.26-22.92-83.88-38.32C111.18 93.2 42.96 117.78 9.26 187.38Z" fill="url(#conf-a)"/>
+									<path d="M246.74 58.86c3.6-5.98 7.74-13 10.7-18.1a8.58 8.58 0 0 0-3.2-11.72L198.08-4.64a8.58 8.58 0 0 0-11.88 2.98c-2.58 4.42-5.88 10.14-9.52 16.46-25.64 44.56-51.34 39.2-98.18 17.94L23.08 7.88a8.58 8.58 0 0 0-11.24 4.5L-13.36 70.66a8.58 8.58 0 0 0 4.32 11.1c16.78 7.66 50.26 22.92 83.88 38.32 69.22 33.18 137.44 8.6 171.14-60.98l.76-.24Z" fill="url(#conf-b)"/>
+								</svg>
+							</div>
+							<div class="source-logo" title="Jira">
+								<svg viewBox="0 0 256 256" width="24" height="24">
+									<defs><linearGradient id="jira-a" x1="98.03%" y1="0.22%" x2="58.17%" y2="40.08%"><stop offset="18%" stop-color="#0052CC"/><stop offset="100%" stop-color="#2684FF"/></linearGradient><linearGradient id="jira-b" x1="100.97%" y1=".44%" x2="55.94%" y2="44.47%"><stop offset="18%" stop-color="#0052CC"/><stop offset="100%" stop-color="#2684FF"/></linearGradient></defs>
+									<path d="M244.66 0H121.72L0 121.72l61.2 61.2 60.52-60.52L182.92 61.2 244.66 0Z" fill="#2684FF"/>
+									<path d="M182.52 121.32 121.72 182.12 61.2 121.72 0 182.92l121.72 121.72 121.72-121.72-60.92-61.6Z" fill="#2684FF"/>
+									<path d="M121.72 61.2 61.2 121.72 121.72 182.12l60.8-60.8-60.8-60.12Z" fill="url(#jira-a)"/>
+								</svg>
+							</div>
+							<div class="source-logo" title="Internal Knowledge Base">
+								<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#6366f1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+									<ellipse cx="12" cy="5" rx="9" ry="3"/>
+									<path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/>
+									<path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/>
+								</svg>
+							</div>
+						</div>
 					</div>
 					<div class="suggestion-chips">
 						{#each suggestionQueries as query}
@@ -1062,6 +1086,27 @@
 		margin-top: 10px;
 		margin-bottom: 0;
 	}
+
+	.source-logos {
+		display: flex;
+		justify-content: center;
+		gap: 32px;
+		margin-top: 16px;
+	}
+
+	.source-logo {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 6px;
+		opacity: 0.65;
+		transition: opacity 0.2s;
+	}
+
+	.source-logo:hover {
+		opacity: 0.9;
+	}
+
 
 	@media (max-width: 640px) {
 		.suggestion-chips {
